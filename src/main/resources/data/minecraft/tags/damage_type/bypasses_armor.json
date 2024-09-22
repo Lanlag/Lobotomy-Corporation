@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cogito:dry",
+    "cogito:mystic",
+    "cogito:indirect_mystic",
+    "cogito:insane",
+    "cogito:red",
+    "cogito:white",
+    "cogito:black",
+    "cogito:pale"
+  ]
+}

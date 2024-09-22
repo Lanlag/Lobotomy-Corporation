@@ -26,6 +26,8 @@ public class HUDManager {
         elements.put(GUIResource.HOT_BAR_ELEMENT, new HotBarElement());
         elements.put(GUIResource.MOUNT_HEALTH_ELEMENT, new MountHealthElement());
         elements.put(GUIResource.MOUNT_JUMP_ELEMENT, new MountJumpElement());
+        elements.put(GUIResource.SANITY_ELEMENT, new SanityElement());
+        elements.put(GUIResource.WATER_ELEMENT, new WaterElement());
     }
 
     //根据HUD元素类型调用对应检查方法

@@ -1,6 +1,7 @@
 package net.uniego.aida.lobecorp;
 
 import net.fabricmc.api.ModInitializer;
+import net.uniego.aida.lobecorp.init.EffectInit;
 import net.uniego.aida.lobecorp.init.EventInit;
 
 public class LobeCorpMain implements ModInitializer {
@@ -9,5 +10,6 @@ public class LobeCorpMain implements ModInitializer {
     @Override
     public void onInitialize() {
         EventInit.registerServerEvents();
+        EffectInit.register();
     }
 }

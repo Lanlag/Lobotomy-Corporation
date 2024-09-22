@@ -24,6 +24,9 @@ public class GUIResource {
     public static final int FROZEN = 0x4CBAD8;//冻伤颜色
     public static final int HEALTH = 0xC10000;//生命条以及生命字体颜色
     public static final int MOUNT_JUMP = 0xFFB65F;//坐骑跳跃条颜色
+    public static final int ABSENT = 0x2B8181;//恍惚颜色
+    public static final int INSANE = 0x270E40;//狂乱颜色
+    public static final int SANITY = 0x005BC2;//精神条以及精神字体颜色
     public static final int SHIELD = 0xD4AF37;//力场盾颜色
     //HUD元素类型名
     public static final String AIR_ELEMENT = "air_element";//玩家氧气条
@@ -35,4 +38,6 @@ public class GUIResource {
     public static final String HOT_BAR_ELEMENT = "hot_bar_element";//玩家快捷栏
     public static final String MOUNT_HEALTH_ELEMENT = "mount_health_element";//坐骑生命条
     public static final String MOUNT_JUMP_ELEMENT = "mount_jump_element";//坐骑跳跃条
+    public static final String SANITY_ELEMENT = "sanity_element";//玩家精神条
+    public static final String WATER_ELEMENT = "water_element";//玩家干渴条
 }

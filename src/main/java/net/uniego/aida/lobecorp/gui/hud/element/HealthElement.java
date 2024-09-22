@@ -34,7 +34,7 @@ public class HealthElement extends BaseElement {
             //参数设置
             int posX = 23;
             int posY = 3;
-            int height = 11;
+            int height = 9;
             double width1 = (double) (health + absorption) / (maxHealth + absorption);
             double width2 = (double) health / (maxHealth + absorption);
             int offset = client.textRenderer.getWidth(healthString) / 2 + 2;
@@ -45,7 +45,7 @@ public class HealthElement extends BaseElement {
             drawTrap(posX + icon + offset + 1, posY - 1, 97, 83, height + 1, GUIResource.BG1);
             //渲染生命条内框背景
             drawTrap(posX + icon + offset + 1 + 2, posY - 1 + 2, 89, 79, height + 1 - 3, GUIResource.BG2);
-            //渲染生命值图标和各种状态时生命条的颜色
+            //渲染生命值图标和各种状态生命条的颜色
             if (absorption > 0) {//有伤害吸收的时候
                 drawTrap(posX + icon + offset + 1 + 2, posY - 1 + 2, 89 * width1, 79 * width1, height + 1 - 3, GUIResource.SHIELD);
             }

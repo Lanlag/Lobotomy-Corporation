@@ -24,7 +24,7 @@ public class FoodElement extends BaseElement {
     @Override
     protected void draw(MinecraftClient client, DrawContext drawContext, float tickDelta, int scaledWidth, int scaledHeight) {
         if (client.player != null) {
-            HungerManager hungerManager = client.player.getHungerManager();//获取玩家饥饿管理器
+            HungerManager hungerManager = client.player.getHungerManager();//获取玩家饥饿机制
             int foodLevel = hungerManager.getFoodLevel();//获取玩家饥饿值
             float saturationLevel = hungerManager.getSaturationLevel();//获取玩家饱食度
             float exhaustion = hungerManager.getExhaustion();//获取玩家消耗度

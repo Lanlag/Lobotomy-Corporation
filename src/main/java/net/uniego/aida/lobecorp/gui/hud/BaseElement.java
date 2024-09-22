@@ -10,6 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.uniego.aida.lobecorp.manager.ThirstManager;
 
 //所有HUD元素的抽象父类
 @Environment(EnvType.CLIENT)
@@ -82,6 +83,14 @@ public abstract class BaseElement {
     //饥饿条抖动效果
     protected static int getHungerBounceFactor(PlayerEntity player, HungerManager hungerManager, int ticks) {
         if (hungerManager.getSaturationLevel() <= 0.0F && ticks % (hungerManager.getFoodLevel() * 3 + 1) == 0) {
+            return player.getWorld().random.nextInt(3) - 1;
+        }
+        return 0;
+    }
+
+    //干渴条抖动效果
+    public static int getThirstBounceFactor(PlayerEntity player, ThirstManager thirstManager, int ticks) {
+        if (thirstManager.getHydrationLevel() <= 0.0F && ticks % (thirstManager.getWaterLevel() * 3 + 1) == 0) {
             return player.getWorld().random.nextInt(3) - 1;
         }
         return 0;

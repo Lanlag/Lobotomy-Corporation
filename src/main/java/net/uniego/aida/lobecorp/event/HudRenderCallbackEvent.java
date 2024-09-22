@@ -32,6 +32,8 @@ public class HudRenderCallbackEvent implements HudRenderCallback {
         checkAndDrawHUD(GUIResource.HOT_BAR_ELEMENT, drawContext, tickDelta);
         checkAndDrawHUD(GUIResource.MOUNT_HEALTH_ELEMENT, drawContext, tickDelta);
         checkAndDrawHUD(GUIResource.MOUNT_JUMP_ELEMENT, drawContext, tickDelta);
+        checkAndDrawHUD(GUIResource.SANITY_ELEMENT, drawContext, tickDelta);
+        checkAndDrawHUD(GUIResource.WATER_ELEMENT, drawContext, tickDelta);
     }
 
     //检查并绘制HUD元素
