@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "lobecorp",
+  "version": "${version}",
+  "name": "Lobotomy Corporation",
+  "description": "Face the Fear, Build the Future.",
+  "authors": [
+    "Aida"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/lobecorp/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.uniego.aida.lobecorp.LobeCorpClient"
+    ],
+    "fabric-datagen": [
+      "net.uniego.aida.lobecorp.LobeCorpDataGen"
+    ],
+    "main": [
+      "net.uniego.aida.lobecorp.LobeCorpMain"
+    ]
+  },
+  "mixins": [
+    "lobecorp.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "accessWidener": "lobecorp.accesswidener"
+}
