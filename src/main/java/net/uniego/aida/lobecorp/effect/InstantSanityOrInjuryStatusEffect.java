@@ -21,12 +21,12 @@ public class InstantSanityOrInjuryStatusEffect extends InstantStatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
-            if (injury == playerEntity.hasInvertedHealingAndHarm()) {
+        if (entity instanceof PlayerEntity player) {
+            SanityManager sanityManager = ((ManagerAccess) player).lobecorp$getSanityManager();
+            if (injury == player.hasInvertedHealingAndHarm()) {
                 sanityManager.cure((float) Math.max(4 << amplifier, 0));
             } else {
-                playerEntity.damage(playerEntity.getDamageSources().create(DamageInit.MYSTIC), (float) (6 << amplifier));
+                player.damage(player.getDamageSources().create(DamageInit.MYSTIC), (float) (6 << amplifier));
             }
         }
         return true;
@@ -34,18 +34,18 @@ public class InstantSanityOrInjuryStatusEffect extends InstantStatusEffect {
 
     @Override
     public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
-        if (target instanceof PlayerEntity playerEntity) {
+        if (target instanceof PlayerEntity player) {
             int i;
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
-            if (injury == playerEntity.hasInvertedHealingAndHarm()) {
+            SanityManager sanityManager = ((ManagerAccess) player).lobecorp$getSanityManager();
+            if (injury == player.hasInvertedHealingAndHarm()) {
                 i = (int) (proximity * (double) (4 << amplifier) + 0.5);
                 sanityManager.cure((float) i);
             } else {
                 i = (int) (proximity * (double) (6 << amplifier) + 0.5);
                 if (source == null) {
-                    playerEntity.damage(playerEntity.getDamageSources().create(DamageInit.MYSTIC), (float) i);
+                    player.damage(player.getDamageSources().create(DamageInit.MYSTIC), (float) i);
                 } else {
-                    playerEntity.damage(playerEntity.getDamageSources().create(DamageInit.INDIRECT_MYSTIC, source, attacker), (float) i);
+                    player.damage(player.getDamageSources().create(DamageInit.INDIRECT_MYSTIC, source, attacker), (float) i);
                 }
             }
         }

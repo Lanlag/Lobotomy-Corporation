@@ -29,9 +29,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     @Unique
     private final ThirstManager thirstManager = new ThirstManager();
     @Unique
-    PlayerEntity playerEntity = (PlayerEntity) (Object) this;
+    PlayerEntity player = (PlayerEntity) (Object) this;
     @Unique
-    private final SanityManager sanityManager = new SanityManager(playerEntity);
+    private final SanityManager sanityManager = new SanityManager(player);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -72,7 +72,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/HungerManager;update(Lnet/minecraft/entity/player/PlayerEntity;)V"))
     private void tickMixin(CallbackInfo ci) {
         sanityManager.panicState();
-        thirstManager.update(playerEntity);
+        thirstManager.update(player);
     }
 
     //为干渴机制引入消耗度

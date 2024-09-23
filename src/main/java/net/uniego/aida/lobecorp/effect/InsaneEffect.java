@@ -15,8 +15,8 @@ public class InsaneEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof PlayerEntity playerEntity) {
-            playerEntity.damage(playerEntity.getDamageSources().create(DamageInit.INSANE), 1.0F);
+        if (entity instanceof PlayerEntity player) {
+            player.damage(player.getDamageSources().create(DamageInit.INSANE), 1.0F);
         }
         return true;
     }

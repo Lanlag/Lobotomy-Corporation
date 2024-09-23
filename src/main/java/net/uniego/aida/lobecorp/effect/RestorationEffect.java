@@ -16,8 +16,8 @@ public class RestorationEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
+        if (entity instanceof PlayerEntity player) {
+            SanityManager sanityManager = ((ManagerAccess) player).lobecorp$getSanityManager();
             if (sanityManager.getSanity() < sanityManager.getMaxSanity()) {
                 sanityManager.cure(1.0F);
             }

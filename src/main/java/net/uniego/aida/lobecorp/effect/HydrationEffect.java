@@ -15,8 +15,8 @@ public class HydrationEffect extends InstantStatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (!entity.getWorld().isClient && entity instanceof PlayerEntity playerEntity) {
-            ((ManagerAccess) playerEntity).lobecorp$getThirstManager().add(amplifier + 1, 1.0F);
+        if (!entity.getWorld().isClient && entity instanceof PlayerEntity player) {
+            ((ManagerAccess) player).lobecorp$getThirstManager().add(amplifier + 1, 1.0F);
         }
         return true;
     }
