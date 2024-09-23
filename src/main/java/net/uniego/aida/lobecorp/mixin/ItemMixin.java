@@ -54,7 +54,7 @@ public abstract class ItemMixin {
                 hydrationLevel = 0.4F;
             } else if (item == LobeCorpItem.BLUE_LEAF) {
                 waterLevel = 6;
-                hydrationLevel = 1.2f;
+                hydrationLevel = 1.2F;
             }
             ((ManagerAccess) player).lobecorp$getThirstManager().add(waterLevel, hydrationLevel);
         }

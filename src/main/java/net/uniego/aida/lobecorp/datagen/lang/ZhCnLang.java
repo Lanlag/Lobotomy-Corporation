@@ -3,10 +3,7 @@ package net.uniego.aida.lobecorp.datagen.lang;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.uniego.aida.lobecorp.init.AttributeInit;
-import net.uniego.aida.lobecorp.init.DamageInit;
-import net.uniego.aida.lobecorp.init.EffectInit;
-import net.uniego.aida.lobecorp.init.ItemGroupInit;
+import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
 import java.util.concurrent.CompletableFuture;
@@ -54,5 +51,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "蓝叶");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
+        //声音名
+        translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
     }
 }

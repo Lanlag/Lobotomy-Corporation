@@ -28,5 +28,6 @@
   "effect.lobecorp.thirst": "干渴",
   "item.lobecorp.blue_leaf": "蓝叶",
   "item.lobecorp.lobecorp_logo": "脑叶公司Logo",
-  "itemgroup.lobecorp.lobecorp": "脑叶公司"
+  "itemgroup.lobecorp.lobecorp": "脑叶公司",
+  "lobecorp.swallow_water": "吞水"
 }

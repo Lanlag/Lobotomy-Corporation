@@ -4,11 +4,19 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.DamageInit;
+import net.uniego.aida.lobecorp.init.SoundInit;
 
 //干渴机制
 public class ThirstManager {
+    public boolean hasDrankStream = false;//判断玩家是否喝了水流
+    public int drankStreamTickTimer;//水流计时器
+    public boolean hasDrankRain = false;//判断玩家是否已经喝了雨水
+    public int drankRainTickTimer;//雨水计时器
+    public boolean hasDrankCauldron = false;//判断玩家是否喝了坩埚
+    public int drankCauldronTickTimer;//坩埚计时器
     private int waterLevel = 20;//干渴值
     private float hydrationLevel = 5.0F;//饱水度
     private float desiccation;//脱水度
@@ -65,6 +73,29 @@ public class ThirstManager {
         } else {
             waterTickTimer = 0;
         }
+        //喝水状态冷却时间及声音播放
+        if (hasDrankStream) {
+            ++drankStreamTickTimer;
+            if (drankStreamTickTimer >= 20) {
+                LobeCorpUtil.playSound(player, SoundInit.SWALLOW_WATER);
+                drankStreamTickTimer = 0;
+                hasDrankStream = false;
+            }
+        } else if (hasDrankRain) {
+            ++drankRainTickTimer;
+            if (drankRainTickTimer >= 40) {
+                LobeCorpUtil.playSound(player, SoundInit.SWALLOW_WATER);
+                drankRainTickTimer = 0;
+                hasDrankRain = false;
+            }
+        } else if (hasDrankCauldron) {
+            ++drankCauldronTickTimer;
+            if (drankCauldronTickTimer >= 20) {
+                LobeCorpUtil.playSound(player, SoundInit.SWALLOW_WATER);
+                drankCauldronTickTimer = 0;
+                hasDrankCauldron = false;
+            }
+        }
     }
 
     public void readNbt(NbtCompound nbt) {
@@ -81,6 +112,11 @@ public class ThirstManager {
         nbt.putInt("waterTickTimer", waterTickTimer);
         nbt.putFloat("waterHydrationLevel", hydrationLevel);
         nbt.putFloat("waterDesiccationLevel", desiccation);
+    }
+
+    //判断玩家是否喝水
+    public boolean isNotDrink() {
+        return !hasDrankStream && !hasDrankRain && !hasDrankCauldron;
     }
 
     public int getWaterLevel() {

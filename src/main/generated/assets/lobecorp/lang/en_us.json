@@ -28,5 +28,6 @@
   "effect.lobecorp.thirst": "Thirst",
   "item.lobecorp.blue_leaf": "Blue Leaf",
   "item.lobecorp.lobecorp_logo": "LobeCorp Logo",
-  "itemgroup.lobecorp.lobecorp": "LobeCorp"
+  "itemgroup.lobecorp.lobecorp": "LobeCorp",
+  "lobecorp.swallow_water": "Swallow Water"
 }

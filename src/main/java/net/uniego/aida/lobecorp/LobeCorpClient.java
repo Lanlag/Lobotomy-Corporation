@@ -9,6 +9,7 @@ public class LobeCorpClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EventInit.registerClientEvents();
+
         NetworkInit.registerClient();
     }
 }

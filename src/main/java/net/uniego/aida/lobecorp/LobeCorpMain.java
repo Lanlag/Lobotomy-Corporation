@@ -9,10 +9,10 @@ public class LobeCorpMain implements ModInitializer {
     @Override
     public void onInitialize() {
         EventInit.registerServerEvents();
-        NetworkInit.registerServer();
         EffectInit.register();
         PayloadInit.register();
         ItemInit.register();
         ItemGroupInit.register();
+        NetworkInit.registerServer();
     }
 }
