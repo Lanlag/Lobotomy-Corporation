@@ -1,4 +1,4 @@
-package net.uniego.aida.lobecorp.event;
+package net.uniego.aida.lobecorp.event.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

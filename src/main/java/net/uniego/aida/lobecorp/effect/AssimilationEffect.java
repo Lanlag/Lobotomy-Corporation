@@ -17,7 +17,7 @@ public class AssimilationEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
             return sanityManager.getAssimilationAmount() > 0.0F || playerEntity.getWorld().isClient;
         }
         return false;
@@ -31,7 +31,7 @@ public class AssimilationEffect extends StatusEffect {
     @Override
     public void onApplied(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
             sanityManager.setAssimilationAmount(Math.max(sanityManager.getAssimilationAmount(), (float) (4 * (1 + amplifier))));
         }
     }

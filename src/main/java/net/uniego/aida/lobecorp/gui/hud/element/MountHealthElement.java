@@ -29,7 +29,7 @@ public class MountHealthElement extends BaseElement {
     @Override
     protected void draw(MinecraftClient client, DrawContext drawContext, float tickDelta, int scaledWidth, int scaledHeight) {
         if (client.player != null) {
-            SanityManager sanityManager = ((ManagerAccess) client.player).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) client.player).lobecorp$getSanityManager();
             int sanity = MathHelper.ceil(sanityManager.getSanity());
             int maxSanity = MathHelper.ceil(sanityManager.getMaxSanity());
             int assimilation = MathHelper.ceil(sanityManager.getAssimilationAmount());

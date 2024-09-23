@@ -1,13 +1,13 @@
 {
   "replace": false,
   "values": [
-    "cogito:dry",
-    "cogito:mystic",
-    "cogito:indirect_mystic",
-    "cogito:insane",
-    "cogito:red",
-    "cogito:white",
-    "cogito:black",
-    "cogito:pale"
+    "lobecorp:dry",
+    "lobecorp:mystic",
+    "lobecorp:indirect_mystic",
+    "lobecorp:insane",
+    "lobecorp:red",
+    "lobecorp:white",
+    "lobecorp:black",
+    "lobecorp:pale"
   ]
 }

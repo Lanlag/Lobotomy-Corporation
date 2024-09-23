@@ -1,7 +1,5 @@
 package net.uniego.aida.lobecorp.manager;
 
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.Difficulty;
@@ -38,7 +36,7 @@ public class ThirstManager {
         }
 
         boolean bl = player.getWorld().getGameRules().getBoolean(GameRules.NATURAL_REGENERATION);
-        SanityManager sanityManager = ((ManagerAccess) player).cogito$getSanityManager();
+        SanityManager sanityManager = ((ManagerAccess) player).lobecorp$getSanityManager();
         if (bl && hydrationLevel > 0.0F && sanityManager.canWaterCure() && waterLevel >= 20) {
             ++waterTickTimer;
             if (waterTickTimer >= 10) {
@@ -66,13 +64,6 @@ public class ThirstManager {
             }
         } else {
             waterTickTimer = 0;
-        }
-        //如果玩家非观察和创造模式，当干渴值小于等于4且没有挖掘疲劳效果时，给予玩家4秒挖掘疲劳
-        if (!player.isSpectator() && !player.isCreative()) {
-            if (waterLevel <= 4 && !player.hasStatusEffect(StatusEffects.MINING_FATIGUE)) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE,
-                        80, 0, false, false, false));
-            }
         }
     }
 
@@ -105,7 +96,7 @@ public class ThirstManager {
     }
 
     public void addDesiccation(float desiccation) {
-        this.desiccation = Math.min(desiccation + desiccation, 40.0F);
+        this.desiccation = Math.min(this.desiccation + desiccation, 40.0F);
     }
 
     public float getDesiccation() {

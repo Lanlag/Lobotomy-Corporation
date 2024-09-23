@@ -1,7 +1,9 @@
 package net.uniego.aida.lobecorp.init;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.uniego.aida.lobecorp.event.HudRenderCallbackEvent;
+import net.fabricmc.fabric.api.entity.event.v1.ServerEntityWorldChangeEvents;
+import net.uniego.aida.lobecorp.event.client.HudRenderCallbackEvent;
+import net.uniego.aida.lobecorp.event.server.ServerEntityWorldChangeEventsAfterPlayerChangeEvent;
 
 //初始化事件
 public class EventInit {
@@ -12,6 +14,6 @@ public class EventInit {
 
     //注册服务端事件
     public static void registerServerEvents() {
-
+        ServerEntityWorldChangeEvents.AFTER_PLAYER_CHANGE_WORLD.register(new ServerEntityWorldChangeEventsAfterPlayerChangeEvent());
     }
 }

@@ -22,7 +22,7 @@ public class InstantSanityOrInjuryStatusEffect extends InstantStatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
             if (injury == playerEntity.hasInvertedHealingAndHarm()) {
                 sanityManager.cure((float) Math.max(4 << amplifier, 0));
             } else {
@@ -36,7 +36,7 @@ public class InstantSanityOrInjuryStatusEffect extends InstantStatusEffect {
     public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         if (target instanceof PlayerEntity playerEntity) {
             int i;
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
             if (injury == playerEntity.hasInvertedHealingAndHarm()) {
                 i = (int) (proximity * (double) (4 << amplifier) + 0.5);
                 sanityManager.cure((float) i);

@@ -26,7 +26,7 @@ public class SanityElement extends BaseElement {
     @Override
     protected void draw(MinecraftClient client, DrawContext drawContext, float tickDelta, int scaledWidth, int scaledHeight) {
         if (client.player != null) {
-            SanityManager sanityManager = ((ManagerAccess) client.player).cogito$getSanityManager();//获取玩家精神机制
+            SanityManager sanityManager = ((ManagerAccess) client.player).lobecorp$getSanityManager();//获取玩家精神机制
             int sanity = MathHelper.ceil(sanityManager.getSanity());//获取玩家精神值
             int maxSanity = MathHelper.ceil(sanityManager.getMaxSanity());//获取玩家最大精神值
             int assimilation = MathHelper.ceil(sanityManager.getAssimilationAmount());//获取玩家认知同化值

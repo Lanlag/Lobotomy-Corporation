@@ -17,7 +17,7 @@ public class ThirstEffect extends StatusEffect {
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity playerEntity) {
             if (!playerEntity.isCreative() && !playerEntity.isSpectator()) {
-                ThirstManager thirstManager = ((ManagerAccess) playerEntity).cogito$getThirstManager();
+                ThirstManager thirstManager = ((ManagerAccess) playerEntity).lobecorp$getThirstManager();
                 thirstManager.addDesiccation(0.005F * (float) (amplifier + 1));
             }
         }

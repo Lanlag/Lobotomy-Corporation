@@ -46,12 +46,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     }
 
     @Override
-    public SanityManager cogito$getSanityManager() {
+    public SanityManager lobecorp$getSanityManager() {
         return sanityManager;
     }
 
     @Override
-    public ThirstManager cogito$getThirstManager() {
+    public ThirstManager lobecorp$getThirstManager() {
         return thirstManager;
     }
 
@@ -73,6 +73,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     private void tickMixin(CallbackInfo ci) {
         sanityManager.panicState();
         thirstManager.update(playerEntity);
+    }
+
+    //为干渴机制引入消耗度
+    @Inject(method = "addExhaustion", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/HungerManager;addExhaustion(F)V"))
+    private void addExhaustionMixin(float exhaustion, CallbackInfo ci) {
+        thirstManager.addDesiccation(exhaustion);
     }
 
     //读取精神机制和干渴机制的nbt
@@ -131,7 +137,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
             //如果受击者陷入恐慌且当前精神值没有等于最大值
             if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
                 //如果攻击者是玩家且攻击者没有陷入恐慌状态
-                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).cogito$getSanityManager().isCrazy()) {
+                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
                     sanityManager.setSanity(sanityManager.getSanity() + sanityF);
                 }
             } else {
@@ -148,7 +154,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
             sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount - sanityF));
             setAbsorptionAmount(getAbsorptionAmount() - (amount - healthF));
             if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
-                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).cogito$getSanityManager().isCrazy()) {
+                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
                     sanityManager.setSanity(sanityManager.getSanity() + sanityF);
                 }
             } else {

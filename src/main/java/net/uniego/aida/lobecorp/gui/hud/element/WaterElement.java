@@ -25,7 +25,7 @@ public class WaterElement extends BaseElement {
     @Override
     protected void draw(MinecraftClient client, DrawContext drawContext, float tickDelta, int scaledWidth, int scaledHeight) {
         if (client.player != null) {
-            ThirstManager thirstManager = ((ManagerAccess) client.player).cogito$getThirstManager();//获取玩家干渴机制
+            ThirstManager thirstManager = ((ManagerAccess) client.player).lobecorp$getThirstManager();//获取玩家干渴机制
             int waterLevel = thirstManager.getWaterLevel();//获取玩家干渴值
             float hydrationLevel = thirstManager.getHydrationLevel();//获取玩家饱水度
             float desiccation = thirstManager.getDesiccation();//获取玩家脱水度
@@ -37,7 +37,7 @@ public class WaterElement extends BaseElement {
             int posX = scaledWidth / 2 - 91;
             int posY = scaledHeight - 39;
             float ratio = Math.min(1, Math.max(0, desiccation / 4.0F));
-            int offset = (int) ratio * 81;
+            int offset = (int) (ratio * 81);
             //渲染脱水度条
             drawContext.drawTexture(GUIResource.LOBECORP_ICONS, posX, posY, 0, 0, offset, 9, 128, 128);
             //渲染空干渴条

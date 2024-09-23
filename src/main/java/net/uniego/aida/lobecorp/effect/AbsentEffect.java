@@ -18,7 +18,7 @@ public class AbsentEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity playerEntity) {
-            SanityManager sanityManager = ((ManagerAccess) playerEntity).cogito$getSanityManager();
+            SanityManager sanityManager = ((ManagerAccess) playerEntity).lobecorp$getSanityManager();
             if (sanityManager.getSanity() > 1.0F) {
                 playerEntity.damage(playerEntity.getDamageSources().create(DamageInit.MYSTIC), 1.0F);
             }

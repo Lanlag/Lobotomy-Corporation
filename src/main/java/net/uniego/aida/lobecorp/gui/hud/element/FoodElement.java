@@ -36,7 +36,7 @@ public class FoodElement extends BaseElement {
             int posX = scaledWidth / 2 + 82;
             int posY = scaledHeight - 39;
             float ratio = Math.min(1, Math.max(0, exhaustion / 4.0F));
-            int offset = (int) ratio * 81;
+            int offset = (int) (ratio * 81);
             //渲染消耗度条
             drawContext.drawTexture(GUIResource.LOBECORP_ICONS, posX + 9 - offset, posY, 81 - offset, 0, offset, 9, 128, 128);
             //渲染空饥饿条
