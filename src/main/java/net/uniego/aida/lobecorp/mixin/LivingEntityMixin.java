@@ -6,13 +6,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
-import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -83,58 +81,24 @@ public abstract class LivingEntityMixin extends Entity {
     //废除原版伤害吸收机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "java/lang/Math.max(FF)F", ordinal = 0), index = 0)
     private float applyDamageMixin1(float a) {
-        return a + this.getAbsorptionAmount();
+        return a + getAbsorptionAmount();
     }
 
     //新增四色伤害机制
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
     private void applyDamageMixin(DamageSource source, float amount, CallbackInfo ci) {
-        if (source.isOf(DamageTypes.GENERIC_KILL) || source.isOf(DamageTypes.OUT_OF_WORLD) || source.isOf(DamageTypes.OUTSIDE_BORDER)) {
-            float healthF = amount;
-            if (healthF > this.getAbsorptionAmount()) this.setAbsorptionAmount(0.0f);
-            healthF = Math.max(healthF - this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - (amount - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        } else if (source.isOf(DamageInit.RED)) {
-            float healthF = amount;
-            if (healthF > this.getAbsorptionAmount()) this.setAbsorptionAmount(0.0f);
-            healthF = Math.max(healthF - this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - (amount - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        } else if (source.isOf(DamageInit.WHITE)) {
-            float healthF = amount;
-            if (healthF > this.getAbsorptionAmount()) this.setAbsorptionAmount(0.0f);
-            healthF = Math.max(healthF - this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - (amount - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        } else if (source.isOf(DamageInit.BLACK)) {
-            float healthF = amount;
-            if (healthF > this.getAbsorptionAmount()) this.setAbsorptionAmount(0.0f);
-            healthF = Math.max(healthF - this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - (amount - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        } else if (source.isOf(DamageInit.PALE)) {
-            float healthF = (amount / 100.0f) * this.getMaxHealth();
-            if (healthF > this.getAbsorptionAmount()) this.setAbsorptionAmount(0.0f);
-            healthF = Math.max(healthF - this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - ((amount / 100.0f) * this.getMaxHealth() - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        } else {
-            float healthF = Math.max(amount * -this.getAbsorptionAmount(), 0.0f);
-            this.setAbsorptionAmount(this.getAbsorptionAmount() - (amount - healthF));
-            this.setHealth(this.getHealth() - healthF);
-        }
+
     }
 
     //废除原版减少生命值机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setHealth(F)V"))
     private float applyDamageMixin2(float par1) {
-        return this.getHealth();
+        return getHealth();
     }
 
     //废除原版减少伤害吸收值机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setAbsorptionAmount(F)V", ordinal = 1))
     private float applyDamageMixin3(float amount) {
-        return this.getAbsorptionAmount();
+        return getAbsorptionAmount();
     }
 }

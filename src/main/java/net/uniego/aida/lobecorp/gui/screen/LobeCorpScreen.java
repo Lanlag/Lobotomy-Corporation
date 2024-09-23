@@ -16,8 +16,6 @@ import static net.minecraft.client.gui.screen.ingame.InventoryScreen.drawEntity;
 @Environment(EnvType.CLIENT)
 public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandler> {
     private final EGOGiftWidget egoGiftWidget = new EGOGiftWidget();
-    private float mouseX;
-    private float mouseY;
 
     public LobeCorpScreen(LobeCorpScreenHandler screenHandler, PlayerInventory playerInventory, Text text) {
         super(screenHandler, playerInventory, text);
@@ -37,8 +35,6 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
         super.render(context, mouseX, mouseY, delta);
         egoGiftWidget.render(context, mouseX, mouseY, delta);
         drawMouseoverTooltip(context, mouseX, mouseY);
-        this.mouseX = mouseX;
-        this.mouseY = mouseY;
     }
 
     @Override

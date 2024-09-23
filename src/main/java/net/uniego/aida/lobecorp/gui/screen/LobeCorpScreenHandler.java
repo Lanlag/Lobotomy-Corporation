@@ -24,7 +24,28 @@ public class LobeCorpScreenHandler extends ScreenHandler {
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int slot) {
-        return null;
+        ItemStack newStack = ItemStack.EMPTY;
+        Slot invSlot = slots.get(slot);
+        if (invSlot.hasStack()) {
+            ItemStack slotStack = invSlot.getStack();
+            newStack = slotStack.copy();
+            if (slot >= 0 && slot < 27) {
+                if (!insertItem(slotStack, 27, 36, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slot >= 27 && slot < 36) {
+                if (!insertItem(slotStack, 0, 27, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!insertItem(slotStack, 0, 36, false)) {
+                return ItemStack.EMPTY;
+            }
+            if (slotStack.isEmpty()) invSlot.setStack(ItemStack.EMPTY);
+            else invSlot.markDirty();
+            if (slotStack.getCount() == newStack.getCount()) return ItemStack.EMPTY;
+            invSlot.onTakeItem(player, slotStack);
+        }
+        return newStack;
     }
 
     @Override
