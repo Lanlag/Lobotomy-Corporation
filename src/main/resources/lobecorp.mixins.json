@@ -5,8 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "HungerStatusEffectMixin",
+    "ItemMixin",
+    "MilkBucketItemMixin",
     "PlayerEntityMixin",
     "PlayerManagerMixin",
+    "PotionItemMixin",
     "ServerPlayerEntityMixin"
   ],
   "client": [
