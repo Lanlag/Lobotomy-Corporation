@@ -25,5 +25,7 @@
   "effect.lobecorp.instant_sanity": "Instant Sanity",
   "effect.lobecorp.restoration": "Restoration",
   "effect.lobecorp.sanity_boost": "Sanity Boost",
-  "effect.lobecorp.thirst": "Thirst"
+  "effect.lobecorp.thirst": "Thirst",
+  "item.lobecorp.blue_leaf": "Blue Leaf",
+  "item.lobecorp.lobecorp_logo": "LobeCorp Logo"
 }

@@ -11,6 +11,7 @@
     "minecraft:rabbit_stew",
     "minecraft:suspicious_stew",
     "minecraft:milk_bucket",
-    "minecraft:potion"
+    "minecraft:potion",
+    "lobecorp:blue_leaf"
   ]
 }

@@ -25,5 +25,8 @@
   "effect.lobecorp.instant_sanity": "瞬间镇定",
   "effect.lobecorp.restoration": "精神恢复",
   "effect.lobecorp.sanity_boost": "精神提升",
-  "effect.lobecorp.thirst": "干渴"
+  "effect.lobecorp.thirst": "干渴",
+  "item.lobecorp.blue_leaf": "蓝叶",
+  "item.lobecorp.lobecorp_logo": "脑叶公司Logo",
+  "itemgroup.lobecorp.lobecorp": "脑叶公司"
 }

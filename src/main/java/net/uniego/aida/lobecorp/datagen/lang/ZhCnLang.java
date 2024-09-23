@@ -6,6 +6,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.EffectInit;
+import net.uniego.aida.lobecorp.init.ItemGroupInit;
+import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -47,5 +49,10 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EffectInit.THIRST.value(), "干渴");
         translationBuilder.add(EffectInit.INSTANT_SANITY.value(), "瞬间镇定");
         translationBuilder.add(EffectInit.INSTANT_INJURY.value(), "瞬间损伤");
+        //物品名
+        translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "脑叶公司Logo");
+        translationBuilder.add(LobeCorpItem.BLUE_LEAF, "蓝叶");
+        //物品栏名
+        translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
     }
 }

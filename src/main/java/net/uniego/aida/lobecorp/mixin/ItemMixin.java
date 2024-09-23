@@ -11,6 +11,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.TagInit;
+import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,6 +52,9 @@ public abstract class ItemMixin {
             } else if (item == Items.BEETROOT_SOUP || item == Items.MUSHROOM_STEW || item == Items.RABBIT_STEW || item == Items.SUSPICIOUS_STEW) {
                 waterLevel = 4;
                 hydrationLevel = 0.4F;
+            } else if (item == LobeCorpItem.BLUE_LEAF) {
+                waterLevel = 6;
+                hydrationLevel = 1.2f;
             }
             ((ManagerAccess) player).lobecorp$getThirstManager().add(waterLevel, hydrationLevel);
         }

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.init.TagInit;
+import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,7 +30,8 @@ public class ItemTag extends FabricTagProvider.ItemTagProvider {
                 .add(Items.RABBIT_STEW)
                 .add(Items.SUSPICIOUS_STEW)
                 .add(Items.MILK_BUCKET)
-                .add(Items.POTION);
+                .add(Items.POTION)
+                .add(LobeCorpItem.BLUE_LEAF);
         //生成红伤EGO武器标签
         getOrCreateTagBuilder(TagInit.RED_EGO_WEAPONS);
 

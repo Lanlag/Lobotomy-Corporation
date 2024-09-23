@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.EffectInit;
+import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -47,5 +48,8 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EffectInit.THIRST.value(), "Thirst");
         translationBuilder.add(EffectInit.INSTANT_SANITY.value(), "Instant Sanity");
         translationBuilder.add(EffectInit.INSTANT_INJURY.value(), "Instant Injury");
+        //物品名
+        translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "LobeCorp Logo");
+        translationBuilder.add(LobeCorpItem.BLUE_LEAF, "Blue Leaf");
     }
 }
