@@ -1,6 +1,7 @@
 {
   "attribute.name.player.max_assimilation": "最大认知同化值",
   "attribute.name.player.max_sanity": "最大精神值",
+  "container.equipment": "装备",
   "death.attack.black": "%2$s致使%1$s死于侵蚀贯穿",
   "death.attack.black.player": "%2$s致使%1$s死于侵蚀贯穿",
   "death.attack.dry": "%1$s渴死了",
@@ -29,5 +30,7 @@
   "item.lobecorp.blue_leaf": "蓝叶",
   "item.lobecorp.lobecorp_logo": "脑叶公司Logo",
   "itemgroup.lobecorp.lobecorp": "脑叶公司",
+  "key.categories.lobecorp": "脑叶公司",
+  "key.equipment_inventory": "开启/关闭装备",
   "lobecorp.swallow_water": "吞水"
 }

@@ -27,6 +27,10 @@ public abstract class LivingEntityMixin extends Entity {
     @Unique
     LivingEntity livingEntity = (LivingEntity) (Object) this;
 
+    public LivingEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
+
     @Shadow
     public abstract float getMaxHealth();
 
@@ -44,10 +48,6 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow
     public abstract void setAbsorptionAmount(float absorptionAmount);
-
-    public LivingEntityMixin(EntityType<?> type, World world) {
-        super(type, world);
-    }
 
     //移除影响效果的时候，使得精神值和认知同化值不超过最大
     @Inject(method = "updateAttribute", at = @At("HEAD"), cancellable = true)

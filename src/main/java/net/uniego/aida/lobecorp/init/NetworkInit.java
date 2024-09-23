@@ -1,9 +1,6 @@
 package net.uniego.aida.lobecorp.init;
 
-import net.uniego.aida.lobecorp.network.handle.DrinkWaterHandle;
-import net.uniego.aida.lobecorp.network.handle.SwingHandHandle;
-import net.uniego.aida.lobecorp.network.handle.SyncIconHandle;
-import net.uniego.aida.lobecorp.network.handle.SyncOffsetHandle;
+import net.uniego.aida.lobecorp.network.handle.*;
 
 //初始化网络
 public class NetworkInit {
@@ -17,5 +14,6 @@ public class NetworkInit {
     //注册服务端数据包处理
     public static void registerServer() {
         DrinkWaterHandle.receive();
+        OpenCloseHandle.receive();
     }
 }

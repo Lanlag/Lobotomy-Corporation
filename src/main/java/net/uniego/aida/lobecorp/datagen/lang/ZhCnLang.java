@@ -53,5 +53,10 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
+        //屏幕名
+        translationBuilder.add(ScreenInit.CONTAINER_EQUIPMENT, "装备");
+        //按键类名
+        translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "脑叶公司");
+        translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "开启/关闭装备");
     }
 }

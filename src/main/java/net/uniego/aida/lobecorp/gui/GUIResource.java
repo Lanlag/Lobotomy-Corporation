@@ -2,6 +2,7 @@ package net.uniego.aida.lobecorp.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 
@@ -9,7 +10,14 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 @Environment(EnvType.CLIENT)
 public class GUIResource {
     //贴图
-    public static final Identifier LOBECORP_ICONS = LobeCorpUtil.id("textures/gui/lobecorp_icons.png");//各种图标
+    //各种图标
+    public static final Identifier LOBECORP_ICONS = LobeCorpUtil.id("textures/gui/lobecorp_icons.png");
+    //脑叶公司屏幕贴图
+    public static final Identifier LOBECORP_CONTAINER = LobeCorpUtil.id("textures/gui/container/lobecorp_inventory.png");
+    //饰品屏幕贴图
+    public static final Identifier GIFT_CONTAINER = LobeCorpUtil.id("textures/gui/container/gift_inventory.png");
+    //EGO饰品按钮
+    public static final ButtonTextures EGO_GIFT_BUTTON = new ButtonTextures(LobeCorpUtil.id("ego_gift_button"), LobeCorpUtil.id("ego_gift_button_highlighted"));
     //16进制颜色代码（包含透明度）
     public static final int BG1 = 0xA0000000;//一般用于外部背景
     public static final int BG2 = 0x20FFFFFF;//一般用于内部背景

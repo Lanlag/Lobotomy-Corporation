@@ -1,6 +1,7 @@
 {
   "attribute.name.player.max_assimilation": "Max Assimilation",
   "attribute.name.player.max_sanity": "Max Sanity",
+  "container.equipment": "Equipment",
   "death.attack.black": "%2$s caused %1$s died from Erosion Penetration",
   "death.attack.black.player": "%2$s caused %1$s died from Erosion Penetration",
   "death.attack.dry": "%1$s dried to death",
@@ -29,5 +30,7 @@
   "item.lobecorp.blue_leaf": "Blue Leaf",
   "item.lobecorp.lobecorp_logo": "LobeCorp Logo",
   "itemgroup.lobecorp.lobecorp": "LobeCorp",
+  "key.categories.lobecorp": "Lobe Corp",
+  "key.equipment_inventory": "Open/Close Equipment",
   "lobecorp.swallow_water": "Swallow Water"
 }

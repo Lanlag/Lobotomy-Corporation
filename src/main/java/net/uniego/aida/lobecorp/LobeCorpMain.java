@@ -13,6 +13,8 @@ public class LobeCorpMain implements ModInitializer {
         PayloadInit.register();
         ItemInit.register();
         ItemGroupInit.register();
+        ScreenInit.registerScreenHandler();
+
         NetworkInit.registerServer();
     }
 }
