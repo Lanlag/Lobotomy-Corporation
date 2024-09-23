@@ -63,4 +63,13 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
             if (playerChangeDimension) playerChangeDimension = false;
         }
     }
+
+    //当复制玩家状态时，确保数据一致
+    @Inject(method = "copyFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;setHealth(F)V"))
+    private void copyFromMixin(ServerPlayerEntity oldPlayer, boolean alive, CallbackInfo ci) {
+        sanityManager.setSanity(((ManagerAccess) oldPlayer).lobecorp$getSanityManager().getSanity());
+        thirstManager.setWaterLevel(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getWaterLevel());
+        thirstManager.setHydrationLevel(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getHydrationLevel());
+        thirstManager.setDesiccation(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getDesiccation());
+    }
 }

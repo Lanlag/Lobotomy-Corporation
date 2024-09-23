@@ -174,7 +174,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
         }
     }
 
-    //废除原版生命值减少机制
+    //废除原版减少生命值机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V"))
     private float applyDamageMixin2(float par1) {
         return getHealth();

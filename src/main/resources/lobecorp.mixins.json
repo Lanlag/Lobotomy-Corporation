@@ -6,6 +6,7 @@
   "mixins": [
     "HungerStatusEffectMixin",
     "ItemMixin",
+    "LivingEntityMixin",
     "MilkBucketItemMixin",
     "PlayerEntityMixin",
     "PlayerManagerMixin",
