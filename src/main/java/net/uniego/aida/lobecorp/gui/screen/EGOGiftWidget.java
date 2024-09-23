@@ -116,4 +116,15 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {
     }
+
+    //检查是否点击到了边界外
+    public boolean isClickOutsideBounds(double mouseX, double mouseY, int x, int y, int backgroundWidth, int backgroundHeight) {
+        if (!isOpen()) {
+            return true;
+        } else {
+            boolean bl1 = mouseX < (double) x || mouseY < (double) y || mouseX >= (double) (x + backgroundWidth) || mouseY >= (double) (y + backgroundHeight);
+            boolean bl2 = (double) (x - 32) < mouseX && mouseX < (double) x && (double) (y + 3) < mouseY && mouseY < (double) (y + 143);
+            return bl1 && !bl2;
+        }
+    }
 }

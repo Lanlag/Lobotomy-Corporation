@@ -57,4 +57,10 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
+
+    @Override
+    protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {
+        boolean bl = mouseX < (double) left || mouseY < (double) top || mouseX >= (double) (left + backgroundWidth) || mouseY >= (double) (top + backgroundHeight);
+        return egoGiftWidget.isClickOutsideBounds(mouseX, mouseY, x, y, backgroundWidth, backgroundHeight) && bl;
+    }
 }
