@@ -8,6 +8,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 
 //初始化物品栏
 public class ItemGroupInit {
@@ -18,6 +20,8 @@ public class ItemGroupInit {
             .entries((context, entries) -> {
                 entries.add(LobeCorpItem.LOBECORP_LOGO);
                 entries.add(LobeCorpItem.BLUE_LEAF);
+                entries.add(EGOSuit.CODE_SUIT);
+                entries.add(EGOWeapon.CODE_RIOT_STICK);
             }).build();
 
     public static void register() {

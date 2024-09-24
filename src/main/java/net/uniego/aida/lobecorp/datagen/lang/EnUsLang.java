@@ -6,6 +6,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
 import java.util.concurrent.CompletableFuture;
@@ -101,5 +104,25 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT.getSlotName(), "When in Glove Slot:");
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT.getSlotName(), "When in RightBack Slot:");
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT.getSlotName(), "When in LeftBack Slot:");
+        //EGO武器模板名
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "Mace");
+        //工具提示名
+        translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "Press Left Shift Show Info");
+        translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "Equip Require:");
+        //武器
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_LEVEL, "Weapon Level:");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_TEMPLATE, "Weapon Template:");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_DAMAGE_TYPE, "Damage Type:");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_RANGE, "Attack Range:");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_RED, "Red");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_WHITE, "White");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_BLACK, "Black");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_PALE, "Pale");
+        //护甲
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_LEVEL, "Suit Level:");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_RED, "Red Resist:");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_WHITE, "White Resist:");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_BLACK, "Black Resist:");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_PALE, "Pale Resist:");
     }
 }

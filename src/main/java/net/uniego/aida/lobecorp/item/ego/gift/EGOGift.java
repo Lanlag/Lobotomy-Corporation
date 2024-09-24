@@ -17,8 +17,13 @@ public class EGOGift extends EGOItem {
 
     public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
                    UUID uuid, LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
+        this(maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpAttributeModifierSlot, "");
+    }
+
+    public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
+                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot, String egoSkill) {
         super(new Settings().component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOGiftAttributeModifiers
-                (maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpAttributeModifierSlot)));
+                (maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpAttributeModifierSlot)), egoSkill);
     }
 
     public static void register() {

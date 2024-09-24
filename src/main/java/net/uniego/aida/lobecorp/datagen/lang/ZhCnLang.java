@@ -6,6 +6,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
 import java.util.concurrent.CompletableFuture;
@@ -101,5 +104,25 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT.getSlotName(), "在手套位时：");
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT.getSlotName(), "在右背位时：");
         translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT.getSlotName(), "在左背位时：");
+        //EGO武器模板名
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "棁类");
+        //工具提示名
+        translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "按住左Shift显示信息");
+        translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "装备要求：");
+        //武器
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_LEVEL, "武器等级：");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_TEMPLATE, "武器模板：");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_DAMAGE_TYPE, "伤害类型：");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_RANGE, "攻击距离：");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_RED, "物理");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_WHITE, "精神");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_BLACK, "侵蚀");
+        translationBuilder.add(EGOWeapon.TOOLTIP_EGO_WEAPON_PALE, "灵魂");
+        //护甲
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_LEVEL, "护甲等级：");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_RED, "物理抗性：");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_WHITE, "精神抗性：");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_BLACK, "侵蚀抗性：");
+        translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_PALE, "灵魂抗性：");
     }
 }

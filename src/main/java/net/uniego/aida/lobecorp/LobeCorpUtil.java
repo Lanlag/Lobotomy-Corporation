@@ -1,9 +1,12 @@
 package net.uniego.aida.lobecorp;
 
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
@@ -12,6 +15,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ComponentInit;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -32,20 +37,20 @@ public class LobeCorpUtil {
     }
 
     //创建EGO武器属性修饰符
-    public static LobeCorpAttributeModifiersComponent createEGOWeaponAttributeModifiers(double maxHealth, double maxSanity,
-                                                                                        double workSuccess, double workVelocity,
-                                                                                        double attackVelocity, double moveVelocity,
-                                                                                        UUID uuid,
-                                                                                        LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
-        return LobeCorpAttributeModifiersComponent.builder()
-                .builder();
+    public static AttributeModifiersComponent createEGOWeaponAttributeModifiers(double attackDamage, double attackSpeed, double interactionRange) {
+        return AttributeModifiersComponent.builder()
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, egoWeaponModifier(Item.ATTACK_DAMAGE_MODIFIER_ID, attackDamage), AttributeModifierSlot.MAINHAND)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, egoWeaponModifier(Item.ATTACK_SPEED_MODIFIER_ID, attackSpeed), AttributeModifierSlot.MAINHAND)
+                .add(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND)
+                .add(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND)
+                .build();
     }
 
     //创建EGO护甲属性修饰符
-    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(double armor, double armorToughness,
-                                                                                      UUID uuid,
-                                                                                      LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
+    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers() {
         return LobeCorpAttributeModifiersComponent.builder()
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(EGOSuit.ARMOR_MODIFIER_ID, 20), LobeCorpAttributeModifierSlot.LOBECORP_SUIT)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(EGOSuit.ARMOR_TOUGHNESS_MODIFIER_ID, 20), LobeCorpAttributeModifierSlot.LOBECORP_SUIT)
                 .builder();
     }
 

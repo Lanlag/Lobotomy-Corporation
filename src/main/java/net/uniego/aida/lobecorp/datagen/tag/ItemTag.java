@@ -6,6 +6,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -42,7 +43,7 @@ public class ItemTag extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(TagInit.BLACK_EGO_WEAPONS);
 
         //生成蓝伤EGO武器标签
-        getOrCreateTagBuilder(TagInit.PALE_EGO_WEAPONS);
-
+        getOrCreateTagBuilder(TagInit.PALE_EGO_WEAPONS)
+                .add(EGOWeapon.CODE_RIOT_STICK);
     }
 }

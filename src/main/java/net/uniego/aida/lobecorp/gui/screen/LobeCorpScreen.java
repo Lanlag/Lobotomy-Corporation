@@ -4,6 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -14,8 +15,6 @@ import net.uniego.aida.lobecorp.init.KeyInit;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 
 import java.util.Objects;
-
-import static net.minecraft.client.gui.screen.ingame.InventoryScreen.drawEntity;
 
 //脑叶公司屏幕
 @Environment(EnvType.CLIENT)
@@ -84,7 +83,7 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         context.drawTexture(GUIResource.LOBECORP_INVENTORY, x, y, 0, 0, backgroundWidth, backgroundHeight);
         if (client != null && client.player != null) {
-            drawEntity(context, x + 26 - 33, y + 8, x + 75, y + 78, 30, 0.0625F, mouseX, mouseY, client.player);
+            InventoryScreen.drawEntity(context, x + 26 - 33, y + 8, x + 75, y + 78, 30, 0.0625F, mouseX, mouseY, client.player);
         }
     }
 
