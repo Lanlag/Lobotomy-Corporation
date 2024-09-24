@@ -24,7 +24,7 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
     @Override
     protected void init() {
         super.init();
-        egoGiftWidget.initialize(x, y, client);
+        egoGiftWidget.initialize(x, y, client, handler);
         addDrawableChild(new TexturedButtonWidget(x + 10, y + 10, 10, 10, GUIResource.EGO_GIFT_BUTTON,
                 button -> egoGiftWidget.toggleOpen()));
         addSelectableChild(egoGiftWidget);

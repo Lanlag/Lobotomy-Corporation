@@ -22,14 +22,17 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
     private boolean open;
     private int parentX;
     private int parentY;
+    private MinecraftClient client;
+    private LobeCorpScreenHandler handler;
     private int sliderPosY;//滑块当前位置
     private boolean isSliding;//是否正在滑动
-    private MinecraftClient client;
 
-    public void initialize(int parentX, int parentY, MinecraftClient client) {
+
+    public void initialize(int parentX, int parentY, MinecraftClient client, LobeCorpScreenHandler handler) {
         this.parentX = parentX;
         this.parentY = parentY;
         this.client = client;
+        this.handler = handler;
     }
 
     //切换打开关闭状态

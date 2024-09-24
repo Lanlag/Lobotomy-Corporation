@@ -13,7 +13,7 @@ import java.util.function.ToIntFunction;
 
 //脑叶公司属性修饰符插槽
 public enum LobeCorpAttributeModifierSlot implements StringIdentifiable {
-    LOBECORP_ANY(0, "lobecorp_any", lobeCorpEquipmentSlot -> true),
+    LOBECORP_ANY(0, "lobecorp_any", lobecorpEquipmentSlot -> true),
     LOBECORP_WEAPON(1, "lobecorp_weapon", LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT),
     LOBECORP_SUIT(1, "lobecorp_suit", LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT),
     LOBECORP_BADGE(1, "lobecorp_badge", LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT),
@@ -47,8 +47,8 @@ public enum LobeCorpAttributeModifierSlot implements StringIdentifiable {
         this.predicate = predicate;
     }
 
-    LobeCorpAttributeModifierSlot(final int id, final String name, final LobeCorpEquipmentSlot lobeCorpEquipmentSlot) {
-        this(id, name, slot -> slot == lobeCorpEquipmentSlot);
+    LobeCorpAttributeModifierSlot(final int id, final String name, final LobeCorpEquipmentSlot lobecorpEquipmentSlot) {
+        this(id, name, slot -> slot == lobecorpEquipmentSlot);
     }
 
     @Override
@@ -56,7 +56,7 @@ public enum LobeCorpAttributeModifierSlot implements StringIdentifiable {
         return name;
     }
 
-    public boolean matches(LobeCorpEquipmentSlot lobeCorpEquipmentSlot) {
-        return predicate.test(lobeCorpEquipmentSlot);
+    public boolean matches(LobeCorpEquipmentSlot lobecorpEquipmentSlot) {
+        return predicate.test(lobecorpEquipmentSlot);
     }
 }
