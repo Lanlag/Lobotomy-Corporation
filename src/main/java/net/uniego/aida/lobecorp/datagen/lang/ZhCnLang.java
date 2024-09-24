@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.datagen.lang;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
@@ -62,5 +63,23 @@ public class ZhCnLang extends FabricLanguageProvider {
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "脑叶公司");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "开启/关闭装备");
+        //信息名
+        translationBuilder.add(GUIResource.STAFF_LEVEL, "职员等级");
+        translationBuilder.add(GUIResource.STAFF_FORTITUDE, "勇气");
+        translationBuilder.add(GUIResource.STAFF_PRUDENCE, "谨慎");
+        translationBuilder.add(GUIResource.STAFF_TEMPERANCE, "自律");
+        translationBuilder.add(GUIResource.STAFF_JUSTICE, "正义");
+        translationBuilder.add(GUIResource.STAFF_MAX_HEALTH, "最大生命：");
+        translationBuilder.add(GUIResource.STAFF_MAX_SANITY, "最大精神：");
+        translationBuilder.add(GUIResource.STAFF_WORK_SUCCESS, "工作胜率：");
+        translationBuilder.add(GUIResource.STAFF_WORK_VELOCITY, "工作速率：");
+        translationBuilder.add(GUIResource.STAFF_ATTACK_VELOCITY, "攻击速率：");
+        translationBuilder.add(GUIResource.STAFF_MOVE_VELOCITY, "移动速率：");
+        //标签名
+        translationBuilder.add(TagInit.HYDRATING_FOODS, "含水食物");
+        translationBuilder.add(TagInit.RED_EGO_WEAPONS, "红伤EGO武器");
+        translationBuilder.add(TagInit.WHITE_EGO_WEAPONS, "白伤EGO武器");
+        translationBuilder.add(TagInit.BLACK_EGO_WEAPONS, "黑伤EGO武器");
+        translationBuilder.add(TagInit.PALE_EGO_WEAPONS, "蓝伤EGO武器");
     }
 }

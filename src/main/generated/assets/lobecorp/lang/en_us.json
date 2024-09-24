@@ -1,6 +1,10 @@
 {
+  "attribute.name.player.attack_velocity": "Attack Velocity",
   "attribute.name.player.max_assimilation": "Max Assimilation",
   "attribute.name.player.max_sanity": "Max Sanity",
+  "attribute.name.player.move_velocity": "Move Velocity",
+  "attribute.name.player.work_success": "Work Success",
+  "attribute.name.player.work_velocity": "Work Velocity",
   "container.equipment": "Equipment",
   "death.attack.black": "%2$s caused %1$s died from Erosion Penetration",
   "death.attack.black.player": "%2$s caused %1$s died from Erosion Penetration",
@@ -32,5 +36,16 @@
   "itemgroup.lobecorp.lobecorp": "LobeCorp",
   "key.categories.lobecorp": "Lobe Corp",
   "key.equipment_inventory": "Open/Close Equipment",
-  "lobecorp.swallow_water": "Swallow Water"
+  "lobecorp.swallow_water": "Swallow Water",
+  "staff.attack_velocity": "Attack Velocity:",
+  "staff.fortitude": "Fortitude",
+  "staff.justice": "Justice",
+  "staff.level": "Staff Level",
+  "staff.max_health": "Max Health:",
+  "staff.max_sanity": "Max Sanity:",
+  "staff.move_velocity": "Move Velocity:",
+  "staff.prudence": "Prudence",
+  "staff.temperance": "Temperance",
+  "staff.work_success": "Work Success:",
+  "staff.work_velocity": "Work Velocity:"
 }

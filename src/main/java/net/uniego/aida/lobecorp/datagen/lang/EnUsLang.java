@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.datagen.lang;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 
@@ -62,5 +63,23 @@ public class EnUsLang extends FabricLanguageProvider {
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "Lobe Corp");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "Open/Close Equipment");
+        //信息名
+        translationBuilder.add(GUIResource.STAFF_LEVEL, "Staff Level");
+        translationBuilder.add(GUIResource.STAFF_FORTITUDE, "Fortitude");
+        translationBuilder.add(GUIResource.STAFF_PRUDENCE, "Prudence");
+        translationBuilder.add(GUIResource.STAFF_TEMPERANCE, "Temperance");
+        translationBuilder.add(GUIResource.STAFF_JUSTICE, "Justice");
+        translationBuilder.add(GUIResource.STAFF_MAX_HEALTH, "Max Health:");
+        translationBuilder.add(GUIResource.STAFF_MAX_SANITY, "Max Sanity:");
+        translationBuilder.add(GUIResource.STAFF_WORK_SUCCESS, "Work Success:");
+        translationBuilder.add(GUIResource.STAFF_WORK_VELOCITY, "Work Velocity:");
+        translationBuilder.add(GUIResource.STAFF_ATTACK_VELOCITY, "Attack Velocity:");
+        translationBuilder.add(GUIResource.STAFF_MOVE_VELOCITY, "Move Velocity:");
+        //标签名
+        translationBuilder.add(TagInit.HYDRATING_FOODS, "Hydrating Foods");
+        translationBuilder.add(TagInit.RED_EGO_WEAPONS, "Red EGO Weapons");
+        translationBuilder.add(TagInit.WHITE_EGO_WEAPONS, "White EGO Weapons");
+        translationBuilder.add(TagInit.BLACK_EGO_WEAPONS, "Black EGO Weapons");
+        translationBuilder.add(TagInit.PALE_EGO_WEAPONS, "Pale EGO Weapons");
     }
 }

@@ -7,8 +7,13 @@ import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.KeyInit;
+import net.uniego.aida.lobecorp.manager.LevelManager;
+
+import java.util.Objects;
 
 import static net.minecraft.client.gui.screen.ingame.InventoryScreen.drawEntity;
 
@@ -42,6 +47,37 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
 
     @Override
     protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
+        //参数设置
+        int posX = titleX + 73;
+        int posY = titleY + 60;
+        //获取等级机制
+        LevelManager levelManager = ((ManagerAccess) Objects.requireNonNull(Objects.requireNonNull(client).player)).lobecorp$getLevelManager();
+        //渲染总等级和四大等级
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_LEVEL).append(" " + levelManager.getTotalLevel().getLevel()).formatted(Formatting.GOLD),
+                posX, posY - 60, -1, true);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_FORTITUDE).append(" " + levelManager.getLevelF().getLevel()).formatted(Formatting.DARK_RED),
+                posX, posY - 50, -1, true);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_PRUDENCE).append(" " + levelManager.getLevelP().getLevel()).formatted(Formatting.WHITE),
+                posX, posY - 36, -1, true);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_TEMPERANCE).append(" " + levelManager.getLevelT().getLevel()).formatted(Formatting.DARK_PURPLE),
+                posX, posY - 22, -1, true);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_JUSTICE).append(" " + levelManager.getLevelJ().getLevel()).formatted(Formatting.AQUA),
+                posX, posY - 4, -1, true);
+        //渲染六大属性
+        context.getMatrices().scale(0.5F, 0.5F, 0.5F);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_MAX_HEALTH).append(String.valueOf(levelManager.getMaxHealth())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 50 + 18) * 2 - 18, -1, false);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_MAX_SANITY).append(String.valueOf(levelManager.getMaxSanity())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 36 + 18) * 2 - 18, -1, false);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_WORK_SUCCESS).append(String.valueOf(levelManager.getWorkSuccess())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 22 + 18) * 2 - 18, -1, false);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_WORK_VELOCITY).append(String.valueOf(levelManager.getWorkVelocity())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 22 + 18) * 2 - 9, -1, false);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_ATTACK_VELOCITY).append(String.valueOf(levelManager.getAttackVelocity())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 4 + 18) * 2 - 18, -1, false);
+        context.drawText(client.textRenderer, Text.translatable(GUIResource.STAFF_MOVE_VELOCITY).append(String.valueOf(levelManager.getMoveVelocity())).formatted(Formatting.BLACK),
+                posX * 2, (posY - 4 + 18) * 2 - 9, -1, false);
+        context.getMatrices().scale(2.0F, 2.0F, 2.0F);
     }
 
     @Override

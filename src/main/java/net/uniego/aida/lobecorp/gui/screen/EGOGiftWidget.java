@@ -80,7 +80,7 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
 
     //更新插槽位置
     private void updateSlotPosition(int i) {
-        //此处40指的是4个护甲插槽加1个副手插槽以及27个背包栏还有9个快捷栏，从0开始索引（？）
+        //此处40指的9个快捷栏加27个背包栏以及weapon、suit、badge、tool4个，从0开始索引
         Slot slot = handler.getSlot(40 + i);
         int startSlotIndex = Math.max(0, (sliderPosY * VISIBLE_SLOTS) / (SCROLL_BAR_HEIGHT - SLIDER_HEIGHT));
         if (slot instanceof LobeCorpSlot lobecorpSlot) {

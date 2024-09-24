@@ -74,6 +74,14 @@ public class LobeCorpScreenHandler extends ScreenHandler {
                 public @NotNull Pair<Identifier, Identifier> getBackgroundSprite() {
                     return Pair.of(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE, slotFactory.textureId);
                 }
+
+                @Override
+                public boolean isEnabled() {
+                    if (slotFactory.slotIndex >= 63 && slotFactory.slotIndex <= 66) {
+                        return true;
+                    }
+                    return super.isEnabled();
+                }
             });
         }
     }

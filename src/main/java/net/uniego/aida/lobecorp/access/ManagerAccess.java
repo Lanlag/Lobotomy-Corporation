@@ -1,5 +1,6 @@
 package net.uniego.aida.lobecorp.access;
 
+import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
 
@@ -10,4 +11,7 @@ public interface ManagerAccess {
 
     //获取干渴机制
     ThirstManager lobecorp$getThirstManager();
+
+    //获取等级机制
+    LevelManager lobecorp$getLevelManager();
 }

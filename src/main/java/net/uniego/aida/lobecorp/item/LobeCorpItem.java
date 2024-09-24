@@ -8,10 +8,14 @@ import net.minecraft.util.Rarity;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 
 //脑叶公司物品
-public class LobeCorpItem {
-    public static final Item LOBECORP_LOGO = new Item(new Item.Settings().rarity(Rarity.EPIC).maxCount(1).fireproof());
-    public static final Item BLUE_LEAF = new Item(new Item.Settings()
+public class LobeCorpItem extends Item {
+    public static final LobeCorpItem LOBECORP_LOGO = new LobeCorpItem(new Item.Settings().rarity(Rarity.EPIC).maxCount(1).fireproof());
+    public static final LobeCorpItem BLUE_LEAF = new LobeCorpItem(new Item.Settings()
             .food(new FoodComponent.Builder().nutrition(1).saturationModifier(0.1F).snack().build()));
+
+    public LobeCorpItem(Settings settings) {
+        super(settings);
+    }
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("lobecorp_logo"), LOBECORP_LOGO);

@@ -42,7 +42,7 @@ public class SanityManager {
 
     //恐慌状态（暂定空白）
     public void panicState() {
-        if (!player.isSpectator() && !player.isCreative()) {
+        if (!player.getAbilities().invulnerable) {
             if (isCrazy()) {
                 ++sanityTickTimer;
             } else {

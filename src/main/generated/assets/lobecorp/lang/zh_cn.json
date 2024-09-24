@@ -1,6 +1,10 @@
 {
+  "attribute.name.player.attack_velocity": "攻击速率",
   "attribute.name.player.max_assimilation": "最大认知同化值",
   "attribute.name.player.max_sanity": "最大精神值",
+  "attribute.name.player.move_velocity": "移动速率",
+  "attribute.name.player.work_success": "工作胜率",
+  "attribute.name.player.work_velocity": "工作速率",
   "container.equipment": "装备",
   "death.attack.black": "%2$s致使%1$s死于侵蚀贯穿",
   "death.attack.black.player": "%2$s致使%1$s死于侵蚀贯穿",
@@ -32,5 +36,16 @@
   "itemgroup.lobecorp.lobecorp": "脑叶公司",
   "key.categories.lobecorp": "脑叶公司",
   "key.equipment_inventory": "开启/关闭装备",
-  "lobecorp.swallow_water": "吞水"
+  "lobecorp.swallow_water": "吞水",
+  "staff.attack_velocity": "攻击速率：",
+  "staff.fortitude": "勇气",
+  "staff.justice": "正义",
+  "staff.level": "职员等级",
+  "staff.max_health": "最大生命：",
+  "staff.max_sanity": "最大精神：",
+  "staff.move_velocity": "移动速率：",
+  "staff.prudence": "谨慎",
+  "staff.temperance": "自律",
+  "staff.work_success": "工作胜率：",
+  "staff.work_velocity": "工作速率："
 }

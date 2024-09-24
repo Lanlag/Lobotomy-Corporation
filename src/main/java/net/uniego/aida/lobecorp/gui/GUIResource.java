@@ -37,6 +37,7 @@ public class GUIResource {
     public static final Identifier EMPTY_EGO_GLOVE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_glove");
     public static final Identifier EMPTY_EGO_RIGHTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_rightback");
     public static final Identifier EMPTY_EGO_LEFTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_leftback");
+
     //颜色代码
     //16进制颜色代码（包含透明度）
     public static final int BG1 = 0xA0000000;//一般用于外部背景
@@ -69,4 +70,17 @@ public class GUIResource {
     public static final String MOUNT_JUMP_ELEMENT = "mount_jump_element";//坐骑跳跃条
     public static final String SANITY_ELEMENT = "sanity_element";//玩家精神条
     public static final String WATER_ELEMENT = "water_element";//玩家干渴条
+
+    //面板信息
+    public static final String STAFF_LEVEL = "staff.level";//职员等级
+    public static final String STAFF_FORTITUDE = "staff.fortitude";//勇气
+    public static final String STAFF_PRUDENCE = "staff.prudence";//谨慎
+    public static final String STAFF_TEMPERANCE = "staff.temperance";//自律
+    public static final String STAFF_JUSTICE = "staff.justice";//正义
+    public static final String STAFF_MAX_HEALTH = "staff.max_health";//最大生命
+    public static final String STAFF_MAX_SANITY = "staff.max_sanity";//最大精神
+    public static final String STAFF_WORK_SUCCESS = "staff.work_success";//工作胜率
+    public static final String STAFF_WORK_VELOCITY = "staff.work_velocity";//工作速率
+    public static final String STAFF_ATTACK_VELOCITY = "staff.attack_velocity";//攻击速率
+    public static final String STAFF_MOVE_VELOCITY = "staff.move_velocity";//移动速率
 }
