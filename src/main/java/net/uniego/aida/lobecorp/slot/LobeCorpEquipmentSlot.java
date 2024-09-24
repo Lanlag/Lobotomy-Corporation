@@ -25,7 +25,7 @@ public enum LobeCorpEquipmentSlot implements StringIdentifiable {
 
     private final String slotName;
 
-    LobeCorpEquipmentSlot(final String slotName) {
+    LobeCorpEquipmentSlot(String slotName) {
         this.slotName = slotName;
     }
 

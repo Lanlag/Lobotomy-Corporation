@@ -19,24 +19,24 @@ public class GUIResource {
     //EGO饰品按钮
     public static final ButtonTextures EGO_GIFT_BUTTON = new ButtonTextures(LobeCorpUtil.id("ego_gift_button"), LobeCorpUtil.id("ego_gift_button_highlighted"));
     //脑叶公司插槽图
-    public static final Identifier EMPTY_EGO_WEAPON_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_weapon");
-    public static final Identifier EMPTY_EGO_SUIT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_suit");
-    public static final Identifier EMPTY_EGO_BADGE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_badge");
-    public static final Identifier EMPTY_EGO_TOOL_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_tool");
-    public static final Identifier EMPTY_EGO_HAT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_hat");
-    public static final Identifier EMPTY_EGO_HEAD_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_head");
-    public static final Identifier EMPTY_EGO_OCCIPUT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_occiput");
-    public static final Identifier EMPTY_EGO_EYE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_eye");
-    public static final Identifier EMPTY_EGO_FACE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_face");
-    public static final Identifier EMPTY_EGO_CHEEK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_cheek");
-    public static final Identifier EMPTY_EGO_MASK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_mask");
-    public static final Identifier EMPTY_EGO_MOUTH_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_mouth");
-    public static final Identifier EMPTY_EGO_NECK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_neck");
-    public static final Identifier EMPTY_EGO_CHEST_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_chest");
-    public static final Identifier EMPTY_EGO_HAND_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_hand");
-    public static final Identifier EMPTY_EGO_GLOVE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_glove");
-    public static final Identifier EMPTY_EGO_RIGHTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_rightback");
-    public static final Identifier EMPTY_EGO_LEFTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_leftback");
+    public static final Identifier EMPTY_LOBECORP_WEAPON_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_weapon");
+    public static final Identifier EMPTY_LOBECORP_SUIT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_suit");
+    public static final Identifier EMPTY_LOBECORP_BADGE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_badge");
+    public static final Identifier EMPTY_LOBECORP_TOOL_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_tool");
+    public static final Identifier EMPTY_LOBECORP_HAT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_hat");
+    public static final Identifier EMPTY_LOBECORP_HEAD_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_head");
+    public static final Identifier EMPTY_LOBECORP_OCCIPUT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_occiput");
+    public static final Identifier EMPTY_LOBECORP_EYE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_eye");
+    public static final Identifier EMPTY_LOBECORP_FACE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_face");
+    public static final Identifier EMPTY_LOBECORP_CHEEK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_cheek");
+    public static final Identifier EMPTY_LOBECORP_MASK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_mask");
+    public static final Identifier EMPTY_LOBECORP_MOUTH_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_mouth");
+    public static final Identifier EMPTY_LOBECORP_NECK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_neck");
+    public static final Identifier EMPTY_LOBECORP_CHEST_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_chest");
+    public static final Identifier EMPTY_LOBECORP_HAND_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_hand");
+    public static final Identifier EMPTY_LOBECORP_GLOVE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_glove");
+    public static final Identifier EMPTY_LOBECORP_RIGHTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_rightback");
+    public static final Identifier EMPTY_LOBECORP_LEFTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_lobecorp_leftback");
 
     //颜色代码
     //16进制颜色代码（包含透明度）

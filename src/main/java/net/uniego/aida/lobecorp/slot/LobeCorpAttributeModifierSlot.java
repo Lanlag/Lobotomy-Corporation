@@ -47,7 +47,7 @@ public enum LobeCorpAttributeModifierSlot implements StringIdentifiable {
         this.predicate = predicate;
     }
 
-    LobeCorpAttributeModifierSlot(final int id, final String name, final LobeCorpEquipmentSlot lobecorpEquipmentSlot) {
+    LobeCorpAttributeModifierSlot(int id, String name, LobeCorpEquipmentSlot lobecorpEquipmentSlot) {
         this(id, name, slot -> slot == lobecorpEquipmentSlot);
     }
 

@@ -2,75 +2,75 @@
   "sources": [
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_weapon"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_weapon"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_suit"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_suit"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_badge"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_badge"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_tool"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_tool"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_hat"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_hat"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_head"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_head"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_occiput"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_occiput"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_eye"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_eye"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_face"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_face"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_cheek"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_cheek"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_mask"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_mask"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_mouth"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_mouth"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_neck"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_neck"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_chest"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_chest"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_hand"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_hand"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_glove"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_glove"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_rightback"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_rightback"
     },
     {
       "type": "single",
-      "resource": "lobecorp:gui/sprites/empty_ego_leftback"
+      "resource": "lobecorp:gui/sprites/empty_lobecorp_leftback"
     }
   ]
 }

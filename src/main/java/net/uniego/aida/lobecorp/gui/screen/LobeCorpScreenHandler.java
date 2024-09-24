@@ -20,24 +20,24 @@ import java.util.List;
 //脑叶公司屏幕处理器
 public class LobeCorpScreenHandler extends ScreenHandler {
     private static final List<SlotFactory> SLOT_FACTORIES = List.of(
-            new SlotFactory(GUIResource.EMPTY_EGO_WEAPON_TEXTURE, 63, 62, 62),
-            new SlotFactory(GUIResource.EMPTY_EGO_SUIT_TEXTURE, 64, 62, 44),
-            new SlotFactory(GUIResource.EMPTY_EGO_BADGE_TEXTURE, 65, 62, 26),
-            new SlotFactory(GUIResource.EMPTY_EGO_TOOL_TEXTURE, 66, 62, 8),
-            new SlotFactory(GUIResource.EMPTY_EGO_HAT_TEXTURE, 67, -24, 11),
-            new SlotFactory(GUIResource.EMPTY_EGO_HEAD_TEXTURE, 68, -24, 29),
-            new SlotFactory(GUIResource.EMPTY_EGO_OCCIPUT_TEXTURE, 69, -24, 47),
-            new SlotFactory(GUIResource.EMPTY_EGO_EYE_TEXTURE, 70, -24, 65),
-            new SlotFactory(GUIResource.EMPTY_EGO_FACE_TEXTURE, 71, -24, 83),
-            new SlotFactory(GUIResource.EMPTY_EGO_CHEEK_TEXTURE, 72, -24, 101),
-            new SlotFactory(GUIResource.EMPTY_EGO_MASK_TEXTURE, 73, -24, 119),
-            new SlotFactory(GUIResource.EMPTY_EGO_MOUTH_TEXTURE, 74, -24, 137),
-            new SlotFactory(GUIResource.EMPTY_EGO_NECK_TEXTURE, 75, -24, 155),
-            new SlotFactory(GUIResource.EMPTY_EGO_CHEST_TEXTURE, 76, -24, 173),
-            new SlotFactory(GUIResource.EMPTY_EGO_HAND_TEXTURE, 77, -24, 191),
-            new SlotFactory(GUIResource.EMPTY_EGO_GLOVE_TEXTURE, 78, -24, 209),
-            new SlotFactory(GUIResource.EMPTY_EGO_RIGHTBACK_TEXTURE, 79, -24, 227),
-            new SlotFactory(GUIResource.EMPTY_EGO_LEFTBACK_TEXTURE, 80, -24, 245)
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_WEAPON_TEXTURE, 63, 62, 62),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_SUIT_TEXTURE, 64, 62, 44),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_BADGE_TEXTURE, 65, 62, 26),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_TOOL_TEXTURE, 66, 62, 8),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_HAT_TEXTURE, 67, -24, 11),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_HEAD_TEXTURE, 68, -24, 29),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_OCCIPUT_TEXTURE, 69, -24, 47),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_EYE_TEXTURE, 70, -24, 65),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_FACE_TEXTURE, 71, -24, 83),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_CHEEK_TEXTURE, 72, -24, 101),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_MASK_TEXTURE, 73, -24, 119),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_MOUTH_TEXTURE, 74, -24, 137),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_NECK_TEXTURE, 75, -24, 155),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_CHEST_TEXTURE, 76, -24, 173),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_HAND_TEXTURE, 77, -24, 191),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_GLOVE_TEXTURE, 78, -24, 209),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_RIGHTBACK_TEXTURE, 79, -24, 227),
+            new SlotFactory(GUIResource.EMPTY_LOBECORP_LEFTBACK_TEXTURE, 80, -24, 245)
     );
 
     public LobeCorpScreenHandler(int syncId, PlayerInventory playerInventory) {
