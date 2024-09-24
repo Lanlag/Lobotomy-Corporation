@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -81,5 +82,24 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(TagInit.WHITE_EGO_WEAPONS, "White EGO Weapons");
         translationBuilder.add(TagInit.BLACK_EGO_WEAPONS, "Black EGO Weapons");
         translationBuilder.add(TagInit.PALE_EGO_WEAPONS, "Pale EGO Weapons");
+        //插槽名
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT.getSlotName(), "When in Weapon Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT.getSlotName(), "When in Suit Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT.getSlotName(), "When in Badge Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_TOOL_SLOT.getSlotName(), "When in Tool Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAT_SLOT.getSlotName(), "When in Hat Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT.getSlotName(), "When in Head Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT.getSlotName(), "When in Occiput Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT.getSlotName(), "When in Eye Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_FACE_SLOT.getSlotName(), "When in Face Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEEK_SLOT.getSlotName(), "When in Cheek Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MASK_SLOT.getSlotName(), "When in Mask Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MOUTH_SLOT.getSlotName(), "When in Mouth Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_NECK_SLOT.getSlotName(), "When in Neck Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEST_SLOT.getSlotName(), "When in Chest Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAND_SLOT.getSlotName(), "When in Hand Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT.getSlotName(), "When in Glove Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT.getSlotName(), "When in RightBack Slot:");
+        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT.getSlotName(), "When in LeftBack Slot:");
     }
 }

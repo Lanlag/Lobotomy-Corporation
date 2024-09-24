@@ -72,12 +72,12 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
     //序列化和反序列化
     public record Entry(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier,
                         LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
-        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(intance -> intance.group(
+        public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Registries.ATTRIBUTE.getEntryCodec().fieldOf("type").forGetter(Entry::attribute),
                 EntityAttributeModifier.MAP_CODEC.forGetter(Entry::modifier),
                 LobeCorpAttributeModifierSlot.CODEC.optionalFieldOf("slot",
                         LobeCorpAttributeModifierSlot.LOBECORP_ANY).forGetter(Entry::lobecorpAttributeModifierSlot)
-        ).apply(intance, Entry::new));
+        ).apply(instance, Entry::new));
         public static final PacketCodec<RegistryByteBuf, Entry> PACKET_CODEC;
 
         static {

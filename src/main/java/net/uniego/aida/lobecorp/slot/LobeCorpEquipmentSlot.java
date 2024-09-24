@@ -14,7 +14,7 @@ public enum LobeCorpEquipmentSlot implements StringIdentifiable {
     LOBECORP_EYE_SLOT("lobecorp_eye_slot"),//脑叶公司眼部位
     LOBECORP_FACE_SLOT("lobecorp_face_slot"),//脑叶公司面部位
     LOBECORP_CHEEK_SLOT("lobecorp_cheek_slot"),//脑叶公司脸颊位
-    LOBECORP_MASK_SLOT("lobecorp_mask_slot"),//脑叶公司面具位
+    LOBECORP_MASK_SLOT("lobecorp_mask_slot"),//脑叶公司面罩位
     LOBECORP_MOUTH_SLOT("lobecorp_mouth_slot"),//脑叶公司口部位
     LOBECORP_NECK_SLOT("lobecorp_neck_slot"),//脑叶公司颈部位
     LOBECORP_CHEST_SLOT("lobecorp_chest_slot"),//脑叶公司胸部位
