@@ -10,10 +10,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SyncOffsetPacket {
-    public static final Map<UUID, Float> hydrationLevels = new HashMap<>();
-    public static final Map<UUID, Float> desiccationLevels = new HashMap<>();
-    public static final Map<UUID, Float> saturationLevels = new HashMap<>();
-    public static final Map<UUID, Float> exhaustionLevels = new HashMap<>();
+    private static final Map<UUID, Float> hydrationLevels = new HashMap<>();
+    private static final Map<UUID, Float> desiccationLevels = new HashMap<>();
+    private static final Map<UUID, Float> saturationLevels = new HashMap<>();
+    private static final Map<UUID, Float> exhaustionLevels = new HashMap<>();
 
     public static void send(ServerPlayerEntity serverPlayer) {
         //饱水度

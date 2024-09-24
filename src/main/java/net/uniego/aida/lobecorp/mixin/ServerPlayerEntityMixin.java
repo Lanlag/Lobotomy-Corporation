@@ -9,6 +9,7 @@ import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
+import net.uniego.aida.lobecorp.network.packet.SyncEquipmentPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncIconPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncOffsetPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -46,6 +47,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     //实时同步玩家饱水度和脱水度，饱食度和消耗度，以及玩家装饰等机制
     @Inject(method = "tick", at = @At("TAIL"))
     private void tickMixin(CallbackInfo ci) {
+        SyncEquipmentPacket.send(serverPlayerEntity);
         SyncOffsetPacket.send(serverPlayerEntity);
     }
 

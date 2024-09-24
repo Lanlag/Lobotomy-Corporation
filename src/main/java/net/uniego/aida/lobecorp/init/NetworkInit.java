@@ -7,6 +7,7 @@ public class NetworkInit {
     //注册客户端数据包处理
     public static void registerClient() {
         SwingHandHandle.receive();
+        SyncEquipmentHandle.receive();
         SyncIconHandle.receive();
         SyncOffsetHandle.receive();
     }

@@ -12,6 +12,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -23,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @Mixin(ItemStack.class)
@@ -38,7 +38,7 @@ public abstract class ItemStackMixin {
         if (!component.showInTooltip()) return;
         for (LobeCorpEquipmentSlot slot : LobeCorpEquipmentSlot.values()) {
             MutableBoolean mutableBoolean = new MutableBoolean(true);
-            applyAttributeModifiers(slot, (attribute, modifier) -> {
+            LobeCorpUtil.applyAttributeModifiers(slot, itemStack, (attribute, modifier) -> {
                 if (mutableBoolean.isTrue()) {
                     textConsumer.accept(ScreenTexts.EMPTY);
                     textConsumer.accept(Text.translatable(slot.getSlotName()).formatted(Formatting.GRAY));
@@ -70,14 +70,6 @@ public abstract class ItemStackMixin {
             textConsumer.accept(Text.translatable("attribute.modifier.plus." + modifier.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(e), Text.translatable(attribute.value().getTranslationKey())).formatted(Formatting.BLUE));
         } else if (d < 0.0) {
             textConsumer.accept(Text.translatable("attribute.modifier.take." + modifier.operation().getId(), AttributeModifiersComponent.DECIMAL_FORMAT.format(-e), Text.translatable(attribute.value().getTranslationKey())).formatted(Formatting.RED));
-        }
-    }
-
-    @Unique
-    private void applyAttributeModifiers(LobeCorpEquipmentSlot slot, BiConsumer<RegistryEntry<EntityAttribute>, EntityAttributeModifier> biConsumer) {
-        LobeCorpAttributeModifiersComponent component = itemStack.getOrDefault(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpAttributeModifiersComponent.DEFAULT);
-        if (!component.modifiers().isEmpty()) {
-            component.applyModifiers(slot, biConsumer);
         }
     }
 }
