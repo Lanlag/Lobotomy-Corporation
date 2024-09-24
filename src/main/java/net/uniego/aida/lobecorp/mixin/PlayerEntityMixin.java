@@ -3,6 +3,9 @@ package net.uniego.aida.lobecorp.mixin;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -29,6 +32,10 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     PlayerEntity playerEntity = (PlayerEntity) (Object) this;
     @Unique
     private final SanityManager sanityManager = new SanityManager(playerEntity);
+    @Unique
+    private double syncedAttackVelocity = -1.0E8F;
+    @Unique
+    private double syncedMoveVelocity = -1.0E8F;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -39,7 +46,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     private static void createPlayerAttributesMixin(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         cir.getReturnValue()
                 .add(AttributeInit.PLAYER_MAX_SANITY)
-                .add(AttributeInit.PLAYER_MAX_ASSIMILATION);
+                .add(AttributeInit.PLAYER_MAX_ASSIMILATION)
+                .add(AttributeInit.PLAYER_WORK_SUCCESS)
+                .add(AttributeInit.PLAYER_WORK_VELOCITY)
+                .add(AttributeInit.PLAYER_ATTACK_VELOCITY)
+                .add(AttributeInit.PLAYER_MOVE_VELOCITY);
     }
 
     @Override
@@ -54,13 +65,46 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
 
     //使精神值和干渴值能在和平模式且游戏规则自然恢复启用下回复
     @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerInventory;updateItems()V"))
-    private void tickMovementMixin(CallbackInfo ci) {
+    private void tickMovementMixin1(CallbackInfo ci) {
         if (getWorld().getDifficulty() == Difficulty.PEACEFUL && getWorld().getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (sanityManager.getSanity() < sanityManager.getMaxSanity() && age % 20 == 0 && !getWorld().isClient) {
                 sanityManager.cure(1.0F);
             }
             if (thirstManager.isNotFull() && age % 10 == 0) {
                 thirstManager.setWaterLevel(thirstManager.getWaterLevel() + 1);
+            }
+        }
+    }
+
+    //对原版攻速和移速进行乘算
+    @Inject(method = "tickMovement", at = @At("HEAD"))
+    private void tickMovementMixin2(CallbackInfo ci) {
+        if (!getWorld().isClient) {
+            //参数获取
+            double attackVelocity = getAttributeValue(AttributeInit.PLAYER_ATTACK_VELOCITY);
+            double moveVelocity = getAttributeValue(AttributeInit.PLAYER_MOVE_VELOCITY);
+            //根据变化再实时修改
+            if (attackVelocity != syncedAttackVelocity || moveVelocity != syncedMoveVelocity) {
+                EntityAttributeInstance attackSpeed = getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED);
+                EntityAttributeInstance movementSpeed = getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+                if (attackSpeed != null) {
+                    EntityAttributeModifier oldModifier = attackSpeed.getModifier(AttributeInit.ATTACK_VELOCITY_MODIFIER_ID);
+                    if (oldModifier != null) attackSpeed.removeModifier(oldModifier);
+                    EntityAttributeModifier newModifier = new EntityAttributeModifier(AttributeInit.ATTACK_VELOCITY_MODIFIER_ID,
+                            "LobeCorp Attribute modifier",
+                            (attackVelocity * 0.2F) / 100, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+                    attackSpeed.addPersistentModifier(newModifier);
+                }
+                if (movementSpeed != null) {
+                    EntityAttributeModifier oldModifier = movementSpeed.getModifier(AttributeInit.MOVE_VELOCITY_MODIFIER_ID);
+                    if (oldModifier != null) movementSpeed.removeModifier(oldModifier);
+                    EntityAttributeModifier newModifier = new EntityAttributeModifier(AttributeInit.MOVE_VELOCITY_MODIFIER_ID,
+                            "LobeCorp Attribute modifier",
+                            (moveVelocity * 0.2F) / 100, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+                    movementSpeed.addPersistentModifier(newModifier);
+                }
+                syncedAttackVelocity = attackVelocity;
+                syncedMoveVelocity = moveVelocity;
             }
         }
     }

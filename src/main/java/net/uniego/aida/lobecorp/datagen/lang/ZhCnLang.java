@@ -19,6 +19,10 @@ public class ZhCnLang extends FabricLanguageProvider {
         //属性名
         translationBuilder.add(AttributeInit.PLAYER_MAX_SANITY_NAME, "最大精神值");
         translationBuilder.add(AttributeInit.PLAYER_MAX_ASSIMILATION_NAME, "最大认知同化值");
+        translationBuilder.add(AttributeInit.PLAYER_WORK_SUCCESS_NAME, "工作胜率");
+        translationBuilder.add(AttributeInit.PLAYER_WORK_VELOCITY_NAME, "工作速率");
+        translationBuilder.add(AttributeInit.PLAYER_ATTACK_VELOCITY_NAME, "攻击速率");
+        translationBuilder.add(AttributeInit.PLAYER_MOVE_VELOCITY_NAME, "移动速率");
         //死亡信息
         translationBuilder.add(DamageInit.DEATH_ATTACK_DRY, "%1$s渴死了");
         translationBuilder.add(DamageInit.DEATH_ATTACK_DRY_PLAYER, "%1$s在与%2$s战斗中因口渴而死");

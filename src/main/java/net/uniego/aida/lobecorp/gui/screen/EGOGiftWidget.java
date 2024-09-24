@@ -2,13 +2,14 @@ package net.uniego.aida.lobecorp.gui.screen;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
+import net.minecraft.screen.slot.Slot;
 import net.uniego.aida.lobecorp.gui.GUIResource;
+import net.uniego.aida.lobecorp.slot.LobeCorpSlot;
 
 //EGO饰品控件
 @Environment(EnvType.CLIENT)
@@ -22,16 +23,14 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
     private boolean open;
     private int parentX;
     private int parentY;
-    private MinecraftClient client;
     private LobeCorpScreenHandler handler;
     private int sliderPosY;//滑块当前位置
     private boolean isSliding;//是否正在滑动
 
 
-    public void initialize(int parentX, int parentY, MinecraftClient client, LobeCorpScreenHandler handler) {
+    public void initialize(int parentX, int parentY, LobeCorpScreenHandler handler) {
         this.parentX = parentX;
         this.parentY = parentY;
-        this.client = client;
         this.handler = handler;
     }
 
@@ -56,16 +55,20 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
             int posX = parentX - 32;
             int posY = parentY + 3;
             int width = 32;
+            //滑动改变插槽位置
+            for (int i = 0; i < TOTAL_SLOTS; i++) {
+                updateSlotPosition(i);
+            }
             //渲染插槽背景和滑动条背景
             for (int i = 0; i < VISIBLE_SLOTS; i++) {
-                context.drawTexture(GUIResource.GIFT_CONTAINER, posX, posY + 7 + i * SLOT_HEIGHT, 0, 32, width, SLOT_HEIGHT);
+                context.drawTexture(GUIResource.GIFT_INVENTORY, posX, posY + 7 + i * SLOT_HEIGHT, 0, 32, width, SLOT_HEIGHT);
             }
             //绘制顶部边框
-            context.drawTexture(GUIResource.GIFT_CONTAINER, posX, posY, 0, 0, width, 8);
+            context.drawTexture(GUIResource.GIFT_INVENTORY, posX, posY, 0, 0, width, 8);
             //绘制底部边框
-            context.drawTexture(GUIResource.GIFT_CONTAINER, posX, posY + 7 + VISIBLE_SLOTS * SLOT_HEIGHT - 1, 0, 16, width, 8);
+            context.drawTexture(GUIResource.GIFT_INVENTORY, posX, posY + 7 + VISIBLE_SLOTS * SLOT_HEIGHT - 1, 0, 16, width, 8);
             //绘制滑块
-            context.drawTexture(GUIResource.GIFT_CONTAINER, posX + 25 + 1, posY + 7 + 1 + sliderPosY, 32, 0, SLIDER_WIDTH, SLIDER_HEIGHT);
+            context.drawTexture(GUIResource.GIFT_INVENTORY, posX + 25 + 1, posY + 7 + 1 + sliderPosY, 32, 0, SLIDER_WIDTH, SLIDER_HEIGHT);
             context.getMatrices().pop();
         }
     }
@@ -73,6 +76,29 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
     //更新滑块位置
     private void updateSliderPosition(double mouseY) {
         sliderPosY = (int) Math.max(0, Math.min(mouseY - (parentY + 11), SCROLL_BAR_HEIGHT - SLIDER_HEIGHT));
+    }
+
+    //更新插槽位置
+    private void updateSlotPosition(int i) {
+        //此处40指的是4个护甲插槽加1个副手插槽以及27个背包栏还有9个快捷栏，从0开始索引（？）
+        Slot slot = handler.getSlot(40 + i);
+        int startSlotIndex = Math.max(0, (sliderPosY * VISIBLE_SLOTS) / (SCROLL_BAR_HEIGHT - SLIDER_HEIGHT));
+        if (slot instanceof LobeCorpSlot lobecorpSlot) {
+            if (i >= startSlotIndex && i < startSlotIndex + VISIBLE_SLOTS) {
+                lobecorpSlot.setEnabled(true);
+                lobecorpSlot.y = 11 + ((i - startSlotIndex) % VISIBLE_SLOTS) * SLOT_HEIGHT;
+            } else {
+                lobecorpSlot.setEnabled(false);
+            }
+        }
+    }
+
+    //EGO饰品界面关闭时禁用饰品插槽
+    public void closeSlot() {
+        for (int i = 0; i < TOTAL_SLOTS; i++) {
+            Slot slot = handler.getSlot(40 + i);
+            if (slot instanceof LobeCorpSlot lobecorpSlot) lobecorpSlot.setEnabled(false);
+        }
     }
 
     @Override

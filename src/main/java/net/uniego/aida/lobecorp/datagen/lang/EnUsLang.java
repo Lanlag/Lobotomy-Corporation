@@ -19,6 +19,10 @@ public class EnUsLang extends FabricLanguageProvider {
         //属性名
         translationBuilder.add(AttributeInit.PLAYER_MAX_SANITY_NAME, "Max Sanity");
         translationBuilder.add(AttributeInit.PLAYER_MAX_ASSIMILATION_NAME, "Max Assimilation");
+        translationBuilder.add(AttributeInit.PLAYER_WORK_SUCCESS_NAME, "Work Success");
+        translationBuilder.add(AttributeInit.PLAYER_WORK_VELOCITY_NAME, "Work Velocity");
+        translationBuilder.add(AttributeInit.PLAYER_ATTACK_VELOCITY_NAME, "Attack Velocity");
+        translationBuilder.add(AttributeInit.PLAYER_MOVE_VELOCITY_NAME, "Move Velocity");
         //死亡信息
         translationBuilder.add(DamageInit.DEATH_ATTACK_DRY, "%1$s dried to death");
         translationBuilder.add(DamageInit.DEATH_ATTACK_DRY_PLAYER, "%1$s dried to death whilst fighting %2$s");

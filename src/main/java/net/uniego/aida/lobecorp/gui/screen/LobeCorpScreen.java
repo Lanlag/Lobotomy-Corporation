@@ -24,9 +24,12 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
     @Override
     protected void init() {
         super.init();
-        egoGiftWidget.initialize(x, y, client, handler);
+        egoGiftWidget.initialize(x, y, handler);
         addDrawableChild(new TexturedButtonWidget(x + 10, y + 10, 10, 10, GUIResource.EGO_GIFT_BUTTON,
-                button -> egoGiftWidget.toggleOpen()));
+                button -> {
+                    egoGiftWidget.toggleOpen();
+                    if (!egoGiftWidget.isOpen()) egoGiftWidget.closeSlot();
+                }));
         addSelectableChild(egoGiftWidget);
     }
 
@@ -43,7 +46,7 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        context.drawTexture(GUIResource.LOBECORP_CONTAINER, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        context.drawTexture(GUIResource.LOBECORP_INVENTORY, x, y, 0, 0, backgroundWidth, backgroundHeight);
         if (client != null && client.player != null) {
             drawEntity(context, x + 26 - 33, y + 8, x + 75, y + 78, 30, 0.0625F, mouseX, mouseY, client.player);
         }

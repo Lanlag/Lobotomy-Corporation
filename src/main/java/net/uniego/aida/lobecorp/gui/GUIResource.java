@@ -13,11 +13,31 @@ public class GUIResource {
     //各种图标
     public static final Identifier LOBECORP_ICONS = LobeCorpUtil.id("textures/gui/lobecorp_icons.png");
     //脑叶公司屏幕贴图
-    public static final Identifier LOBECORP_CONTAINER = LobeCorpUtil.id("textures/gui/container/lobecorp_inventory.png");
+    public static final Identifier LOBECORP_INVENTORY = LobeCorpUtil.id("textures/gui/container/lobecorp_inventory.png");
     //饰品屏幕贴图
-    public static final Identifier GIFT_CONTAINER = LobeCorpUtil.id("textures/gui/container/gift_inventory.png");
+    public static final Identifier GIFT_INVENTORY = LobeCorpUtil.id("textures/gui/container/gift_inventory.png");
     //EGO饰品按钮
     public static final ButtonTextures EGO_GIFT_BUTTON = new ButtonTextures(LobeCorpUtil.id("ego_gift_button"), LobeCorpUtil.id("ego_gift_button_highlighted"));
+    //脑叶公司插槽图
+    public static final Identifier EMPTY_EGO_WEAPON_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_weapon");
+    public static final Identifier EMPTY_EGO_SUIT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_suit");
+    public static final Identifier EMPTY_EGO_BADGE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_badge");
+    public static final Identifier EMPTY_EGO_TOOL_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_tool");
+    public static final Identifier EMPTY_EGO_HAT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_hat");
+    public static final Identifier EMPTY_EGO_HEAD_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_head");
+    public static final Identifier EMPTY_EGO_OCCIPUT_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_occiput");
+    public static final Identifier EMPTY_EGO_EYE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_eye");
+    public static final Identifier EMPTY_EGO_FACE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_face");
+    public static final Identifier EMPTY_EGO_CHEEK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_cheek");
+    public static final Identifier EMPTY_EGO_MASK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_mask");
+    public static final Identifier EMPTY_EGO_MOUTH_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_mouth");
+    public static final Identifier EMPTY_EGO_NECK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_neck");
+    public static final Identifier EMPTY_EGO_CHEST_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_chest");
+    public static final Identifier EMPTY_EGO_HAND_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_hand");
+    public static final Identifier EMPTY_EGO_GLOVE_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_glove");
+    public static final Identifier EMPTY_EGO_RIGHTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_rightback");
+    public static final Identifier EMPTY_EGO_LEFTBACK_TEXTURE = LobeCorpUtil.id("gui/sprites/empty_ego_leftback");
+    //颜色代码
     //16进制颜色代码（包含透明度）
     public static final int BG1 = 0xA0000000;//一般用于外部背景
     public static final int BG2 = 0x20FFFFFF;//一般用于内部背景
@@ -36,6 +56,7 @@ public class GUIResource {
     public static final int INSANE = 0x270E40;//狂乱颜色
     public static final int SANITY = 0x005BC2;//精神条以及精神字体颜色
     public static final int SHIELD = 0xD4AF37;//力场盾颜色
+
     //HUD元素类型名
     public static final String AIR_ELEMENT = "air_element";//玩家氧气条
     public static final String ARMOR_ELEMENT = "armor_element";//玩家护甲

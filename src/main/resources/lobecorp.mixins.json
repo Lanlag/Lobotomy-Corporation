@@ -9,6 +9,7 @@
     "LivingEntityMixin",
     "MilkBucketItemMixin",
     "PlayerEntityMixin",
+    "PlayerInventoryMixin",
     "PlayerManagerMixin",
     "PotionItemMixin",
     "ServerPlayerEntityMixin"
