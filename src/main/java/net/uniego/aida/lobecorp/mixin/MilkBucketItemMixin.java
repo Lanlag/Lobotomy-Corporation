@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MilkBucketItem.class)
 public abstract class MilkBucketItemMixin {
     //引用奶桶回复干渴值和饱水度
-    @Inject(method = "finishUsing", at = @At(value = "HEAD"))
+    @Inject(method = "finishUsing", at = @At("HEAD"))
     private void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         if (user instanceof PlayerEntity player && !world.isClient()) {
             ((ManagerAccess) player).lobecorp$getThirstManager().add(20, 0.5F);

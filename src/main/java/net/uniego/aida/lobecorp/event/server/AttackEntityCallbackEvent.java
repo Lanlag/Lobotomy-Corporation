@@ -27,6 +27,7 @@ import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.TagInit;
 import org.jetbrains.annotations.Nullable;
 
+//攻击实体事件
 public class AttackEntityCallbackEvent implements AttackEntityCallback {
     //EGO武器攻击逻辑，让玩家能够暴击以及EGO武器接收附魔加成
     public static void egoAttack(Entity target, PlayerEntity player, RegistryKey<DamageType> egoDamageType) {

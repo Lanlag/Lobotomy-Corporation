@@ -4,6 +4,7 @@
   "package": "net.uniego.aida.lobecorp.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityTrackerEntryMixin",
     "HungerStatusEffectMixin",
     "ItemMixin",
     "ItemStackMixin",

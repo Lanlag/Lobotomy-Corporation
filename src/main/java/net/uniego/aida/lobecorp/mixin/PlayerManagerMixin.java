@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerManager.class)
 public abstract class PlayerManagerMixin {
     //当玩家连接时，修改玩家管理器内容
-    @Inject(method = "onPlayerConnect", at = @At(value = "TAIL"))
+    @Inject(method = "onPlayerConnect", at = @At("TAIL"))
     private void onPlayerConnectMixin(ClientConnection connection, ServerPlayerEntity player, ConnectedClientData clientData, CallbackInfo ci) {
         SyncOffsetPacket.remove(player);
         SyncEquipmentPacket.remove(player);

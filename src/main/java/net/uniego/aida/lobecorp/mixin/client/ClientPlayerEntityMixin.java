@@ -21,7 +21,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayerEntity
     }
 
     //新增干渴值大于6才能疾跑的设定
-    @Inject(method = "canSprint", at = @At(value = "RETURN"), cancellable = true)
+    @Inject(method = "canSprint", at = @At("RETURN"), cancellable = true)
     private void canSprintMixin(CallbackInfoReturnable<Boolean> cir) {
         ThirstManager thirstManager = ((ManagerAccess) this).lobecorp$getThirstManager();
         cir.setReturnValue(hasVehicle()

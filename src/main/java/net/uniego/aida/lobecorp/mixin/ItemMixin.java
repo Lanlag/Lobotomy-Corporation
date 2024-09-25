@@ -34,7 +34,7 @@ public abstract class ItemMixin {
     }
 
     //食用食物回复干渴值和饱水度
-    @Inject(method = "finishUsing", at = @At(value = "HEAD"))
+    @Inject(method = "finishUsing", at = @At("HEAD"))
     private void finishUsingMixin(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         if (user instanceof PlayerEntity player && !world.isClient()) {
             int waterLevel = 0;
