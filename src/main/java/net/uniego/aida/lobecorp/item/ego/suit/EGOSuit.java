@@ -20,13 +20,9 @@ import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
 import java.util.List;
-import java.util.UUID;
 
 //EGO护甲
 public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAccess, ColorResistAccess {
-    public static final UUID ARMOR_MODIFIER_ID = UUID.fromString("D07514E2-18B4-4F09-9246-F38FAC035088");
-    public static final UUID ARMOR_TOUGHNESS_MODIFIER_ID = UUID.fromString("84B2E3C4-A286-4060-9844-22BA0900C5D0");
-
     public static final String TOOLTIP_EGO_SUIT_LEVEL = "tooltip.ego.suit_level";//护甲等级
     public static final String TOOLTIP_EGO_SUIT_RED = "tooltip.ego.suit.red";//红抗
     public static final String TOOLTIP_EGO_SUIT_WHITE = "tooltip.ego.suit.white";//白抗

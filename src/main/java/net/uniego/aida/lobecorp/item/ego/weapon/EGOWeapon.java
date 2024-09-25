@@ -5,8 +5,6 @@ import net.minecraft.client.item.TooltipType;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Rarity;
@@ -17,7 +15,9 @@ import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.manager.LevelManager;
+import net.uniego.aida.lobecorp.item.ego.weapon.model.EGOWeaponModel;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
+import net.uniego.aida.lobecorp.item.ego.weapon.model.StickModel;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,42 +35,44 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final String TOOLTIP_EGO_WEAPON_BLACK = "tooltip.ego.weapon.black";//黑伤
     public static final String TOOLTIP_EGO_WEAPON_PALE = "tooltip.ego.weapon.pale";//蓝伤
 
-    public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN,
-            EGOWeaponTemplate.MACE, 54498);//代码镇暴棍
+    public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE,
+            54498, new StickModel());//代码镇暴棍
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;
+    private final EGOWeaponModel egoWeaponModel;
     private final LevelManager.LobeCorpLevel requireF;
     private final LevelManager.LobeCorpLevel requireP;
     private final LevelManager.LobeCorpLevel requireT;
     private final LevelManager.LobeCorpLevel requireJ;
 
-    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "",
+    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, EGOWeaponModel egoWeaponModel) {
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, egoWeaponModel, "",
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
-    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
+    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, EGOWeaponModel egoWeaponModel,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireJ, requireT, requireP, requireF);
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, egoWeaponModel, "", requireJ, requireT, requireP, requireF);
     }
 
-    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "",
+    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, EGOWeaponModel egoWeaponModel) {
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, egoWeaponModel, "",
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
-    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
+    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, EGOWeaponModel egoWeaponModel,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireJ, requireT, requireP, requireF);
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, egoWeaponModel, "", requireJ, requireT, requireP, requireF);
     }
 
-    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, String egoSkill,
+    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, EGOWeaponModel egoWeaponModel, String egoSkill,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
         super(new Settings().rarity(rarity).component(DataComponentTypes.ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOWeaponAttributeModifiers
                 (attackDamage, -egoWeaponTemplate.attackSpeed, egoWeaponTemplate.interactionRange - 3)), LobeCorpAttributeModifierSlot.LOBECORP_WEAPON, egoSkill);
         this.egoLevel = egoLevel;
         this.egoWeaponTemplate = egoWeaponTemplate;
+        this.egoWeaponModel = egoWeaponModel;
         this.requireF = requireF;
         this.requireP = requireP;
         this.requireT = requireT;
@@ -78,7 +80,11 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     }
 
     public static void register() {
-        Registry.register(Registries.ITEM, LobeCorpUtil.id("code_riot_stick"), CODE_RIOT_STICK);
+        LobeCorpUtil.registerEGOWeaponModel("code_riot_stick", CODE_RIOT_STICK);
+    }
+
+    public EGOWeaponModel getEgoWeaponModel() {
+        return egoWeaponModel;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.uniego.aida.lobecorp;
 
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -8,6 +9,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -18,9 +21,10 @@ import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ComponentInit;
-import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
+import net.uniego.aida.lobecorp.renderer.EGOWeaponRenderer;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -33,6 +37,12 @@ public class LobeCorpUtil {
     //注册ID
     public static Identifier id(String id) {
         return new Identifier(LobeCorpMain.MOD_ID, id);
+    }
+
+    //注册EGO武器和模型
+    public static void registerEGOWeaponModel(String id, EGOWeapon egoWeapon) {
+        Registry.register(Registries.ITEM, id(id), egoWeapon);
+        BuiltinItemRendererRegistry.INSTANCE.register(egoWeapon, new EGOWeaponRenderer(egoWeapon.getEgoWeaponModel(), id));
     }
 
     //播放声音
@@ -53,8 +63,8 @@ public class LobeCorpUtil {
     //创建EGO护甲属性修饰符
     public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(EGOSuit.ARMOR_MODIFIER_ID, 20), lobecorpSlot)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(EGOSuit.ARMOR_TOUGHNESS_MODIFIER_ID, 20), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(20), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(20), lobecorpSlot)
                 .builder();
     }
 
@@ -80,8 +90,8 @@ public class LobeCorpUtil {
     }
 
     //EGO护甲修饰符
-    public static EntityAttributeModifier egoSuitModifier(UUID uuid, double value) {
-        return new EntityAttributeModifier(uuid, "EGO Suit modifier", value, EntityAttributeModifier.Operation.ADD_VALUE);
+    public static EntityAttributeModifier egoSuitModifier(double value) {
+        return new EntityAttributeModifier(LobeCorpItem.LOBECORP_SUIT_MODIFIER_ID, "EGO Suit modifier", value, EntityAttributeModifier.Operation.ADD_VALUE);
     }
 
     //EGO饰品修饰符
