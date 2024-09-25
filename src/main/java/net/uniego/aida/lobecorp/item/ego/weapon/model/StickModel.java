@@ -5,7 +5,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 
-public class StickModel extends EGOWeaponModel {
+public class StickModel extends net.minecraft.client.render.entity.model.EntityModel<Entity> {
     private final ModelPart weapon;
 
     public StickModel() {
@@ -13,7 +13,6 @@ public class StickModel extends EGOWeaponModel {
         this.weapon = root.getChild("weapon");
     }
 
-    @Override
     public TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();

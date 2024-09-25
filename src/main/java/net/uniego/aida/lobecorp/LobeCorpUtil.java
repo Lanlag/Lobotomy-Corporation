@@ -42,7 +42,7 @@ public class LobeCorpUtil {
     //注册EGO武器和模型
     public static void registerEGOWeaponModel(String id, EGOWeapon egoWeapon) {
         Registry.register(Registries.ITEM, id(id), egoWeapon);
-        BuiltinItemRendererRegistry.INSTANCE.register(egoWeapon, new EGOWeaponRenderer(egoWeapon.getEgoWeaponModel(), id));
+        BuiltinItemRendererRegistry.INSTANCE.register(egoWeapon, new EGOWeaponRenderer(egoWeapon.getEntityModel(), id));
     }
 
     //播放声音
