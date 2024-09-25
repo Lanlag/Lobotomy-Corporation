@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.gui.screen;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -10,8 +11,11 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.Identifier;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ScreenInit;
+import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpSlot;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,24 +24,24 @@ import java.util.List;
 //脑叶公司屏幕处理器
 public class LobeCorpScreenHandler extends ScreenHandler {
     private static final List<SlotFactory> SLOT_FACTORIES = List.of(
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_WEAPON_TEXTURE, 63, 62, 62),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_SUIT_TEXTURE, 64, 62, 44),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_BADGE_TEXTURE, 65, 62, 26),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_TOOL_TEXTURE, 66, 62, 8),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_HAT_TEXTURE, 67, -24, 11),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_HEAD_TEXTURE, 68, -24, 29),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_OCCIPUT_TEXTURE, 69, -24, 47),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_EYE_TEXTURE, 70, -24, 65),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_FACE_TEXTURE, 71, -24, 83),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_CHEEK_TEXTURE, 72, -24, 101),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_MASK_TEXTURE, 73, -24, 119),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_MOUTH_TEXTURE, 74, -24, 137),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_NECK_TEXTURE, 75, -24, 155),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_CHEST_TEXTURE, 76, -24, 173),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_HAND_TEXTURE, 77, -24, 191),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_GLOVE_TEXTURE, 78, -24, 209),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_RIGHTBACK_TEXTURE, 79, -24, 227),
-            new SlotFactory(GUIResource.EMPTY_LOBECORP_LEFTBACK_TEXTURE, 80, -24, 245)
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_WEAPON, GUIResource.EMPTY_LOBECORP_WEAPON_TEXTURE, 63, 62, 62),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_SUIT, GUIResource.EMPTY_LOBECORP_SUIT_TEXTURE, 64, 62, 44),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_BADGE, GUIResource.EMPTY_LOBECORP_BADGE_TEXTURE, 65, 62, 26),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_TOOL, GUIResource.EMPTY_LOBECORP_TOOL_TEXTURE, 66, 62, 8),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_HAT, GUIResource.EMPTY_LOBECORP_HAT_TEXTURE, 67, -24, 11),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_HEAD, GUIResource.EMPTY_LOBECORP_HEAD_TEXTURE, 68, -24, 29),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_OCCIPUT, GUIResource.EMPTY_LOBECORP_OCCIPUT_TEXTURE, 69, -24, 47),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_EYE, GUIResource.EMPTY_LOBECORP_EYE_TEXTURE, 70, -24, 65),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_FACE, GUIResource.EMPTY_LOBECORP_FACE_TEXTURE, 71, -24, 83),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_CHEEK, GUIResource.EMPTY_LOBECORP_CHEEK_TEXTURE, 72, -24, 101),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_MASK, GUIResource.EMPTY_LOBECORP_MASK_TEXTURE, 73, -24, 119),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_MOUTH, GUIResource.EMPTY_LOBECORP_MOUTH_TEXTURE, 74, -24, 137),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_NECK, GUIResource.EMPTY_LOBECORP_NECK_TEXTURE, 75, -24, 155),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_CHEST, GUIResource.EMPTY_LOBECORP_CHEST_TEXTURE, 76, -24, 173),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_HAND, GUIResource.EMPTY_LOBECORP_HAND_TEXTURE, 77, -24, 191),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_GLOVE, GUIResource.EMPTY_LOBECORP_GLOVE_TEXTURE, 78, -24, 209),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_RIGHTBACK, GUIResource.EMPTY_LOBECORP_RIGHTBACK_TEXTURE, 79, -24, 227),
+            new SlotFactory(LobeCorpAttributeModifierSlot.LOBECORP_LEFTBACK, GUIResource.EMPTY_LOBECORP_LEFTBACK_TEXTURE, 80, -24, 245)
     );
 
     public LobeCorpScreenHandler(int syncId, PlayerInventory playerInventory) {
@@ -61,12 +65,17 @@ public class LobeCorpScreenHandler extends ScreenHandler {
 
                 @Override
                 public boolean canInsert(ItemStack stack) {
-                    return true;
+                    if (stack.getItem() instanceof LobeCorpSlotAccess lobecorpItem) {
+                        if (lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot) {
+                            return LobeCorpUtil.canEquipped(playerInventory.player, lobecorpItem);
+                        }
+                    }
+                    return false;
                 }
 
                 @Override
                 public boolean canTakeItems(PlayerEntity playerEntity) {
-                    return true;
+                    return (getStack().isEmpty() || playerEntity.isCreative() || !EnchantmentHelper.hasBindingCurse(getStack())) && super.canTakeItems(playerEntity);
                 }
 
                 @Environment(EnvType.CLIENT)
@@ -93,17 +102,23 @@ public class LobeCorpScreenHandler extends ScreenHandler {
         if (invSlot.hasStack()) {
             ItemStack slotStack = invSlot.getStack();
             newStack = slotStack.copy();
-            if (slot >= 0 && slot < 27) {
-                if (!insertItem(slotStack, 27, 36, false)) {
-                    return ItemStack.EMPTY;
+            if (newStack.getItem() instanceof LobeCorpSlotAccess lobecorpItem) {
+                for (SlotFactory slotFactory : SLOT_FACTORIES) {
+                    int index = slotFactory.slotIndex - 63;
+                    if (lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot && !slots.get(36 + index).hasStack()) {
+                        if (!insertItem(slotStack, 36 + index, 37 + index, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    }
                 }
+            } else if (slot >= 0 && slot < 27) {
+                if (!insertItem(slotStack, 27, 36, false)) return ItemStack.EMPTY;
+
             } else if (slot >= 27 && slot < 36) {
-                if (!insertItem(slotStack, 0, 27, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!insertItem(slotStack, 0, 36, false)) {
-                return ItemStack.EMPTY;
+                if (!insertItem(slotStack, 0, 27, false)) return ItemStack.EMPTY;
+
             }
+            if (!insertItem(slotStack, 0, 36, false)) return ItemStack.EMPTY;
             if (slotStack.isEmpty()) invSlot.setStack(ItemStack.EMPTY);
             else invSlot.markDirty();
             if (slotStack.getCount() == newStack.getCount()) return ItemStack.EMPTY;
@@ -118,6 +133,7 @@ public class LobeCorpScreenHandler extends ScreenHandler {
     }
 
     //脑叶公司插槽工厂
-    private record SlotFactory(Identifier textureId, int slotIndex, int x, int y) {
+    private record SlotFactory(LobeCorpAttributeModifierSlot lobecorpSlot, Identifier textureId,
+                               int slotIndex, int x, int y) {
     }
 }

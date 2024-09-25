@@ -5,23 +5,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
+import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
 import java.util.List;
 import java.util.Objects;
 
 //EGO物品
-public class EGOItem extends LobeCorpItem {
+public class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
     public static final String TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO = "tooltip.press_left_shift_show_info";//按住左Shift显示信息
     public static final String TOOLTIP_EGO_EQUIP_REQUIRE = "tooltip.ego.equip_require";//装备要求
 
+    private final LobeCorpAttributeModifierSlot lobecorpSlot;
     private final String egoSkill;
 
-    public EGOItem(Settings settings, String egoSkill) {
+    public EGOItem(Settings settings, LobeCorpAttributeModifierSlot lobecorpSlot, String egoSkill) {
         super(settings.maxCount(1).fireproof());
+        this.lobecorpSlot = lobecorpSlot;
         this.egoSkill = egoSkill;
     }
 
@@ -46,5 +50,10 @@ public class EGOItem extends LobeCorpItem {
                 }
             }
         }
+    }
+
+    @Override
+    public LobeCorpAttributeModifierSlot getLobeCorpSlot() {
+        return lobecorpSlot;
     }
 }

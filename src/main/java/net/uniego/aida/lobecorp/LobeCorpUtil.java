@@ -13,10 +13,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.uniego.aida.lobecorp.access.EquipRequireAccess;
+import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
+import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
+import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -47,10 +51,10 @@ public class LobeCorpUtil {
     }
 
     //创建EGO护甲属性修饰符
-    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers() {
+    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(EGOSuit.ARMOR_MODIFIER_ID, 20), LobeCorpAttributeModifierSlot.LOBECORP_SUIT)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(EGOSuit.ARMOR_TOUGHNESS_MODIFIER_ID, 20), LobeCorpAttributeModifierSlot.LOBECORP_SUIT)
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(EGOSuit.ARMOR_MODIFIER_ID, 20), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(EGOSuit.ARMOR_TOUGHNESS_MODIFIER_ID, 20), lobecorpSlot)
                 .builder();
     }
 
@@ -59,14 +63,14 @@ public class LobeCorpUtil {
                                                                                       double workSuccess, double workVelocity,
                                                                                       double attackVelocity, double moveVelocity,
                                                                                       UUID uuid,
-                                                                                      LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
+                                                                                      LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, egoGiftModifier(uuid, maxHealth), lobecorpAttributeModifierSlot)
-                .add(AttributeInit.PLAYER_MAX_SANITY, egoGiftModifier(uuid, maxSanity), lobecorpAttributeModifierSlot)
-                .add(AttributeInit.PLAYER_WORK_SUCCESS, egoGiftModifier(uuid, workSuccess), lobecorpAttributeModifierSlot)
-                .add(AttributeInit.PLAYER_WORK_VELOCITY, egoGiftModifier(uuid, workVelocity), lobecorpAttributeModifierSlot)
-                .add(AttributeInit.PLAYER_ATTACK_VELOCITY, egoGiftModifier(uuid, attackVelocity), lobecorpAttributeModifierSlot)
-                .add(AttributeInit.PLAYER_MOVE_VELOCITY, egoGiftModifier(uuid, moveVelocity), lobecorpAttributeModifierSlot)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, egoGiftModifier(uuid, maxHealth), lobecorpSlot)
+                .add(AttributeInit.PLAYER_MAX_SANITY, egoGiftModifier(uuid, maxSanity), lobecorpSlot)
+                .add(AttributeInit.PLAYER_WORK_SUCCESS, egoGiftModifier(uuid, workSuccess), lobecorpSlot)
+                .add(AttributeInit.PLAYER_WORK_VELOCITY, egoGiftModifier(uuid, workVelocity), lobecorpSlot)
+                .add(AttributeInit.PLAYER_ATTACK_VELOCITY, egoGiftModifier(uuid, attackVelocity), lobecorpSlot)
+                .add(AttributeInit.PLAYER_MOVE_VELOCITY, egoGiftModifier(uuid, moveVelocity), lobecorpSlot)
                 .builder();
     }
 
@@ -102,6 +106,46 @@ public class LobeCorpUtil {
     //设置对应插槽
     public static void setLobeCorpEquippedStack(PlayerEntity player, LobeCorpEquipmentSlot slot, ItemStack itemStack) {
         player.getInventory().setStack(63 + slot.ordinal(), itemStack.copy());
+    }
+
+    //等级压制算法
+    public static float calculateLevelSuppress(EGOLevel defendEGOLevel, EGOLevel attackEGOLevel) {
+        int result = defendEGOLevel.getLevel() - attackEGOLevel.getLevel();
+        return switch (result) {
+            case -4 -> 2.0F;
+            case -3 -> 1.5F;
+            case -2 -> 1.2F;
+            case 1 -> 0.8F;
+            case 2 -> 0.7F;
+            case 3 -> 0.6F;
+            case 4 -> 0.4F;
+            default -> 1.0F;
+        };
+    }
+
+    //判断能否装备物品
+    public static boolean canEquipped(PlayerEntity player, LobeCorpSlotAccess lobecorpItem) {
+        if (lobecorpItem instanceof EquipRequireAccess equipRequireItem) {
+            //获取玩家四大等级
+            LevelManager levelManager = ((ManagerAccess) player).lobecorp$getLevelManager();
+            int playerFortitude = levelManager.getLevelF().getValue();
+            int playerPrudence = levelManager.getLevelP().getValue();
+            int playerTemperance = levelManager.getLevelT().getValue();
+            int playerJustice = levelManager.getLevelJ().getValue();
+            //获取物品装备等级要求
+            int requireFortitude = equipRequireItem.getFortitudeRequire().getValue();
+            int requirePrudence = equipRequireItem.getPrudenceRequire().getValue();
+            int requireTemperance = equipRequireItem.getTemperanceRequire().getValue();
+            int requireJustice = equipRequireItem.getJusticeRequire().getValue();
+            //进行比较
+            boolean isFortitudeEnough = playerFortitude >= requireFortitude;
+            boolean isPrudenceEnough = playerPrudence >= requirePrudence;
+            boolean isTemperanceEnough = playerTemperance >= requireTemperance;
+            boolean isJusticeEnough = playerJustice >= requireJustice;
+
+            return isFortitudeEnough && isPrudenceEnough && isTemperanceEnough && isJusticeEnough;
+        }
+        return true;
     }
 
     //EGO等级

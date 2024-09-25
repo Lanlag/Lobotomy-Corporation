@@ -1,5 +1,6 @@
 package net.uniego.aida.lobecorp.mixin;
 
+import com.google.common.collect.Iterables;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -7,6 +8,7 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
@@ -19,6 +21,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -46,6 +53,16 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow
     public abstract void setAbsorptionAmount(float absorptionAmount);
+
+    //将新增的18插槽列入装备物品列表里
+    @Inject(method = "getEquippedItems", at = @At("RETURN"), cancellable = true)
+    private void getEquippedItemsMixin(CallbackInfoReturnable<Iterable<ItemStack>> cir) {
+        if (livingEntity instanceof PlayerEntity player) {
+            List<ItemStack> egoSlotItems = IntStream.rangeClosed(63, 80).mapToObj(player.getInventory()::getStack).collect(Collectors.toList());
+            Iterable<ItemStack> equippedItems = cir.getReturnValue();
+            cir.setReturnValue(Iterables.concat(equippedItems, egoSlotItems));
+        }
+    }
 
     //移除影响效果的时候，使得精神值和认知同化值不超过最大
     @Inject(method = "updateAttribute", at = @At("HEAD"), cancellable = true)

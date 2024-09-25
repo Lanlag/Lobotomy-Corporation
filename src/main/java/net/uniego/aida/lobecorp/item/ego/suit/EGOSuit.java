@@ -17,12 +17,13 @@ import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.manager.LevelManager;
+import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
 import java.util.List;
 import java.util.UUID;
 
 //EGO护甲
-public class EGOSuit extends EGOItem implements EGOLevelAccess, ColorResistAccess, EquipRequireAccess {
+public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAccess, ColorResistAccess {
     public static final UUID ARMOR_MODIFIER_ID = UUID.fromString("D07514E2-18B4-4F09-9246-F38FAC035088");
     public static final UUID ARMOR_TOUGHNESS_MODIFIER_ID = UUID.fromString("84B2E3C4-A286-4060-9844-22BA0900C5D0");
 
@@ -67,7 +68,8 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, ColorResistAcces
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, String egoSkill,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        super(new Settings().rarity(rarity).component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOSuitAttributeModifiers()), egoSkill);
+        super(new Settings().rarity(rarity).component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOSuitAttributeModifiers
+                (LobeCorpAttributeModifierSlot.LOBECORP_SUIT)), LobeCorpAttributeModifierSlot.LOBECORP_SUIT, egoSkill);
         this.egoLevel = egoLevel;
         this.redResist = redResist;
         this.whiteResist = whiteResist;

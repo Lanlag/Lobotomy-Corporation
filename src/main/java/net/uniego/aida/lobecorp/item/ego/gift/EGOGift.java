@@ -16,14 +16,14 @@ public class EGOGift extends EGOItem {
             LOBECORP_OCCIPUT_MODIFIER_ID, LobeCorpAttributeModifierSlot.LOBECORP_OCCIPUT);
 
     public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
-                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
-        this(maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpAttributeModifierSlot, "");
+                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot) {
+        this(maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpSlot, "");
     }
 
     public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
-                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot, String egoSkill) {
+                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot, String egoSkill) {
         super(new Settings().component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOGiftAttributeModifiers
-                (maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpAttributeModifierSlot)), egoSkill);
+                (maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpSlot)), lobecorpSlot, egoSkill);
     }
 
     public static void register() {

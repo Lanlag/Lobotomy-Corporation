@@ -45,7 +45,7 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
     public void applyModifiers(LobeCorpEquipmentSlot lobecorpEquipmentSlot,
                                BiConsumer<RegistryEntry<EntityAttribute>, EntityAttributeModifier> attributeModifierBiConsumer) {
         for (Entry entry : modifiers) {
-            if (entry.lobecorpAttributeModifierSlot.matches(lobecorpEquipmentSlot)) {
+            if (entry.lobecorpSlot.matches(lobecorpEquipmentSlot)) {
                 attributeModifierBiConsumer.accept(entry.attribute, entry.modifier);
             }
         }
@@ -59,8 +59,8 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
         }
 
         public Builder add(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier,
-                           LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
-            entries.add(new Entry(attribute, modifier, lobecorpAttributeModifierSlot));
+                           LobeCorpAttributeModifierSlot lobecorpSlot) {
+            entries.add(new Entry(attribute, modifier, lobecorpSlot));
             return this;
         }
 
@@ -71,12 +71,12 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
 
     //序列化和反序列化
     public record Entry(RegistryEntry<EntityAttribute> attribute, EntityAttributeModifier modifier,
-                        LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot) {
+                        LobeCorpAttributeModifierSlot lobecorpSlot) {
         public static final Codec<Entry> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Registries.ATTRIBUTE.getEntryCodec().fieldOf("type").forGetter(Entry::attribute),
                 EntityAttributeModifier.MAP_CODEC.forGetter(Entry::modifier),
                 LobeCorpAttributeModifierSlot.CODEC.optionalFieldOf("slot",
-                        LobeCorpAttributeModifierSlot.LOBECORP_ANY).forGetter(Entry::lobecorpAttributeModifierSlot)
+                        LobeCorpAttributeModifierSlot.LOBECORP_ANY).forGetter(Entry::lobecorpSlot)
         ).apply(instance, Entry::new));
         public static final PacketCodec<RegistryByteBuf, Entry> PACKET_CODEC;
 
@@ -84,7 +84,7 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
             PACKET_CODEC = PacketCodec.tuple(
                     PacketCodecs.registryEntry(RegistryKeys.ATTRIBUTE), Entry::attribute,
                     EntityAttributeModifier.PACKET_CODEC, Entry::modifier,
-                    LobeCorpAttributeModifierSlot.PACKET_CODEC, Entry::lobecorpAttributeModifierSlot,
+                    LobeCorpAttributeModifierSlot.PACKET_CODEC, Entry::lobecorpSlot,
                     Entry::new);
         }
 
@@ -99,8 +99,8 @@ public record LobeCorpAttributeModifiersComponent(List<Entry> modifiers, boolean
         }
 
         @Override
-        public LobeCorpAttributeModifierSlot lobecorpAttributeModifierSlot() {
-            return lobecorpAttributeModifierSlot;
+        public LobeCorpAttributeModifierSlot lobecorpSlot() {
+            return lobecorpSlot;
         }
     }
 }
