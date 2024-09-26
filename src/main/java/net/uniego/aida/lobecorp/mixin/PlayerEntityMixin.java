@@ -1,19 +1,27 @@
 package net.uniego.aida.lobecorp.mixin;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
+import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.init.AttributeInit;
+import net.uniego.aida.lobecorp.init.DamageInit;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
@@ -22,6 +30,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -170,7 +179,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
         thirstManager.writeNbt(nbt);
     }
 
-    /*//废除原版伤害吸收机制
+    //废除原版伤害吸收机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "java/lang/Math.max(FF)F", ordinal = 0), index = 0)
     private float applyDamageMixin1(float a) {
         return a + getAbsorptionAmount();
@@ -179,12 +188,97 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     //新增四色伤害机制以及其他受伤机制
     @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V"))
     private void applyDamageMixin(DamageSource source, float amount, CallbackInfo ci) {
-
+        //等级压制抗性计算
+        LobeCorpUtil.EGOLevel defenderLevel = LobeCorpUtil.getLobeCorpEquippedStack(playerEntity, LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT)
+                .getItem() instanceof EGOSuit egoSuit ? egoSuit.getEGOLevel() : LobeCorpUtil.EGOLevel.ZAYIN;
+        LobeCorpUtil.EGOLevel attackerLevel = LobeCorpUtil.EGOLevel.ZAYIN;
+        Entity attacker = source.getAttacker();
+        if (attacker instanceof PlayerEntity player) {
+            attackerLevel = player.getMainHandStack().getItem() instanceof EGOWeapon egoWeapon ? egoWeapon.getEGOLevel() : LobeCorpUtil.EGOLevel.ZAYIN;
+        } else if (attacker instanceof LobeCorpEntity lobecorpEntity) {
+            attackerLevel = lobecorpEntity.getEGOLevel();
+        }
+        float levelResist = LobeCorpUtil.calculateLevelSuppress(defenderLevel, attackerLevel);
+        //四色抗性计算
+        Item item = LobeCorpUtil.getLobeCorpEquippedStack(playerEntity, LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT).getItem();
+        float redResist = item instanceof EGOSuit egoSuit ? egoSuit.getRedResist() : 2.0F;
+        float whiteResist = item instanceof EGOSuit egoSuit ? egoSuit.getWhiteResist() : 2.0F;
+        float blackResist = item instanceof EGOSuit egoSuit ? egoSuit.getBlackResist() : 2.0F;
+        float paleResist = item instanceof EGOSuit egoSuit ? egoSuit.getPaleResist() : 2.0F;
+        //根据伤害类型分流
+        if (source.isOf(DamageInit.DRY) || source.isOf(DamageTypes.STARVE) || source.isOf(DamageTypes.GENERIC_KILL)
+                || source.isOf(DamageTypes.OUT_OF_WORLD) || source.isOf(DamageTypes.OUTSIDE_BORDER)) {//干渴和饥饿伤害，/kill、掉出世界、超出世界边界
+            float sanityF = amount;
+            float healthF = amount;
+            sanityF = Math.max(sanityF - sanityManager.getAssimilationAmount(), 0);//认知同化抵消
+            healthF = Math.max(healthF - getAbsorptionAmount(), 0);//伤害吸收抵消
+            sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount - sanityF));
+            setAbsorptionAmount(getAbsorptionAmount() - (amount - healthF));
+            //精神值和生命值扣除
+            sanityManager.setSanity(sanityManager.getSanity() - sanityF);
+            setHealth(getHealth() - healthF);
+        } else if (source.isOf(DamageInit.INSANE) || source.isOf(DamageInit.MYSTIC)) {//狂乱和神秘伤害
+            float sanityF = amount;
+            sanityF = Math.max(sanityF - sanityManager.getAssimilationAmount(), 0);
+            sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount - sanityF));
+            sanityManager.setSanity(sanityManager.getSanity() - sanityF);
+        } else if (source.isOf(DamageInit.RED)) {//物理伤害
+            float healthF = amount * redResist * levelResist;
+            if (healthF > getAbsorptionAmount()) setAbsorptionAmount(0);//碎盾机制
+            if (redResist > 0) {
+                healthF = Math.max(healthF - getAbsorptionAmount(), 0);
+                setAbsorptionAmount(getAbsorptionAmount() - (amount * redResist * levelResist - healthF));
+            }
+            setHealth(getHealth() - healthF);
+        } else if (source.isOf(DamageInit.WHITE)) {//精神伤害
+            float sanityF = amount * whiteResist * levelResist;
+            if (sanityF > sanityManager.getAssimilationAmount()) sanityManager.setAssimilationAmountUnclamped(0);
+            if (whiteResist > 0) {
+                sanityF = Math.max(sanityF - sanityManager.getAssimilationAmount(), 0);
+                sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount * whiteResist * levelResist - sanityF));
+            }
+            //如果受击者陷入恐慌且当前精神值没有等于最大值
+            if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
+                //如果攻击者是玩家且攻击者没有陷入恐慌状态
+                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
+                    sanityManager.setSanity(sanityManager.getSanity() + sanityF);
+                }
+            } else sanityManager.setSanity(sanityManager.getSanity() - sanityF);
+        } else if (source.isOf(DamageInit.BLACK)) {//侵蚀伤害
+            float sanityF = amount * blackResist * levelResist;
+            float healthF = amount * blackResist * levelResist;
+            if (sanityF > sanityManager.getAssimilationAmount()) sanityManager.setAssimilationAmountUnclamped(0);
+            if (healthF > getAbsorptionAmount()) setAbsorptionAmount(0);
+            if (blackResist > 0) {
+                sanityF = Math.max(sanityF - sanityManager.getAssimilationAmount(), 0);
+                healthF = Math.max(healthF - getAbsorptionAmount(), 0);
+                sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount * blackResist * levelResist - sanityF));
+                setAbsorptionAmount(getAbsorptionAmount() - (amount * blackResist * levelResist - healthF));
+            }
+            if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
+                if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
+                    sanityManager.setSanity(sanityManager.getSanity() + sanityF);
+                }
+            } else sanityManager.setSanity(sanityManager.getSanity() - sanityF);
+            setHealth(getHealth() - healthF);
+        } else if (source.isOf(DamageInit.PALE)) {//灵魂伤害
+            float healthF = (amount / 100) * getMaxHealth() * paleResist * levelResist;
+            if (healthF > getAbsorptionAmount()) setAbsorptionAmount(0);
+            if (paleResist > 0) {
+                healthF = Math.max(healthF - getAbsorptionAmount(), 0);
+                setAbsorptionAmount(getAbsorptionAmount() - ((amount / 100) * getMaxHealth() * paleResist * levelResist - healthF));
+            }
+            setHealth(getHealth() - healthF);
+        } else {//原版伤害
+            float healthF = Math.max(amount - getAbsorptionAmount(), 0);
+            setAbsorptionAmount(getAbsorptionAmount() - (amount - healthF));
+            setHealth(getHealth() - healthF);
+        }
     }
 
     //废除原版减少生命值机制
     @ModifyArg(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V"))
     private float applyDamageMixin2(float par1) {
         return getHealth();
-    }*/
+    }
 }
