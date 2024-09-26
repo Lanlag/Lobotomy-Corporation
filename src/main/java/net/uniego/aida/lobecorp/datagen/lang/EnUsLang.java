@@ -7,6 +7,8 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.badge.TeamBadge;
+import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
@@ -66,6 +68,16 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EGOWeapon.WHITE_RIOT_STICK, "White Riot Stick");
         translationBuilder.add(EGOWeapon.BLACK_RIOT_STICK, "Black Riot Stick");
         translationBuilder.add(EGOWeapon.PALE_RIOT_STICK, "Pale Riot Stick");
+        translationBuilder.add(ControlBadge.CONTROL_BADGE, "Control Badge");
+        translationBuilder.add(InformationBadge.INFORMATION_BADGE, "Information Badge");
+        translationBuilder.add(SecurityBadge.SECURITY_BADGE, "Security Badge");
+        translationBuilder.add(TrainingBadge.TRAINING_BADGE, "Training Badge");
+        translationBuilder.add(CentralCommandBadge.CENTRAL_COMMAND_BADGE, "Central Command Badge");
+        translationBuilder.add(WelfareBadge.WELFARE_BADGE, "Welfare Badge");
+        translationBuilder.add(DisciplinaryBadge.DISCIPLINARY_BADGE, "Disciplinary Badge");
+        translationBuilder.add(RecordBadge.RECORD_BADGE, "Record Badge");
+        translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "Extraction Badge");
+        translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "Architecture Badge");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
         //声音名
@@ -135,5 +147,16 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_WHITE, "White Resist:");
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_BLACK, "Black Resist:");
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_PALE, "Pale Resist:");
+        //部门名
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.CONTROL_TEAM), "[Control Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.INFORMATION_TEAM), "[Information Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.SECURITY_TEAM), "[Security Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.TRAINING_TEAM), "[Training Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.CENTRAL_COMMAND_TEAM), "[Central Command Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.WELFARE_TEAM), "[Welfare Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.DISCIPLINARY_TEAM), "[Disciplinary Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.RECORD_TEAM), "[Record Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.EXTRACTION_TEAM), "[Extraction Team]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[Architecture Team]");
     }
 }

@@ -1,4 +1,4 @@
-package net.uniego.aida.lobecorp.item.ego.suit.model;
+package net.uniego.aida.lobecorp.item.ego.suit.models;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

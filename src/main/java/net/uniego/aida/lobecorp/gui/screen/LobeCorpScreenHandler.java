@@ -66,8 +66,8 @@ public class LobeCorpScreenHandler extends ScreenHandler {
 
                 @Override
                 public boolean canInsert(ItemStack stack) {
-                    if (stack.getItem() instanceof LobeCorpSlotAccess lobecorpItem) {
-                        return lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot;
+                    if (stack.getItem() instanceof LobeCorpSlotAccess access) {
+                        return access.getLobeCorpSlot() == slotFactory.lobecorpSlot;
                     }
                     return false;
                 }
@@ -101,10 +101,10 @@ public class LobeCorpScreenHandler extends ScreenHandler {
         if (invSlot.hasStack()) {
             ItemStack slotStack = invSlot.getStack();
             newStack = slotStack.copy();
-            if (newStack.getItem() instanceof LobeCorpSlotAccess lobecorpItem) {
+            if (newStack.getItem() instanceof LobeCorpSlotAccess access) {
                 for (SlotFactory slotFactory : SLOT_FACTORIES) {
                     int index = slotFactory.slotIndex - 63;
-                    if (lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot && !slots.get(36 + index).hasStack()) {
+                    if (access.getLobeCorpSlot() == slotFactory.lobecorpSlot && !slots.get(36 + index).hasStack()) {
                         if (!insertItem(slotStack, 36 + index, 37 + index, false)) {
                             return ItemStack.EMPTY;
                         }

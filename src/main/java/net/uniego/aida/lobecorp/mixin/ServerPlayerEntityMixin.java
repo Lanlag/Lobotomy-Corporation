@@ -2,16 +2,20 @@ package net.uniego.aida.lobecorp.mixin;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
+import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
 import net.uniego.aida.lobecorp.network.packet.SyncEquipmentPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncIconPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncOffsetPacket;
+import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,6 +38,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     private int syncedWaterLevel = -99999999;
     @Unique
     private boolean playerChangeDimension = false;
+    @Unique
+    private ItemStack syncedBadgeItemStack = ItemStack.EMPTY;
 
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
         super(world, pos, yaw, gameProfile);
@@ -49,6 +55,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     private void tickMixin(CallbackInfo ci) {
         SyncEquipmentPacket.send(serverPlayerEntity);
         SyncOffsetPacket.send(serverPlayerEntity);
+        ItemStack badgeItemStack = LobeCorpUtil.getLobeCorpEquippedStack(serverPlayerEntity, LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT);
+        if (!badgeItemStack.equals(syncedBadgeItemStack)) {
+            TeamBadge.syncTeam(badgeItemStack, getCommandSource(), getCommandSource().getServer().getCommandManager(), serverPlayerEntity);
+            syncedBadgeItemStack = badgeItemStack;
+        }
     }
 
     //当玩家状态发生变化时，发送同步信息的数据包，同时同步服务端客户端的异想体信息

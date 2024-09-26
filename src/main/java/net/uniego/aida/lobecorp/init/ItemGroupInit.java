@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 
@@ -27,6 +28,16 @@ public class ItemGroupInit {
                 entries.add(EGOWeapon.WHITE_RIOT_STICK);
                 entries.add(EGOWeapon.BLACK_RIOT_STICK);
                 entries.add(EGOWeapon.PALE_RIOT_STICK);
+                entries.add(ControlBadge.CONTROL_BADGE);
+                entries.add(InformationBadge.INFORMATION_BADGE);
+                entries.add(SecurityBadge.SECURITY_BADGE);
+                entries.add(TrainingBadge.TRAINING_BADGE);
+                entries.add(CentralCommandBadge.CENTRAL_COMMAND_BADGE);
+                entries.add(WelfareBadge.WELFARE_BADGE);
+                entries.add(DisciplinaryBadge.DISCIPLINARY_BADGE);
+                entries.add(RecordBadge.RECORD_BADGE);
+                entries.add(ExtractionBadge.EXTRACTION_BADGE);
+                entries.add(ArchitectureBadge.ARCHITECTURE_BADGE);
             }).build();
 
     public static void register() {

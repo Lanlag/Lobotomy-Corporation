@@ -9,9 +9,9 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.entity.Entity;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
-import net.uniego.aida.lobecorp.item.ego.suit.model.WolfArmorModel;
+import net.uniego.aida.lobecorp.item.ego.suit.models.WolfArmorModel;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
-import net.uniego.aida.lobecorp.item.ego.weapon.model.StickModel;
+import net.uniego.aida.lobecorp.item.ego.weapon.models.StickModel;
 import net.uniego.aida.lobecorp.renderer.EGOWeaponRenderer;
 
 import java.util.HashMap;

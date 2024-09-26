@@ -29,6 +29,7 @@ import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
@@ -54,6 +55,11 @@ public class LobeCorpUtil {
     //获取物品属性名
     public static String getItemModifiersName(LobeCorpEquipmentSlot slot) {
         return "item.modifiers." + slot.getSlotName();
+    }
+
+    //获取部门名
+    public static String getTeamName(TeamBadge.LobeCorpTeam team) {
+        return "lobecorp.team." + team.getTeamId();
     }
 
     //创建EGO武器属性修饰符
@@ -184,7 +190,8 @@ public class LobeCorpUtil {
     }
 
     //检查EGO护甲
-    public static void checkEGOSuit(PlayerEntity player, ItemStack itemStack) {
+    public static void checkEGOSuit(PlayerEntity player) {
+        ItemStack itemStack = getLobeCorpEquippedStack(player, LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT);
         if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit)) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
             new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoSuit.getEGOLevel().getLevel()));

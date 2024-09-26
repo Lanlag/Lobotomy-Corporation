@@ -7,6 +7,8 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.badge.TeamBadge;
+import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
@@ -66,6 +68,16 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EGOWeapon.WHITE_RIOT_STICK, "精神镇暴棍");
         translationBuilder.add(EGOWeapon.BLACK_RIOT_STICK, "侵蚀镇暴棍");
         translationBuilder.add(EGOWeapon.PALE_RIOT_STICK, "灵魂镇暴棍");
+        translationBuilder.add(ControlBadge.CONTROL_BADGE, "控制部袖标");
+        translationBuilder.add(InformationBadge.INFORMATION_BADGE, "情报部袖标");
+        translationBuilder.add(SecurityBadge.SECURITY_BADGE, "安保部袖标");
+        translationBuilder.add(TrainingBadge.TRAINING_BADGE, "培训部袖标");
+        translationBuilder.add(CentralCommandBadge.CENTRAL_COMMAND_BADGE, "中央本部袖标");
+        translationBuilder.add(WelfareBadge.WELFARE_BADGE, "福利部袖标");
+        translationBuilder.add(DisciplinaryBadge.DISCIPLINARY_BADGE, "惩戒部袖标");
+        translationBuilder.add(RecordBadge.RECORD_BADGE, "记录部袖标");
+        translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "研发部袖标");
+        translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "构筑部袖标");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名
@@ -135,5 +147,16 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_WHITE, "精神抗性：");
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_BLACK, "侵蚀抗性：");
         translationBuilder.add(EGOSuit.TOOLTIP_EGO_SUIT_PALE, "灵魂抗性：");
+        //部门名
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.CONTROL_TEAM), "[控制部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.INFORMATION_TEAM), "[情报部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.SECURITY_TEAM), "[安保部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.TRAINING_TEAM), "[培训部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.CENTRAL_COMMAND_TEAM), "[中央本部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.WELFARE_TEAM), "[福利部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.DISCIPLINARY_TEAM), "[惩戒部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.RECORD_TEAM), "[记录部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.EXTRACTION_TEAM), "[研发部]");
+        translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[构筑部]");
     }
 }

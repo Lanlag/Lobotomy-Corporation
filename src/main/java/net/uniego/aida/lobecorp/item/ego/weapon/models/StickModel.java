@@ -1,4 +1,4 @@
-package net.uniego.aida.lobecorp.item.ego.weapon.model;
+package net.uniego.aida.lobecorp.item.ego.weapon.models;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
