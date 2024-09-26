@@ -2,8 +2,6 @@ package net.uniego.aida.lobecorp.item.ego.suit;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipType;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -18,7 +16,6 @@ import net.uniego.aida.lobecorp.access.EquipRequireAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
-import net.uniego.aida.lobecorp.item.ego.suit.model.CodeSuitModel;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
@@ -33,55 +30,48 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
     public static final String TOOLTIP_EGO_SUIT_PALE = "tooltip.ego.suit.pale";//蓝抗
 
     public static final EGOSuit CODE_SUIT = new EGOSuit(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN,
-            0.0F, 0.0F, 0.0F, 0.0F,
-            new BipedEntityModel<>(CodeSuitModel.getTexturedModelData().createModel()));//代码西装
+            0.0F, 0.0F, 0.0F, 0.0F);//代码西装
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
     private final float whiteResist;
     private final float blackResist;
     private final float paleResist;
-    private final BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel;
     private final LevelManager.LobeCorpLevel requireF;
     private final LevelManager.LobeCorpLevel requireP;
     private final LevelManager.LobeCorpLevel requireT;
     private final LevelManager.LobeCorpLevel requireJ;
 
-    public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
-                   BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel) {
-        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, bipedEntityModel, "",
+    public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "",
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
-                   BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, bipedEntityModel, "", requireJ, requireT, requireP, requireF);
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireJ, requireT, requireP, requireF);
     }
 
-    public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
-                   BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel) {
-        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, bipedEntityModel, "",
+    public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
+        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "",
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
-                   BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, bipedEntityModel, "", requireJ, requireT, requireP, requireF);
+        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireJ, requireT, requireP, requireF);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
-                   BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel, String egoSkill,
+                   String egoSkill,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
         super(new Settings().rarity(rarity).component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOSuitAttributeModifiers
-                (LobeCorpAttributeModifierSlot.LOBECORP_SUIT)), LobeCorpAttributeModifierSlot.LOBECORP_SUIT, egoSkill);
+                (egoLevel, LobeCorpAttributeModifierSlot.LOBECORP_SUIT)), LobeCorpAttributeModifierSlot.LOBECORP_SUIT, egoSkill);
         this.egoLevel = egoLevel;
         this.redResist = redResist;
         this.whiteResist = whiteResist;
         this.blackResist = blackResist;
         this.paleResist = paleResist;
-        this.bipedEntityModel = bipedEntityModel;
         this.requireF = requireF;
         this.requireP = requireP;
         this.requireT = requireT;
@@ -90,10 +80,6 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("code_suit"), CODE_SUIT);
-    }
-
-    public BipedEntityModel<AbstractClientPlayerEntity> getBipedEntityModel() {
-        return bipedEntityModel;
     }
 
     @Override

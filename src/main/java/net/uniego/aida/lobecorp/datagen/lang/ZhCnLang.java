@@ -62,11 +62,13 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
+        translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "切换武器");
         //屏幕名
         translationBuilder.add(ScreenInit.CONTAINER_EQUIPMENT, "装备");
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "脑叶公司");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "开启/关闭装备");
+        translationBuilder.add(KeyInit.KEY_SWITCH_WEAPON, "切换武器");
         //信息名
         translationBuilder.add(GUIResource.STAFF_LEVEL, "职员等级");
         translationBuilder.add(GUIResource.STAFF_FORTITUDE, "勇气");

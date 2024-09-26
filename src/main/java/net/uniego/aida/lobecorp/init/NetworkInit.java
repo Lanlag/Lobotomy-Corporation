@@ -16,5 +16,6 @@ public class NetworkInit {
     public static void registerServer() {
         DrinkWaterHandle.receive();
         OpenCloseHandle.receive();
+        SwitchWeaponHandle.receive();
     }
 }

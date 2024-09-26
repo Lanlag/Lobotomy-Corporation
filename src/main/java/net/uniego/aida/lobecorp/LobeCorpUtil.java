@@ -1,17 +1,20 @@
 package net.uniego.aida.lobecorp;
 
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Formatting;
@@ -21,10 +24,11 @@ import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ComponentInit;
+import net.uniego.aida.lobecorp.init.DamageInit;
+import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
-import net.uniego.aida.lobecorp.renderer.EGOWeaponRenderer;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -37,12 +41,6 @@ public class LobeCorpUtil {
     //注册ID
     public static Identifier id(String id) {
         return new Identifier(LobeCorpMain.MOD_ID, id);
-    }
-
-    //注册EGO武器和模型
-    public static void registerEGOWeaponModel(String id, EGOWeapon egoWeapon) {
-        Registry.register(Registries.ITEM, id(id), egoWeapon);
-        BuiltinItemRendererRegistry.INSTANCE.register(egoWeapon, new EGOWeaponRenderer(egoWeapon.getEntityModel(), id));
     }
 
     //播放声音
@@ -61,10 +59,10 @@ public class LobeCorpUtil {
     }
 
     //创建EGO护甲属性修饰符
-    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(LobeCorpAttributeModifierSlot lobecorpSlot) {
+    public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(EGOLevel egoLevel, LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(20), lobecorpSlot)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(20), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(egoLevel.getLevel() * 5), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(egoLevel.getLevel() * 5), lobecorpSlot)
                 .builder();
     }
 
@@ -156,6 +154,31 @@ public class LobeCorpUtil {
             return isFortitudeEnough && isPrudenceEnough && isTemperanceEnough && isJusticeEnough;
         }
         return true;
+    }
+
+    //检查EGO武器
+    public static void checkEGOWeapon(PlayerEntity player, ItemStack itemStack) {
+        if (itemStack.getItem() instanceof EGOWeapon egoWeapon && !canEquipped(player, egoWeapon)) {
+            if (itemStack.isIn(TagInit.RED_EGO_WEAPONS)) {
+                player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage());
+            } else if (itemStack.isIn(TagInit.WHITE_EGO_WEAPONS)) {
+                player.damage(noKnockBackDamageSource(DamageInit.WHITE, player), egoWeapon.getAttackDamage());
+            } else if (itemStack.isIn(TagInit.BLACK_EGO_WEAPONS)) {
+                player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoWeapon.getAttackDamage());
+            } else if (itemStack.isIn(TagInit.PALE_EGO_WEAPONS)) {
+                player.damage(noKnockBackDamageSource(DamageInit.PALE, player), egoWeapon.getAttackDamage());
+            }
+        }
+    }
+
+    //无击退伤害源
+    public static DamageSource noKnockBackDamageSource(RegistryKey<DamageType> key, Entity entity) {
+        return new DamageSource(entity.getDamageSources().registry.entryOf(key), entity) {
+            @Override
+            public boolean isIn(TagKey<DamageType> tag) {
+                return tag == DamageTypeTags.NO_KNOCKBACK || super.isIn(tag);
+            }
+        };
     }
 
     //EGO等级

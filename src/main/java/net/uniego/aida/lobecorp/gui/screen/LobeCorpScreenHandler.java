@@ -11,7 +11,6 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ScreenInit;
@@ -66,16 +65,14 @@ public class LobeCorpScreenHandler extends ScreenHandler {
                 @Override
                 public boolean canInsert(ItemStack stack) {
                     if (stack.getItem() instanceof LobeCorpSlotAccess lobecorpItem) {
-                        if (lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot) {
-                            return LobeCorpUtil.canEquipped(playerInventory.player, lobecorpItem);
-                        }
+                        return lobecorpItem.getLobeCorpSlot() == slotFactory.lobecorpSlot;
                     }
                     return false;
                 }
 
                 @Override
                 public boolean canTakeItems(PlayerEntity playerEntity) {
-                    return (getStack().isEmpty() || playerEntity.isCreative() || !EnchantmentHelper.hasBindingCurse(getStack())) && super.canTakeItems(playerEntity);
+                    return getStack().isEmpty() || playerEntity.isCreative() || !EnchantmentHelper.hasBindingCurse(getStack());
                 }
 
                 @Environment(EnvType.CLIENT)

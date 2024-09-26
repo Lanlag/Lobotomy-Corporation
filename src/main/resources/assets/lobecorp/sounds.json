@@ -4,5 +4,11 @@
     "sounds": [
       "lobecorp:swallow_water"
     ]
+  },
+  "switch_weapon": {
+    "subtitle": "lobecorp.switch_weapon",
+    "sounds": [
+      "lobecorp:switch_weapon"
+    ]
   }
 }

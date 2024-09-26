@@ -9,6 +9,7 @@ public class PayloadInit {
         PayloadTypeRegistry.playC2S().register(DrinkWaterPayload.ID, DrinkWaterPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(OpenClosePayload.ID, OpenClosePayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SwingHandPayload.ID, SwingHandPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(SwitchWeaponPayload.ID, SwitchWeaponPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SyncEquipmentPayload.ID, SyncEquipmentPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SyncIconPayload.ID, SyncIconPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(SyncOffsetPayload.ID, SyncOffsetPayload.CODEC);

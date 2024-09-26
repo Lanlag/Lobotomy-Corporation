@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.init.ModelInit;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
@@ -34,7 +35,7 @@ public class EGOSuitFeatureRenderer extends FeatureRenderer<AbstractClientPlayer
         if (!itemStack.isEmpty() && itemStack.getItem() instanceof EGOSuit egoSuit) {
             matrices.push();
             //获取模型和贴图
-            BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel = egoSuit.getBipedEntityModel();
+            BipedEntityModel<AbstractClientPlayerEntity> bipedEntityModel = ModelInit.getLobeCorpItemModel(egoSuit);
             Identifier egoSuitTexture = LobeCorpUtil.id("textures/item/" + Registries.ITEM.getId(egoSuit).getPath() + ".png");
             //复制状态
             getContextModel().copyBipedStateTo(bipedEntityModel);

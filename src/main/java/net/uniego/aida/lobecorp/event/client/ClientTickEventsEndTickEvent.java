@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.uniego.aida.lobecorp.init.KeyInit;
 import net.uniego.aida.lobecorp.network.packet.OpenClosePacket;
+import net.uniego.aida.lobecorp.network.packet.SwitchWeaponPacket;
 
 //客户端每一帧结束时事件
 @Environment(EnvType.CLIENT)
@@ -15,5 +16,8 @@ public class ClientTickEventsEndTickEvent implements ClientTickEvents.EndTick {
         while (KeyInit.EQUIPMENT_INVENTORY.wasPressed()) {
             OpenClosePacket.send();
         }//开启/关闭装备
+        while (KeyInit.SWITCH_WEAPON.wasPressed()) {
+            SwitchWeaponPacket.send();
+        }//切换武器
     }
 }

@@ -11,11 +11,13 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
+import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -142,6 +144,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
     private void tickMixin(CallbackInfo ci) {
         sanityManager.panicState();
         thirstManager.update(playerEntity);
+        LobeCorpUtil.checkEGOWeapon(playerEntity, getMainHandStack());
+        LobeCorpUtil.checkEGOWeapon(playerEntity, getOffHandStack());
+        LobeCorpUtil.checkEGOWeapon(playerEntity, LobeCorpUtil.getLobeCorpEquippedStack(playerEntity, LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT));
     }
 
     //为干渴机制引入消耗度

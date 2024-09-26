@@ -1,10 +1,7 @@
 package net.uniego.aida.lobecorp;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.uniego.aida.lobecorp.init.EventInit;
-import net.uniego.aida.lobecorp.init.KeyInit;
-import net.uniego.aida.lobecorp.init.NetworkInit;
-import net.uniego.aida.lobecorp.init.ScreenInit;
+import net.uniego.aida.lobecorp.init.*;
 
 public class LobeCorpClient implements ClientModInitializer {
 
@@ -13,6 +10,7 @@ public class LobeCorpClient implements ClientModInitializer {
         EventInit.registerClientEvents();
         ScreenInit.registerScreen();
         KeyInit.register();
+        ModelInit.register();
 
         NetworkInit.registerClient();
     }

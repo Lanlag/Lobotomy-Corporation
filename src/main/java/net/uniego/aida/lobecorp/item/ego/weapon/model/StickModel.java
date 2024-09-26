@@ -1,11 +1,15 @@
 package net.uniego.aida.lobecorp.item.ego.weapon.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 
-public class StickModel extends net.minecraft.client.render.entity.model.EntityModel<Entity> {
+@Environment(EnvType.CLIENT)
+public class StickModel extends EntityModel<Entity> {
     private final ModelPart weapon;
 
     public StickModel() {
@@ -13,7 +17,7 @@ public class StickModel extends net.minecraft.client.render.entity.model.EntityM
         this.weapon = root.getChild("weapon");
     }
 
-    public TexturedModelData getTexturedModelData() {
+    public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
         ModelPartData weapon = modelPartData.addChild("weapon", ModelPartBuilder.create().uv(0, 9).cuboid(-1.0F, -2.0F, 2.0F, 2.0F, 2.0F, 4.0F, new Dilation(-0.1F))

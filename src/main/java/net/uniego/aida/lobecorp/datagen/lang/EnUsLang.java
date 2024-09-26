@@ -62,11 +62,13 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
         //声音名
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");
+        translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "Switch Weapon");
         //屏幕名
         translationBuilder.add(ScreenInit.CONTAINER_EQUIPMENT, "Equipment");
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "Lobe Corp");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "Open/Close Equipment");
+        translationBuilder.add(KeyInit.KEY_SWITCH_WEAPON, "Switch Weapon");
         //信息名
         translationBuilder.add(GUIResource.STAFF_LEVEL, "Staff Level");
         translationBuilder.add(GUIResource.STAFF_FORTITUDE, "Fortitude");
