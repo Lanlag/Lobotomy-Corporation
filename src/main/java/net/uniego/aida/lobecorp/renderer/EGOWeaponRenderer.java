@@ -23,7 +23,7 @@ public class EGOWeaponRenderer implements BuiltinItemRendererRegistry.DynamicIte
 
     public EGOWeaponRenderer(EntityModel<Entity> entityModel, String id) {
         this.entityModel = entityModel;
-        this.egoWeaponTexture = LobeCorpUtil.id("textures/item/" + id + ".png");
+        egoWeaponTexture = LobeCorpUtil.id("textures/item/" + id + ".png");
     }
 
     @Override

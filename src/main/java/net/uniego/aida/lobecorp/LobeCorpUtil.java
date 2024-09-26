@@ -1,5 +1,6 @@
 package net.uniego.aida.lobecorp;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.Entity;
@@ -22,7 +23,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.access.EquipRequireAccess;
-import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ComponentInit;
@@ -140,8 +140,8 @@ public class LobeCorpUtil {
     }
 
     //判断能否装备物品
-    public static boolean cantEquipped(PlayerEntity player, LobeCorpSlotAccess lobecorpItem) {
-        if (lobecorpItem instanceof EquipRequireAccess equipRequireItem) {
+    public static boolean cantEquipped(PlayerEntity player, Item item) {
+        if (item instanceof EquipRequireAccess equipRequireItem) {
             //获取玩家四大等级
             LevelManager levelManager = ((ManagerAccess) player).lobecorp$getLevelManager();
             int playerFortitude = levelManager.getLevelF().getValue();
@@ -169,16 +169,16 @@ public class LobeCorpUtil {
         if (itemStack.getItem() instanceof EGOWeapon egoWeapon && cantEquipped(player, egoWeapon)) {
             if (itemStack.isIn(TagInit.RED_EGO_WEAPONS)) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-                player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage());
+                new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage()));
             } else if (itemStack.isIn(TagInit.WHITE_EGO_WEAPONS)) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-                player.damage(noKnockBackDamageSource(DamageInit.WHITE, player), egoWeapon.getAttackDamage());
+                new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.WHITE, player), egoWeapon.getAttackDamage()));
             } else if (itemStack.isIn(TagInit.BLACK_EGO_WEAPONS)) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-                player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoWeapon.getAttackDamage());
+                new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoWeapon.getAttackDamage()));
             } else if (itemStack.isIn(TagInit.PALE_EGO_WEAPONS)) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-                player.damage(noKnockBackDamageSource(DamageInit.PALE, player), egoWeapon.getAttackDamage());
+                new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.PALE, player), egoWeapon.getAttackDamage()));
             }
         }
     }
@@ -187,7 +187,7 @@ public class LobeCorpUtil {
     public static void checkEGOSuit(PlayerEntity player, ItemStack itemStack) {
         if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit)) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
-            player.damage(noKnockBackDamageSource(DamageInit.MYSTIC, player), (egoSuit.getEGOLevel().getLevel()));
+            new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoSuit.getEGOLevel().getLevel()));
         }
     }
 
@@ -223,6 +223,41 @@ public class LobeCorpUtil {
 
         public Formatting getColor() {
             return color;
+        }
+    }
+
+    //延迟任务
+    public static class DelayedTask {
+        private final PlayerEntity player;
+        private final ItemStack itemStack;
+        private final Runnable task;
+        private int delayTicks;
+        private boolean isCancelled;
+
+        public DelayedTask(int delayTicks, PlayerEntity player, ItemStack itemStack, Runnable task) {
+            this.delayTicks = delayTicks;
+            this.player = player;
+            this.itemStack = itemStack;
+            this.task = task;
+            ServerTickEvents.END_SERVER_TICK.register(server -> tick());
+        }
+
+        public void cancel() {
+            isCancelled = true;
+        }
+
+        private void tick() {
+            if (isCancelled) {
+                return;
+            }
+            if (delayTicks > 0) {
+                delayTicks--;
+            } else {
+                if (cantEquipped(player, itemStack.getItem())) {
+                    task.run();
+                }
+                cancel();
+            }
         }
     }
 }

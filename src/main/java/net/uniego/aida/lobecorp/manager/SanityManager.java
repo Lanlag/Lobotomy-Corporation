@@ -10,7 +10,7 @@ public class SanityManager {
     private final PlayerEntity player;
     private float sanity = 20.0F;
     private float assimilationAmount = 0.0F;
-    private boolean isCrazy = false;
+    private boolean isCrazy;
     private int sanityTickTimer;
 
     public SanityManager(PlayerEntity player) {

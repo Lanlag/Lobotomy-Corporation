@@ -237,11 +237,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
                 sanityF = Math.max(sanityF - sanityManager.getAssimilationAmount(), 0);
                 sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount * whiteResist * levelResist - sanityF));
             }
-            //如果受击者陷入恐慌且当前精神值没有等于最大值
-            if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
+            //如果受击者陷入恐慌
+            if (sanityManager.isCrazy()) {
                 //如果攻击者是玩家且攻击者没有陷入恐慌状态
                 if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
-                    sanityManager.setSanity(sanityManager.getSanity() + sanityF);
+                    sanityManager.setSanity(sanityManager.getSanity() + (whiteResist > 0 ? sanityF : -sanityF));
                 }
             } else sanityManager.setSanity(sanityManager.getSanity() - sanityF);
         } else if (source.isOf(DamageInit.BLACK)) {//侵蚀伤害
@@ -255,9 +255,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
                 sanityManager.setAssimilationAmountUnclamped(sanityManager.getAssimilationAmount() - (amount * blackResist * levelResist - sanityF));
                 setAbsorptionAmount(getAbsorptionAmount() - (amount * blackResist * levelResist - healthF));
             }
-            if (sanityManager.isCrazy() && sanityManager.getSanity() != sanityManager.getMaxSanity()) {
+            if (sanityManager.isCrazy()) {
                 if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
-                    sanityManager.setSanity(sanityManager.getSanity() + sanityF);
+                    sanityManager.setSanity(sanityManager.getSanity() + (whiteResist > 0 ? sanityF : -sanityF));
                 }
             } else sanityManager.setSanity(sanityManager.getSanity() - sanityF);
             setHealth(getHealth() - healthF);
