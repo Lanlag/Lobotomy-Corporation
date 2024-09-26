@@ -8,6 +8,8 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,6 +51,11 @@ public class LobeCorpUtil {
         player.getWorld().playSound(null, player.getBlockPos(), soundEvent, SoundCategory.PLAYERS, 1, 1);
     }
 
+    //获取物品属性名
+    public static String getItemModifiersName(LobeCorpEquipmentSlot slot) {
+        return "item.modifiers." + slot.getSlotName();
+    }
+
     //创建EGO武器属性修饰符
     public static AttributeModifiersComponent createEGOWeaponAttributeModifiers(double attackDamage, double attackSpeed, double interactionRange) {
         return AttributeModifiersComponent.builder()
@@ -62,7 +69,7 @@ public class LobeCorpUtil {
     //创建EGO护甲属性修饰符
     public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(EGOLevel egoLevel, LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier((egoLevel.getLevel() - 1) * 6), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier((egoLevel.getLevel()) * 6), lobecorpSlot)
                 .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier((egoLevel.getLevel() - 1) * 5), lobecorpSlot)
                 .builder();
     }
@@ -161,12 +168,16 @@ public class LobeCorpUtil {
     public static void checkEGOWeapon(PlayerEntity player, ItemStack itemStack) {
         if (itemStack.getItem() instanceof EGOWeapon egoWeapon && cantEquipped(player, egoWeapon)) {
             if (itemStack.isIn(TagInit.RED_EGO_WEAPONS)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
                 player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage());
             } else if (itemStack.isIn(TagInit.WHITE_EGO_WEAPONS)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
                 player.damage(noKnockBackDamageSource(DamageInit.WHITE, player), egoWeapon.getAttackDamage());
             } else if (itemStack.isIn(TagInit.BLACK_EGO_WEAPONS)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
                 player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoWeapon.getAttackDamage());
             } else if (itemStack.isIn(TagInit.PALE_EGO_WEAPONS)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
                 player.damage(noKnockBackDamageSource(DamageInit.PALE, player), egoWeapon.getAttackDamage());
             }
         }
@@ -175,7 +186,8 @@ public class LobeCorpUtil {
     //检查EGO护甲
     public static void checkEGOSuit(PlayerEntity player, ItemStack itemStack) {
         if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit)) {
-            player.damage(noKnockBackDamageSource(DamageInit.MYSTIC, player), (egoSuit.getEGOLevel().getLevel() - 1) * 6);
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
+            player.damage(noKnockBackDamageSource(DamageInit.MYSTIC, player), (egoSuit.getEGOLevel().getLevel()));
         }
     }
 

@@ -30,8 +30,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
     public static final String TOOLTIP_EGO_SUIT_PALE = "tooltip.ego.suit.pale";//蓝抗
 
     public static final EGOSuit CODE_SUIT = new EGOSuit(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN,
-            0.0F, 0.0F, 0.0F, 0.0F,
-            LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);//代码西装
+            0.0F, 0.0F, 0.0F, 0.0F);//代码西装
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;

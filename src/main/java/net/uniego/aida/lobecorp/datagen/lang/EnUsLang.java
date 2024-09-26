@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.datagen.lang;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
@@ -58,9 +59,12 @@ public class EnUsLang extends FabricLanguageProvider {
         //物品名
         translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "LobeCorp Logo");
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "Blue Leaf");
+        translationBuilder.add(EGOSuit.CODE_SUIT, "Code Suit");
+        translationBuilder.add(EGOWeapon.CODE_RIOT_STICK, "Code Riot Stick");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
         //声音名
+        translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "Change Equipment");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");
         translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "Switch Weapon");
         //屏幕名
@@ -88,24 +92,24 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(TagInit.BLACK_EGO_WEAPONS, "Black EGO Weapons");
         translationBuilder.add(TagInit.PALE_EGO_WEAPONS, "Pale EGO Weapons");
         //插槽名
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT.getSlotName(), "When in Weapon Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT.getSlotName(), "When in Suit Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT.getSlotName(), "When in Badge Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_TOOL_SLOT.getSlotName(), "When in Tool Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAT_SLOT.getSlotName(), "When in Hat Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT.getSlotName(), "When in Head Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT.getSlotName(), "When in Occiput Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT.getSlotName(), "When in Eye Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_FACE_SLOT.getSlotName(), "When in Face Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEEK_SLOT.getSlotName(), "When in Cheek Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MASK_SLOT.getSlotName(), "When in Mask Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MOUTH_SLOT.getSlotName(), "When in Mouth Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_NECK_SLOT.getSlotName(), "When in Neck Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEST_SLOT.getSlotName(), "When in Chest Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAND_SLOT.getSlotName(), "When in Hand Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT.getSlotName(), "When in Glove Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT.getSlotName(), "When in RightBack Slot:");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT.getSlotName(), "When in LeftBack Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT), "When in Weapon Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT), "When in Suit Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT), "When in Badge Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_TOOL_SLOT), "When in Tool Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HAT_SLOT), "When in Hat Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT), "When in Head Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT), "When in Occiput Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT), "When in Eye Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_FACE_SLOT), "When in Face Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_CHEEK_SLOT), "When in Cheek Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_MASK_SLOT), "When in Mask Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_MOUTH_SLOT), "When in Mouth Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_NECK_SLOT), "When in Neck Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_CHEST_SLOT), "When in Chest Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HAND_SLOT), "When in Hand Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT), "When in Glove Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT), "When in RightBack Slot:");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT), "When in LeftBack Slot:");
         //EGO武器模板名
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "Mace");
         //工具提示名

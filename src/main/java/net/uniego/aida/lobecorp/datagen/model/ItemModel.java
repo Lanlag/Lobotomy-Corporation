@@ -7,6 +7,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 
 //物品模型文件生成器
 public class ItemModel extends FabricModelProvider {
@@ -24,5 +25,6 @@ public class ItemModel extends FabricModelProvider {
         //脑叶公司
         itemModelGenerator.register(LobeCorpItem.LOBECORP_LOGO, Models.GENERATED);
         itemModelGenerator.register(LobeCorpItem.BLUE_LEAF, Models.GENERATED);
+        itemModelGenerator.register(EGOSuit.CODE_SUIT, Models.GENERATED);
     }
 }

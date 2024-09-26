@@ -27,7 +27,6 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
     private int sliderPosY;//滑块当前位置
     private boolean isSliding;//是否正在滑动
 
-
     public void initialize(int parentX, int parentY, LobeCorpScreenHandler handler) {
         this.parentX = parentX;
         this.parentY = parentY;
@@ -75,7 +74,10 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
 
     //更新滑块位置
     private void updateSliderPosition(double mouseY) {
-        sliderPosY = (int) Math.max(0, Math.min(mouseY - (parentY + 11), SCROLL_BAR_HEIGHT - SLIDER_HEIGHT));
+        double offset = 0;
+        if (mouseY > 0) offset = mouseY - (parentY + 11);
+        else if (mouseY < 0) offset = -mouseY + (parentY + 29);
+        sliderPosY = (int) Math.max(0, Math.min(offset, SCROLL_BAR_HEIGHT - SLIDER_HEIGHT));
     }
 
     //更新插槽位置
@@ -126,6 +128,16 @@ public class EGOGiftWidget implements Drawable, Element, Selectable {
             return true;
         }
         return Element.super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        if (mouseX >= parentX - 6 && mouseX <= parentX - 6 + SLIDER_WIDTH
+                && mouseY >= parentY + 11 && mouseY <= parentY + 11 + SCROLL_BAR_HEIGHT) {
+            updateSliderPosition(verticalAmount);
+            return true;
+        }
+        return Element.super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
     }
 
     @Override

@@ -101,4 +101,28 @@ public class LobeCorpScreen extends AbstractInventoryScreen<LobeCorpScreenHandle
         boolean bl = mouseX < (double) left || mouseY < (double) top || mouseX >= (double) (left + backgroundWidth) || mouseY >= (double) (top + backgroundHeight);
         return egoGiftWidget.isClickOutsideBounds(mouseX, mouseY, x, y, backgroundWidth, backgroundHeight) && bl;
     }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        egoGiftWidget.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        egoGiftWidget.mouseReleased(mouseX, mouseY, button);
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+        egoGiftWidget.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        egoGiftWidget.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
+        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
+    }
 }

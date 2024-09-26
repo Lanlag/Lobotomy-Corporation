@@ -1,4 +1,10 @@
 {
+  "change_equipment": {
+    "subtitle": "lobecorp.change_equipment",
+    "sounds": [
+      "lobecorp:change_equipment"
+    ]
+  },
   "swallow_water": {
     "subtitle": "lobecorp.swallow_water",
     "sounds": [

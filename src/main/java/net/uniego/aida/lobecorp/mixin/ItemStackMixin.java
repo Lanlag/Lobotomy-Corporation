@@ -41,7 +41,7 @@ public abstract class ItemStackMixin {
             LobeCorpUtil.applyAttributeModifiers(slot, itemStack, (attribute, modifier) -> {
                 if (mutableBoolean.isTrue()) {
                     textConsumer.accept(ScreenTexts.EMPTY);
-                    textConsumer.accept(Text.translatable(slot.getSlotName()).formatted(Formatting.GRAY));
+                    textConsumer.accept(Text.translatable("item.modifiers." + slot.getSlotName()).formatted(Formatting.GRAY));
                     mutableBoolean.setFalse();
                 }
                 appendAttributeModifierTooltip(textConsumer, player, attribute, modifier);

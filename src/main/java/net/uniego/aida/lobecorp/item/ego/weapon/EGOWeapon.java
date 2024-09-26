@@ -36,8 +36,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final String TOOLTIP_EGO_WEAPON_PALE = "tooltip.ego.weapon.pale";//蓝伤
 
     public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE,
-            54498,
-            LevelManager.LobeCorpLevel.V, LevelManager.LobeCorpLevel.V, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);//代码镇暴棍
+            54498);//代码镇暴棍
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;

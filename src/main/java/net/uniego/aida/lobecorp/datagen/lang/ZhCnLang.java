@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.datagen.lang;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
@@ -58,9 +59,12 @@ public class ZhCnLang extends FabricLanguageProvider {
         //物品名
         translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "脑叶公司Logo");
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "蓝叶");
+        translationBuilder.add(EGOSuit.CODE_SUIT, "代码西装");
+        translationBuilder.add(EGOWeapon.CODE_RIOT_STICK, "代码镇暴棍");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名
+        translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "变换装备");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
         translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "切换武器");
         //屏幕名
@@ -88,24 +92,24 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(TagInit.BLACK_EGO_WEAPONS, "黑伤EGO武器");
         translationBuilder.add(TagInit.PALE_EGO_WEAPONS, "蓝伤EGO武器");
         //插槽名
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT.getSlotName(), "在武器位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT.getSlotName(), "在护甲位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT.getSlotName(), "在袖标位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_TOOL_SLOT.getSlotName(), "在工具位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAT_SLOT.getSlotName(), "在头饰位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT.getSlotName(), "在头部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT.getSlotName(), "在后脑位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT.getSlotName(), "在眼部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_FACE_SLOT.getSlotName(), "在面部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEEK_SLOT.getSlotName(), "在脸颊位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MASK_SLOT.getSlotName(), "在面罩位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_MOUTH_SLOT.getSlotName(), "在口部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_NECK_SLOT.getSlotName(), "在颈部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_CHEST_SLOT.getSlotName(), "在胸部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_HAND_SLOT.getSlotName(), "在手部位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT.getSlotName(), "在手套位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT.getSlotName(), "在右背位时：");
-        translationBuilder.add(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT.getSlotName(), "在左背位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT), "在武器位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT), "在护甲位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_BADGE_SLOT), "在袖标位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_TOOL_SLOT), "在工具位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HAT_SLOT), "在头饰位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT), "在头部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT), "在后脑位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT), "在眼部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_FACE_SLOT), "在面部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_CHEEK_SLOT), "在脸颊位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_MASK_SLOT), "在面罩位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_MOUTH_SLOT), "在口部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_NECK_SLOT), "在颈部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_CHEST_SLOT), "在胸部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_HAND_SLOT), "在手部位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_GLOVE_SLOT), "在手套位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT), "在右背位时：");
+        translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT), "在左背位时：");
         //EGO武器模板名
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "棁类");
         //工具提示名
