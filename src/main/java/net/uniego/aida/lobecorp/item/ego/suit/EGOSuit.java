@@ -31,6 +31,8 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
 
     public static final EGOSuit CODE_SUIT = new EGOSuit(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN,
             0.0F, 0.0F, 0.0F, 0.0F);//代码西装
+    public static final EGOSuit STANDARD_SUIT = new EGOSuit(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN,
+            1.0F, 1.0F, 1.5F, 2.0F);//代码西装
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
@@ -80,6 +82,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("code_suit"), CODE_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_suit"), STANDARD_SUIT);
     }
 
     @Override

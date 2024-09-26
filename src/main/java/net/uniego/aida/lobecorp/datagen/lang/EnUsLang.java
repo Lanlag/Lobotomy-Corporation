@@ -61,6 +61,11 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "Blue Leaf");
         translationBuilder.add(EGOSuit.CODE_SUIT, "Code Suit");
         translationBuilder.add(EGOWeapon.CODE_RIOT_STICK, "Code Riot Stick");
+        translationBuilder.add(EGOSuit.STANDARD_SUIT, "Standard Suit");
+        translationBuilder.add(EGOWeapon.RED_RIOT_STICK, "Red Riot Stick");
+        translationBuilder.add(EGOWeapon.WHITE_RIOT_STICK, "White Riot Stick");
+        translationBuilder.add(EGOWeapon.BLACK_RIOT_STICK, "Black Riot Stick");
+        translationBuilder.add(EGOWeapon.PALE_RIOT_STICK, "Pale Riot Stick");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
         //声音名

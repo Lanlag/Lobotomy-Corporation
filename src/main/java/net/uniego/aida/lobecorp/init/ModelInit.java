@@ -25,11 +25,16 @@ public class ModelInit {
     //注册EGO武器模型
     public static void registerEGOWeaponModels() {
         registerEGOWeaponModel(EGOWeapon.CODE_RIOT_STICK, new StickModel(), "code_riot_stick");
+        registerEGOWeaponModel(EGOWeapon.RED_RIOT_STICK, new StickModel(), "red_riot_stick");
+        registerEGOWeaponModel(EGOWeapon.WHITE_RIOT_STICK, new StickModel(), "white_riot_stick");
+        registerEGOWeaponModel(EGOWeapon.BLACK_RIOT_STICK, new StickModel(), "black_riot_stick");
+        registerEGOWeaponModel(EGOWeapon.PALE_RIOT_STICK, new StickModel(), "pale_riot_stick");
     }
 
     //注册脑叶公司物品模型
     public static void registerLobeCorpItemModels() {
         lobecorpItemModels.put(EGOSuit.CODE_SUIT, new WolfArmorModel(WolfArmorModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new WolfArmorModel(WolfArmorModel.getTexturedModelData().createModel()));
     }
 
     //注册EGO武器模型

@@ -61,6 +61,11 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "蓝叶");
         translationBuilder.add(EGOSuit.CODE_SUIT, "代码西装");
         translationBuilder.add(EGOWeapon.CODE_RIOT_STICK, "代码镇暴棍");
+        translationBuilder.add(EGOSuit.STANDARD_SUIT, "标准西装");
+        translationBuilder.add(EGOWeapon.RED_RIOT_STICK, "物理镇暴棍");
+        translationBuilder.add(EGOWeapon.WHITE_RIOT_STICK, "精神镇暴棍");
+        translationBuilder.add(EGOWeapon.BLACK_RIOT_STICK, "侵蚀镇暴棍");
+        translationBuilder.add(EGOWeapon.PALE_RIOT_STICK, "灵魂镇暴棍");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名

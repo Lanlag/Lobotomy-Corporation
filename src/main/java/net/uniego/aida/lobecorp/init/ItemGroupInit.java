@@ -22,6 +22,11 @@ public class ItemGroupInit {
                 entries.add(LobeCorpItem.BLUE_LEAF);
                 entries.add(EGOSuit.CODE_SUIT);
                 entries.add(EGOWeapon.CODE_RIOT_STICK);
+                entries.add(EGOSuit.STANDARD_SUIT);
+                entries.add(EGOWeapon.RED_RIOT_STICK);
+                entries.add(EGOWeapon.WHITE_RIOT_STICK);
+                entries.add(EGOWeapon.BLACK_RIOT_STICK);
+                entries.add(EGOWeapon.PALE_RIOT_STICK);
             }).build();
 
     public static void register() {

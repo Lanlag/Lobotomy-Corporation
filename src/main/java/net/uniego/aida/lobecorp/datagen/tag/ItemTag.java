@@ -33,17 +33,22 @@ public class ItemTag extends FabricTagProvider.ItemTagProvider {
                 .add(Items.MILK_BUCKET)
                 .add(Items.POTION)
                 .add(LobeCorpItem.BLUE_LEAF);
+
         //生成红伤EGO武器标签
-        getOrCreateTagBuilder(TagInit.RED_EGO_WEAPONS);
+        getOrCreateTagBuilder(TagInit.RED_EGO_WEAPONS)
+                .add(EGOWeapon.RED_RIOT_STICK);
 
         //生成白伤EGO武器标签
-        getOrCreateTagBuilder(TagInit.WHITE_EGO_WEAPONS);
+        getOrCreateTagBuilder(TagInit.WHITE_EGO_WEAPONS)
+                .add(EGOWeapon.WHITE_RIOT_STICK);
 
         //生成黑伤EGO武器标签
-        getOrCreateTagBuilder(TagInit.BLACK_EGO_WEAPONS);
+        getOrCreateTagBuilder(TagInit.BLACK_EGO_WEAPONS)
+                .add(EGOWeapon.BLACK_RIOT_STICK);
 
         //生成蓝伤EGO武器标签
         getOrCreateTagBuilder(TagInit.PALE_EGO_WEAPONS)
-                .add(EGOWeapon.CODE_RIOT_STICK);
+                .add(EGOWeapon.CODE_RIOT_STICK)
+                .add(EGOWeapon.PALE_RIOT_STICK);
     }
 }

@@ -26,5 +26,6 @@ public class ItemModel extends FabricModelProvider {
         itemModelGenerator.register(LobeCorpItem.LOBECORP_LOGO, Models.GENERATED);
         itemModelGenerator.register(LobeCorpItem.BLUE_LEAF, Models.GENERATED);
         itemModelGenerator.register(EGOSuit.CODE_SUIT, Models.GENERATED);
+        itemModelGenerator.register(EGOSuit.STANDARD_SUIT, Models.GENERATED);
     }
 }

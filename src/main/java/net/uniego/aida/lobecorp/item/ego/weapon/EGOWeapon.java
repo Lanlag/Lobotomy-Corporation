@@ -35,8 +35,11 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final String TOOLTIP_EGO_WEAPON_BLACK = "tooltip.ego.weapon.black";//黑伤
     public static final String TOOLTIP_EGO_WEAPON_PALE = "tooltip.ego.weapon.pale";//蓝伤
 
-    public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE,
-            54498);//代码镇暴棍
+    public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 54498);//代码镇暴棍
+    public static final EGOWeapon RED_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//物理镇暴棍
+    public static final EGOWeapon WHITE_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//精神镇暴棍
+    public static final EGOWeapon BLACK_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//侵蚀镇暴棍
+    public static final EGOWeapon PALE_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//灵魂镇暴棍
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;
@@ -81,6 +84,10 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("code_riot_stick"), CODE_RIOT_STICK);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("red_riot_stick"), RED_RIOT_STICK);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("white_riot_stick"), WHITE_RIOT_STICK);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("black_riot_stick"), BLACK_RIOT_STICK);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("pale_riot_stick"), PALE_RIOT_STICK);
     }
 
     public float getAttackDamage() {
