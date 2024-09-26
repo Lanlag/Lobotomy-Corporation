@@ -147,6 +147,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
         LobeCorpUtil.checkEGOWeapon(playerEntity, getMainHandStack());
         LobeCorpUtil.checkEGOWeapon(playerEntity, getOffHandStack());
         LobeCorpUtil.checkEGOWeapon(playerEntity, LobeCorpUtil.getLobeCorpEquippedStack(playerEntity, LobeCorpEquipmentSlot.LOBECORP_WEAPON_SLOT));
+        LobeCorpUtil.checkEGOSuit(playerEntity, LobeCorpUtil.getLobeCorpEquippedStack(playerEntity, LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT));
     }
 
     //为干渴机制引入消耗度

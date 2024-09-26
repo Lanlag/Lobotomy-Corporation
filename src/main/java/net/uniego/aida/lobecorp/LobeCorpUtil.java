@@ -27,6 +27,7 @@ import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
+import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
@@ -61,8 +62,8 @@ public class LobeCorpUtil {
     //创建EGO护甲属性修饰符
     public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(EGOLevel egoLevel, LobeCorpAttributeModifierSlot lobecorpSlot) {
         return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier(egoLevel.getLevel() * 5), lobecorpSlot)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier(egoLevel.getLevel() * 5), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier((egoLevel.getLevel() - 1) * 6), lobecorpSlot)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier((egoLevel.getLevel() - 1) * 5), lobecorpSlot)
                 .builder();
     }
 
@@ -132,7 +133,7 @@ public class LobeCorpUtil {
     }
 
     //判断能否装备物品
-    public static boolean canEquipped(PlayerEntity player, LobeCorpSlotAccess lobecorpItem) {
+    public static boolean cantEquipped(PlayerEntity player, LobeCorpSlotAccess lobecorpItem) {
         if (lobecorpItem instanceof EquipRequireAccess equipRequireItem) {
             //获取玩家四大等级
             LevelManager levelManager = ((ManagerAccess) player).lobecorp$getLevelManager();
@@ -151,14 +152,14 @@ public class LobeCorpUtil {
             boolean isTemperanceEnough = playerTemperance >= requireTemperance;
             boolean isJusticeEnough = playerJustice >= requireJustice;
 
-            return isFortitudeEnough && isPrudenceEnough && isTemperanceEnough && isJusticeEnough;
+            return !isFortitudeEnough || !isPrudenceEnough || !isTemperanceEnough || !isJusticeEnough;
         }
-        return true;
+        return false;
     }
 
     //检查EGO武器
     public static void checkEGOWeapon(PlayerEntity player, ItemStack itemStack) {
-        if (itemStack.getItem() instanceof EGOWeapon egoWeapon && !canEquipped(player, egoWeapon)) {
+        if (itemStack.getItem() instanceof EGOWeapon egoWeapon && cantEquipped(player, egoWeapon)) {
             if (itemStack.isIn(TagInit.RED_EGO_WEAPONS)) {
                 player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage());
             } else if (itemStack.isIn(TagInit.WHITE_EGO_WEAPONS)) {
@@ -168,6 +169,13 @@ public class LobeCorpUtil {
             } else if (itemStack.isIn(TagInit.PALE_EGO_WEAPONS)) {
                 player.damage(noKnockBackDamageSource(DamageInit.PALE, player), egoWeapon.getAttackDamage());
             }
+        }
+    }
+
+    //检查EGO护甲
+    public static void checkEGOSuit(PlayerEntity player, ItemStack itemStack) {
+        if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit)) {
+            player.damage(noKnockBackDamageSource(DamageInit.MYSTIC, player), (egoSuit.getEGOLevel().getLevel() - 1) * 6);
         }
     }
 

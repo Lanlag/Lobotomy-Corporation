@@ -30,7 +30,8 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
     public static final String TOOLTIP_EGO_SUIT_PALE = "tooltip.ego.suit.pale";//蓝抗
 
     public static final EGOSuit CODE_SUIT = new EGOSuit(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN,
-            0.0F, 0.0F, 0.0F, 0.0F);//代码西装
+            0.0F, 0.0F, 0.0F, 0.0F,
+            LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);//代码西装
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
@@ -49,7 +50,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
 
     public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireJ, requireT, requireP, requireF);
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireF, requireP, requireT, requireJ);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
@@ -59,7 +60,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireJ, requireT, requireP, requireF);
+        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireF, requireP, requireT, requireJ);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,

@@ -36,7 +36,8 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final String TOOLTIP_EGO_WEAPON_PALE = "tooltip.ego.weapon.pale";//蓝伤
 
     public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE,
-            54498);//代码镇暴棍
+            54498,
+            LevelManager.LobeCorpLevel.V, LevelManager.LobeCorpLevel.V, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);//代码镇暴棍
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;
@@ -53,7 +54,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
 
     public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireJ, requireT, requireP, requireF);
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
@@ -63,7 +64,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireJ, requireT, requireP, requireF);
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, String egoSkill,
