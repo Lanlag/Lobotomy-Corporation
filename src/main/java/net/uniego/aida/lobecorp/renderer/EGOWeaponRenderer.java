@@ -19,17 +19,17 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 @Environment(EnvType.CLIENT)
 public class EGOWeaponRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
     private final EntityModel<Entity> entityModel;
-    private final Identifier egoWeaponTexture;
+    private final Identifier id;
 
     public EGOWeaponRenderer(EntityModel<Entity> entityModel, String id) {
         this.entityModel = entityModel;
-        egoWeaponTexture = LobeCorpUtil.id("textures/item/" + id + ".png");
+        this.id = LobeCorpUtil.id("textures/entity/weapon/" + id + ".png");
     }
 
     @Override
     public void render(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         matrices.push();
-        VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, RenderLayer.getEntityCutoutNoCull(egoWeaponTexture), false, stack.hasGlint());
+        VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(vertexConsumers, RenderLayer.getEntityCutoutNoCull(id), false, stack.hasGlint());
         entityModel.render(matrices, vertexConsumer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
         matrices.pop();
     }

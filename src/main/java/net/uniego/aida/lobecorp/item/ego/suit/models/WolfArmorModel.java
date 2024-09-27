@@ -3,13 +3,12 @@ package net.uniego.aida.lobecorp.item.ego.suit.models;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 
 @Environment(EnvType.CLIENT)
-public class WolfArmorModel extends BipedEntityModel<AbstractClientPlayerEntity> {
+public class WolfArmorModel extends LobeCorpItemModel {
     private final ModelPart head;
     private final ModelPart bone3;
     private final ModelPart bone4;
@@ -382,5 +381,9 @@ public class WolfArmorModel extends BipedEntityModel<AbstractClientPlayerEntity>
         right_arm.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         left_arm.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         hat.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+    }
+
+    public ModelPart getLeft_arm() {
+        return left_arm;
     }
 }
