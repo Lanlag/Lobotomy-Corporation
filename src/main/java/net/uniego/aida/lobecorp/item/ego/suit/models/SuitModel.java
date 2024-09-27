@@ -1,4 +1,4 @@
-package net.uniego.aida.lobecorp.item.badge;
+package net.uniego.aida.lobecorp.item.ego.suit.models;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,9 +7,9 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 
-//袖标模型
+//西装模型
 @Environment(EnvType.CLIENT)
-public class BadgeModel extends LobeCorpItemModel {
+public class SuitModel extends LobeCorpItemModel {
     private final ModelPart hat;
     private final ModelPart head;
     private final ModelPart body;
@@ -18,7 +18,7 @@ public class BadgeModel extends LobeCorpItemModel {
     private final ModelPart right_leg;
     private final ModelPart left_leg;
 
-    public BadgeModel(ModelPart root) {
+    public SuitModel(ModelPart root) {
         super(root);
         this.hat = root.getChild("hat");
         this.head = root.getChild("head");
@@ -36,16 +36,21 @@ public class BadgeModel extends LobeCorpItemModel {
 
         modelPartData.addChild("head", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        modelPartData.addChild("body", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        modelPartData.addChild("body", ModelPartBuilder.create().uv(16, 16).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new Dilation(0.3F))
+                .uv(16, 32).cuboid(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new Dilation(0.55F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        modelPartData.addChild("right_arm", ModelPartBuilder.create(), ModelTransform.pivot(-5.0F, 2.0F, 0.0F));
+        modelPartData.addChild("right_arm", ModelPartBuilder.create().uv(40, 16).cuboid(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.3F))
+                .uv(40, 32).cuboid(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.55F)), ModelTransform.pivot(-5.0F, 2.0F, 0.0F));
 
-        modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(-4, -2).cuboid(-1.0F, 0.0F, -2.0F, 4.0F, 4.0F, 4.0F, new Dilation(0.56F)), ModelTransform.pivot(5.0F, 2.0F, 0.0F));
+        modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(32, 48).cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.3F))
+                .uv(48, 48).cuboid(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.55F)), ModelTransform.pivot(5.0F, 2.0F, 0.0F));
 
-        modelPartData.addChild("right_leg", ModelPartBuilder.create(), ModelTransform.pivot(-1.9F, 12.0F, 0.0F));
+        modelPartData.addChild("right_leg", ModelPartBuilder.create().uv(0, 16).cuboid(-2.0F, -0.2F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.3F))
+                .uv(0, 32).cuboid(-2.0F, -0.2F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.55F)), ModelTransform.pivot(-1.9F, 12.0F, 0.0F));
 
-        modelPartData.addChild("left_leg", ModelPartBuilder.create(), ModelTransform.pivot(1.9F, 12.0F, 0.0F));
-        return TexturedModelData.of(modelData, 16, 16);
+        modelPartData.addChild("left_leg", ModelPartBuilder.create().uv(16, 48).cuboid(-2.0F, -0.2F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.3F))
+                .uv(0, 48).cuboid(-2.0F, -0.2F, -2.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.55F)), ModelTransform.pivot(1.9F, 12.0F, 0.0F));
+        return TexturedModelData.of(modelData, 64, 64);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class TeamBadgeFeatureRenderer extends FeatureRenderer<AbstractClientPlay
         if (!itemStack.isEmpty() && itemStack.getItem() instanceof TeamBadge teamBadge) {
             matrices.push();
             LobeCorpItemModel itemModel = ModelInit.getLobeCorpItemModel(teamBadge);
-            Identifier id = LobeCorpUtil.id("textures/entity/badge/" + Registries.ITEM.getId(teamBadge).getPath() + ".png");
+            Identifier id = LobeCorpUtil.id("textures/entity/badge/" + Registries.ITEM.getId(teamBadge).getPath() + "_model.png");
             getContextModel().copyBipedStateTo(itemModel);
             VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(id), false, itemStack.hasGlint());
             itemModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);

@@ -36,7 +36,7 @@ public class EGOSuitFeatureRenderer extends FeatureRenderer<AbstractClientPlayer
             matrices.push();
             //获取模型和贴图
             LobeCorpItemModel itemModel = ModelInit.getLobeCorpItemModel(egoSuit);
-            Identifier id = LobeCorpUtil.id("textures/entity/suit/" + Registries.ITEM.getId(egoSuit).getPath() + ".png");
+            Identifier id = LobeCorpUtil.id("textures/entity/suit/" + Registries.ITEM.getId(egoSuit).getPath() + "_model.png");
             //复制状态
             getContextModel().copyBipedStateTo(itemModel);
             //渲染

@@ -11,7 +11,7 @@ import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.badge.BadgeModel;
 import net.uniego.aida.lobecorp.item.badge.badges.ControlBadge;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
-import net.uniego.aida.lobecorp.item.ego.suit.models.WolfArmorModel;
+import net.uniego.aida.lobecorp.item.ego.suit.models.SuitModel;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.item.ego.weapon.models.StickModel;
 import net.uniego.aida.lobecorp.renderer.EGOWeaponRenderer;
@@ -35,8 +35,8 @@ public class ModelInit {
 
     //注册脑叶公司物品模型
     public static void registerLobeCorpItemModels() {
-        lobecorpItemModels.put(EGOSuit.CODE_SUIT, new WolfArmorModel(WolfArmorModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new WolfArmorModel(WolfArmorModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.CODE_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(ControlBadge.CONTROL_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
     }
 

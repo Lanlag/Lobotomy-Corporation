@@ -12,7 +12,6 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -53,14 +52,14 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         if (!itemStack.isEmpty() && itemStack.getItem() instanceof EGOSuit egoSuit) {
             matrices.push();
             LobeCorpItemModel itemModel = ModelInit.getLobeCorpItemModel(egoSuit);
-            Identifier id = LobeCorpUtil.id("textures/entity/suit/" + Registries.ITEM.getId(egoSuit).getPath() + ".png");
+            Identifier id = LobeCorpUtil.id("textures/entity/suit/" + Registries.ITEM.getId(egoSuit).getPath() + "_model.png");
             Arm mainArm = player.getMainArm();
             //判断主手是左手还是副手
             ModelPart modelPart = mainArm == Arm.LEFT ? itemModel.getLeftArm() : itemModel.getRightArm();
-            //切换视角时重置手臂部分
-            modelPart.resetTransform();
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(id), false, itemStack.hasGlint());
-            modelPart.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
+            //复制手臂的变换
+            modelPart.copyTransform(arm);
+            VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(id));
+            modelPart.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
             matrices.pop();
         }
     }
