@@ -5,5 +5,13 @@
     64,
     64
   ],
-  "display": {}
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        7.75,
+        7.75,
+        7
+      ]
+    }
+  }
 }

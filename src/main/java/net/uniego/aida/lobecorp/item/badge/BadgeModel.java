@@ -40,7 +40,7 @@ public class BadgeModel extends LobeCorpItemModel {
 
         modelPartData.addChild("right_arm", ModelPartBuilder.create(), ModelTransform.pivot(-5.0F, 2.0F, 0.0F));
 
-        modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(-4, -2).cuboid(-1.0F, 0.0F, -2.0F, 4.0F, 4.0F, 4.0F, new Dilation(0.56F)), ModelTransform.pivot(5.0F, 2.0F, 0.0F));
+        modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, 0.0F, -2.0F, 4.0F, 4.0F, 4.0F, new Dilation(0.56F)), ModelTransform.pivot(5.0F, 2.0F, 0.0F));
 
         modelPartData.addChild("right_leg", ModelPartBuilder.create(), ModelTransform.pivot(-1.9F, 12.0F, 0.0F));
 

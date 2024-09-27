@@ -9,7 +9,7 @@ import net.minecraft.registry.Registries;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.badge.BadgeModel;
-import net.uniego.aida.lobecorp.item.badge.badges.ControlBadge;
+import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.models.SuitModel;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
@@ -38,6 +38,15 @@ public class ModelInit {
         lobecorpItemModels.put(EGOSuit.CODE_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(ControlBadge.CONTROL_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(InformationBadge.INFORMATION_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(SecurityBadge.SECURITY_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(TrainingBadge.TRAINING_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(CentralCommandBadge.CENTRAL_COMMAND_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(WelfareBadge.WELFARE_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(DisciplinaryBadge.DISCIPLINARY_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(RecordBadge.RECORD_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(ExtractionBadge.EXTRACTION_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(ArchitectureBadge.ARCHITECTURE_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
     }
 
     //注册EGO武器模型
