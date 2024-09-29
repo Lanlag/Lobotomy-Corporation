@@ -15,6 +15,7 @@ public class LobeCorpMain implements ModInitializer {
         ItemGroupInit.register();
         ScreenInit.registerScreenHandler();
         ComponentInit.register();
+        EntityInit.register();
 
         NetworkInit.registerServer();
     }

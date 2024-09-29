@@ -1,6 +1,7 @@
 package net.uniego.aida.lobecorp.mixin;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -9,6 +10,7 @@ import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
+import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
@@ -84,5 +86,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
         thirstManager.setWaterLevel(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getWaterLevel());
         thirstManager.setHydrationLevel(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getHydrationLevel());
         thirstManager.setDesiccation(((ManagerAccess) oldPlayer).lobecorp$getThirstManager().getDesiccation());
+    }
+
+    //在玩家死亡时创建尸体
+    @Inject(method = "onDeath", at = @At("TAIL"))
+    private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
+        DeadPlayerEntity.create(serverPlayerEntity);
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
+import net.minecraft.text.Text;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
@@ -61,6 +62,14 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
             VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(id));
             modelPart.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
             matrices.pop();
+        }
+    }
+
+    //禁止尸体名字的渲染
+    @Inject(method = "renderLabelIfPresent(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/text/Text;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IF)V", at = @At("HEAD"), cancellable = true)
+    private void renderLabelIfPresentMixin(AbstractClientPlayerEntity abstractClientPlayerEntity, Text text, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, float f, CallbackInfo ci) {
+        if (!abstractClientPlayerEntity.shouldRenderName()) {
+            ci.cancel();
         }
     }
 }

@@ -11,6 +11,7 @@ public class LobeCorpClient implements ClientModInitializer {
         ScreenInit.registerScreen();
         KeyInit.register();
         ModelInit.register();
+        EntityRendererInit.register();
 
         NetworkInit.registerClient();
     }

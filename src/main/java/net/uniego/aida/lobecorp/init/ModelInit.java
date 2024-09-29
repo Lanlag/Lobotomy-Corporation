@@ -1,7 +1,5 @@
 package net.uniego.aida.lobecorp.init;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.entity.Entity;
@@ -20,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 //初始化模型
-@Environment(EnvType.CLIENT)
 public class ModelInit {
     private static final Map<LobeCorpItem, LobeCorpItemModel> lobecorpItemModels = new HashMap<>();
 
