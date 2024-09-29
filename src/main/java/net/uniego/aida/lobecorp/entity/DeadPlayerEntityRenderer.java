@@ -42,6 +42,11 @@ public class DeadPlayerEntityRenderer extends EntityRenderer<DeadPlayerEntity> {
                     public boolean shouldRenderName() {
                         return false;
                     }
+
+                    @Override
+                    public boolean isSpectator() {
+                        return false;
+                    }
                 };
                 clientPlayer.setPose(EntityPose.SLEEPING);
                 clientPlayer.prevHeadYaw = 25;

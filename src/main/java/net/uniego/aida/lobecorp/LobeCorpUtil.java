@@ -47,11 +47,6 @@ public class LobeCorpUtil {
         return new Identifier(LobeCorpMain.MOD_ID, id);
     }
 
-    //播放声音
-    public static void playSound(PlayerEntity player, SoundEvent soundEvent) {
-        player.getWorld().playSound(null, player.getBlockPos(), soundEvent, SoundCategory.PLAYERS, 1, 1);
-    }
-
     //获取物品属性名
     public static String getItemModifiersName(LobeCorpEquipmentSlot slot) {
         return "item.modifiers." + slot.getSlotName();
@@ -62,38 +57,24 @@ public class LobeCorpUtil {
         return "lobecorp.team." + team.getTeamId();
     }
 
+    //播放声音
+    public static void playSound(PlayerEntity player, SoundEvent soundEvent) {
+        player.getWorld().playSound(null, player.getBlockPos(), soundEvent, SoundCategory.PLAYERS, 1, 1);
+    }
+
     //创建EGO武器属性修饰符
     public static AttributeModifiersComponent createEGOWeaponAttributeModifiers(double attackDamage, double attackSpeed, double interactionRange) {
-        return AttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, egoWeaponModifier(Item.ATTACK_DAMAGE_MODIFIER_ID, attackDamage), AttributeModifierSlot.MAINHAND)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, egoWeaponModifier(Item.ATTACK_SPEED_MODIFIER_ID, attackSpeed), AttributeModifierSlot.MAINHAND)
-                .add(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND)
-                .add(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND)
-                .build();
+        return AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, egoWeaponModifier(Item.ATTACK_DAMAGE_MODIFIER_ID, attackDamage), AttributeModifierSlot.MAINHAND).add(EntityAttributes.GENERIC_ATTACK_SPEED, egoWeaponModifier(Item.ATTACK_SPEED_MODIFIER_ID, attackSpeed), AttributeModifierSlot.MAINHAND).add(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND).add(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE, egoWeaponModifier(EGOWeapon.INTERACTION_RANGE_MODIFIER_ID, interactionRange), AttributeModifierSlot.MAINHAND).build();
     }
 
     //创建EGO护甲属性修饰符
     public static LobeCorpAttributeModifiersComponent createEGOSuitAttributeModifiers(EGOLevel egoLevel, LobeCorpAttributeModifierSlot lobecorpSlot) {
-        return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier((egoLevel.getLevel()) * 6), lobecorpSlot)
-                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier((egoLevel.getLevel() - 1) * 5), lobecorpSlot)
-                .builder();
+        return LobeCorpAttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ARMOR, egoSuitModifier((egoLevel.getLevel()) * 6), lobecorpSlot).add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, egoSuitModifier((egoLevel.getLevel() - 1) * 5), lobecorpSlot).builder();
     }
 
     //创建EGO饰品属性修饰符
-    public static LobeCorpAttributeModifiersComponent createEGOGiftAttributeModifiers(double maxHealth, double maxSanity,
-                                                                                      double workSuccess, double workVelocity,
-                                                                                      double attackVelocity, double moveVelocity,
-                                                                                      UUID uuid,
-                                                                                      LobeCorpAttributeModifierSlot lobecorpSlot) {
-        return LobeCorpAttributeModifiersComponent.builder()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, egoGiftModifier(uuid, maxHealth), lobecorpSlot)
-                .add(AttributeInit.PLAYER_MAX_SANITY, egoGiftModifier(uuid, maxSanity), lobecorpSlot)
-                .add(AttributeInit.PLAYER_WORK_SUCCESS, egoGiftModifier(uuid, workSuccess), lobecorpSlot)
-                .add(AttributeInit.PLAYER_WORK_VELOCITY, egoGiftModifier(uuid, workVelocity), lobecorpSlot)
-                .add(AttributeInit.PLAYER_ATTACK_VELOCITY, egoGiftModifier(uuid, attackVelocity), lobecorpSlot)
-                .add(AttributeInit.PLAYER_MOVE_VELOCITY, egoGiftModifier(uuid, moveVelocity), lobecorpSlot)
-                .builder();
+    public static LobeCorpAttributeModifiersComponent createEGOGiftAttributeModifiers(double maxHealth, double maxSanity, double workSuccess, double workVelocity, double attackVelocity, double moveVelocity, UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot) {
+        return LobeCorpAttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_MAX_HEALTH, egoGiftModifier(uuid, maxHealth), lobecorpSlot).add(AttributeInit.PLAYER_MAX_SANITY, egoGiftModifier(uuid, maxSanity), lobecorpSlot).add(AttributeInit.PLAYER_WORK_SUCCESS, egoGiftModifier(uuid, workSuccess), lobecorpSlot).add(AttributeInit.PLAYER_WORK_VELOCITY, egoGiftModifier(uuid, workVelocity), lobecorpSlot).add(AttributeInit.PLAYER_ATTACK_VELOCITY, egoGiftModifier(uuid, attackVelocity), lobecorpSlot).add(AttributeInit.PLAYER_MOVE_VELOCITY, egoGiftModifier(uuid, moveVelocity), lobecorpSlot).builder();
     }
 
     //EGO武器修饰符
@@ -112,8 +93,7 @@ public class LobeCorpUtil {
     }
 
     //应用修饰符
-    public static void applyAttributeModifiers(LobeCorpEquipmentSlot slot, ItemStack itemStack,
-                                               BiConsumer<RegistryEntry<EntityAttribute>, EntityAttributeModifier> biConsumer) {
+    public static void applyAttributeModifiers(LobeCorpEquipmentSlot slot, ItemStack itemStack, BiConsumer<RegistryEntry<EntityAttribute>, EntityAttributeModifier> biConsumer) {
         LobeCorpAttributeModifiersComponent component = itemStack.getOrDefault(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpAttributeModifiersComponent.DEFAULT);
         if (!component.modifiers().isEmpty()) {
             component.applyModifiers(slot, biConsumer);
@@ -210,11 +190,7 @@ public class LobeCorpUtil {
 
     //EGO等级
     public enum EGOLevel {
-        ZAYIN(1, Formatting.GREEN),
-        TETH(2, Formatting.BLUE),
-        HE(3, Formatting.YELLOW),
-        WAW(4, Formatting.LIGHT_PURPLE),
-        ALEPH(5, Formatting.RED);
+        ZAYIN(1, Formatting.GREEN), TETH(2, Formatting.BLUE), HE(3, Formatting.YELLOW), WAW(4, Formatting.LIGHT_PURPLE), ALEPH(5, Formatting.RED);
 
         private final int level;
         private final Formatting color;

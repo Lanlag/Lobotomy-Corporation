@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.init.SoundInit;
 import net.uniego.aida.lobecorp.network.payload.SyncEquipmentPayload;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
@@ -55,7 +56,9 @@ public class SyncEquipmentPacket {
         for (LobeCorpEquipmentSlot slot : LobeCorpEquipmentSlot.values()) {
             ItemStack oldItemStack = getOrCreateStacks(serverPlayer.getUuid()).getOrDefault(slot, ItemStack.EMPTY);
             ItemStack newItemStack = LobeCorpUtil.getLobeCorpEquippedStack(serverPlayer, slot);
-            if (!serverPlayer.areItemsDifferent(oldItemStack, newItemStack)) continue;
+            if (serverPlayer.areItemsDifferent(oldItemStack, newItemStack)) {
+                LobeCorpUtil.playSound(serverPlayer, SoundInit.CHANGE_EQUIPMENT);
+            } else continue;
             if (enumMap == null) {
                 enumMap = new EnumMap<>(LobeCorpEquipmentSlot.class);
             }

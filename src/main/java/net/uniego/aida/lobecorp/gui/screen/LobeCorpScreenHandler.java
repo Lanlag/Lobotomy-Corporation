@@ -11,11 +11,9 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ScreenInit;
-import net.uniego.aida.lobecorp.init.SoundInit;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpSlot;
 import org.jetbrains.annotations.NotNull;
@@ -108,7 +106,6 @@ public class LobeCorpScreenHandler extends ScreenHandler {
                         if (!insertItem(slotStack, 36 + index, 37 + index, false)) {
                             return ItemStack.EMPTY;
                         }
-                        LobeCorpUtil.playSound(player, SoundInit.CHANGE_EQUIPMENT);
                     }
                 }
             } else if (slot >= 0 && slot < 27) {
@@ -117,9 +114,9 @@ public class LobeCorpScreenHandler extends ScreenHandler {
             } else if (slot >= 27 && slot < 36) {
                 if (!insertItem(slotStack, 0, 27, false)) return ItemStack.EMPTY;
             }
-            if (!insertItem(slotStack, 0, 36, false)) {
-                return ItemStack.EMPTY;
-            } else LobeCorpUtil.playSound(player, SoundInit.CHANGE_EQUIPMENT);
+            if (slot >= 36 && slot < 54) {
+                if (!insertItem(slotStack, 0, 36, false)) return ItemStack.EMPTY;
+            }
 
             if (slotStack.isEmpty()) invSlot.setStack(ItemStack.EMPTY);
             else invSlot.markDirty();
