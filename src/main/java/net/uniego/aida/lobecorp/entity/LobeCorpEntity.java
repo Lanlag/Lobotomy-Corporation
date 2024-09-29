@@ -8,7 +8,7 @@ import net.uniego.aida.lobecorp.access.ColorResistAccess;
 import net.uniego.aida.lobecorp.access.EGOLevelAccess;
 
 //脑叶公司实体
-public class LobeCorpEntity extends HostileEntity implements ColorResistAccess, EGOLevelAccess {
+public abstract class LobeCorpEntity extends HostileEntity implements ColorResistAccess, EGOLevelAccess {
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
     private final float whiteResist;
