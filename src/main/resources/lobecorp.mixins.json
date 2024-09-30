@@ -14,7 +14,8 @@
     "PlayerInventoryMixin",
     "PlayerManagerMixin",
     "PotionItemMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "ServerPlayerNetworkHandlerMixin"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",

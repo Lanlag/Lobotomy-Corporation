@@ -19,6 +19,7 @@ import net.uniego.aida.lobecorp.network.packet.SyncIconPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncOffsetPacket;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -46,6 +47,9 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
         super(world, pos, yaw, gameProfile);
     }
+
+    @Shadow
+    public abstract boolean isSpectator();
 
     @Override
     public void lobecorp$playerChangeDimension() {
@@ -91,6 +95,6 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     //在玩家死亡时创建尸体
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
-        DeadPlayerEntity.create(serverPlayerEntity);
+        if (!isSpectator()) DeadPlayerEntity.create(serverPlayerEntity);
     }
 }

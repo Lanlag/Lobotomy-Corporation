@@ -16,7 +16,7 @@ public class EntityInit {
             LobeCorpUtil.id("dead_player_entity"), net.minecraft.entity.EntityType.Builder.create(DeadPlayerEntity::new, SpawnGroup.MISC)
                     .dimensions(0.6F, 0.3F).build("dead_player_entity"));
 
-    public static final EntityType<DoubtEntity> DOUBT_ENTITY = registerOrdeal("doubt", DoubtEntity::new, 0.7F, 2.3F);
+    public static final EntityType<DoubtEntity> DOUBT_ENTITY = registerOrdeal("doubt", DoubtEntity::new, 0.6F, 2.4F);
 
     public static void register() {
         FabricDefaultAttributeRegistry.register(DOUBT_ENTITY, DoubtEntity.createAttributes());

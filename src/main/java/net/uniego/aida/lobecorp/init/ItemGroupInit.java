@@ -38,6 +38,7 @@ public class ItemGroupInit {
                 entries.add(RecordBadge.RECORD_BADGE);
                 entries.add(ExtractionBadge.EXTRACTION_BADGE);
                 entries.add(ArchitectureBadge.ARCHITECTURE_BADGE);
+                entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
     public static void register() {

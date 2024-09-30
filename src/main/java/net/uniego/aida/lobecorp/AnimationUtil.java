@@ -10,8 +10,9 @@ public class AnimationUtil {
         head.yaw = degreeToRadians(headYaw);
         head.pitch = degreeToRadians(headPitch);
     }
+
     //将角度转换为弧度
-    public static float degreeToRadians(float degree){
+    public static float degreeToRadians(float degree) {
         return degree * RADIANS_PER_DEGREE;
     }
 }

@@ -1,7 +1,13 @@
 package net.uniego.aida.lobecorp.entity;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ColorResistAccess;
@@ -23,6 +29,23 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
         this.whiteResist = whiteResist;
         this.blackResist = blackResist;
         this.paleResist = paleResist;
+    }
+
+    public static boolean tryColorAttack(LobeCorpEntity lobecorpEntity, Entity target, RegistryKey<DamageType> egoDamageType) {
+        float f = (float) lobecorpEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+        float g = (float) lobecorpEntity.getAttributeValue(EntityAttributes.GENERIC_ATTACK_KNOCKBACK);
+        boolean bl = target.damage(lobecorpEntity.getDamageSources().create(egoDamageType, lobecorpEntity), f);
+        if (bl) {
+            if (g > 0.0F && target instanceof LivingEntity) {
+                ((LivingEntity) target).takeKnockback(g * 0.5F,
+                        MathHelper.sin(lobecorpEntity.getYaw() * 0.017453292F),
+                        -MathHelper.cos(lobecorpEntity.getYaw() * 0.017453292F));
+                lobecorpEntity.setVelocity(lobecorpEntity.getVelocity().multiply(0.6, 1.0, 0.6));
+            }
+            lobecorpEntity.applyDamageEffects(lobecorpEntity, target);
+            lobecorpEntity.onAttacking(target);
+        }
+        return bl;
     }
 
     @Override

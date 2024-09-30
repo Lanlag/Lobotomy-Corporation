@@ -81,7 +81,7 @@ public class DeadPlayerEntity extends Entity {
     @Override
     protected Box calculateBoundingBox() {
         Box box = super.calculateBoundingBox();
-        return new Box(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ).expand(0.6, 0.0, 0.2);
+        return new Box(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ).expand(0.6, 0.0, 0.0);
     }
 
     @Override
@@ -91,14 +91,21 @@ public class DeadPlayerEntity extends Entity {
 
     @Override
     public void tick() {
+        //零点之时再丢弃
+        if (getWorld().getTimeOfDay() % 24000 == 0) {
+            discard();
+            return;
+        }
         ++timeFalling;
         applyGravity();
         move(MovementType.SELF, getVelocity());
         if (!getWorld().isClient) {
             BlockPos blockPos = getBlockPos();
             if (!isOnGround()) {
+                //下落时间大于5秒且超出了世界边界，或者下落时间大于30秒丢弃
                 if (timeFalling > 100 && (blockPos.getY() <= getWorld().getBottomY() || blockPos.getY() > getWorld().getTopY()) || timeFalling > 600) {
                     discard();
+                    return;
                 }
                 hasPlayedSound = false;
             } else {

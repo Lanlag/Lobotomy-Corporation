@@ -44,6 +44,7 @@ public class ModelInit {
         lobecorpItemModels.put(RecordBadge.RECORD_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(ExtractionBadge.EXTRACTION_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(ArchitectureBadge.ARCHITECTURE_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.FLESH_BOUND_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
     }
 
     //注册EGO武器模型

@@ -78,6 +78,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(RecordBadge.RECORD_BADGE, "Record Badge");
         translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "Extraction Badge");
         translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "Architecture Badge");
+        translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
         //声音名
@@ -158,5 +159,9 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.RECORD_TEAM), "[Record Team]");
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.EXTRACTION_TEAM), "[Extraction Team]");
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[Architecture Team]");
+        //脑叶公司实体名
+        translationBuilder.add(EntityInit.DEAD_PLAYER_ENTITY, "Corpse");
+        //考验名
+        translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }
 }

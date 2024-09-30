@@ -78,6 +78,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(RecordBadge.RECORD_BADGE, "记录部袖标");
         translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "研发部袖标");
         translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "构筑部袖标");
+        translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "血肉契约");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
         //声音名
@@ -158,5 +159,9 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.RECORD_TEAM), "[记录部]");
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.EXTRACTION_TEAM), "[研发部]");
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[构筑部]");
+        //脑叶公司实体名
+        translationBuilder.add(EntityInit.DEAD_PLAYER_ENTITY, "死尸");
+        //考验名
+        translationBuilder.add(EntityInit.DOUBT_ENTITY, "疑问");
     }
 }

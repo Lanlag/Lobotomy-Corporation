@@ -28,6 +28,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
     private final ModelPart gear3;
     private final ModelPart cloth2;
     private final ModelPart gear2;
+
     public DoubtEntityModel(ModelPart root) {
         this.doubt = root.getChild("doubt");
         this.waist = doubt.getChild("waist");
@@ -49,6 +50,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         this.cloth2 = b1.getChild("cloth2");
         this.gear2 = b1.getChild("gear2");
     }
+
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -153,6 +155,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         ModelPartData gear2 = b1.addChild("gear2", ModelPartBuilder.create().uv(12, 54).cuboid(0.0F, -3.0F, -3.0F, 0.0F, 6.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(1.0F, -4.0F, 3.0F));
         return TexturedModelData.of(modelData, 128, 128);
     }
+
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
         doubt.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
@@ -161,12 +164,12 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
     @Override
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
-        AnimationUtil.rotateHead(headYaw,headPitch,head);
-        setGearsAngle(limbAngle,limbDistance);
-        walkAnimation(limbAngle,limbDistance,0.6F);
+        AnimationUtil.rotateHead(headYaw, headPitch, head);
+        setGearsAngle(limbAngle, limbDistance);
+        walkAnimation(limbAngle, limbDistance, 0.6F);
     }
 
-    public void setDefaultPose(){
+    public void setDefaultPose() {
         waist.pitch = 0;
         body.yaw = 0;
         body.pitch = AnimationUtil.degreeToRadians(12.5F);
@@ -183,18 +186,18 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         ll3.pitch = AnimationUtil.degreeToRadians(-67.5F);
     }
 
-    public void setGearsAngle(float limbAngle,float limbDistance){
+    public void setGearsAngle(float limbAngle, float limbDistance) {
         gear1.pitch -= AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * -0.7F) * limbDistance;
         gear2.pitch += AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance;
         gear3.pitch += AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * 0.1F - 60) * limbDistance;
     }
 
-    public void walkAnimation(float limbAngle, float limbDistance, float speed){
-        float amplitude = (float)MathHelper.clamp(limbDistance,0,0.33);
-        amplitude = (float)(amplitude * (1 / 0.31));
+    public void walkAnimation(float limbAngle, float limbDistance, float speed) {
+        float amplitude = (float) MathHelper.clamp(limbDistance, 0, 0.33);
+        amplitude = (float) (amplitude * (1 / 0.31));
         float i = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed) * 5F) * amplitude;
         float j = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * 25F - 25F) * amplitude;
-        float k = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * -25F + 22.5F ) * amplitude;
+        float k = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * -25F + 22.5F) * amplitude;
 
         float l = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * -15F + 15F) * amplitude;
         float m = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * 15F + 2.5F) * amplitude;
@@ -211,7 +214,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
 
         doubt.pivotZ = 0;
         doubt.pivotY = 16;
-        doubt.pivotY += (MathHelper.sin(limbAngle * 2 * speed) -0.5F) * amplitude;
+        doubt.pivotY += (MathHelper.sin(limbAngle * 2 * speed) - 0.5F) * amplitude;
         doubt.pivotZ -= (MathHelper.sin(limbAngle * 2 * speed) * 2 - 1F) * amplitude;
 
         waist.pitch += q;

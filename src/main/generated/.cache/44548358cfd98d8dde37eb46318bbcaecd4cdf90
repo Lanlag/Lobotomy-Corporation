@@ -1,4 +1,4 @@
-// 1.20.6	2024-09-27T11:22:00.9550206	Lobotomy Corporation/Model Definitions
+// 1.20.6	2024-09-30T22:44:36.2512014	Lobotomy Corporation/Model Definitions
 de8cb4e851decae6059603129c4f105a60f17328 assets\lobecorp\models\item\architecture_badge.json
 5eefa8faa1c7498fe342790430a2a59edd139eb7 assets\lobecorp\models\item\extraction_badge.json
 803352a1aa5c02e6ff055bbbad0d6d4393c9de41 assets\lobecorp\models\item\welfare_badge.json
@@ -6,6 +6,7 @@ f5e80c5c0be0883038011bd14f5185b984247cb4 assets\lobecorp\models\item\control_bad
 3a2410238bddd75d306d47f17de4bd3226e26deb assets\lobecorp\models\item\information_badge.json
 f0fd487d28bde73e5df86b21c4a71fb63419cf4c assets\lobecorp\models\item\security_badge.json
 c8ef52728427c18fd51c25faead489b1111870b3 assets\lobecorp\models\item\record_badge.json
+2e9d0310526c5bb9834ca22ab3f71edd4cd71448 assets\lobecorp\models\item\flesh_bound_suit.json
 656930bc723061d87a50a9d3c28d58b112edf559 assets\lobecorp\models\item\standard_suit.json
 bb5bb1d80151ddc098e9e8ee4ee9bbe376f3c73a assets\lobecorp\models\item\lobecorp_logo.json
 a0b244d215171bf7a46747da8be58490dd1f98ea assets\lobecorp\models\item\blue_leaf.json

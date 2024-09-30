@@ -31,7 +31,7 @@ public class DeadPlayerEntityRenderer extends EntityRenderer<DeadPlayerEntity> {
         if (playerUuid.isPresent()) {
             UUID uuid = playerUuid.get();
             matrices.push();
-            matrices.translate(1.0, 0.0, 0.0);
+            matrices.translate(1.0, 0.1, 0.0);
             if (client.world != null) {
                 ClientPlayerEntity clientPlayer = new ClientPlayerEntity(client, client.world,
                         new ClientPlayNetworkHandler(client, new ClientConnection(NetworkSide.CLIENTBOUND),
@@ -49,8 +49,8 @@ public class DeadPlayerEntityRenderer extends EntityRenderer<DeadPlayerEntity> {
                     }
                 };
                 clientPlayer.setPose(EntityPose.SLEEPING);
-                clientPlayer.prevHeadYaw = 25;
-                clientPlayer.setHeadYaw(25);
+                clientPlayer.prevHeadYaw = 65;
+                clientPlayer.setHeadYaw(65);
                 clientPlayer.setUuid(uuid);
 
                 client.getEntityRenderDispatcher().getRenderer(clientPlayer).render(clientPlayer, 0, tickDelta, matrices, vertexConsumers, light);

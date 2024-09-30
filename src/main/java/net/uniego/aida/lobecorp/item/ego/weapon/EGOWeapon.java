@@ -48,29 +48,30 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     private final LevelManager.LobeCorpLevel requireP;
     private final LevelManager.LobeCorpLevel requireT;
     private final LevelManager.LobeCorpLevel requireJ;
+    private final LevelManager.LobeCorpLevel requireTotal;
 
     public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
         this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "",
-                LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
+                LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
-                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ);
+                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ, requireTotal);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
         this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "",
-                LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
+                LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
-                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ);
+                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ, requireTotal);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, String egoSkill,
-                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ) {
+                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
         super(new Settings().rarity(rarity).component(DataComponentTypes.ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOWeaponAttributeModifiers
                 (attackDamage, -egoWeaponTemplate.attackSpeed, egoWeaponTemplate.interactionRange - 3)), LobeCorpAttributeModifierSlot.LOBECORP_WEAPON, egoSkill);
         this.egoLevel = egoLevel;
@@ -80,6 +81,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
         this.requireP = requireP;
         this.requireT = requireT;
         this.requireJ = requireJ;
+        this.requireTotal = requireTotal;
     }
 
     public static void register() {
@@ -127,6 +129,8 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
         } else {
             //装备要求
             tooltip.add(Text.translatable(TOOLTIP_EGO_EQUIP_REQUIRE).formatted(Formatting.GRAY));
+            //总等级
+            tooltip.add(Text.translatable(GUIResource.STAFF_LEVEL).append(Text.literal(getTotalRequire().getLevel())).formatted(Formatting.GOLD));
             //勇气等级和谨慎等级
             tooltip.add(Text.translatable(GUIResource.STAFF_FORTITUDE).append(Text.literal(getFortitudeRequire().getLevel())).formatted(Formatting.DARK_RED).append("   ")
                     .append(Text.translatable(GUIResource.STAFF_PRUDENCE).append(Text.literal(getPrudenceRequire().getLevel())).formatted(Formatting.WHITE)));
@@ -155,6 +159,11 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     @Override
     public LevelManager.LobeCorpLevel getJusticeRequire() {
         return requireJ;
+    }
+
+    @Override
+    public LevelManager.LobeCorpLevel getTotalRequire() {
+        return requireTotal;
     }
 
     //EGO武器模板

@@ -239,6 +239,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements ManagerA
             }
             //如果受击者陷入恐慌
             if (sanityManager.isCrazy()) {
+                if (sanityManager.isShouldKill()) setHealth(getHealth() - sanityF);
                 //如果攻击者是玩家且攻击者没有陷入恐慌状态
                 if (attacker instanceof PlayerEntity player && !((ManagerAccess) player).lobecorp$getSanityManager().isCrazy()) {
                     sanityManager.setSanity(sanityManager.getSanity() + (whiteResist > 0 ? sanityF : -sanityF));

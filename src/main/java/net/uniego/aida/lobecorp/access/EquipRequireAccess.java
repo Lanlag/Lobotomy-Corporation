@@ -11,4 +11,6 @@ public interface EquipRequireAccess {
     LevelManager.LobeCorpLevel getTemperanceRequire();//获取自律要求
 
     LevelManager.LobeCorpLevel getJusticeRequire();//获取正义要求
+
+    LevelManager.LobeCorpLevel getTotalRequire();//获取总要求
 }

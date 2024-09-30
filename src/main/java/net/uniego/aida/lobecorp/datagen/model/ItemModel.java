@@ -38,5 +38,6 @@ public class ItemModel extends FabricModelProvider {
         itemModelGenerator.register(RecordBadge.RECORD_BADGE, Models.GENERATED);
         itemModelGenerator.register(ExtractionBadge.EXTRACTION_BADGE, Models.GENERATED);
         itemModelGenerator.register(ArchitectureBadge.ARCHITECTURE_BADGE, Models.GENERATED);
+        itemModelGenerator.register(EGOSuit.FLESH_BOUND_SUIT, Models.GENERATED);
     }
 }

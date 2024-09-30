@@ -11,6 +11,7 @@ public class SanityManager {
     private float sanity = 20.0F;
     private float assimilationAmount = 0.0F;
     private boolean isCrazy;
+    private boolean shouldKill;
     private int sanityTickTimer;
 
     public SanityManager(PlayerEntity player) {
@@ -40,7 +41,7 @@ public class SanityManager {
         return isCrazy;
     }
 
-    //恐慌状态（暂定空白）
+    //恐慌状态
     public void panicState() {
         if (!player.getAbilities().invulnerable) {
             if (isCrazy()) {
@@ -89,5 +90,13 @@ public class SanityManager {
 
     public void setAssimilationAmountUnclamped(float assimilationAmount) {
         this.assimilationAmount = assimilationAmount;
+    }
+
+    public boolean isShouldKill() {
+        return shouldKill;
+    }
+
+    public void setShouldKill(boolean shouldKill) {
+        this.shouldKill = shouldKill;
     }
 }

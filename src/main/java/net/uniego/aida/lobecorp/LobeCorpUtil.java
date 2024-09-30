@@ -134,25 +134,28 @@ public class LobeCorpUtil {
             int playerPrudence = levelManager.getLevelP().getValue();
             int playerTemperance = levelManager.getLevelT().getValue();
             int playerJustice = levelManager.getLevelJ().getValue();
+            int playerTotal = levelManager.getTotalLevel().getValue();
             //获取物品装备等级要求
             int requireFortitude = equipRequireItem.getFortitudeRequire().getValue();
             int requirePrudence = equipRequireItem.getPrudenceRequire().getValue();
             int requireTemperance = equipRequireItem.getTemperanceRequire().getValue();
             int requireJustice = equipRequireItem.getJusticeRequire().getValue();
+            int requireTotal = equipRequireItem.getTotalRequire().getValue();
             //进行比较
             boolean isFortitudeEnough = playerFortitude >= requireFortitude;
             boolean isPrudenceEnough = playerPrudence >= requirePrudence;
             boolean isTemperanceEnough = playerTemperance >= requireTemperance;
             boolean isJusticeEnough = playerJustice >= requireJustice;
+            boolean isTotalEnough = playerTotal >= requireTotal;
 
-            return !isFortitudeEnough || !isPrudenceEnough || !isTemperanceEnough || !isJusticeEnough;
+            return !isFortitudeEnough || !isPrudenceEnough || !isTemperanceEnough || !isJusticeEnough || !isTotalEnough;
         }
         return false;
     }
 
     //检查EGO武器
     public static void checkEGOWeapon(PlayerEntity player, ItemStack itemStack) {
-        if (itemStack.getItem() instanceof EGOWeapon egoWeapon && cantEquipped(player, egoWeapon)) {
+        if (itemStack.getItem() instanceof EGOWeapon egoWeapon && cantEquipped(player, egoWeapon) && !(player.isCreative() || player.isSpectator())) {
             if (itemStack.isIn(TagInit.RED_EGO_WEAPONS)) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
                 new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.RED, player), egoWeapon.getAttackDamage()));
@@ -172,7 +175,7 @@ public class LobeCorpUtil {
     //检查EGO护甲
     public static void checkEGOSuit(PlayerEntity player) {
         ItemStack itemStack = getLobeCorpEquippedStack(player, LobeCorpEquipmentSlot.LOBECORP_SUIT_SLOT);
-        if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit)) {
+        if (itemStack.getItem() instanceof EGOSuit egoSuit && cantEquipped(player, egoSuit) && !(player.isCreative() || player.isSpectator())) {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200));
             new DelayedTask(200, player, itemStack, () -> player.damage(noKnockBackDamageSource(DamageInit.BLACK, player), egoSuit.getEGOLevel().getLevel()));
         }
@@ -186,6 +189,11 @@ public class LobeCorpUtil {
                 return tag == DamageTypeTags.NO_KNOCKBACK || super.isIn(tag);
             }
         };
+    }
+
+    //用于玩家陷入疯狂后，因为精神崩溃而死的伤害
+    public static void sanityKill(PlayerEntity player) {
+        player.damage(player.getDamageSources().create(DamageInit.WHITE, player), Float.MAX_VALUE);
     }
 
     //EGO等级
