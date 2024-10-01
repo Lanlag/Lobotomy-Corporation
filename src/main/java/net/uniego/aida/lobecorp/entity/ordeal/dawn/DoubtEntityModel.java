@@ -1,5 +1,7 @@
 package net.uniego.aida.lobecorp.entity.ordeal.dawn;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -8,6 +10,7 @@ import net.minecraft.util.math.MathHelper;
 import net.uniego.aida.lobecorp.AnimationUtil;
 
 //疑问实体模型
+@Environment(EnvType.CLIENT)
 public class DoubtEntityModel extends EntityModel<DoubtEntity> {
     private final ModelPart doubt;
     private final ModelPart waist;
@@ -166,7 +169,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         setDefaultPose();
         AnimationUtil.rotateHead(headYaw, headPitch, head);
         setGearsAngle(limbAngle, limbDistance);
-        walkAnimation(limbAngle, limbDistance, 0.6F);
+        walkAnimation(limbAngle, limbDistance, 1.0F);
     }
 
     public void setDefaultPose() {

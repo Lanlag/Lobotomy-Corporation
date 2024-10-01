@@ -34,7 +34,7 @@ public class DeadPlayerEntity extends Entity {
         super(type, world);
     }
 
-    public static void create(ServerPlayerEntity serverPlayer) {
+    public static DeadPlayerEntity create(ServerPlayerEntity serverPlayer) {
         DeadPlayerEntity deadPlayer = new DeadPlayerEntity(EntityInit.DEAD_PLAYER_ENTITY, serverPlayer.getWorld());
         deadPlayer.setPos(serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ());
         deadPlayer.setRotation(0, -25);//yaw是水平，pitch是垂直
@@ -42,6 +42,7 @@ public class DeadPlayerEntity extends Entity {
         deadPlayer.resetPosition();
         deadPlayer.refreshPosition();
         serverPlayer.getWorld().spawnEntity(deadPlayer);
+        return deadPlayer;
     }
 
     public Optional<UUID> getPlayerUuid() {

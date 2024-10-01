@@ -42,6 +42,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     @Unique
     private boolean playerChangeDimension = false;
     @Unique
+    private DeadPlayerEntity deadPlayer = null;
+    @Unique
     private ItemStack syncedBadgeItemStack = ItemStack.EMPTY;
 
     public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
@@ -54,6 +56,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     @Override
     public void lobecorp$playerChangeDimension() {
         playerChangeDimension = true;
+    }
+
+    @Override
+    public DeadPlayerEntity lobecorp$getDeadPlayer() {
+        return deadPlayer;
     }
 
     //实时同步玩家饱水度和脱水度，饱食度和消耗度，以及玩家装饰等机制
@@ -95,6 +102,6 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     //在玩家死亡时创建尸体
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void onDeathMixin(DamageSource damageSource, CallbackInfo ci) {
-        if (!isSpectator()) DeadPlayerEntity.create(serverPlayerEntity);
+        if (!isSpectator()) deadPlayer = DeadPlayerEntity.create(serverPlayerEntity);
     }
 }

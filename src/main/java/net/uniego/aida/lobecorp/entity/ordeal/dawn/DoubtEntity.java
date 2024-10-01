@@ -10,6 +10,8 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
+import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
 import net.uniego.aida.lobecorp.entity.ordeal.OrdealEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
@@ -38,6 +40,13 @@ public class DoubtEntity extends OrdealEntity {
 
     @Override
     public boolean tryAttack(Entity target) {
-        return tryColorAttack(this, target, DamageInit.RED);
+        boolean result = tryColorAttack(this, target, DamageInit.RED);
+        if (result && target instanceof PlayerEntity player) {
+            if (player.isDead()) {
+                DeadPlayerEntity deadPlayer = ((ServerPlayerAccess) player).lobecorp$getDeadPlayer();
+                deadPlayer.discard();
+            }
+        }
+        return result;
     }
 }

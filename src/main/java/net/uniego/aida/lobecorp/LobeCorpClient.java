@@ -12,6 +12,7 @@ public class LobeCorpClient implements ClientModInitializer {
         KeyInit.register();
         ModelInit.register();
         EntityRendererInit.register();
+        ParticleInit.registerClient();
 
         NetworkInit.registerClient();
     }
