@@ -169,7 +169,7 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         setDefaultPose();
         AnimationUtil.rotateHead(headYaw, headPitch, head);
         setGearsAngle(limbAngle, limbDistance);
-        walkAnimation(limbAngle, limbDistance, 1.0F);
+        walkAnimation(limbAngle, limbDistance, 0.8F);
     }
 
     public void setDefaultPose() {

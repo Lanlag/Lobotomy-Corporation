@@ -23,6 +23,7 @@ public class DoubtEntity extends OrdealEntity {
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 128.0F)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0F)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2F)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
@@ -31,11 +32,12 @@ public class DoubtEntity extends OrdealEntity {
 
     @Override
     protected void initGoals() {
-        goalSelector.add(7, new WanderAroundFarGoal(this, 1.0));
-        goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        goalSelector.add(4, new MeleeAttackGoal(this, 1.0, false));
-        targetSelector.add(1, (new RevengeGoal(this)));
-        targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, true));
+        goalSelector.add(8, new LookAroundGoal(this));
+        goalSelector.add(7, new LookAtEntityGoal(this, LivingEntity.class, 16.0F));
+        goalSelector.add(6, new WanderAroundFarGoal(this, 1.0F));
+        goalSelector.add(5, new MeleeAttackGoal(this, 1.2F, false));
+        targetSelector.add(1, new RevengeGoal(this));
+        targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, 10, true, true, GREEN_ATTACK_TARGET_PREDICATE));
     }
 
     @Override

@@ -72,4 +72,9 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
     public LobeCorpUtil.EGOLevel getEGOLevel() {
         return egoLevel;
     }
+
+    @Override
+    public boolean isPersistent() {
+        return true;
+    }
 }
