@@ -77,4 +77,14 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
     public boolean isPersistent() {
         return true;
     }
+
+    public void startAttackAction(){
+    }
+
+    public void stopAttackAction(){
+    }
+
+    public boolean isInAttackBox(LivingEntity target){
+        return isInAttackRange(target);
+    }
 }

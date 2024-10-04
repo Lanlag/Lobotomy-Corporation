@@ -4,14 +4,17 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.render.entity.animation.*;
+import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.uniego.aida.lobecorp.AnimationUtil;
+import org.joml.Vector3f;
 
 //疑问实体模型
 @Environment(EnvType.CLIENT)
-public class DoubtEntityModel extends EntityModel<DoubtEntity> {
+public class DoubtEntityModel extends SinglePartEntityModel<DoubtEntity> {
+    private static final Vector3f TEMP = new Vector3f();
     private final ModelPart doubt;
     private final ModelPart waist;
     private final ModelPart leftLeg;
@@ -165,11 +168,17 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
     }
 
     @Override
+    public ModelPart getPart() {
+        return doubt;
+    }
+
+    @Override
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
         AnimationUtil.rotateHead(headYaw, headPitch, head);
         setGearsAngle(limbAngle, limbDistance);
         walkAnimation(limbAngle, limbDistance, 0.8F);
+        this.updateAnimation(entity.attackingAnimationState, ATTACK, animationProgress);
     }
 
     public void setDefaultPose() {
@@ -235,4 +244,25 @@ public class DoubtEntityModel extends EntityModel<DoubtEntity> {
         cloth1.pitch += s;
         cloth2.pitch += t;
     }
+
+    public static final Animation ATTACK = Animation.Builder.create(1.0F)
+            .addBoneAnimation("body", new Transformation(Transformation.Targets.ROTATE,
+                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.24F, AnimationHelper.createRotationalVector(0.0F, -10.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.48F, AnimationHelper.createRotationalVector(10.0F, 20.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
+            ))
+            .addBoneAnimation("leftArm", new Transformation(Transformation.Targets.ROTATE,
+                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.16F, AnimationHelper.createRotationalVector(35.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.32F, AnimationHelper.createRotationalVector(-90.55F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
+            ))
+            .addBoneAnimation("la2", new Transformation(Transformation.Targets.ROTATE,
+                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.16F, AnimationHelper.createRotationalVector(-52.5F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(0.32F, AnimationHelper.createRotationalVector(52.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
+                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
+            ))
+            .build();
 }
