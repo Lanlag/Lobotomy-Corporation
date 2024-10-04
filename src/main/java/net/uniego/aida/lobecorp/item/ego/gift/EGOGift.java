@@ -5,6 +5,7 @@ import net.minecraft.registry.Registry;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
 import java.util.UUID;
@@ -31,6 +32,7 @@ public class EGOGift extends EGOItem {
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_gift"), STANDARD_TRAINING_EGO_GIFT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_gift"), PenitenceGift.PENITENCE_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bless_gift"), BLESS_GIFT);
     }
 }

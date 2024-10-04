@@ -90,6 +90,29 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     private boolean isRespawned;//是否重生成功
 
     protected AbnormalityEntity(EntityType<? extends HostileEntity> entityType, World world, LobeCorpUtil.EGOLevel egoLevel,
+                                String number, int eBox, int cooldownTime, float baseWorkSpeed, RegistryKey<DamageType> damageTypeRegistryKey,
+                                int goodMoodMin, int goodMoodMax, int normalMoodMin, int normalMoodMax, int badMoodMin, int badMoodMax) {
+        super(entityType, world, egoLevel, 0.0F, 0.0F, 0.0F, 0.0F);
+        this.number = number;
+        this.eBox = eBox;
+        this.maxQliphothCounter = -1;
+        this.qliphothCounter = -1;
+        this.cooldownTime = cooldownTime;
+        this.baseWorkSpeed = baseWorkSpeed;
+        this.damageTypeRegistryKey = damageTypeRegistryKey;
+        this.goodMoodMin = goodMoodMin;
+        this.goodMoodMax = goodMoodMax;
+        this.normalMoodMin = normalMoodMin;
+        this.normalMoodMax = normalMoodMax;
+        this.badMoodMin = badMoodMin;
+        this.badMoodMax = badMoodMax;
+        workProbabilities = new HashMap<>();
+        setWorkProbabilities();
+        levelOutputValues = new HashMap<>();
+        setLevelOutputValues();
+    }
+
+    protected AbnormalityEntity(EntityType<? extends HostileEntity> entityType, World world, LobeCorpUtil.EGOLevel egoLevel,
                                 float redResist, float whiteResist, float blackResist, float paleResist, String number,
                                 int eBox, int maxQliphothCounter, int cooldownTime, float baseWorkSpeed, RegistryKey<DamageType> damageTypeRegistryKey,
                                 int goodMoodMin, int goodMoodMax, int normalMoodMin, int normalMoodMax, int badMoodMin, int badMoodMax) {
@@ -201,8 +224,10 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
             isSpawned = true;
         }
         work();
-        manage();
-        escape();
+        if (!getWorld().isClient) {
+            manage();
+            escape();
+        }
     }
 
     private void work() {
@@ -464,6 +489,10 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
             }
         }
         return probability;
+    }
+
+    public void setExtraProbability(float extraProbability) {
+        this.extraProbability += extraProbability;
     }
 
     public void setWorkLevel(String workMethod) {

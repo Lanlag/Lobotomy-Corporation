@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lobecorp:item/one_sin_and_hundreds_of_good_deeds_egg"
+  }
+}

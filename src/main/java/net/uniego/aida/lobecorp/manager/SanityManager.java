@@ -20,7 +20,7 @@ public class SanityManager {
 
     public void cure(float amount) {
         float f = getSanity();
-        if (f > 0.0F) {
+        if (f > 0.0F && isNormal()) {
             setSanity(f + amount);
         }
     }

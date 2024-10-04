@@ -33,6 +33,7 @@ import java.util.Objects;
 //异想体生成蛋
 public class AbnormalitySpawnEgg extends LobeCorpItem {
     public static final AbnormalitySpawnEgg STANDARD_TRAINING_DUMMY_RABBIT_EGG = new AbnormalitySpawnEgg(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY);
+    public static final AbnormalitySpawnEgg ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG = new AbnormalitySpawnEgg(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY);
     private static final MapCodec<EntityType<?>> ENTITY_TYPE_MAP_CODEC;
 
     static {
@@ -48,6 +49,7 @@ public class AbnormalitySpawnEgg extends LobeCorpItem {
 
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_dummy_rabbit_egg"), STANDARD_TRAINING_DUMMY_RABBIT_EGG);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("one_sin_and_hundreds_of_good_deeds_egg"), ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG);
     }
 
     @Override
