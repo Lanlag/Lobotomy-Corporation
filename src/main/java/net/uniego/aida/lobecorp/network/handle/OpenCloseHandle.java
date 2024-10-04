@@ -16,13 +16,13 @@ public class OpenCloseHandle {
         ServerPlayNetworking.registerGlobalReceiver(OpenClosePayload.ID, (payload, context) -> context.server().execute(() ->
                 context.player().openHandledScreen(new NamedScreenHandlerFactory() {
                     @Override
-                    public @NotNull ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-                        return new LobeCorpScreenHandler(syncId, playerInventory);
+                    public Text getDisplayName() {
+                        return Text.translatable(ScreenInit.CONTAINER_EQUIPMENT);
                     }
 
                     @Override
-                    public Text getDisplayName() {
-                        return Text.translatable(ScreenInit.CONTAINER_EQUIPMENT);
+                    public @NotNull ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+                        return new LobeCorpScreenHandler(syncId, playerInventory);
                     }
                 })));
     }

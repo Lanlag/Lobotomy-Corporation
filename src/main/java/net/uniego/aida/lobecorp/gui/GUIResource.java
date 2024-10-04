@@ -14,6 +14,10 @@ public class GUIResource {
     public static final Identifier LOBECORP_ICONS = LobeCorpUtil.id("textures/gui/lobecorp_icons.png");
     //脑叶公司屏幕贴图
     public static final Identifier LOBECORP_INVENTORY = LobeCorpUtil.id("textures/gui/container/lobecorp_inventory.png");
+    //工作屏幕贴图
+    public static final Identifier WORK_INVENTORY = LobeCorpUtil.id("textures/gui/container/work_inventory.png");
+    //盒子屏幕贴图
+    public static final Identifier BOX_INVENTORY = LobeCorpUtil.id("textures/gui/container/box_inventory.png");
     //饰品屏幕贴图
     public static final Identifier GIFT_INVENTORY = LobeCorpUtil.id("textures/gui/container/gift_inventory.png");
     //EGO饰品按钮
@@ -57,6 +61,9 @@ public class GUIResource {
     public static final int INSANE = 0x270E40;//狂乱颜色
     public static final int SANITY = 0x005BC2;//精神条以及精神字体颜色
     public static final int SHIELD = 0xD4AF37;//力场盾颜色
+    //盒子条
+    public static final int NE_BOX = 0x5B5A39;//NE-BOX颜色
+    public static final int PE_BOX = 0xFFFFA1;//PE-BOX颜色
 
     //HUD元素类型名
     public static final String AIR_ELEMENT = "air_element";//玩家氧气条

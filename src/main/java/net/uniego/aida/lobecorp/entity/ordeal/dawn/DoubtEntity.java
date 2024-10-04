@@ -30,9 +30,9 @@ import java.util.function.IntFunction;
 
 //疑问实体
 public class DoubtEntity extends OrdealEntity {
-    public AnimationState attackingAnimationState = new AnimationState();
     public static final TrackedDataHandler<DoubtEntity.State> DOUBT_STATE = TrackedDataHandler.create(DoubtEntity.State.PACKET_CODEC);
     private static final TrackedData<DoubtEntity.State> STATE = DataTracker.registerData(DoubtEntity.class, DOUBT_STATE);
+    public AnimationState attackingAnimationState = new AnimationState();
 
     public DoubtEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH, 0.8F, 1.3F, 2.0F, 1.0F);
@@ -59,48 +59,47 @@ public class DoubtEntity extends OrdealEntity {
         goalSelector.add(8, new LookAroundGoal(this));
         goalSelector.add(7, new LookAtEntityGoal(this, LivingEntity.class, 16.0F));
         goalSelector.add(6, new WanderAroundFarGoal(this, 1.0F));
-        goalSelector.add(4, new MeleeAttackWithPreActionGoal<>(this,1.0,false,0.32F,1.0F,0.5F));
+        goalSelector.add(5, new MeleeAttackWithPreActionGoal<>(this, 1.2F, false, 0.32F, 1.0F, 0.5F));
         targetSelector.add(1, new RevengeGoal(this));
-        targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, 10, true, true, GREEN_ATTACK_TARGET_PREDICATE));
+        targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, 10, true, true, GREEN_ORDEAL_ATTACK_TARGET_PREDICATE));
     }
 
     private DoubtEntity.State getState() {
-        return this.dataTracker.get(STATE);
+        return dataTracker.get(STATE);
     }
 
-    private DoubtEntity setState(DoubtEntity.State state) {
-        this.dataTracker.set(STATE, state);
-        return this;
+    private void setState(State state) {
+        dataTracker.set(STATE, state);
     }
 
     @Override
     public void onTrackedDataSet(TrackedData<?> data) {
         if (STATE.equals(data)) {
-            DoubtEntity.State state = this.getState();
-            this.stopAnimations();
+            DoubtEntity.State state = getState();
+            stopAnimations();
             switch (state) {
                 case ATTACKING:
-                    this.attackingAnimationState.startIfNotRunning(this.age);
+                    attackingAnimationState.startIfNotRunning(age);
                     break;
             }
 
-            this.calculateDimensions();
+            calculateDimensions();
         }
 
         super.onTrackedDataSet(data);
     }
 
     private void stopAnimations() {
-        this.attackingAnimationState.stop();
+        attackingAnimationState.stop();
     }
 
     public DoubtEntity startState(DoubtEntity.State state) {
         switch (state) {
             case IDLING:
-                this.setState(DoubtEntity.State.IDLING);
+                setState(DoubtEntity.State.IDLING);
                 break;
             case ATTACKING:
-                this.setState(State.ATTACKING);
+                setState(State.ATTACKING);
                 break;
         }
 
@@ -112,34 +111,34 @@ public class DoubtEntity extends OrdealEntity {
         super.tick();
     }
 
-    public void startAttackAction(){
+    public void startAttackAction() {
         setState(DoubtEntity.State.ATTACKING);
     }
 
-    public void stopAttackAction(){
+    public void stopAttackAction() {
         setState(State.IDLING);
     }
 
     @Override
-    public boolean isInAttackRange(LivingEntity target){
-        double distance = target.getPos().distanceTo(this.getPos());
+    public boolean isInAttackRange(LivingEntity target) {
+        double distance = target.getPos().distanceTo(getPos());
 
-        double dx = target.getX() - this.getX();
-        double dz = target.getZ() - this.getZ();
+        double dx = target.getX() - getX();
+        double dz = target.getZ() - getZ();
         float angle = (float) ((Math.atan2(dz, dx) * 180D) / Math.PI) - 90;
-        float difference = MathHelper.abs((this.bodyYaw - angle) % 360);
+        float difference = MathHelper.abs((bodyYaw - angle) % 360);
 
         boolean bl = false;
-        if (target instanceof LivingEntity){
-            bl = isInAttackBox((LivingEntity) target);
+        if (target instanceof LivingEntity) {
+            bl = super.isInAttackRange(target);
         }
         return distance <= 3 && difference <= 35 || bl;
     }
 
     @Override
     public boolean tryAttack(Entity target) {
-        if (target instanceof LivingEntity){
-            if (this.isInAttackRange((LivingEntity) target)){
+        if (target instanceof LivingEntity) {
+            if (isInAttackRange((LivingEntity) target)) {
                 boolean result = tryColorAttack(this, target, DamageInit.RED);
                 if (result && target instanceof PlayerEntity player) {
                     if (player.isDead()) {
@@ -169,7 +168,7 @@ public class DoubtEntity extends OrdealEntity {
         }
 
         public int getIndex() {
-            return this.index;
+            return index;
         }
     }
 }

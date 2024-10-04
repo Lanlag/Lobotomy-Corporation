@@ -6,14 +6,19 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
+import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
+import net.uniego.aida.lobecorp.gui.screen.BoxScreenHandler;
+import net.uniego.aida.lobecorp.gui.screen.WorkScreenHandler;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.manager.SanityManager;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
+import net.uniego.aida.lobecorp.network.packet.SyncAbnormalityPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncEquipmentPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncIconPacket;
 import net.uniego.aida.lobecorp.network.packet.SyncOffsetPacket;
@@ -27,6 +32,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity implements ServerPlayerAccess {
+    @Unique
+    private static final double MAX_INTERACT_ABNORMALITY_DISTANCE = 30;//最大交互异想体范围为5格
     @Unique
     private final SanityManager sanityManager = ((ManagerAccess) this).lobecorp$getSanityManager();
     @Unique
@@ -42,6 +49,10 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     @Unique
     private boolean playerChangeDimension = false;
     @Unique
+    private boolean openBoxScreenHandler = false;
+    @Unique
+    private boolean openWorkScreenHandler = false;
+    @Unique
     private DeadPlayerEntity deadPlayer = null;
     @Unique
     private ItemStack syncedBadgeItemStack = ItemStack.EMPTY;
@@ -53,6 +64,9 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     @Shadow
     public abstract boolean isSpectator();
 
+    @Shadow
+    public abstract void closeHandledScreen();
+
     @Override
     public void lobecorp$playerChangeDimension() {
         playerChangeDimension = true;
@@ -61,6 +75,16 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
     @Override
     public DeadPlayerEntity lobecorp$getDeadPlayer() {
         return deadPlayer;
+    }
+
+    @Override
+    public void lobecorp$openWorkScreenHandler() {
+        openWorkScreenHandler = true;
+    }
+
+    @Override
+    public void lobecorp$openBoxScreenHandler() {
+        openBoxScreenHandler = true;
     }
 
     //实时同步玩家饱水度和脱水度，饱食度和消耗度，以及玩家装饰等机制
@@ -73,11 +97,45 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
             TeamBadge.syncTeam(badgeItemStack, getCommandSource(), getCommandSource().getServer().getCommandManager(), serverPlayerEntity);
             syncedBadgeItemStack = badgeItemStack;
         }
+        //正在交互的玩家离异想体太远时或者正在交互的玩家恐慌时，应当立刻强制关闭正在与其交互的玩家的屏幕
+        if (currentScreenHandler instanceof WorkScreenHandler workScreenHandler) {
+            AbnormalityEntity abnormality = workScreenHandler.abnormality;
+            if (abnormality != null) {
+                Vec3d interactPlayerPos = getPos();
+                Vec3d abnormalityPos = abnormality.getPos();
+                double squaredDistanceTo = interactPlayerPos.squaredDistanceTo(abnormalityPos);
+                if (squaredDistanceTo > MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
+                    closeHandledScreen();
+                }
+            }
+        } else if (currentScreenHandler instanceof BoxScreenHandler boxScreenHandler) {
+            AbnormalityEntity abnormality = boxScreenHandler.abnormality;
+            if (abnormality != null) {
+                Vec3d interactPlayerPos = getPos();
+                Vec3d abnormalityPos = abnormality.getPos();
+                double squaredDistanceTo = interactPlayerPos.squaredDistanceTo(abnormalityPos);
+                if (squaredDistanceTo > MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
+                    closeHandledScreen();
+                }
+            }
+        }
     }
 
     //当玩家状态发生变化时，发送同步信息的数据包，同时同步服务端客户端的异想体信息
     @Inject(method = "playerTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;tick()V", shift = At.Shift.AFTER))
     private void playerTickMixin(CallbackInfo ci) {
+        if (openWorkScreenHandler) {
+            if (currentScreenHandler instanceof WorkScreenHandler workScreenHandler) {
+                SyncAbnormalityPacket.send(serverPlayerEntity, workScreenHandler.abnormality.getId());
+                openWorkScreenHandler = false;
+            }
+        }
+        if (openBoxScreenHandler) {
+            if (currentScreenHandler instanceof BoxScreenHandler boxScreenHandler) {
+                SyncAbnormalityPacket.send(serverPlayerEntity, boxScreenHandler.abnormality.getId());
+                openBoxScreenHandler = false;
+            }
+        }
         if (sanityManager.getSanity() != syncedSanity
                 || sanityManager.getAssimilationAmount() != syncedAssimilation
                 || thirstManager.getWaterLevel() != syncedWaterLevel

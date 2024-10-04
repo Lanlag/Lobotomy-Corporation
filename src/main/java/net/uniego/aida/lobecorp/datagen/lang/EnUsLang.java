@@ -10,6 +10,7 @@ import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -59,6 +60,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EffectInit.INSTANT_SANITY.value(), "Instant Sanity");
         translationBuilder.add(EffectInit.INSTANT_INJURY.value(), "Instant Injury");
         //物品名
+        //脑叶公司
         translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "LobeCorp Logo");
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "Blue Leaf");
         translationBuilder.add(EGOSuit.CODE_SUIT, "Code Suit");
@@ -78,15 +80,25 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(RecordBadge.RECORD_BADGE, "Record Badge");
         translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "Extraction Badge");
         translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "Architecture Badge");
+        //EGO武器
+        translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "Standard Training E.G.O");
+        //EGO护甲
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
+        //EGO饰品
+        translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
+        translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
         //物品栏名
-        translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "LobeCorp");
+        translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "Lobe Corp");
+        translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O Weapon");
+        translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O Gift");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "Change Equipment");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");
         translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "Switch Weapon");
         //屏幕名
         translationBuilder.add(ScreenInit.CONTAINER_EQUIPMENT, "Equipment");
+        translationBuilder.add(ScreenInit.CONTAINER_WORK, "Work");
+        translationBuilder.add(ScreenInit.CONTAINER_BOX, "Box");
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "Lobe Corp");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "Open/Close Equipment");
@@ -161,6 +173,8 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[Architecture Team]");
         //脑叶公司实体名
         translationBuilder.add(EntityInit.DEAD_PLAYER_ENTITY, "Corpse");
+        //异想体名
+        translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "Standard Training-Dummy Rabbit");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }

@@ -196,9 +196,14 @@ public class LobeCorpUtil {
         player.damage(player.getDamageSources().create(DamageInit.WHITE, player), Float.MAX_VALUE);
     }
 
+
     //EGO等级
     public enum EGOLevel {
-        ZAYIN(1, Formatting.GREEN), TETH(2, Formatting.BLUE), HE(3, Formatting.YELLOW), WAW(4, Formatting.LIGHT_PURPLE), ALEPH(5, Formatting.RED);
+        ZAYIN(1, Formatting.GREEN),
+        TETH(2, Formatting.BLUE),
+        HE(3, Formatting.YELLOW),
+        WAW(4, Formatting.LIGHT_PURPLE),
+        ALEPH(5, Formatting.RED);
 
         private final int level;
         private final Formatting color;

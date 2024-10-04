@@ -71,6 +71,30 @@
     {
       "type": "single",
       "resource": "lobecorp:gui/sprites/empty_lobecorp_leftback"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/code_riot_stick_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/red_riot_stick_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/white_riot_stick_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/black_riot_stick_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/pale_riot_stick_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/standard_training_ego_weapon_model"
     }
   ]
 }

@@ -36,8 +36,9 @@ public class EGOWeaponFeatureRenderer extends FeatureRenderer<AbstractClientPlay
             ModelPart body = getContextModel().body;
             body.rotate(matrices);
             if (egoWeapon.getEgoWeaponTemplate() == EGOWeapon.EGOWeaponTemplate.MACE) {
-                matrices.translate(-0.625, 0.2, 0);
+                matrices.translate(0.3F, 0.8F, 0.2F);
                 matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90.0F));
+                matrices.multiply(RotationAxis.NEGATIVE_Z.rotationDegrees(25.0F));
                 heldItemRenderer.renderItem(entity, itemStack, ModelTransformationMode.FIXED, false, matrices, vertexConsumers, light);
             }
             matrices.pop();

@@ -10,6 +10,7 @@ import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
@@ -59,6 +60,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EffectInit.INSTANT_SANITY.value(), "瞬间镇定");
         translationBuilder.add(EffectInit.INSTANT_INJURY.value(), "瞬间损伤");
         //物品名
+        //脑叶公司
         translationBuilder.add(LobeCorpItem.LOBECORP_LOGO, "脑叶公司Logo");
         translationBuilder.add(LobeCorpItem.BLUE_LEAF, "蓝叶");
         translationBuilder.add(EGOSuit.CODE_SUIT, "代码西装");
@@ -78,15 +80,25 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(RecordBadge.RECORD_BADGE, "记录部袖标");
         translationBuilder.add(ExtractionBadge.EXTRACTION_BADGE, "研发部袖标");
         translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "构筑部袖标");
+        //EGO武器
+        translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "教学用E.G.O");
+        //EGO护甲
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "血肉契约");
+        //EGO饰品
+        translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "教学用E.G.O");
+        translationBuilder.add(EGOGift.BLESS_GIFT, "祝福");
         //物品栏名
-        translationBuilder.add(ItemGroupInit.LOBECORP_TAB_NAME, "脑叶公司");
+        translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "脑叶公司");
+        translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O武器");
+        translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O饰品");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "变换装备");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
         translationBuilder.add(SoundInit.SWITCH_WEAPON_ID, "切换武器");
         //屏幕名
         translationBuilder.add(ScreenInit.CONTAINER_EQUIPMENT, "装备");
+        translationBuilder.add(ScreenInit.CONTAINER_WORK, "工作");
+        translationBuilder.add(ScreenInit.CONTAINER_BOX, "盒子");
         //按键类名
         translationBuilder.add(KeyInit.CATEGORIES_LOBECORP, "脑叶公司");
         translationBuilder.add(KeyInit.KEY_EQUIPMENT_INVENTORY, "开启/关闭装备");
@@ -161,6 +173,8 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getTeamName(TeamBadge.LobeCorpTeam.ARCHITECTURE_TEAM), "[构筑部]");
         //脑叶公司实体名
         translationBuilder.add(EntityInit.DEAD_PLAYER_ENTITY, "死尸");
+        //异想体名
+        translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "教学兔兔「Dummy」");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "疑问");
     }

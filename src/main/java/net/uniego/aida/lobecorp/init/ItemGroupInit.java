@@ -9,15 +9,18 @@ import net.minecraft.text.Text;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
+import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 
 //初始化物品栏
 public class ItemGroupInit {
-    public static final String LOBECORP_TAB_NAME = "itemgroup.lobecorp.lobecorp";//脑叶公司栏
+    public static final String LOBE_CORP_TAB_NAME = "itemgroup.lobecorp.lobe_corp";//脑叶公司栏
+    public static final String EGO_WEAPON_TAB_NAME = "itemgroup.lobecorp.ego_weapon";//脑叶公司栏
+    public static final String EGO_GIFT_TAB_NAME = "itemgroup.lobecorp.ego_gift";//E.G.O饰品栏
 
-    public static final ItemGroup LOBECORP_TAB = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(LobeCorpItem.LOBECORP_LOGO)).displayName(Text.translatable(LOBECORP_TAB_NAME))
+    public static final ItemGroup LOBE_CORP_TAB = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(LobeCorpItem.LOBECORP_LOGO)).displayName(Text.translatable(LOBE_CORP_TAB_NAME))
             .entries((context, entries) -> {
                 entries.add(LobeCorpItem.LOBECORP_LOGO);
                 entries.add(LobeCorpItem.BLUE_LEAF);
@@ -41,7 +44,22 @@ public class ItemGroupInit {
                 entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
+    public static final ItemGroup EGO_WEAPON_TAB = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON)).displayName(Text.translatable(EGO_WEAPON_TAB_NAME))
+            .entries((context, entries) -> {
+                entries.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON);
+            }).build();
+
+    public static final ItemGroup EGO_GIFT_TAB = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(EGOGift.STANDARD_TRAINING_EGO_GIFT)).displayName(Text.translatable(EGO_GIFT_TAB_NAME))
+            .entries((context, entries) -> {
+                entries.add(EGOGift.STANDARD_TRAINING_EGO_GIFT);
+                entries.add(EGOGift.BLESS_GIFT);
+            }).build();
+
     public static void register() {
-        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("lobecorp_tab"), LOBECORP_TAB);
+        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("lobe_corp_tab"), LOBE_CORP_TAB);
+        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_weapon_tab"), EGO_WEAPON_TAB);
+        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_gift_tab"), EGO_GIFT_TAB);
     }
 }

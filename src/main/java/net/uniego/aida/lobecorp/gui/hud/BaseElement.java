@@ -16,7 +16,7 @@ import net.uniego.aida.lobecorp.manager.ThirstManager;
 @Environment(EnvType.CLIENT)
 public abstract class BaseElement {
     //逆时针方向从左下角到左上角(posX,posY)绘制矩形，width和height分别是宽和高
-    protected static void drawRect(DrawContext drawContext, int posX, int posY, int width, int height, int color) {
+    public static void drawRect(DrawContext drawContext, int posX, int posY, int width, int height, int color) {
         //根据给定的整数颜色值(color)，提取其中的透明度、红色、绿色和蓝色分量，同时处理特殊情况下的无效颜色值(-1)
         if (color == -1) return;
         float alpha;//透明度

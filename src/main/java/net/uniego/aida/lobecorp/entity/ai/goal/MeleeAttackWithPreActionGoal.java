@@ -11,49 +11,49 @@ import java.util.EnumSet;
 
 public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal {
     protected final T mob;
+    protected final int cooldownDuration;
+    protected final int preCD;
     private final double speed;
     private final boolean pauseWhenMobIdle;
+    private final int attackDuration;
+    protected int attackTime;
     private Path path;
     private double targetX;
     private double targetY;
     private double targetZ;
     private int updateCountdownTicks;
     private int cooldown;
-    protected final int cooldownDuration;
-    protected final int preCD;
-    protected int attackTime;
-    private final int attackDuration;
     private long lastUpdateTime;
     private boolean isAttacking;
 
-    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle, float maxPreCD,float attackDuration,float cooldownDuration) {
+    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle, float maxPreCD, float attackDuration, float cooldownDuration) {
         this.mob = mob;
         this.speed = speed;
         this.pauseWhenMobIdle = pauseWhenMobIdle;
         this.attackDuration = (int) (attackDuration * 20);
         this.cooldownDuration = (int) (cooldownDuration * 20);
         this.preCD = (int) (this.attackDuration - maxPreCD * 20);
-        this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
+        setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
     public boolean canStart() {
-        if (!this.isAttacking){
-            long l = this.mob.getWorld().getTime();
-            if (l - this.lastUpdateTime < 20L) {
+        if (!isAttacking) {
+            long l = mob.getWorld().getTime();
+            if (l - lastUpdateTime < 20L) {
                 return false;
             } else {
-                this.lastUpdateTime = l;
-                LivingEntity livingEntity = this.mob.getTarget();
+                lastUpdateTime = l;
+                LivingEntity livingEntity = mob.getTarget();
                 if (livingEntity == null) {
                     return false;
                 } else if (!livingEntity.isAlive()) {
                     return false;
                 } else {
-                    this.path = this.mob.getNavigation().findPathTo(livingEntity, 0);
-                    if (this.path != null) {
+                    path = mob.getNavigation().findPathTo(livingEntity, 0);
+                    if (path != null) {
                         return true;
                     } else {
-                        return this.mob.isInAttackRange(livingEntity);
+                        return mob.isInAttackRange(livingEntity);
                     }
                 }
             }
@@ -62,15 +62,15 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     public boolean shouldContinue() {
-        if (!this.isAttacking) {
-            LivingEntity livingEntity = this.mob.getTarget();
+        if (!isAttacking) {
+            LivingEntity livingEntity = mob.getTarget();
             if (livingEntity == null) {
                 return false;
             } else if (!livingEntity.isAlive()) {
                 return false;
-            } else if (!this.pauseWhenMobIdle) {
-                return !this.mob.getNavigation().isIdle();
-            } else if (!this.mob.isInWalkTargetRange(livingEntity.getBlockPos())) {
+            } else if (!pauseWhenMobIdle) {
+                return !mob.getNavigation().isIdle();
+            } else if (!mob.isInWalkTargetRange(livingEntity.getBlockPos())) {
                 return false;
             } else {
                 return !(livingEntity instanceof PlayerEntity) || !livingEntity.isSpectator() && !((PlayerEntity) livingEntity).isCreative();
@@ -80,18 +80,18 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     public void start() {
-        this.mob.getNavigation().startMovingAlong(this.path, this.speed);
-        this.mob.setAttacking(true);
-        this.updateCountdownTicks = 0;
+        mob.getNavigation().startMovingAlong(path, speed);
+        mob.setAttacking(true);
+        updateCountdownTicks = 0;
     }
 
     public void stop() {
-        LivingEntity livingEntity = this.mob.getTarget();
+        LivingEntity livingEntity = mob.getTarget();
         if (!EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
-            this.mob.setTarget((LivingEntity)null);
+            mob.setTarget(null);
         }
-        this.mob.setAttacking(false);
-        this.mob.getNavigation().stop();
+        mob.setAttacking(false);
+        mob.getNavigation().stop();
     }
 
     public boolean shouldRunEveryTick() {
@@ -99,87 +99,87 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     public void tick() {
-        LivingEntity livingEntity = this.mob.getTarget();
+        LivingEntity livingEntity = mob.getTarget();
         if (livingEntity != null) {
-            this.mob.getLookControl().lookAt(livingEntity, 30.0F, 30.0F);
-            this.updateCountdownTicks = Math.max(this.updateCountdownTicks - 1, 0);
-            if ((this.pauseWhenMobIdle || this.mob.getVisibilityCache().canSee(livingEntity))
-                    && this.updateCountdownTicks <= 0
-                    && (this.targetX == 0.0 && this.targetY == 0.0 && this.targetZ == 0.0 || livingEntity.squaredDistanceTo(this.targetX, this.targetY, this.targetZ) >= 1.0 || this.mob.getRandom().nextFloat() < 0.05F)
+            mob.getLookControl().lookAt(livingEntity, 30.0F, 30.0F);
+            updateCountdownTicks = Math.max(updateCountdownTicks - 1, 0);
+            if ((pauseWhenMobIdle || mob.getVisibilityCache().canSee(livingEntity))
+                    && updateCountdownTicks <= 0
+                    && (targetX == 0.0 && targetY == 0.0 && targetZ == 0.0 || livingEntity.squaredDistanceTo(targetX, targetY, targetZ) >= 1.0 || mob.getRandom().nextFloat() < 0.05F)
             ) {
-                this.targetX = livingEntity.getX();
-                this.targetY = livingEntity.getY();
-                this.targetZ = livingEntity.getZ();
-                this.updateCountdownTicks = 4 + this.mob.getRandom().nextInt(7);
-                double d = this.mob.squaredDistanceTo(livingEntity);
+                targetX = livingEntity.getX();
+                targetY = livingEntity.getY();
+                targetZ = livingEntity.getZ();
+                updateCountdownTicks = 4 + mob.getRandom().nextInt(7);
+                double d = mob.squaredDistanceTo(livingEntity);
                 if (d > 1024.0) {
-                    this.updateCountdownTicks += 10;
+                    updateCountdownTicks += 10;
                 } else if (d > 256.0) {
-                    this.updateCountdownTicks += 5;
+                    updateCountdownTicks += 5;
                 }
 
-                if (!this.mob.getNavigation().startMovingTo(livingEntity, this.speed)) {
-                    this.updateCountdownTicks += 15;
+                if (!mob.getNavigation().startMovingTo(livingEntity, speed)) {
+                    updateCountdownTicks += 15;
                 }
 
-                this.updateCountdownTicks = this.getTickCount(this.updateCountdownTicks);
+                updateCountdownTicks = getTickCount(updateCountdownTicks);
             }
 
-            this.cooldown = Math.max(this.cooldown - 1, 0);
-            this.attackTime = Math.max(this.attackTime - 1, 0);
+            cooldown = Math.max(cooldown - 1, 0);
+            attackTime = Math.max(attackTime - 1, 0);
 
-            if (!this.isAttacking) {
-                this.startAttack(livingEntity);
+            if (!isAttacking) {
+                startAttack(livingEntity);
             } else {
-                if (this.attackTime == this.preCD){
-                    this.attack(livingEntity);
+                if (attackTime == preCD) {
+                    attack(livingEntity);
                 }
-                if (this.attackTime <= 0){
-                    this.endAttack();
+                if (attackTime <= 0) {
+                    endAttack();
                 }
             }
         }
     }
 
     protected void setAttacking(boolean flag) {
-        this.isAttacking = flag;
+        isAttacking = flag;
     }
 
     protected void startAttack(LivingEntity target) {
-        if (this.canAttack(target)) {
-            this.setAttacking(true);
-            this.attackTime = attackDuration;
-            this.mob.startAttackAction();
+        if (canAttack(target)) {
+            setAttacking(true);
+            attackTime = attackDuration;
+            mob.startAttackAction();
         }
     }
 
     protected void attack(LivingEntity target) {
-        this.mob.tryAttack(target);
+        mob.tryAttack(target);
     }
 
     protected void endAttack() {
-        this.resetCooldown();
-        this.mob.stopAttackAction();
-        this.setAttacking(false);
+        resetCooldown();
+        mob.stopAttackAction();
+        setAttacking(false);
     }
 
     protected void resetCooldown() {
-        this.cooldown = this.getTickCount(cooldownDuration);
+        cooldown = getTickCount(cooldownDuration);
     }
 
     protected boolean isCooledDown() {
-        return this.cooldown <= 0;
+        return cooldown <= 0;
     }
 
     protected boolean canAttack(LivingEntity target) {
-        return this.isCooledDown() && this.mob.isInAttackRange(target) && this.mob.getVisibilityCache().canSee(target);
+        return isCooledDown() && mob.isInAttackRange(target) && mob.getVisibilityCache().canSee(target);
     }
 
     protected int getCooldown() {
-        return this.cooldown;
+        return cooldown;
     }
 
     protected int getMaxCooldown() {
-        return this.getTickCount(20);
+        return getTickCount(20);
     }
 }

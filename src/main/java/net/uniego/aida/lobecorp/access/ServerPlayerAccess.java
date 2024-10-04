@@ -9,4 +9,10 @@ public interface ServerPlayerAccess {
 
     //获取玩家尸体
     DeadPlayerEntity lobecorp$getDeadPlayer();
+
+    //打开工作界面
+    void lobecorp$openWorkScreenHandler();
+
+    //打开盒子界面
+    void lobecorp$openBoxScreenHandler();
 }

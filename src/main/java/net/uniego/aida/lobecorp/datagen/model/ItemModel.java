@@ -8,6 +8,7 @@ import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
+import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 
 //物品模型文件生成器
@@ -38,6 +39,10 @@ public class ItemModel extends FabricModelProvider {
         itemModelGenerator.register(RecordBadge.RECORD_BADGE, Models.GENERATED);
         itemModelGenerator.register(ExtractionBadge.EXTRACTION_BADGE, Models.GENERATED);
         itemModelGenerator.register(ArchitectureBadge.ARCHITECTURE_BADGE, Models.GENERATED);
+        //EGO武器
+        //EGO护甲
         itemModelGenerator.register(EGOSuit.FLESH_BOUND_SUIT, Models.GENERATED);
+        //EGO饰品
+        itemModelGenerator.register(EGOGift.STANDARD_TRAINING_EGO_GIFT, Models.GENERATED);
     }
 }

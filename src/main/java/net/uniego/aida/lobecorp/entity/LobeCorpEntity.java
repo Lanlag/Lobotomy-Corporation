@@ -12,9 +12,28 @@ import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ColorResistAccess;
 import net.uniego.aida.lobecorp.access.EGOLevelAccess;
+import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
+import net.uniego.aida.lobecorp.init.EntityInit;
+
+import java.util.function.Predicate;
 
 //脑叶公司实体
 public abstract class LobeCorpEntity extends HostileEntity implements ColorResistAccess, EGOLevelAccess {
+    public static final Predicate<LivingEntity> GREEN_ORDEAL_ATTACK_TARGET_PREDICATE;//绿色考验攻击目标修饰词
+
+    static {
+        GREEN_ORDEAL_ATTACK_TARGET_PREDICATE = entity -> {
+            EntityType<?> entityType = entity.getType();
+            if (!(entityType == EntityType.ARMOR_STAND || entityType == EntityInit.DOUBT_ENTITY)) {
+                if (entity instanceof AbnormalityEntity abnormality) {
+                    return abnormality.isEscaping();
+                }
+                return true;
+            }
+            return false;
+        };
+    }
+
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
     private final float whiteResist;
@@ -78,13 +97,9 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
         return true;
     }
 
-    public void startAttackAction(){
+    public void startAttackAction() {
     }
 
-    public void stopAttackAction(){
-    }
-
-    public boolean isInAttackBox(LivingEntity target){
-        return isInAttackRange(target);
+    public void stopAttackAction() {
     }
 }

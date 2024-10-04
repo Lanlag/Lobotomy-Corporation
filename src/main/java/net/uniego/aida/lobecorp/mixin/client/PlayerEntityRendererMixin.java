@@ -22,6 +22,7 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ModelInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.renderer.EGOHeadFeatureRenderer;
 import net.uniego.aida.lobecorp.renderer.EGOSuitFeatureRenderer;
 import net.uniego.aida.lobecorp.renderer.EGOWeaponFeatureRenderer;
 import net.uniego.aida.lobecorp.renderer.TeamBadgeFeatureRenderer;
@@ -44,6 +45,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         addFeature(new EGOWeaponFeatureRenderer(this, ctx.getHeldItemRenderer()));
         addFeature(new EGOSuitFeatureRenderer(this));
         addFeature(new TeamBadgeFeatureRenderer(this));
+        addFeature(new EGOHeadFeatureRenderer(this));
     }
 
     //渲染玩家的手臂部分
