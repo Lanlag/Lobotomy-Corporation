@@ -7,6 +7,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
+import net.uniego.aida.lobecorp.entity.ai.goal.StandardTrainingDummyRabbitGoal;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
 import java.util.HashMap;
@@ -15,15 +16,18 @@ import java.util.Objects;
 
 //教学兔兔实体
 public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
+    private boolean hasExecuted;
+
     public StandardTrainingDummyRabbitEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH, 0.5F, 1.5F, 1.0F, 1.0F,
-                10, 1, 200, 0.7F, DamageInit.RED,
+                "O-00-00", 10, 1, 200, 0.7F, DamageInit.RED,
                 7, 10, 4, 6, 0, 3);
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0F);
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0F)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.5F);
     }
 
     @Override
@@ -38,6 +42,10 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
     protected void escape() {
         if (qliphothCounter <= 0) {
             setEscaping(true);
+            if (!hasExecuted) {
+                goalSelector.add(1, new StandardTrainingDummyRabbitGoal(this, 0.5F, 64));
+                hasExecuted = true;
+            }
         }
     }
 

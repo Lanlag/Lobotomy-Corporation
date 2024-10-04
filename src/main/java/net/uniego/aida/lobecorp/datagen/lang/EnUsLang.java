@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
@@ -88,11 +89,14 @@ public class EnUsLang extends FabricLanguageProvider {
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
         translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
+        //异想体生成蛋名
+        translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "Lobe Corp");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O Weapon");
         translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O Suit");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O Gift");
+        translationBuilder.add(ItemGroupInit.ABNORMALITY_TAB_NAME, "Abnormality");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "Change Equipment");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");

@@ -7,6 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
@@ -19,6 +20,7 @@ public class ItemGroupInit {
     public static final String EGO_WEAPON_TAB_NAME = "itemgroup.lobecorp.ego_weapon";//E.G.O武器栏
     public static final String EGO_SUIT_TAB_NAME = "itemgroup.lobecorp.ego_suit";//E.G.O护甲栏
     public static final String EGO_GIFT_TAB_NAME = "itemgroup.lobecorp.ego_gift";//E.G.O饰品栏
+    public static final String ABNORMALITY_TAB_NAME = "itemgroup.lobecorp.abnormality";//异想体栏
 
     public static final ItemGroup LOBE_CORP_TAB = FabricItemGroup.builder()
             .icon(() -> new ItemStack(LobeCorpItem.LOBECORP_LOGO)).displayName(Text.translatable(LOBE_CORP_TAB_NAME))
@@ -64,10 +66,17 @@ public class ItemGroupInit {
                 entries.add(EGOGift.BLESS_GIFT);
             }).build();
 
+    public static final ItemGroup ABNORMALITY_TAB = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG)).displayName(Text.translatable(ABNORMALITY_TAB_NAME))
+            .entries((context, entries) -> {
+                entries.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG);
+            }).build();
+
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("lobe_corp_tab"), LOBE_CORP_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_weapon_tab"), EGO_WEAPON_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_suit_tab"), EGO_SUIT_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_gift_tab"), EGO_GIFT_TAB);
+        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("abnormality_tab"), ABNORMALITY_TAB);
     }
 }

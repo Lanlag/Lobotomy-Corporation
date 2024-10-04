@@ -6,6 +6,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
@@ -88,11 +89,14 @@ public class ZhCnLang extends FabricLanguageProvider {
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "教学用E.G.O");
         translationBuilder.add(EGOGift.BLESS_GIFT, "祝福");
+        //异想体生成蛋名
+        translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "教学兔兔「Dummy」");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "脑叶公司");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O武器");
         translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O护甲");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O饰品");
+        translationBuilder.add(ItemGroupInit.ABNORMALITY_TAB_NAME, "异想体");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "变换装备");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");

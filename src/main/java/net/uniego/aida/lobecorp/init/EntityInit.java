@@ -19,7 +19,7 @@ public class EntityInit {
                     .dimensions(0.6F, 0.3F).build("dead_player_entity"));
     //异想体
     public static final EntityType<StandardTrainingDummyRabbitEntity> STANDARD_TRAINING_DUMMY_RABBIT_ENTITY = registerAbnormality("standard_training_dummy_rabbit",
-            StandardTrainingDummyRabbitEntity::new, 1.0F, 1.0F);
+            StandardTrainingDummyRabbitEntity::new, 0.6F, 0.9F);
     //考验
     public static final EntityType<DoubtEntity> DOUBT_ENTITY = registerOrdeal("doubt", DoubtEntity::new, 0.6F, 2.4F);
 

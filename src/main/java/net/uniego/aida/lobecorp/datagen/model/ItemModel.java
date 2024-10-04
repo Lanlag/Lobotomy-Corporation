@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
@@ -44,5 +45,8 @@ public class ItemModel extends FabricModelProvider {
         itemModelGenerator.register(EGOSuit.FLESH_BOUND_SUIT, Models.GENERATED);
         //EGO饰品
         itemModelGenerator.register(EGOGift.STANDARD_TRAINING_EGO_GIFT, Models.GENERATED);
+        itemModelGenerator.register(EGOGift.BLESS_GIFT, Models.GENERATED);
+        //异想体生成蛋
+        itemModelGenerator.register(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, Models.GENERATED);
     }
 }
