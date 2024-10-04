@@ -7,6 +7,7 @@ import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.gift.models.StandardTrainingEGOGiftModel;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.suit.models.StandardTrainingEGOSuitModel;
 import net.uniego.aida.lobecorp.item.ego.suit.models.SuitModel;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class ModelInit {
         //EGO护甲
         lobecorpItemModels.put(EGOSuit.CODE_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.STANDARD_TRAINING_EGO_SUIT, new StandardTrainingEGOSuitModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOSuit.FLESH_BOUND_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
         //EGO饰品
         lobecorpItemModels.put(EGOGift.STANDARD_TRAINING_EGO_GIFT, new LobeCorpItemModel(StandardTrainingEGOGiftModel.getTexturedModelData().createModel()));

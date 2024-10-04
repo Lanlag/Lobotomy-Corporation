@@ -83,6 +83,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         //EGO武器
         translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "教学用E.G.O");
         //EGO护甲
+        translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "教学用E.G.O");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "血肉契约");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "教学用E.G.O");
@@ -90,6 +91,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "脑叶公司");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O武器");
+        translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O护甲");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O饰品");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "变换装备");

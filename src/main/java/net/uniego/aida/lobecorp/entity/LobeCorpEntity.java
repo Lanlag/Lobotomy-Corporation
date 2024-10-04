@@ -97,6 +97,11 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
         return true;
     }
 
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
     public void startAttackAction() {
     }
 

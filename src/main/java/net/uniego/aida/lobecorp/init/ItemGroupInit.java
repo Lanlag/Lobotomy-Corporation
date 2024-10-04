@@ -16,7 +16,8 @@ import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 //初始化物品栏
 public class ItemGroupInit {
     public static final String LOBE_CORP_TAB_NAME = "itemgroup.lobecorp.lobe_corp";//脑叶公司栏
-    public static final String EGO_WEAPON_TAB_NAME = "itemgroup.lobecorp.ego_weapon";//脑叶公司栏
+    public static final String EGO_WEAPON_TAB_NAME = "itemgroup.lobecorp.ego_weapon";//E.G.O武器栏
+    public static final String EGO_SUIT_TAB_NAME = "itemgroup.lobecorp.ego_suit";//E.G.O护甲栏
     public static final String EGO_GIFT_TAB_NAME = "itemgroup.lobecorp.ego_gift";//E.G.O饰品栏
 
     public static final ItemGroup LOBE_CORP_TAB = FabricItemGroup.builder()
@@ -41,13 +42,19 @@ public class ItemGroupInit {
                 entries.add(RecordBadge.RECORD_BADGE);
                 entries.add(ExtractionBadge.EXTRACTION_BADGE);
                 entries.add(ArchitectureBadge.ARCHITECTURE_BADGE);
-                entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
     public static final ItemGroup EGO_WEAPON_TAB = FabricItemGroup.builder()
             .icon(() -> new ItemStack(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON)).displayName(Text.translatable(EGO_WEAPON_TAB_NAME))
             .entries((context, entries) -> {
                 entries.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON);
+            }).build();
+
+    public static final ItemGroup EGO_SUIT_TAB = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(EGOSuit.STANDARD_TRAINING_EGO_SUIT)).displayName(Text.translatable(EGO_SUIT_TAB_NAME))
+            .entries((context, entries) -> {
+                entries.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT);
+                entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
     public static final ItemGroup EGO_GIFT_TAB = FabricItemGroup.builder()
@@ -60,6 +67,7 @@ public class ItemGroupInit {
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("lobe_corp_tab"), LOBE_CORP_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_weapon_tab"), EGO_WEAPON_TAB);
+        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_suit_tab"), EGO_SUIT_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_gift_tab"), EGO_GIFT_TAB);
     }
 }

@@ -33,10 +33,12 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
             0.0F, 0.0F, 0.0F, 0.0F);//代码西装
     public static final EGOSuit STANDARD_SUIT = new EGOSuit(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN,
             1.0F, 1.0F, 1.5F, 2.0F);//标准西装
+    public static final EGOSuit STANDARD_TRAINING_EGO_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
+            0.5F, 1.0F, 1.5F, 2.0F);//教学用E.G.O
     public static final EGOSuit FLESH_BOUND_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.6F, 1.0F, 1.3F, 1.5F,
             LevelManager.LobeCorpLevel.III, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
-            LevelManager.LobeCorpLevel.II);
+            LevelManager.LobeCorpLevel.II);//血肉契约
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final float redResist;
@@ -88,6 +90,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
     public static void register() {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("code_suit"), CODE_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_suit"), STANDARD_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_suit"), STANDARD_TRAINING_EGO_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("flesh_bound_suit"), FLESH_BOUND_SUIT);
     }
 
