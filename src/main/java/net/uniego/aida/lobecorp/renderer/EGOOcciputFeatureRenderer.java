@@ -21,17 +21,17 @@ import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
-//EGO头部饰品在头部位的模型渲染
+//EGO后脑饰品在后脑位的模型渲染
 @Environment(EnvType.CLIENT)
-public class EGOHeadFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
-    public EGOHeadFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
+public class EGOOcciputFeatureRenderer extends FeatureRenderer<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> {
+    public EGOOcciputFeatureRenderer(FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>> context) {
         super(context);
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity,
                        float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        ItemStack itemStack = LobeCorpUtil.getLobeCorpEquippedStack(entity, LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT);
+        ItemStack itemStack = LobeCorpUtil.getLobeCorpEquippedStack(entity, LobeCorpEquipmentSlot.LOBECORP_OCCIPUT_SLOT);
         if (!itemStack.isEmpty() && itemStack.getItem() instanceof EGOGift egoGift) {
             matrices.push();
             //获取模型和贴图

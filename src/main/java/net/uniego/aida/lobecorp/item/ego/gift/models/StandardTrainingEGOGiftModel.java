@@ -1,11 +1,14 @@
 package net.uniego.aida.lobecorp.item.ego.gift.models;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 
 //教学用EGO饰品模型
+@Environment(EnvType.CLIENT)
 public class StandardTrainingEGOGiftModel extends LobeCorpItemModel {
     private final ModelPart hat;
     private final ModelPart head;

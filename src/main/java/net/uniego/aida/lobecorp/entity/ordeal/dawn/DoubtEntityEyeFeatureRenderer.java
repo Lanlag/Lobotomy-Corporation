@@ -19,5 +19,4 @@ public class DoubtEntityEyeFeatureRenderer<T extends DoubtEntity, M extends Doub
     public RenderLayer getEyesTexture() {
         return SKIN;
     }
-
 }

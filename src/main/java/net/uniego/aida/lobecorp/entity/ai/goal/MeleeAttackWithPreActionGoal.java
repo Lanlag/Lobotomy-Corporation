@@ -26,7 +26,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     private long lastUpdateTime;
     private boolean isAttacking;
 
-    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle,float attackSpeed, float maxPreCD, float attackDuration, float cooldownDuration) {
+    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle, float attackSpeed, float maxPreCD, float attackDuration, float cooldownDuration) {
         this.mob = mob;
         this.speed = speed;
         this.pauseWhenMobIdle = pauseWhenMobIdle;

@@ -64,8 +64,8 @@ public class DoubtEntity extends OrdealEntity {
         goalSelector.add(8, new LookAroundGoal(this));
         goalSelector.add(7, new LookAtEntityGoal(this, LivingEntity.class, 16.0F));
         goalSelector.add(6, new WanderAroundFarGoal(this, 1.0F));
-        goalSelector.add(5, new MeleeAttackWithPreActionGoal<>(this, 1.2F, false, 1.0F,0.32F, 1.0F, 0.5F));
-        goalSelector.add(0, new DoubtExecuteGoal(this, 1.0F, 1.68F,15,1.48F,0.72F,0.88F,1.04F,1.2F));
+        goalSelector.add(5, new MeleeAttackWithPreActionGoal<>(this, 1.2F, false, 1.0F, 0.32F, 1.0F, 0.5F));
+        goalSelector.add(0, new DoubtExecuteGoal(this, 1.0F, 1.68F, 15, 1.48F, 0.72F, 0.88F, 1.04F, 1.2F));
         targetSelector.add(1, new RevengeGoal(this));
         targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, 10, true, true, GREEN_ORDEAL_ATTACK_TARGET_PREDICATE));
     }
@@ -179,18 +179,18 @@ public class DoubtEntity extends OrdealEntity {
     public static class DoubtExecuteGoal extends Goal {
         protected final DoubtEntity mob;
         private final int executeDuration;
-        private float executeTime;
         private final float[] attackMoments;
         private final float executeMoment;
         private final TargetPredicate targetPredicate;
+        private float executeTime;
 
         public DoubtExecuteGoal(DoubtEntity mob, float executeSpeed, float executeDuration, float attackRange, float executeMoment, float... attackMoments) {
             this.mob = mob;
             this.targetPredicate = TargetPredicate.createAttackable().setBaseMaxDistance(attackRange);
             this.executeDuration = (int) (executeDuration / executeSpeed * 20);
-            this.executeMoment =  this.executeDuration - (int)(executeMoment / executeSpeed * 20);
+            this.executeMoment = this.executeDuration - (int) (executeMoment / executeSpeed * 20);
             this.attackMoments = attackMoments;
-            for (int i = 0; i < attackMoments.length; i++){
+            for (int i = 0; i < attackMoments.length; i++) {
                 this.attackMoments[i] = this.executeDuration - (int) (attackMoments[i] / executeSpeed * 20);
             }
             setControls(EnumSet.of(Control.MOVE, Control.LOOK));
@@ -198,7 +198,7 @@ public class DoubtEntity extends OrdealEntity {
 
         public boolean canStart() {
             DeadPlayerEntity targetDeadPlayer = mob.targetDeadPlayer;
-            if (targetDeadPlayer == null){
+            if (targetDeadPlayer == null) {
                 return false;
             } else return !targetDeadPlayer.isRemoved();
         }
@@ -213,13 +213,13 @@ public class DoubtEntity extends OrdealEntity {
 
         public void tick() {
             executeTime = Math.max(executeTime - 1, 0);
-            if (executeTime <= 0 ){
+            if (executeTime <= 0) {
                 stop();
             } else if (executeTime == executeMoment) {
                 finalAttack();
             } else {
-                for(float attackMoment : attackMoments){
-                    if (executeTime == attackMoment){
+                for (float attackMoment : attackMoments) {
+                    if (executeTime == attackMoment) {
                         attack();
                     }
                 }
@@ -236,14 +236,14 @@ public class DoubtEntity extends OrdealEntity {
             mob.setState(State.IDLING);
         }
 
-        public boolean isExecuteFinished(){
+        public boolean isExecuteFinished() {
             return executeTime <= 0;
         }
 
-        public void attack(){
+        public void attack() {
         }
 
-        public void finalAttack(){
+        public void finalAttack() {
             attack();
             mob.targetDeadPlayer.discard();
         }

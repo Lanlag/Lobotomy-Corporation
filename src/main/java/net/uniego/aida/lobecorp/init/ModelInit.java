@@ -5,6 +5,9 @@ import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.badge.BadgeModel;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
+import net.uniego.aida.lobecorp.item.ego.gift.models.BlessGiftModel;
+import net.uniego.aida.lobecorp.item.ego.gift.models.PenitenceGiftModel;
 import net.uniego.aida.lobecorp.item.ego.gift.models.StandardTrainingEGOGiftModel;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.models.StandardTrainingEGOSuitModel;
@@ -21,24 +24,26 @@ public class ModelInit {
     //注册脑叶公司物品模型
     public static void registerLobeCorpItemModels() {
         //EGO护甲
-        lobecorpItemModels.put(EGOSuit.CODE_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(EGOSuit.STANDARD_TRAINING_EGO_SUIT, new StandardTrainingEGOSuitModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(PenitenceSuit.PENITENCE_SUIT, new StandardTrainingEGOSuitModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(EGOSuit.FLESH_BOUND_SUIT, new SuitModel(SuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.CODE_SUIT, new LobeCorpItemModel(SuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new LobeCorpItemModel(SuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.STANDARD_TRAINING_EGO_SUIT, new LobeCorpItemModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(PenitenceSuit.PENITENCE_SUIT, new LobeCorpItemModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.FLESH_BOUND_SUIT, new LobeCorpItemModel(SuitModel.getTexturedModelData().createModel()));
         //EGO饰品
         lobecorpItemModels.put(EGOGift.STANDARD_TRAINING_EGO_GIFT, new LobeCorpItemModel(StandardTrainingEGOGiftModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(PenitenceGift.PENITENCE_GIFT, new LobeCorpItemModel(PenitenceGiftModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOGift.BLESS_GIFT, new LobeCorpItemModel(BlessGiftModel.getTexturedModelData().createModel()));
         //部门袖标
-        lobecorpItemModels.put(ControlBadge.CONTROL_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(InformationBadge.INFORMATION_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(SecurityBadge.SECURITY_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(TrainingBadge.TRAINING_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(CentralCommandBadge.CENTRAL_COMMAND_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(WelfareBadge.WELFARE_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(DisciplinaryBadge.DISCIPLINARY_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(RecordBadge.RECORD_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(ExtractionBadge.EXTRACTION_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
-        lobecorpItemModels.put(ArchitectureBadge.ARCHITECTURE_BADGE, new BadgeModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(ControlBadge.CONTROL_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(InformationBadge.INFORMATION_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(SecurityBadge.SECURITY_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(TrainingBadge.TRAINING_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(CentralCommandBadge.CENTRAL_COMMAND_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(WelfareBadge.WELFARE_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(DisciplinaryBadge.DISCIPLINARY_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(RecordBadge.RECORD_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(ExtractionBadge.EXTRACTION_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(ArchitectureBadge.ARCHITECTURE_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));
     }
 
     //获取脑叶公司物品模型
