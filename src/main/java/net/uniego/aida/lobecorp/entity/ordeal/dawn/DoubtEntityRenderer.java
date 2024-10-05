@@ -6,9 +6,10 @@ import net.minecraft.util.Identifier;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 
 //疑问实体渲染器
-public class DoubtEntityRenderer extends MobEntityRenderer<DoubtEntity, DoubtEntityModel> {
+public class DoubtEntityRenderer extends MobEntityRenderer<DoubtEntity, DoubtEntityModel<DoubtEntity>> {
     public DoubtEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new DoubtEntityModel(DoubtEntityModel.getTexturedModelData().createModel()), 0.5F);
+        super(context, new DoubtEntityModel<>(DoubtEntityModel.getTexturedModelData().createModel()), 0.5F);
+        this.addFeature(new DoubtEntityEyeFeatureRenderer<>(this));
     }
 
     @Override
