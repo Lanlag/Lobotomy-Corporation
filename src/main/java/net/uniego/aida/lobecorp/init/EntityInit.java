@@ -9,6 +9,7 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.beautyandtheBeast.BeautyAndTheBeastEntity;
+import net.uniego.aida.lobecorp.entity.abnormality.happyteddybear.HappyTeddyBearEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.onesinandhundredsofgooddeeds.OneSinAndHundredsOfGoodDeedsEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.standardtrainingdummyrabbit.StandardTrainingDummyRabbitEntity;
 import net.uniego.aida.lobecorp.entity.ordeal.OrdealEntity;
@@ -26,6 +27,8 @@ public class EntityInit {
             OneSinAndHundredsOfGoodDeedsEntity::new, 1.2F, 2.4F);
     public static final EntityType<BeautyAndTheBeastEntity> BEAUTY_AND_THE_BEAST_ENTITY = registerAbnormality("beauty_and_the_beast",
             BeautyAndTheBeastEntity::new, 0.6F, 0.9F);
+    public static final EntityType<HappyTeddyBearEntity> HAPPY_TEDDY_BEAR_ENTITY = registerAbnormality("happy_teddy_bear",
+            HappyTeddyBearEntity::new, 0.6F, 0.9F);
     //考验
     public static final EntityType<DoubtEntity> DOUBT_ENTITY = registerOrdeal("doubt", DoubtEntity::new, 0.6F, 2.4F);
 
@@ -34,6 +37,7 @@ public class EntityInit {
         FabricDefaultAttributeRegistry.register(STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, StandardTrainingDummyRabbitEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, OneSinAndHundredsOfGoodDeedsEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(BEAUTY_AND_THE_BEAST_ENTITY, BeautyAndTheBeastEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(HAPPY_TEDDY_BEAR_ENTITY, HappyTeddyBearEntity.createAttributes());
         //考验
         FabricDefaultAttributeRegistry.register(DOUBT_ENTITY, DoubtEntity.createAttributes());
     }

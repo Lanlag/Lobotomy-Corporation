@@ -22,7 +22,7 @@ public class BeautyAndTheBeastEntity extends AbnormalityEntity {
 
     public BeautyAndTheBeastEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH,
-                "F-02-44", 12, 20, 1.00F, DamageInit.WHITE,
+                "F-02-44", 12, 200, 0.28F, DamageInit.WHITE,
                 9, 12, 5, 8, 0, 4);
     }
 

@@ -28,10 +28,12 @@ public class ModelInit {
         lobecorpItemModels.put(EGOSuit.STANDARD_SUIT, new LobeCorpItemModel(SuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOSuit.STANDARD_TRAINING_EGO_SUIT, new LobeCorpItemModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(PenitenceSuit.PENITENCE_SUIT, new LobeCorpItemModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOSuit.HORN_SUIT, new LobeCorpItemModel(StandardTrainingEGOSuitModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOSuit.FLESH_BOUND_SUIT, new LobeCorpItemModel(SuitModel.getTexturedModelData().createModel()));
         //EGO饰品
         lobecorpItemModels.put(EGOGift.STANDARD_TRAINING_EGO_GIFT, new LobeCorpItemModel(StandardTrainingEGOGiftModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(PenitenceGift.PENITENCE_GIFT, new LobeCorpItemModel(PenitenceGiftModel.getTexturedModelData().createModel()));
+        lobecorpItemModels.put(EGOGift.HORN_GIFT, new LobeCorpItemModel(StandardTrainingEGOGiftModel.getTexturedModelData().createModel()));
         lobecorpItemModels.put(EGOGift.BLESS_GIFT, new LobeCorpItemModel(BlessGiftModel.getTexturedModelData().createModel()));
         //部门袖标
         lobecorpItemModels.put(ControlBadge.CONTROL_BADGE, new LobeCorpItemModel(BadgeModel.getTexturedModelData().createModel()));

@@ -37,7 +37,8 @@ public class ItemTag extends FabricTagProvider.ItemTagProvider {
 
         //生成红伤EGO武器标签
         getOrCreateTagBuilder(TagInit.RED_EGO_WEAPONS)
-                .add(EGOWeapon.RED_RIOT_STICK);
+                .add(EGOWeapon.RED_RIOT_STICK)
+                .add(EGOWeapon.HORN_WEAPON);
 
         //生成白伤EGO武器标签
         getOrCreateTagBuilder(TagInit.WHITE_EGO_WEAPONS)

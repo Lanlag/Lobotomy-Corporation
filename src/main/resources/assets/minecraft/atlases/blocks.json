@@ -99,6 +99,10 @@
     {
       "type": "single",
       "resource": "lobecorp:entity/weapon/penitence_weapon_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/horn_weapon_model"
     }
   ]
 }

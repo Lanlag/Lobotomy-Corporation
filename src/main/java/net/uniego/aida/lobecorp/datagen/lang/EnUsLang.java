@@ -87,18 +87,22 @@ public class EnUsLang extends FabricLanguageProvider {
         //EGO武器
         translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "Standard Training E.G.O");
         translationBuilder.add(PenitenceWeapon.PENITENCE_WEAPON, "Penitence");
+        translationBuilder.add(EGOWeapon.HORN_WEAPON, "Horn");
         //EGO护甲
         translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceSuit.PENITENCE_SUIT, "Penitence");
+        translationBuilder.add(EGOSuit.HORN_SUIT, "Horn");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceGift.PENITENCE_GIFT, "Penitence");
+        translationBuilder.add(EGOGift.HORN_GIFT, "Horn");
         translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
         translationBuilder.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, "One Sin and Hundreds of Good Deeds");
         translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "Beauty and The Beast");
+        translationBuilder.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG, "Happy Teddy Bear");
         //技能描述名
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "5% of healing 10 SP upon attacking with JusticeIcon Lvl 2+");
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "5% of heal 10 SP when damaged by Red or Black");
@@ -160,6 +164,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT), "When in LeftBack Slot:");
         //EGO武器模板名
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "Mace");
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.SPEAR.getTemplateName(), "Spear");
         //工具提示名
         translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "Press Left Shift Show Info");
         translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "Equip Require:");
@@ -195,6 +200,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "Standard Training-Dummy Rabbit");
         translationBuilder.add(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, "One Sin and Hundreds of Good Deeds");
         translationBuilder.add(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, "Beauty and The Beast");
+        translationBuilder.add(EntityInit.HAPPY_TEDDY_BEAR_ENTITY, "Happy Teddy Bear");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }

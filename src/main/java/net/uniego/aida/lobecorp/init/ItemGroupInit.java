@@ -54,6 +54,7 @@ public class ItemGroupInit {
             .entries((context, entries) -> {
                 entries.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON);
                 entries.add(PenitenceWeapon.PENITENCE_WEAPON);
+                entries.add(EGOWeapon.HORN_WEAPON);
             }).build();
 
     public static final ItemGroup EGO_SUIT_TAB = FabricItemGroup.builder()
@@ -61,6 +62,7 @@ public class ItemGroupInit {
             .entries((context, entries) -> {
                 entries.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT);
                 entries.add(PenitenceSuit.PENITENCE_SUIT);
+                entries.add(EGOSuit.HORN_SUIT);
                 entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
@@ -69,6 +71,7 @@ public class ItemGroupInit {
             .entries((context, entries) -> {
                 entries.add(EGOGift.STANDARD_TRAINING_EGO_GIFT);
                 entries.add(PenitenceGift.PENITENCE_GIFT);
+                entries.add(EGOGift.HORN_GIFT);
                 entries.add(EGOGift.BLESS_GIFT);
             }).build();
 
@@ -78,6 +81,7 @@ public class ItemGroupInit {
                 entries.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG);
                 entries.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG);
                 entries.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG);
+                entries.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG);
             }).build();
 
     public static void register() {

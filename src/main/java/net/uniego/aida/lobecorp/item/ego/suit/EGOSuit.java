@@ -36,6 +36,8 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
             1.0F, 1.0F, 1.5F, 2.0F);//标准西装
     public static final EGOSuit STANDARD_TRAINING_EGO_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.5F, 1.0F, 1.5F, 2.0F);//教学用E.G.O
+    public static final EGOSuit HORN_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
+            0.8F, 0.8F, 1.5F, 2.0F);//犄角
     public static final EGOSuit FLESH_BOUND_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.6F, 1.0F, 1.3F, 1.5F,
             LevelManager.LobeCorpLevel.III, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
@@ -98,6 +100,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_suit"), STANDARD_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_suit"), STANDARD_TRAINING_EGO_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_suit"), PenitenceSuit.PENITENCE_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_suit"), HORN_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("flesh_bound_suit"), FLESH_BOUND_SUIT);
     }
 

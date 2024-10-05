@@ -42,6 +42,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final EGOWeapon BLACK_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//侵蚀镇暴棍
     public static final EGOWeapon PALE_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//灵魂镇暴棍
     public static final EGOWeapon STANDARD_TRAINING_EGO_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.TETH, EGOWeaponTemplate.MACE, 5);//教学用E.G.O
+    public static final EGOWeapon HORN_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.TETH, EGOWeaponTemplate.SPEAR, 7);//犄角
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;
@@ -99,6 +100,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
         Registry.register(Registries.ITEM, LobeCorpUtil.id("pale_riot_stick"), PALE_RIOT_STICK);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_weapon"), STANDARD_TRAINING_EGO_WEAPON);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_weapon"), PenitenceWeapon.PENITENCE_WEAPON);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_weapon"), HORN_WEAPON);
     }
 
     public float getAttackDamage() {
@@ -177,7 +179,9 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
 
     //EGO武器模板
     public enum EGOWeaponTemplate {
-        MACE(2, 3, "ego.template.weapon.mace");//棁类
+        MACE(2, 3, "ego.template.weapon.mace"),//棁类
+        SPEAR(1.5, 4, "ego.template.weapon.spear")//矛类
+        ;
 
         private final double attackSpeed;
         private final double interactionRange;
