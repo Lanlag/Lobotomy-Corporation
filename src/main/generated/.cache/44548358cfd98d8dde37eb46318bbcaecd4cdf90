@@ -1,4 +1,4 @@
-// 1.20.6	2024-10-06T01:02:52.6903966	Lobotomy Corporation/Model Definitions
+// 1.20.6	2024-10-06T03:46:52.2279039	Lobotomy Corporation/Model Definitions
 2b48c727c65d8c0b3e663eeed3f47ddc227e0cbc assets\lobecorp\models\item\penitence_suit.json
 f5e80c5c0be0883038011bd14f5185b984247cb4 assets\lobecorp\models\item\control_badge.json
 2e9d0310526c5bb9834ca22ab3f71edd4cd71448 assets\lobecorp\models\item\flesh_bound_suit.json
@@ -12,6 +12,7 @@ fa4cf5756d725485c48521970689af329dc1d372 assets\lobecorp\models\item\central_com
 de8cb4e851decae6059603129c4f105a60f17328 assets\lobecorp\models\item\architecture_badge.json
 5eefa8faa1c7498fe342790430a2a59edd139eb7 assets\lobecorp\models\item\extraction_badge.json
 abb9fe2c8f562fe8145fdad18c52eb8850c8f6cc assets\lobecorp\models\item\bless_gift.json
+46aa235f4bb90dfa7fe20cbc702dcb529af368a9 assets\lobecorp\models\item\bear_paws_gift.json
 803352a1aa5c02e6ff055bbbad0d6d4393c9de41 assets\lobecorp\models\item\welfare_badge.json
 03a825ce77246f1292cc933ecc27ffa7a0661f02 assets\lobecorp\models\item\horn_suit.json
 d0c5ee51a4c40bab03c329c5dd4c9b945cca809b assets\lobecorp\models\item\beauty_and_the_beast_egg.json
@@ -24,4 +25,5 @@ bb5bb1d80151ddc098e9e8ee4ee9bbe376f3c73a assets\lobecorp\models\item\lobecorp_lo
 a0b244d215171bf7a46747da8be58490dd1f98ea assets\lobecorp\models\item\blue_leaf.json
 23c84e9131f057847fd921e12f4d4f3130be400b assets\lobecorp\models\item\one_sin_and_hundreds_of_good_deeds_egg.json
 b94907074dcda8bb074fb09c09e01c1480e49598 assets\lobecorp\models\item\training_badge.json
+4510fd2efff524dd7ad02d18b9bf306bca2bdc3f assets\lobecorp\models\item\bear_paws_suit.json
 6a542f3a88f3bf5476b30aae1632beca6fa290ad assets\lobecorp\models\item\happy_teddy_bear_egg.json

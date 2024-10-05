@@ -36,7 +36,7 @@ public class BlessGiftModel extends LobeCorpItemModel {
 
         ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData cube_r1 = head.addChild("cube_r1", ModelPartBuilder.create().uv(2, 2).cuboid(-14.125F, -23.3F, -12.1625F, 28.0F, 28.0F, 2.0F, new Dilation(-6.425F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 3.1416F, 0.0F));
+        ModelPartData cube_r1 = head.addChild("cube_r1", ModelPartBuilder.create().uv(0, 0).cuboid(-16.125F, -24.3F, -12.1625F, 32.0F, 32.0F, 12.0F, new Dilation(-6.425F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 3.1416F, 0.0F));
 
         ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
@@ -47,7 +47,7 @@ public class BlessGiftModel extends LobeCorpItemModel {
         ModelPartData right_leg = modelPartData.addChild("right_leg", ModelPartBuilder.create(), ModelTransform.pivot(-1.9F, 12.0F, 0.0F));
 
         ModelPartData left_leg = modelPartData.addChild("left_leg", ModelPartBuilder.create(), ModelTransform.pivot(1.9F, 12.0F, 0.0F));
-        return TexturedModelData.of(modelData, 64, 64);
+        return TexturedModelData.of(modelData, 128, 128);
     }
 
     @Override

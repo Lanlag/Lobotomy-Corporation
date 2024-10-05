@@ -38,6 +38,10 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
             0.5F, 1.0F, 1.5F, 2.0F);//教学用E.G.O
     public static final EGOSuit HORN_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.8F, 0.8F, 1.5F, 2.0F);//犄角
+    public static final EGOSuit BEAR_PAWS_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.HE,
+            0.8F, 1.0F, 1.0F, 1.5F,
+            LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
+            LevelManager.LobeCorpLevel.II);//熊熊抱
     public static final EGOSuit FLESH_BOUND_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.6F, 1.0F, 1.3F, 1.5F,
             LevelManager.LobeCorpLevel.III, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
@@ -55,31 +59,31 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
     private final LevelManager.LobeCorpLevel requireTotal;
 
     public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
-        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "",
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, null,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
-        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireF, requireP, requireT, requireJ, requireTotal);
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, null, requireF, requireP, requireT, requireJ, requireTotal);
     }
 
-    public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, String egoSkill) {
+    public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, List<String> egoSkill) {
         this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, egoSkill,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
-        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "",
+        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, null,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
-        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireF, requireP, requireT, requireJ, requireTotal);
+        this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, null, requireF, requireP, requireT, requireJ, requireTotal);
     }
 
-    public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, String egoSkill,
+    public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, List<String> egoSkill,
                    LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
         super(new Settings().rarity(rarity).component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOSuitAttributeModifiers
                 (egoLevel, LobeCorpAttributeModifierSlot.LOBECORP_SUIT)), LobeCorpAttributeModifierSlot.LOBECORP_SUIT, egoSkill);
@@ -101,6 +105,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_suit"), STANDARD_TRAINING_EGO_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_suit"), PenitenceSuit.PENITENCE_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_suit"), HORN_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_suit"), BEAR_PAWS_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("flesh_bound_suit"), FLESH_BOUND_SUIT);
     }
 

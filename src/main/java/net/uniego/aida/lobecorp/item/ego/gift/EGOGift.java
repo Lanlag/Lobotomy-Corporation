@@ -5,9 +5,11 @@ import net.minecraft.registry.Registry;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
+import java.util.List;
 import java.util.UUID;
 
 //EGO饰品
@@ -24,11 +26,11 @@ public class EGOGift extends EGOItem {
 
     public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
                    UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot) {
-        this(maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpSlot, "");
+        this(maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpSlot, null);
     }
 
     public EGOGift(int maxHealth, int maxSanity, int workSuccess, int workVelocity, int attackVelocity, int moveVelocity,
-                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot, String egoSkill) {
+                   UUID uuid, LobeCorpAttributeModifierSlot lobecorpSlot, List<String> egoSkill) {
         super(new Settings().component(ComponentInit.LOBECORP_ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOGiftAttributeModifiers
                 (maxHealth, maxSanity, workSuccess, workVelocity, attackVelocity, moveVelocity, uuid, lobecorpSlot)), lobecorpSlot, egoSkill);
     }
@@ -37,6 +39,7 @@ public class EGOGift extends EGOItem {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_gift"), STANDARD_TRAINING_EGO_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_gift"), PenitenceGift.PENITENCE_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_gift"), HORN_GIFT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_gift"), BearPawsGift.BEAR_PAWS_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bless_gift"), BLESS_GIFT);
     }
 }

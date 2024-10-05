@@ -7,13 +7,15 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 
+import java.util.List;
+
 //忏悔武器
 public class PenitenceWeapon extends EGOWeapon {
     public static final String EGO_SKILL_WEAPON_PENITENCE = "ego.skill.weapon.penitence";
     public static final PenitenceWeapon PENITENCE_WEAPON = new PenitenceWeapon();
 
     public PenitenceWeapon() {
-        super(LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 5, EGO_SKILL_WEAPON_PENITENCE);
+        super(LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 5, List.of(EGO_SKILL_WEAPON_PENITENCE));
     }
 
     @Override

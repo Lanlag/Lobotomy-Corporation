@@ -15,14 +15,14 @@ import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import java.util.List;
 
 //EGO物品
-public class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
+public abstract class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
     public static final String TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO = "tooltip.press_left_shift_show_info";//按住左Shift显示信息
     public static final String TOOLTIP_EGO_EQUIP_REQUIRE = "tooltip.ego.equip_require";//装备要求
 
     private final LobeCorpAttributeModifierSlot lobecorpSlot;
-    private final String egoSkill;
+    private final List<String> egoSkill;
 
-    public EGOItem(Settings settings, LobeCorpAttributeModifierSlot lobecorpSlot, String egoSkill) {
+    public EGOItem(Settings settings, LobeCorpAttributeModifierSlot lobecorpSlot, List<String> egoSkill) {
         super(settings.maxCount(1).fireproof());
         this.lobecorpSlot = lobecorpSlot;
         this.egoSkill = egoSkill;
@@ -36,16 +36,20 @@ public class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (!"".equals(egoSkill)) {
-            int maxLength = 24;
-            MutableText translatableText = Text.translatable(egoSkill);
-            String firstLine = translatableText.getString().substring(0, Math.min(maxLength, translatableText.getString().length()));
-            tooltip.add(Text.literal("●").append(Text.literal(firstLine)).formatted(Formatting.GOLD));
-            if (translatableText.getString().length() > maxLength) {
-                String remainingText = translatableText.getString().substring(maxLength);
-                for (int i = 0; i < remainingText.length(); i += maxLength) {
-                    String line = remainingText.substring(i, Math.min(i + maxLength, remainingText.length()));
-                    tooltip.add(Text.literal(" ").append(Text.literal(line)).formatted(Formatting.GOLD));
+        if (egoSkill != null && !egoSkill.isEmpty()) {
+            for (String string : egoSkill) {
+                if (!string.isEmpty()) {
+                    int maxLength = 24;
+                    MutableText translatableText = Text.translatable(string);
+                    String firstLine = translatableText.getString().substring(0, Math.min(maxLength, translatableText.getString().length()));
+                    tooltip.add(Text.literal("●").append(Text.literal(firstLine)).formatted(Formatting.GOLD));
+                    if (translatableText.getString().length() > maxLength) {
+                        String remainingText = translatableText.getString().substring(maxLength);
+                        for (int i = 0; i < remainingText.length(); i += maxLength) {
+                            String line = remainingText.substring(i, Math.min(i + maxLength, remainingText.length()));
+                            tooltip.add(Text.literal(" ").append(Text.literal(line)).formatted(Formatting.GOLD));
+                        }
+                    }
                 }
             }
         }

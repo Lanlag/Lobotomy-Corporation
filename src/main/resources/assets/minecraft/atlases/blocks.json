@@ -103,6 +103,10 @@
     {
       "type": "single",
       "resource": "lobecorp:entity/weapon/horn_weapon_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/bear_paws_weapon_model"
     }
   ]
 }

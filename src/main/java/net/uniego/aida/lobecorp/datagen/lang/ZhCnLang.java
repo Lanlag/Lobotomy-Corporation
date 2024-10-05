@@ -12,6 +12,7 @@ import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
@@ -88,15 +89,18 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "教学用E.G.O");
         translationBuilder.add(PenitenceWeapon.PENITENCE_WEAPON, "忏悔");
         translationBuilder.add(EGOWeapon.HORN_WEAPON, "犄角");
+        translationBuilder.add(EGOWeapon.BEAR_PAWS_WEAPON, "熊熊抱");
         //EGO护甲
         translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "教学用E.G.O");
         translationBuilder.add(PenitenceSuit.PENITENCE_SUIT, "忏悔");
         translationBuilder.add(EGOSuit.HORN_SUIT, "犄角");
+        translationBuilder.add(EGOSuit.BEAR_PAWS_SUIT, "熊熊抱");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "血肉契约");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "教学用E.G.O");
         translationBuilder.add(PenitenceGift.PENITENCE_GIFT, "忏悔");
         translationBuilder.add(EGOGift.HORN_GIFT, "犄角");
+        translationBuilder.add(BearPawsGift.BEAR_PAWS_GIFT, "熊熊抱");
         translationBuilder.add(EGOGift.BLESS_GIFT, "祝福");
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "教学兔兔「Dummy」");
@@ -104,9 +108,11 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "美女与野兽");
         translationBuilder.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG, "快乐泰迪");
         //技能描述名
+        translationBuilder.add(EGOWeapon.EGO_SKILL_WEAPON_FIST, "一次攻击造成两次伤害");
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "如果持有者的正义等级高于2级,每次攻击都有5%的概率恢复10点精神值");
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "当穿戴者受到物理或侵蚀伤害时，有5%的概率恢复10点精神值");
         translationBuilder.add(PenitenceGift.EGO_SKILL_GIFT_PENITENCE, "对异想体“一罪与百善”进行工作的成功率提高10%");
+        translationBuilder.add(BearPawsGift.EGO_SKILL_GIFT_BEAR_PAWS, "沟通工作的成功率提高3%");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "脑叶公司");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O武器");
@@ -163,8 +169,9 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_RIGHTBACK_SLOT), "在右背位时：");
         translationBuilder.add(LobeCorpUtil.getItemModifiersName(LobeCorpEquipmentSlot.LOBECORP_LEFTBACK_SLOT), "在左背位时：");
         //EGO武器模板名
-        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "棁类");
-        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.SPEAR.getTemplateName(), "矛类");
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "棁");
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.SPEAR.getTemplateName(), "矛");
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.FIST.getTemplateName(), "拳套");
         //工具提示名
         translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "按住左Shift显示信息");
         translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "装备要求：");

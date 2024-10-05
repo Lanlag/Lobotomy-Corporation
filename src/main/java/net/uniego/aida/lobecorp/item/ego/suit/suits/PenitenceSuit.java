@@ -11,13 +11,15 @@ import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
+import java.util.List;
+
 //忏悔护甲
 public class PenitenceSuit extends EGOSuit {
     public static final String EGO_SKILL_SUIT_PENITENCE = "ego.skill.suit.penitence";
     public static final PenitenceSuit PENITENCE_SUIT = new PenitenceSuit();
 
     public PenitenceSuit() {
-        super(LobeCorpUtil.EGOLevel.ZAYIN, 0.9F, 0.8F, 0.9F, 2.0F, EGO_SKILL_SUIT_PENITENCE);
+        super(LobeCorpUtil.EGOLevel.ZAYIN, 0.9F, 0.8F, 0.9F, 2.0F, List.of(EGO_SKILL_SUIT_PENITENCE));
     }
 
     @Override

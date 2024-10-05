@@ -40,7 +40,7 @@ public class EGOOcciputFeatureRenderer extends FeatureRenderer<AbstractClientPla
             //复制状态
             getContextModel().copyBipedStateTo(itemModel);
             //渲染
-            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(id), false, itemStack.hasGlint());
+            VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getEntityTranslucent(id), false, itemStack.hasGlint());
             itemModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrices.pop();
         }

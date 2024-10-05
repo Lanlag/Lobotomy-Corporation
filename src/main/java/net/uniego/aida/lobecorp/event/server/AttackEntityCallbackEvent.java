@@ -25,6 +25,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.init.DamageInit;
 import net.uniego.aida.lobecorp.init.TagInit;
+import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import org.jetbrains.annotations.Nullable;
 
 //攻击实体事件
@@ -137,6 +138,16 @@ public class AttackEntityCallbackEvent implements AttackEntityCallback {
                         }
 
                         player.addExhaustion(0.1F);
+
+                        if (player.getMainHandStack().getItem() instanceof EGOWeapon egoWeapon) {
+                            if (egoWeapon.getEgoWeaponTemplate() == EGOWeapon.EGOWeaponTemplate.FIST) {
+                                int timeUntilRegen = target.timeUntilRegen;
+                                target.timeUntilRegen = 0;
+                                target.damage(player.getDamageSources().create(egoDamageType, player), f);
+                                target.timeUntilRegen = timeUntilRegen;
+                            }
+                        }
+
                     } else {
                         player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, player.getSoundCategory(), 1.0F, 1.0F);
                         if (bl5) {

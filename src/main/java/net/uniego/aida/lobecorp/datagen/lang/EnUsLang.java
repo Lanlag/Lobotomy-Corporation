@@ -12,6 +12,7 @@ import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
@@ -88,15 +89,18 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "Standard Training E.G.O");
         translationBuilder.add(PenitenceWeapon.PENITENCE_WEAPON, "Penitence");
         translationBuilder.add(EGOWeapon.HORN_WEAPON, "Horn");
+        translationBuilder.add(EGOWeapon.BEAR_PAWS_WEAPON, "Bear Paws");
         //EGO护甲
         translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceSuit.PENITENCE_SUIT, "Penitence");
         translationBuilder.add(EGOSuit.HORN_SUIT, "Horn");
+        translationBuilder.add(EGOSuit.BEAR_PAWS_SUIT, "Bear Paws");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceGift.PENITENCE_GIFT, "Penitence");
         translationBuilder.add(EGOGift.HORN_GIFT, "Horn");
+        translationBuilder.add(BearPawsGift.BEAR_PAWS_GIFT, "Bear Paws");
         translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
@@ -104,9 +108,11 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "Beauty and The Beast");
         translationBuilder.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG, "Happy Teddy Bear");
         //技能描述名
+        translationBuilder.add(EGOWeapon.EGO_SKILL_WEAPON_FIST, "Dealing damage twice in a single attack");
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "5% of healing 10 SP upon attacking with JusticeIcon Lvl 2+");
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "5% of heal 10 SP when damaged by Red or Black");
         translationBuilder.add(PenitenceGift.EGO_SKILL_GIFT_PENITENCE, "Success Rate increases %10 with the corresponding Abnormality");
+        translationBuilder.add(BearPawsGift.EGO_SKILL_GIFT_BEAR_PAWS, "Attachment Work Success Rate increased by 3%");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "Lobe Corp");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O Weapon");
@@ -165,6 +171,7 @@ public class EnUsLang extends FabricLanguageProvider {
         //EGO武器模板名
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "Mace");
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.SPEAR.getTemplateName(), "Spear");
+        translationBuilder.add(EGOWeapon.EGOWeaponTemplate.FIST.getTemplateName(), "Fist");
         //工具提示名
         translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "Press Left Shift Show Info");
         translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "Equip Require:");

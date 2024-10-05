@@ -27,6 +27,8 @@ import java.util.UUID;
 public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAccess {
     public static final UUID INTERACTION_RANGE_MODIFIER_ID = UUID.fromString("F17D5E0B-44D0-4E2B-B81B-9C471B547B29");
 
+    public static final String EGO_SKILL_WEAPON_FIST = "ego.skill.weapon.fist";
+
     public static final String TOOLTIP_EGO_WEAPON_LEVEL = "tooltip.ego.weapon_level";//武器等级
     public static final String TOOLTIP_EGO_WEAPON_TEMPLATE = "tooltip.ego.weapon_template";//武器模板
     public static final String TOOLTIP_EGO_DAMAGE_TYPE = "tooltip.ego.damage_type";//伤害类型
@@ -42,7 +44,10 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final EGOWeapon BLACK_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//侵蚀镇暴棍
     public static final EGOWeapon PALE_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//灵魂镇暴棍
     public static final EGOWeapon STANDARD_TRAINING_EGO_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.TETH, EGOWeaponTemplate.MACE, 5);//教学用E.G.O
-    public static final EGOWeapon HORN_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.TETH, EGOWeaponTemplate.SPEAR, 7);//犄角
+    public static final EGOWeapon HORN_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.TETH, EGOWeaponTemplate.SPEAR, 6);//犄角
+    public static final EGOWeapon BEAR_PAWS_WEAPON = new EGOWeapon(LobeCorpUtil.EGOLevel.HE, EGOWeaponTemplate.FIST, 6, List.of(EGO_SKILL_WEAPON_FIST),
+            LevelManager.LobeCorpLevel.II, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
+            LevelManager.LobeCorpLevel.I);//熊熊抱
 
     private final LobeCorpUtil.EGOLevel egoLevel;
     private final EGOWeaponTemplate egoWeaponTemplate;
@@ -54,31 +59,36 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     private final LevelManager.LobeCorpLevel requireTotal;
 
     public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "",
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, null,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
-        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ, requireTotal);
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, null, requireF, requireP, requireT, requireJ, requireTotal);
     }
 
-    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, String egoSkill) {
+    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, List<String> egoSkill,
+                     LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
+        this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, egoSkill, requireF, requireP, requireT, requireJ, requireTotal);
+    }
+
+    public EGOWeapon(LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, List<String> egoSkill) {
         this(Rarity.COMMON, egoLevel, egoWeaponTemplate, attackDamage, egoSkill,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "",
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, null,
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
     }
 
     public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
-        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, "", requireF, requireP, requireT, requireJ, requireTotal);
+        this(rarity, egoLevel, egoWeaponTemplate, attackDamage, null, requireF, requireP, requireT, requireJ, requireTotal);
     }
 
-    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, String egoSkill,
+    public EGOWeapon(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, EGOWeaponTemplate egoWeaponTemplate, double attackDamage, List<String> egoSkill,
                      LevelManager.LobeCorpLevel requireF, LevelManager.LobeCorpLevel requireP, LevelManager.LobeCorpLevel requireT, LevelManager.LobeCorpLevel requireJ, LevelManager.LobeCorpLevel requireTotal) {
         super(new Settings().rarity(rarity).component(DataComponentTypes.ATTRIBUTE_MODIFIERS, LobeCorpUtil.createEGOWeaponAttributeModifiers
                 (attackDamage, -egoWeaponTemplate.attackSpeed, egoWeaponTemplate.interactionRange - 3)), LobeCorpAttributeModifierSlot.LOBECORP_WEAPON, egoSkill);
@@ -101,6 +111,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_weapon"), STANDARD_TRAINING_EGO_WEAPON);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_weapon"), PenitenceWeapon.PENITENCE_WEAPON);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_weapon"), HORN_WEAPON);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_weapon"), BEAR_PAWS_WEAPON);
     }
 
     public float getAttackDamage() {
@@ -179,8 +190,9 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
 
     //EGO武器模板
     public enum EGOWeaponTemplate {
-        MACE(2, 3, "ego.template.weapon.mace"),//棁类
-        SPEAR(1.5, 4, "ego.template.weapon.spear")//矛类
+        MACE(2, 3, "ego.template.weapon.mace"),//棁
+        SPEAR(1.5, 4, "ego.template.weapon.spear"),//矛
+        FIST(2, 2, "ego.template.weapon.fist")//拳套
         ;
 
         private final double attackSpeed;

@@ -11,6 +11,7 @@ import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
@@ -55,6 +56,7 @@ public class ItemGroupInit {
                 entries.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON);
                 entries.add(PenitenceWeapon.PENITENCE_WEAPON);
                 entries.add(EGOWeapon.HORN_WEAPON);
+                entries.add(EGOWeapon.BEAR_PAWS_WEAPON);
             }).build();
 
     public static final ItemGroup EGO_SUIT_TAB = FabricItemGroup.builder()
@@ -63,6 +65,7 @@ public class ItemGroupInit {
                 entries.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT);
                 entries.add(PenitenceSuit.PENITENCE_SUIT);
                 entries.add(EGOSuit.HORN_SUIT);
+                entries.add(EGOSuit.BEAR_PAWS_SUIT);
                 entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
@@ -72,6 +75,7 @@ public class ItemGroupInit {
                 entries.add(EGOGift.STANDARD_TRAINING_EGO_GIFT);
                 entries.add(PenitenceGift.PENITENCE_GIFT);
                 entries.add(EGOGift.HORN_GIFT);
+                entries.add(BearPawsGift.BEAR_PAWS_GIFT);
                 entries.add(EGOGift.BLESS_GIFT);
             }).build();
 
