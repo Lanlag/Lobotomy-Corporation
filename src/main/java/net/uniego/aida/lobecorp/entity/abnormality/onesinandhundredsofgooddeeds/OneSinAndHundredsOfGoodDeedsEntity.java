@@ -34,11 +34,11 @@ public class OneSinAndHundredsOfGoodDeedsEntity extends AbnormalityEntity {
 
     @Override
     protected void manage() {
-        if (isWorking()) hasExecuted = false;
         //Ⅰ. 当工作结果为优时，“一罪与百善”会为完成工作的员工恢复一些精神值。某个员工解释说那是一种“释然”的感觉。
-        if (!isWorking() && Objects.equals(getLastWorkResult(), GOOD) && !hasExecuted) {
+        //Ⅱ. 如果员工在一次工作中成功产出了所有的PE-BOX，那么“一罪与百善”会为该部门的所有员工恢复精神值。
+        if (isWorking()) hasExecuted = false;
+        if (!isWorking() && GOOD.equals(getLastWorkResult()) && !hasExecuted) {
             ((ManagerAccess) getLastWorkPlayer()).lobecorp$getSanityManager().cure(4);
-            //Ⅱ. 如果员工在一次工作中成功产出了所有的PE-BOX，那么“一罪与百善”会为该部门的所有员工恢复精神值。
             if (getLastPeBox() == eBox) {
                 Team team = getLastWorkPlayer().getScoreboardTeam();
                 if (team != null) {

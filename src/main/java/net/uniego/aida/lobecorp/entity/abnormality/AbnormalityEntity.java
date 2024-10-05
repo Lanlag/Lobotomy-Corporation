@@ -241,21 +241,21 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
                     if (getLastWorkPlayer() != null && !getWorld().isClient) {
                         if (getLastPeBox() + getLastNeBox() == eBox && !isApplied) {
                             int attributeBonus = Math.round(getLastPeBox() * getLevelOutputValue() * getStatusOutputValue());
-                            if (Objects.equals(getLastWorkMethod(), INSTINCT)) {
+                            if (INSTINCT.equals(getLastWorkMethod())) {
                                 double maxHealth = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)).getBaseValue();
                                 Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)).setBaseValue(maxHealth + attributeBonus);
                                 isApplied = true;
-                            } else if (Objects.equals(getLastWorkMethod(), INSIGHT)) {
+                            } else if (INSIGHT.equals(getLastWorkMethod())) {
                                 double maxSanity = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_MAX_SANITY)).getBaseValue();
                                 Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_MAX_SANITY)).setBaseValue(maxSanity + attributeBonus);
                                 isApplied = true;
-                            } else if (Objects.equals(getLastWorkMethod(), ATTACHMENT)) {
+                            } else if (ATTACHMENT.equals(getLastWorkMethod())) {
                                 double workSuccess = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_WORK_SUCCESS)).getBaseValue();
                                 double workVelocity = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_WORK_VELOCITY)).getBaseValue();
                                 Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_WORK_SUCCESS)).setBaseValue(workSuccess + attributeBonus);
                                 Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_WORK_VELOCITY)).setBaseValue(workVelocity + attributeBonus);
                                 isApplied = true;
-                            } else if (Objects.equals(getLastWorkMethod(), REPRESSION)) {
+                            } else if (REPRESSION.equals(getLastWorkMethod())) {
                                 double attackVelocity = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_ATTACK_VELOCITY)).getBaseValue();
                                 double moveVelocity = Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_MOVE_VELOCITY)).getBaseValue();
                                 Objects.requireNonNull(getLastWorkPlayer().getAttributeInstance(AttributeInit.PLAYER_ATTACK_VELOCITY)).setBaseValue(attackVelocity + attributeBonus);
@@ -450,14 +450,14 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         float maxHealth = getLastWorkPlayer().getMaxHealth();
         float sanity = ((ManagerAccess) getLastWorkPlayer()).lobecorp$getSanityManager().getSanity();
         float maxSanity = ((ManagerAccess) getLastWorkPlayer()).lobecorp$getSanityManager().getMaxSanity();
-        if (Objects.equals(getLastWorkMethod(), REPRESSION)) {
+        if (REPRESSION.equals(getLastWorkMethod())) {
             finalStatusOutputValue = 0.5F;
             return finalStatusOutputValue;
-        } else if (Objects.equals(getLastWorkMethod(), ATTACHMENT)) {
+        } else if (ATTACHMENT.equals(getLastWorkMethod())) {
             temporaryStatusOutputValue = (health + sanity) / (maxHealth + maxSanity);
-        } else if (Objects.equals(getLastWorkMethod(), INSIGHT)) {
+        } else if (INSIGHT.equals(getLastWorkMethod())) {
             temporaryStatusOutputValue = sanity / maxSanity;
-        } else if (Objects.equals(getLastWorkMethod(), INSTINCT)) {
+        } else if (INSTINCT.equals(getLastWorkMethod())) {
             temporaryStatusOutputValue = health / maxHealth;
         }
         if (temporaryStatusOutputValue > 0.0F && temporaryStatusOutputValue <= 0.1F) {

@@ -77,6 +77,7 @@ public class ItemGroupInit {
             .entries((context, entries) -> {
                 entries.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG);
                 entries.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG);
+                entries.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG);
             }).build();
 
     public static void register() {

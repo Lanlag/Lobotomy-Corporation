@@ -13,7 +13,6 @@ import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
 import java.util.List;
-import java.util.Objects;
 
 //EGO物品
 public class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
@@ -37,7 +36,7 @@ public class EGOItem extends LobeCorpItem implements LobeCorpSlotAccess {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (!Objects.equals(egoSkill, "")) {
+        if (!"".equals(egoSkill)) {
             int maxLength = 24;
             MutableText translatableText = Text.translatable(egoSkill);
             String firstLine = translatableText.getString().substring(0, Math.min(maxLength, translatableText.getString().length()));

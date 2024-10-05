@@ -12,7 +12,6 @@ import net.uniego.aida.lobecorp.init.DamageInit;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 //教学兔兔实体
 public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
@@ -33,7 +32,7 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
     @Override
     protected void manage() {
         //Ⅰ. 对“教学兔兔“Dummy””完成压迫工作后，它的逆卡巴拉计数器会在倒计时结束后减少。
-        if (!isWorking() && !isCooling() && Objects.equals(getLastWorkMethod(), AbnormalityEntity.REPRESSION)) {
+        if (!isWorking() && !isCooling() && REPRESSION.equals(getLastWorkMethod())) {
             setQliphothCounter(qliphothCounter - 1);
         }
     }

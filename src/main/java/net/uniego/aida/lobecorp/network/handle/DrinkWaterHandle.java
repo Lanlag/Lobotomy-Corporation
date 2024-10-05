@@ -11,22 +11,20 @@ import net.uniego.aida.lobecorp.manager.ThirstManager;
 import net.uniego.aida.lobecorp.network.packet.SwingHandPacket;
 import net.uniego.aida.lobecorp.network.payload.DrinkWaterPayload;
 
-import java.util.Objects;
-
 public class DrinkWaterHandle {
     public static void receive() {
         ServerPlayNetworking.registerGlobalReceiver(DrinkWaterPayload.ID, (payload, context) -> context.server().execute(() -> {
             ThirstManager thirstManager = ((ManagerAccess) context.player()).lobecorp$getThirstManager();
-            if (Objects.equals(payload.waterSource(), DrinkWaterPayload.STREAM) && (thirstManager.isNotFull()
+            if (DrinkWaterPayload.STREAM.equals(payload.waterSource()) && (thirstManager.isNotFull()
                     || context.player().isCreative()) && thirstManager.isNotDrink()) {
                 drinkWater(context.player(), thirstManager, 2, 0.05F);
                 context.player().addStatusEffect(new StatusEffectInstance(EffectInit.THIRST, 600));
                 thirstManager.hasDrankStream = true;
-            } else if (Objects.equals(payload.waterSource(), DrinkWaterPayload.RAIN) && (thirstManager.isNotFull()
+            } else if (DrinkWaterPayload.RAIN.equals(payload.waterSource()) && (thirstManager.isNotFull()
                     || context.player().isCreative()) && thirstManager.isNotDrink()) {
                 drinkWater(context.player(), thirstManager, 1, 0.01F);
                 thirstManager.hasDrankRain = true;
-            } else if (Objects.equals(payload.waterSource(), DrinkWaterPayload.CAULDRON) && (thirstManager.isNotFull()
+            } else if (DrinkWaterPayload.CAULDRON.equals(payload.waterSource()) && (thirstManager.isNotFull()
                     || context.player().isCreative()) && thirstManager.isNotDrink()) {
                 drinkWater(context.player(), thirstManager, 2, 0.1F);
                 context.player().addStatusEffect(new StatusEffectInstance(EffectInit.THIRST, 600));
