@@ -1,9 +1,10 @@
-// 1.20.6	2024-10-05T07:05:39.7171224	Lobotomy Corporation/Model Definitions
+// 1.20.6	2024-10-05T07:39:46.6005925	Lobotomy Corporation/Model Definitions
 de8cb4e851decae6059603129c4f105a60f17328 assets\lobecorp\models\item\architecture_badge.json
 5eefa8faa1c7498fe342790430a2a59edd139eb7 assets\lobecorp\models\item\extraction_badge.json
 abb9fe2c8f562fe8145fdad18c52eb8850c8f6cc assets\lobecorp\models\item\bless_gift.json
 2b48c727c65d8c0b3e663eeed3f47ddc227e0cbc assets\lobecorp\models\item\penitence_suit.json
 803352a1aa5c02e6ff055bbbad0d6d4393c9de41 assets\lobecorp\models\item\welfare_badge.json
+d0c5ee51a4c40bab03c329c5dd4c9b945cca809b assets\lobecorp\models\item\beauty_and_the_beast_egg.json
 f5e80c5c0be0883038011bd14f5185b984247cb4 assets\lobecorp\models\item\control_badge.json
 3a2410238bddd75d306d47f17de4bd3226e26deb assets\lobecorp\models\item\information_badge.json
 0ea24d636de4e3239e7e0a136b9d7e73aa177b56 assets\lobecorp\models\item\standard_training_dummy_rabbit_egg.json

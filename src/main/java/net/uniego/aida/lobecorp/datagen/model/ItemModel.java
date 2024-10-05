@@ -53,5 +53,6 @@ public class ItemModel extends FabricModelProvider {
         //异想体生成蛋
         itemModelGenerator.register(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, Models.GENERATED);
         itemModelGenerator.register(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, Models.GENERATED);
+        itemModelGenerator.register(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, Models.GENERATED);
     }
 }

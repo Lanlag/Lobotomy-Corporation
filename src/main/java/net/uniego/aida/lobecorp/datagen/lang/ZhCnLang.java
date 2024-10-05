@@ -98,6 +98,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "教学兔兔「Dummy」");
         translationBuilder.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, "一罪与百善");
+        translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "美女与野兽");
         //技能描述名
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "如果持有者的正义等级高于2级,每次攻击都有5%的概率恢复10点精神值");
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "当穿戴者受到物理或侵蚀伤害时，有5%的概率恢复10点精神值");
@@ -193,6 +194,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         //异想体名
         translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "教学兔兔「Dummy」");
         translationBuilder.add(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, "一罪与百善");
+        translationBuilder.add(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, "美女与野兽");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "疑问");
     }

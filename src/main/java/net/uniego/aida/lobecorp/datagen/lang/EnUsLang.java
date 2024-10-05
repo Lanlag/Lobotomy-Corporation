@@ -98,6 +98,7 @@ public class EnUsLang extends FabricLanguageProvider {
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
         translationBuilder.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, "One Sin and Hundreds of Good Deeds");
+        translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "Beauty and The Beast");
         //技能描述名
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "5% of healing 10 SP upon attacking with JusticeIcon Lvl 2+");
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "5% of heal 10 SP when damaged by Red or Black");
@@ -193,6 +194,7 @@ public class EnUsLang extends FabricLanguageProvider {
         //异想体名
         translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "Standard Training-Dummy Rabbit");
         translationBuilder.add(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, "One Sin and Hundreds of Good Deeds");
+        translationBuilder.add(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, "Beauty and The Beast");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }
