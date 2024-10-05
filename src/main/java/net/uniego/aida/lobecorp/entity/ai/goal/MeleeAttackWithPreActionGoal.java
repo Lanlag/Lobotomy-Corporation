@@ -37,7 +37,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     public boolean canStart() {
-        if (!isAttacking) {
+        if (!isAttacking && mob.isAlive()) {
             long l = mob.getWorld().getTime();
             if (l - lastUpdateTime < 20L) {
                 return false;

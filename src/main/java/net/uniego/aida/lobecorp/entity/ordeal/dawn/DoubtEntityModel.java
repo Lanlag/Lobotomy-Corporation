@@ -4,121 +4,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.animation.Animation;
-import net.minecraft.client.render.entity.animation.AnimationHelper;
-import net.minecraft.client.render.entity.animation.Keyframe;
-import net.minecraft.client.render.entity.animation.Transformation;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.uniego.aida.lobecorp.AnimationUtil;
-import org.joml.Vector3f;
 
 //疑问实体模型
 @Environment(EnvType.CLIENT)
 public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityModel<T> {
-    public static final Animation EXECUTE = Animation.Builder.create(1.68F)
-            .addBoneAnimation("body", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.24F, AnimationHelper.createRotationalVector(-12.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.6F, AnimationHelper.createRotationalVector(-12.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.72F, AnimationHelper.createRotationalVector(7.5F, 10.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.76F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.88F, AnimationHelper.createRotationalVector(7.5F, 15.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.92F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.04F, AnimationHelper.createRotationalVector(7.5F, 25.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.08F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.2F, AnimationHelper.createRotationalVector(7.5F, 5.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.24F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.4F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.48F, AnimationHelper.createRotationalVector(7.5F, 15.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.68F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("cloth1", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.24F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.6F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.84F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.88F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.04F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.16F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.2F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.32F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.36F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.52F, AnimationHelper.createRotationalVector(10.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.6F, AnimationHelper.createRotationalVector(-7.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.68F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("leftArm", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.36F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.6F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.72F, AnimationHelper.createRotationalVector(-147.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.76F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.88F, AnimationHelper.createRotationalVector(-147.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.92F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.04F, AnimationHelper.createRotationalVector(-147.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.08F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.2F, AnimationHelper.createRotationalVector(-147.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.24F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.4F, AnimationHelper.createRotationalVector(-195.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.48F, AnimationHelper.createRotationalVector(-147.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.68F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("la2", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.36F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.6F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.72F, AnimationHelper.createRotationalVector(182.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.76F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.88F, AnimationHelper.createRotationalVector(182.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.92F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.04F, AnimationHelper.createRotationalVector(182.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.08F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.2F, AnimationHelper.createRotationalVector(182.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.24F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.4F, AnimationHelper.createRotationalVector(237.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.48F, AnimationHelper.createRotationalVector(182.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.68F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("cloth2", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.24F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.6F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.84F, AnimationHelper.createRotationalVector(-2.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.88F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(-2.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.04F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.16F, AnimationHelper.createRotationalVector(-2.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.2F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.32F, AnimationHelper.createRotationalVector(-2.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.36F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.52F, AnimationHelper.createRotationalVector(5.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.6F, AnimationHelper.createRotationalVector(-2.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.68F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .build();
-    public static final Animation ATTACK = Animation.Builder.create(1.0F)
-            .addBoneAnimation("body", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.24F, AnimationHelper.createRotationalVector(0.0F, -10.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.48F, AnimationHelper.createRotationalVector(10.0F, 20.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("leftArm", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.16F, AnimationHelper.createRotationalVector(35.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.32F, AnimationHelper.createRotationalVector(-90.55F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .addBoneAnimation("la2", new Transformation(Transformation.Targets.ROTATE,
-                    new Keyframe(0.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.16F, AnimationHelper.createRotationalVector(-52.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(0.32F, AnimationHelper.createRotationalVector(52.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
-                    new Keyframe(1.0F, AnimationHelper.createRotationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
-            ))
-            .build();
     private final ModelPart doubt;
     private final ModelPart waist;
     private final ModelPart leftLeg;
@@ -141,7 +34,8 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
 
     public DoubtEntityModel(ModelPart root) {
         this.doubt = root.getChild("doubt");
-        this.waist = doubt.getChild("waist");
+        ModelPart height = doubt.getChild("height");
+        this.waist = height.getChild("waist");
         this.leftLeg = waist.getChild("leftLeg");
         this.ll2 = leftLeg.getChild("ll2");
         this.ll3 = ll2.getChild("ll3");
@@ -166,7 +60,9 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
         ModelPartData modelPartData = modelData.getRoot();
         ModelPartData doubt = modelPartData.addChild("doubt", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 16.0F, 0.0F));
 
-        ModelPartData waist = doubt.addChild("waist", ModelPartBuilder.create().uv(32, 45).cuboid(-4.0F, -1.0F, -1.0F, 8.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -12.0F, 0.0F));
+        ModelPartData height = doubt.addChild("height", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+
+        ModelPartData waist = height.addChild("waist", ModelPartBuilder.create().uv(32, 45).cuboid(-4.0F, -1.0F, -1.0F, 8.0F, 2.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -12.0F, 0.0F));
 
         ModelPartData leftLeg = waist.addChild("leftLeg", ModelPartBuilder.create().uv(120, 0).cuboid(-1.25F, -1.0F, -1.25F, 2.0F, 10.0F, 2.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 1.0F, 0.0F));
 
@@ -279,18 +175,27 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     @Override
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
-        AnimationUtil.rotateHead(headYaw, headPitch, head);
-        setGearsAngle(limbAngle, limbDistance);
-        walkAnimation(limbAngle, limbDistance, 0.8F);
-        this.updateAnimation(entity.attackingAnimationState, ATTACK, animationProgress);
-        this.updateAnimation(entity.executeAnimationState, EXECUTE, animationProgress);
+        setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(),5);
+        if (entity.isAlive()){
+            AnimationUtil.rotateHead(headYaw, headPitch, head);
+            walkAnimation(limbAngle, limbDistance, 0.8F);
+            this.updateAnimation(entity.attackingAnimationState, DoubtEntityAnimations.ATTACK, animationProgress);
+            this.updateAnimation(entity.executeAnimationState, DoubtEntityAnimations.EXECUTE, animationProgress);
+        } else {
+            AnimationUtil.rotateHead(0, 0, head);
+            walkAnimation(0, 0, 0.0F);
+        }
+        this.updateAnimation(entity.dieAnimationState, DoubtEntityAnimations.DIE, animationProgress);
     }
 
     public void setDefaultPose() {
+        doubt.pivotY = 16;
+        doubt.pivotZ = 0;
         waist.pitch = 0;
         body.yaw = 0;
         body.pitch = AnimationUtil.degreeToRadians(12.5F);
         head.pitch = AnimationUtil.degreeToRadians(-12.5F);
+        neck.pitch = 0;
         leftArm.pitch = AnimationUtil.degreeToRadians(35F);
         la2.pitch = AnimationUtil.degreeToRadians(-97F);
         cloth1.pitch = AnimationUtil.degreeToRadians(-15F);
@@ -301,12 +206,16 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
         leftLeg.pitch = AnimationUtil.degreeToRadians(-52.5F);
         ll2.pitch = AnimationUtil.degreeToRadians(92.5F);
         ll3.pitch = AnimationUtil.degreeToRadians(-67.5F);
+        gear1.pitch = 0;
+        gear2.pitch = 0;
+        gear3.pitch = 0;
     }
 
-    public void setGearsAngle(float limbAngle, float limbDistance) {
-        gear1.pitch -= AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * -0.7F) * limbDistance;
-        gear2.pitch += AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance;
-        gear3.pitch += AnimationUtil.degreeToRadians(1) + MathHelper.cos(limbAngle * 0.1F - 60) * limbDistance;
+    public void setGearsAngle(float limbAngle, float limbDistance,float gearAngle,float speed) {
+        gearAngle *= speed;
+        gear1.pitch = MathHelper.cos(limbAngle * -0.7F) * limbDistance + gearAngle;
+        gear2.pitch = MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance + gearAngle;
+        gear3.pitch = MathHelper.cos(limbAngle * 0.1F - 60) * limbDistance + gearAngle;
     }
 
     public void walkAnimation(float limbAngle, float limbDistance, float speed) {
@@ -329,8 +238,6 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
         float s = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 45) * -6F - 6) * amplitude;
         float t = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 60) * -3F + 3) * amplitude;
 
-        doubt.pivotZ = 0;
-        doubt.pivotY = 16;
         doubt.pivotY += (MathHelper.sin(limbAngle * 2 * speed) - 0.5F) * amplitude;
         doubt.pivotZ -= (MathHelper.sin(limbAngle * 2 * speed) * 2 - 1F) * amplitude;
 
