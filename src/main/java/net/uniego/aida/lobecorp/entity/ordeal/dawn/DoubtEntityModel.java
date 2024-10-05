@@ -175,8 +175,8 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     @Override
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
-        setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(),5);
-        if (entity.isAlive()){
+        setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(), 5);
+        if (entity.isAlive()) {
             AnimationUtil.rotateHead(headYaw, headPitch, head);
             walkAnimation(limbAngle, limbDistance, 0.8F);
             this.updateAnimation(entity.attackingAnimationState, DoubtEntityAnimations.ATTACK, animationProgress);
@@ -211,7 +211,7 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
         gear3.pitch = 0;
     }
 
-    public void setGearsAngle(float limbAngle, float limbDistance,float gearAngle,float speed) {
+    public void setGearsAngle(float limbAngle, float limbDistance, float gearAngle, float speed) {
         gearAngle *= speed;
         gear1.pitch = MathHelper.cos(limbAngle * -0.7F) * limbDistance + gearAngle;
         gear2.pitch = MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance + gearAngle;

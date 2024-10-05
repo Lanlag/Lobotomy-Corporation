@@ -1,13 +1,14 @@
 package net.uniego.aida.lobecorp.entity.abnormality.standardtrainingdummyrabbit;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
-import net.uniego.aida.lobecorp.entity.ai.goal.StandardTrainingDummyRabbitGoal;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
 import java.util.HashMap;
@@ -87,4 +88,29 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
         repressionProbabilities.put(6, 0.40F);
         workProbabilities.put(REPRESSION, repressionProbabilities);
     }
+
+    public static class StandardTrainingDummyRabbitGoal extends Goal {
+        private final PathAwareEntity mob;
+        private final double speed;
+        private final double targetX;
+        private final double targetZ;
+
+        public StandardTrainingDummyRabbitGoal(PathAwareEntity mob, double speed, int range) {
+            this.mob = mob;
+            this.speed = speed;
+            this.targetX = this.mob.getX() + (this.mob.getRandom().nextFloat() - 0.5F) * range;
+            this.targetZ = this.mob.getZ() + (this.mob.getRandom().nextFloat() - 0.5F) * range;
+        }
+
+        @Override
+        public boolean canStart() {
+            return true;
+        }
+
+        @Override
+        public void start() {
+            mob.getNavigation().startMovingTo(targetX, mob.getY(), targetZ, speed);
+        }
+    }
+
 }
