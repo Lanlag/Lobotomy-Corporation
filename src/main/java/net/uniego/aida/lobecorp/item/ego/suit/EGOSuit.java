@@ -16,6 +16,7 @@ import net.uniego.aida.lobecorp.access.EquipRequireAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
@@ -61,6 +62,11 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
         this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, "", requireF, requireP, requireT, requireJ, requireTotal);
     }
 
+    public EGOSuit(LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist, String egoSkill) {
+        this(Rarity.COMMON, egoLevel, redResist, whiteResist, blackResist, paleResist, egoSkill,
+                LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
+    }
+
     public EGOSuit(Rarity rarity, LobeCorpUtil.EGOLevel egoLevel, float redResist, float whiteResist, float blackResist, float paleResist) {
         this(rarity, egoLevel, redResist, whiteResist, blackResist, paleResist, "",
                 LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I);
@@ -91,6 +97,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
         Registry.register(Registries.ITEM, LobeCorpUtil.id("code_suit"), CODE_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_suit"), STANDARD_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("standard_training_ego_suit"), STANDARD_TRAINING_EGO_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_suit"), PenitenceSuit.PENITENCE_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("flesh_bound_suit"), FLESH_BOUND_SUIT);
     }
 

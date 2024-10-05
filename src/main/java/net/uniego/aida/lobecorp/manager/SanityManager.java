@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.manager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
+import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 
 //精神机制
@@ -20,7 +21,7 @@ public class SanityManager {
 
     public void cure(float amount) {
         float f = getSanity();
-        if (f > 0.0F) {
+        if (f > 0.0F && isNormal()) {
             setSanity(f + amount);
         }
     }
@@ -46,6 +47,10 @@ public class SanityManager {
         if (!player.getAbilities().invulnerable) {
             if (isCrazy()) {
                 ++sanityTickTimer;
+                if (sanityTickTimer >= 900) {
+                    LobeCorpUtil.sanityKill(player);
+                    sanityTickTimer = 0;
+                }
             } else {
                 sanityTickTimer = 0;
             }

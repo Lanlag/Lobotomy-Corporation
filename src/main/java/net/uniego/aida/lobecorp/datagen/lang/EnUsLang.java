@@ -6,13 +6,17 @@ import net.minecraft.registry.RegistryWrapper;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.*;
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
+import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
+import net.uniego.aida.lobecorp.item.ego.weapon.weapons.PenitenceWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
 import java.util.concurrent.CompletableFuture;
@@ -82,17 +86,29 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(ArchitectureBadge.ARCHITECTURE_BADGE, "Architecture Badge");
         //EGO武器
         translationBuilder.add(EGOWeapon.STANDARD_TRAINING_EGO_WEAPON, "Standard Training E.G.O");
+        translationBuilder.add(PenitenceWeapon.PENITENCE_WEAPON, "Penitence");
         //EGO护甲
         translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "Standard Training E.G.O");
+        translationBuilder.add(PenitenceSuit.PENITENCE_SUIT, "Penitence");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
+        translationBuilder.add(PenitenceGift.PENITENCE_GIFT, "Penitence");
         translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
+        //异想体生成蛋名
+        translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
+        translationBuilder.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, "One Sin and Hundreds of Good Deeds");
+        translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "Beauty and The Beast");
+        //技能描述名
+        translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "5% of healing 10 SP upon attacking with JusticeIcon Lvl 2+");
+        translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "5% of heal 10 SP when damaged by Red or Black");
+        translationBuilder.add(PenitenceGift.EGO_SKILL_GIFT_PENITENCE, "Success Rate increases %10 with the corresponding Abnormality");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "Lobe Corp");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O Weapon");
         translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O Suit");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O Gift");
+        translationBuilder.add(ItemGroupInit.ABNORMALITY_TAB_NAME, "Abnormality");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "Change Equipment");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");
@@ -177,6 +193,8 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EntityInit.DEAD_PLAYER_ENTITY, "Corpse");
         //异想体名
         translationBuilder.add(EntityInit.STANDARD_TRAINING_DUMMY_RABBIT_ENTITY, "Standard Training-Dummy Rabbit");
+        translationBuilder.add(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, "One Sin and Hundreds of Good Deeds");
+        translationBuilder.add(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, "Beauty and The Beast");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }

@@ -16,6 +16,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
@@ -50,9 +51,10 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     private static final TrackedData<Boolean> IS_WORKING = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> IS_COOLING = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> IS_ESCAPING = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    //固定参数
     public final int eBox;//最大BOX产量
     protected final Map<String, Map<Integer, Float>> workProbabilities;//工作概率容器
+    //固定参数
+    private final String number;
     private final float baseWorkSpeed;//基础工作速度
     private final int maxQliphothCounter;//逆卡巴拉计数器极值
     private final int cooldownTime;//冷却时间
@@ -82,12 +84,40 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     private float levelOutputValue;//等级输出值
     private float temporaryStatusOutputValue;//暂时状态输出值
     private float finalStatusOutputValue;//最终状态输出值
+    private Vec3d spawnPos;//出生位置
+    private boolean isSpawned;//是否出生成功
+    private int deadTickTimer;//死亡计时器
+    private boolean isRespawned;//是否重生成功
 
     protected AbnormalityEntity(EntityType<? extends HostileEntity> entityType, World world, LobeCorpUtil.EGOLevel egoLevel,
-                                float redResist, float whiteResist, float blackResist, float paleResist,
+                                String number, int eBox, int cooldownTime, float baseWorkSpeed, RegistryKey<DamageType> damageTypeRegistryKey,
+                                int goodMoodMin, int goodMoodMax, int normalMoodMin, int normalMoodMax, int badMoodMin, int badMoodMax) {
+        super(entityType, world, egoLevel, 0.0F, 0.0F, 0.0F, 0.0F);
+        this.number = number;
+        this.eBox = eBox;
+        this.maxQliphothCounter = -1;
+        this.qliphothCounter = -1;
+        this.cooldownTime = cooldownTime;
+        this.baseWorkSpeed = baseWorkSpeed;
+        this.damageTypeRegistryKey = damageTypeRegistryKey;
+        this.goodMoodMin = goodMoodMin;
+        this.goodMoodMax = goodMoodMax;
+        this.normalMoodMin = normalMoodMin;
+        this.normalMoodMax = normalMoodMax;
+        this.badMoodMin = badMoodMin;
+        this.badMoodMax = badMoodMax;
+        workProbabilities = new HashMap<>();
+        setWorkProbabilities();
+        levelOutputValues = new HashMap<>();
+        setLevelOutputValues();
+    }
+
+    protected AbnormalityEntity(EntityType<? extends HostileEntity> entityType, World world, LobeCorpUtil.EGOLevel egoLevel,
+                                float redResist, float whiteResist, float blackResist, float paleResist, String number,
                                 int eBox, int maxQliphothCounter, int cooldownTime, float baseWorkSpeed, RegistryKey<DamageType> damageTypeRegistryKey,
                                 int goodMoodMin, int goodMoodMax, int normalMoodMin, int normalMoodMax, int badMoodMin, int badMoodMax) {
         super(entityType, world, egoLevel, redResist, whiteResist, blackResist, paleResist);
+        this.number = number;
         this.eBox = eBox;
         this.maxQliphothCounter = maxQliphothCounter;
         this.qliphothCounter = maxQliphothCounter;
@@ -150,23 +180,54 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     }
 
     @Override
+    protected void updatePostDeath() {
+        deadTickTimer++;
+        if (deadTickTimer >= 100) {
+            super.updatePostDeath();
+            if (!isRespawned && getType().create(getWorld()) instanceof AbnormalityEntity abnormality) {
+                abnormality.setPos(spawnPos.getX(), spawnPos.getY() + 0.1F, spawnPos.getZ());
+                abnormality.setUBox(uBox);
+                if (!getWorld().isClient) {
+                    getWorld().spawnEntity(abnormality);
+                    isRespawned = true;
+                }
+            }
+        }
+    }
+
+    @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         uBox = nbt.getInt("uBox");
+        double posX = nbt.getDouble("spawnPosX");
+        double posY = nbt.getDouble("spawnPosY");
+        double posZ = nbt.getDouble("spawnPosZ");
+        spawnPos = new Vec3d(posX, posY, posZ);
+        isSpawned = nbt.getBoolean("isSpawned");
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("uBox", uBox);
+        nbt.putDouble("spawnPosX", spawnPos.getX());
+        nbt.putDouble("spawnPosY", spawnPos.getY());
+        nbt.putDouble("spawnPosZ", spawnPos.getZ());
+        nbt.putBoolean("isSpawned", isSpawned);
     }
 
     @Override
     public void tick() {
         super.tick();
+        if (!isSpawned) {
+            spawnPos = getPos();
+            isSpawned = true;
+        }
         work();
-        manage();
-        escape();
+        if (!getWorld().isClient) {
+            manage();
+            escape();
+        }
     }
 
     private void work() {
@@ -428,6 +489,10 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
             }
         }
         return probability;
+    }
+
+    public void setExtraProbability(float extraProbability) {
+        this.extraProbability += extraProbability;
     }
 
     public void setWorkLevel(String workMethod) {

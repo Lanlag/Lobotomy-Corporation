@@ -95,6 +95,10 @@
     {
       "type": "single",
       "resource": "lobecorp:entity/weapon/standard_training_ego_weapon_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/penitence_weapon_model"
     }
   ]
 }

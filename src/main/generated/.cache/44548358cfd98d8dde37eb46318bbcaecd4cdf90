@@ -1,9 +1,13 @@
-// 1.20.6	2024-10-05T00:57:10.6492991	Lobotomy Corporation/Model Definitions
+// 1.20.6	2024-10-05T07:39:46.6005925	Lobotomy Corporation/Model Definitions
 de8cb4e851decae6059603129c4f105a60f17328 assets\lobecorp\models\item\architecture_badge.json
 5eefa8faa1c7498fe342790430a2a59edd139eb7 assets\lobecorp\models\item\extraction_badge.json
+abb9fe2c8f562fe8145fdad18c52eb8850c8f6cc assets\lobecorp\models\item\bless_gift.json
+2b48c727c65d8c0b3e663eeed3f47ddc227e0cbc assets\lobecorp\models\item\penitence_suit.json
 803352a1aa5c02e6ff055bbbad0d6d4393c9de41 assets\lobecorp\models\item\welfare_badge.json
+d0c5ee51a4c40bab03c329c5dd4c9b945cca809b assets\lobecorp\models\item\beauty_and_the_beast_egg.json
 f5e80c5c0be0883038011bd14f5185b984247cb4 assets\lobecorp\models\item\control_badge.json
 3a2410238bddd75d306d47f17de4bd3226e26deb assets\lobecorp\models\item\information_badge.json
+0ea24d636de4e3239e7e0a136b9d7e73aa177b56 assets\lobecorp\models\item\standard_training_dummy_rabbit_egg.json
 f0fd487d28bde73e5df86b21c4a71fb63419cf4c assets\lobecorp\models\item\security_badge.json
 c8ef52728427c18fd51c25faead489b1111870b3 assets\lobecorp\models\item\record_badge.json
 2e9d0310526c5bb9834ca22ab3f71edd4cd71448 assets\lobecorp\models\item\flesh_bound_suit.json
@@ -12,7 +16,9 @@ bb5bb1d80151ddc098e9e8ee4ee9bbe376f3c73a assets\lobecorp\models\item\lobecorp_lo
 73de86f70b812dc8b60b895a22167161ff634e4b assets\lobecorp\models\item\standard_training_ego_suit.json
 a0b244d215171bf7a46747da8be58490dd1f98ea assets\lobecorp\models\item\blue_leaf.json
 d3b006efbc6fce93c8f21c81faf5a68d970a86bf assets\lobecorp\models\item\standard_training_ego_gift.json
+23c84e9131f057847fd921e12f4d4f3130be400b assets\lobecorp\models\item\one_sin_and_hundreds_of_good_deeds_egg.json
+495de7024a539a35238d0a1ba4e13d53fd21991f assets\lobecorp\models\item\penitence_gift.json
 88535cc235ee4958d129de65b49e34daf2deb8db assets\lobecorp\models\item\code_suit.json
-b94907074dcda8bb074fb09c09e01c1480e49598 assets\lobecorp\models\item\training_badge.json
 1aa59984e1add2e416cb9d9ae40da67097f26083 assets\lobecorp\models\item\disciplinary_badge.json
+b94907074dcda8bb074fb09c09e01c1480e49598 assets\lobecorp\models\item\training_badge.json
 fa4cf5756d725485c48521970689af329dc1d372 assets\lobecorp\models\item\central_command_badge.json

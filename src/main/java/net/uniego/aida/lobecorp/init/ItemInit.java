@@ -1,5 +1,6 @@
 package net.uniego.aida.lobecorp.init;
 
+import net.uniego.aida.lobecorp.item.AbnormalitySpawnEgg;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.TeamBadge;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
@@ -10,5 +11,6 @@ public class ItemInit {
         LobeCorpItem.register();
         EGOItem.register();
         TeamBadge.register();
+        AbnormalitySpawnEgg.register();
     }
 }
