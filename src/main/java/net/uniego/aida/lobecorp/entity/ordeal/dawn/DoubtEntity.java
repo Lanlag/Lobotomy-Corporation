@@ -21,6 +21,7 @@ import net.minecraft.util.function.ValueLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.uniego.aida.lobecorp.AnimationUtil;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
@@ -36,9 +37,10 @@ public class DoubtEntity extends OrdealEntity {
     public static final TrackedDataHandler<DoubtEntity.State> DOUBT_STATE = TrackedDataHandler.create(DoubtEntity.State.PACKET_CODEC);
     private static final TrackedData<DoubtEntity.State> STATE = DataTracker.registerData(DoubtEntity.class, DOUBT_STATE);
     public DeadPlayerEntity targetDeadPlayer;
-    public AnimationState attackingAnimationState = new AnimationState();
-    public AnimationState executeAnimationState = new AnimationState();
-
+    public final AnimationState attackingAnimationState = new AnimationState();
+    public final AnimationState executeAnimationState = new AnimationState();
+    public final AnimationState dieAnimationState = new AnimationState();
+    public float gearAngle;
     public DoubtEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH, 0.8F, 1.3F, 2.0F, 1.0F);
     }
@@ -90,6 +92,9 @@ public class DoubtEntity extends OrdealEntity {
                 case EXECUTING:
                     executeAnimationState.startIfNotRunning(age);
                     break;
+                case DIE:
+                    dieAnimationState.startIfNotRunning(age);
+                    break;
             }
 
             calculateDimensions();
@@ -113,6 +118,9 @@ public class DoubtEntity extends OrdealEntity {
             case EXECUTING:
                 setState(State.EXECUTING);
                 break;
+            case DIE:
+                setState(State.DIE);
+                break;
         }
 
         return this;
@@ -121,6 +129,15 @@ public class DoubtEntity extends OrdealEntity {
     @Override
     public void tick() {
         super.tick();
+        if (isDead()){
+            setState(State.DIE);
+        } else {
+            this.gearAngle += AnimationUtil.degreeToRadians(1);
+        }
+    }
+
+    public float getGearAngle(){
+        return gearAngle;
     }
 
     public void startAttackAction() {
@@ -159,7 +176,8 @@ public class DoubtEntity extends OrdealEntity {
     public enum State {
         IDLING(0),
         ATTACKING(1),
-        EXECUTING(2);
+        EXECUTING(2),
+        DIE(3);
 
         public static final IntFunction<DoubtEntity.State> INDEX_TO_VALUE = ValueLists.createIdToValueFunction(
                 DoubtEntity.State::getIndex, values(), ValueLists.OutOfBoundsHandling.ZERO
@@ -197,10 +215,13 @@ public class DoubtEntity extends OrdealEntity {
         }
 
         public boolean canStart() {
-            DeadPlayerEntity targetDeadPlayer = mob.targetDeadPlayer;
-            if (targetDeadPlayer == null){
-                return false;
-            } else return !targetDeadPlayer.isRemoved();
+            if(mob.isAlive()){
+                DeadPlayerEntity targetDeadPlayer = mob.targetDeadPlayer;
+                if (targetDeadPlayer == null){
+                    return false;
+                } else return !targetDeadPlayer.isRemoved();
+            }
+            return false;
         }
 
         public boolean shouldContinue() {
