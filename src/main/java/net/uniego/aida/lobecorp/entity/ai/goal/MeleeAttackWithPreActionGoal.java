@@ -26,13 +26,13 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     private long lastUpdateTime;
     private boolean isAttacking;
 
-    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle, float maxPreCD, float attackDuration, float cooldownDuration) {
+    public MeleeAttackWithPreActionGoal(T mob, double speed, boolean pauseWhenMobIdle,float attackSpeed, float maxPreCD, float attackDuration, float cooldownDuration) {
         this.mob = mob;
         this.speed = speed;
         this.pauseWhenMobIdle = pauseWhenMobIdle;
-        this.attackDuration = (int) (attackDuration * 20);
-        this.cooldownDuration = (int) (cooldownDuration * 20);
-        this.preCD = (int) (this.attackDuration - maxPreCD * 20);
+        this.attackDuration = (int) (attackDuration / attackSpeed * 20);
+        this.cooldownDuration = (int) (cooldownDuration / attackSpeed * 20);
+        this.preCD = (int) (this.attackDuration - maxPreCD / attackSpeed * 20);
         setControls(EnumSet.of(Control.MOVE, Control.LOOK));
     }
 
@@ -83,6 +83,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
         mob.getNavigation().startMovingAlong(path, speed);
         mob.setAttacking(true);
         updateCountdownTicks = 0;
+        cooldown = 0;
     }
 
     public void stop() {
@@ -90,7 +91,8 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
         if (!EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR.test(livingEntity)) {
             mob.setTarget(null);
         }
-        mob.setAttacking(false);
+        endAttack();
+        mob.stopAttackAction();
         mob.getNavigation().stop();
     }
 
@@ -158,9 +160,8 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     protected void endAttack() {
-        resetCooldown();
-        mob.stopAttackAction();
         setAttacking(false);
+        resetCooldown();
     }
 
     protected void resetCooldown() {
@@ -173,13 +174,5 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
 
     protected boolean canAttack(LivingEntity target) {
         return isCooledDown() && mob.isInAttackRange(target) && mob.getVisibilityCache().canSee(target);
-    }
-
-    protected int getCooldown() {
-        return cooldown;
-    }
-
-    protected int getMaxCooldown() {
-        return getTickCount(20);
     }
 }
