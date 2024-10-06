@@ -41,6 +41,8 @@ public class DoubtEntity extends OrdealEntity {
     public final AnimationState dieAnimationState = new AnimationState();
     public DeadPlayerEntity targetDeadPlayer;
     public float gearAngle;
+    public float deadPivotY = 16;
+    public float deadPivotZ = 0;
 
     public DoubtEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH, 0.8F, 1.3F, 2.0F, 1.0F);
@@ -108,24 +110,24 @@ public class DoubtEntity extends OrdealEntity {
         attackingAnimationState.stop();
     }
 
-    public DoubtEntity startState(DoubtEntity.State state) {
-        switch (state) {
-            case IDLING:
-                setState(DoubtEntity.State.IDLING);
-                break;
-            case ATTACKING:
-                setState(State.ATTACKING);
-                break;
-            case EXECUTING:
-                setState(State.EXECUTING);
-                break;
-            case DIE:
-                setState(State.DIE);
-                break;
-        }
-
-        return this;
-    }
+//    public DoubtEntity startState(DoubtEntity.State state) {
+//        switch (state) {
+//            case IDLING:
+//                setState(DoubtEntity.State.IDLING);
+//                break;
+//            case ATTACKING:
+//                setState(State.ATTACKING);
+//                break;
+//            case EXECUTING:
+//                setState(State.EXECUTING);
+//                break;
+//            case DIE:
+//                setState(State.DIE);
+//                break;
+//        }
+//
+//        return this;
+//    }
 
     @Override
     public void tick() {
@@ -141,6 +143,14 @@ public class DoubtEntity extends OrdealEntity {
         return gearAngle;
     }
 
+    public void setDeadPivotY(float deadPivotY){
+        this.deadPivotY = deadPivotY;
+    }
+
+    public void setDeadPivotZ(float deadPivotZ){
+        this.deadPivotZ = deadPivotZ;
+    }
+
     public void startAttackAction() {
         setState(DoubtEntity.State.ATTACKING);
     }
@@ -148,6 +158,10 @@ public class DoubtEntity extends OrdealEntity {
     public void stopAttackAction() {
         setState(State.IDLING);
         setAttacking(false);
+    }
+
+    public boolean shouldAttack() {
+        return this.isAlive() && this.getState() == State.IDLING;
     }
 
     @Override
@@ -200,12 +214,12 @@ public class DoubtEntity extends OrdealEntity {
         private final int executeDuration;
         private final float[] attackMoments;
         private final float executeMoment;
-        private final TargetPredicate targetPredicate;
+//        private final TargetPredicate targetPredicate;
         private float executeTime;
 
         public DoubtExecuteGoal(DoubtEntity mob, float executeSpeed, float executeDuration, float attackRange, float executeMoment, float... attackMoments) {
             this.mob = mob;
-            this.targetPredicate = TargetPredicate.createAttackable().setBaseMaxDistance(attackRange);
+//            this.targetPredicate = TargetPredicate.createAttackable().setBaseMaxDistance(attackRange);
             this.executeDuration = (int) (executeDuration / executeSpeed * 20);
             this.executeMoment = this.executeDuration - (int) (executeMoment / executeSpeed * 20);
             this.attackMoments = attackMoments;
@@ -241,7 +255,7 @@ public class DoubtEntity extends OrdealEntity {
                 finalAttack();
             } else {
                 for (float attackMoment : attackMoments) {
-                    if (executeTime == attackMoment) {
+                    if (executeTime == attackMoment && mob.targetDeadPlayer != null) {
                         attack();
                     }
                 }

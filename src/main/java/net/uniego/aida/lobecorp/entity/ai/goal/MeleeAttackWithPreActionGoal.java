@@ -37,7 +37,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     public boolean canStart() {
-        if (!isAttacking && mob.isAlive()) {
+        if (!isAttacking && mob.shouldAttack()) {
             long l = mob.getWorld().getTime();
             if (l - lastUpdateTime < 20L) {
                 return false;
@@ -83,7 +83,6 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
         mob.getNavigation().startMovingAlong(path, speed);
         mob.setAttacking(true);
         updateCountdownTicks = 0;
-        cooldown = 0;
     }
 
     public void stop() {
@@ -131,7 +130,9 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
             attackTime = Math.max(attackTime - 1, 0);
 
             if (!isAttacking) {
-                startAttack(livingEntity);
+                if (isCooledDown()){
+                    startAttack(livingEntity);
+                }
             } else {
                 if (attackTime == preCD) {
                     attack(livingEntity);
@@ -160,6 +161,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     protected void endAttack() {
+        mob.stopAttackAction();
         setAttacking(false);
         resetCooldown();
     }
@@ -173,6 +175,6 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     }
 
     protected boolean canAttack(LivingEntity target) {
-        return isCooledDown() && mob.isInAttackRange(target) && mob.getVisibilityCache().canSee(target);
+        return mob.isInAttackRange(target) && mob.getVisibilityCache().canSee(target);
     }
 }

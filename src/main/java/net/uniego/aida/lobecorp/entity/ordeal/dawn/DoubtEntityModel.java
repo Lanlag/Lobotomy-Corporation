@@ -175,22 +175,21 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     @Override
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
+        setDoubtPivot(entity);
         setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(), 5);
         if (entity.isAlive()) {
             AnimationUtil.rotateHead(headYaw, headPitch, head);
             walkAnimation(limbAngle, limbDistance, 0.8F);
-            this.updateAnimation(entity.attackingAnimationState, DoubtEntityAnimations.ATTACK, animationProgress);
-            this.updateAnimation(entity.executeAnimationState, DoubtEntityAnimations.EXECUTE, animationProgress);
         } else {
             AnimationUtil.rotateHead(0, 0, head);
             walkAnimation(0, 0, 0.0F);
         }
+        this.updateAnimation(entity.attackingAnimationState, DoubtEntityAnimations.ATTACK, animationProgress);
+        this.updateAnimation(entity.executeAnimationState, DoubtEntityAnimations.EXECUTE, animationProgress);
         this.updateAnimation(entity.dieAnimationState, DoubtEntityAnimations.DIE, animationProgress);
     }
 
     public void setDefaultPose() {
-        doubt.pivotY = 16;
-        doubt.pivotZ = 0;
         waist.pitch = 0;
         body.yaw = 0;
         body.pitch = AnimationUtil.degreeToRadians(12.5F);
@@ -211,11 +210,28 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
         gear3.pitch = 0;
     }
 
+    public void setDoubtPivot(DoubtEntity entity){
+        float pivotY = entity.deadPivotY;
+        float pivotZ = entity.deadPivotZ;
+        if (entity.isDead()){
+            if (pivotY < 25){
+                pivotY += 0.24F * 20/ 9;
+                entity.setDeadPivotY(Math.min(pivotY,25));
+            }
+            if (pivotZ > -6){
+                pivotZ += 0.24F * 20/ -6;
+                entity.setDeadPivotZ(Math.max(pivotZ,-6));
+            }
+        }
+        doubt.pivotY = pivotY;
+        doubt.pivotZ = pivotZ;
+    }
+
     public void setGearsAngle(float limbAngle, float limbDistance, float gearAngle, float speed) {
         gearAngle *= speed;
-        gear1.pitch = MathHelper.cos(limbAngle * -0.7F) * limbDistance + gearAngle;
-        gear2.pitch = MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance + gearAngle;
-        gear3.pitch = MathHelper.cos(limbAngle * 0.1F - 60) * limbDistance + gearAngle;
+        gear1.pitch = MathHelper.cos(limbAngle * -0.7F) * limbDistance * 3 - gearAngle;
+        gear2.pitch = MathHelper.cos(limbAngle * 0.4F + 60) * limbDistance * 3 + gearAngle;
+        gear3.pitch = MathHelper.cos(limbAngle * 0.1F - 60) * limbDistance * 3 + gearAngle;
     }
 
     public void walkAnimation(float limbAngle, float limbDistance, float speed) {

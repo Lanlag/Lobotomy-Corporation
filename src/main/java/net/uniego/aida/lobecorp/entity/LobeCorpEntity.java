@@ -102,6 +102,10 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
         return false;
     }
 
+    public boolean shouldAttack() {
+        return false;
+    }
+
     public void startAttackAction() {
     }
 

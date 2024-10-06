@@ -49,11 +49,6 @@ public class DoubtEntityAnimations {
                     new Keyframe(0.24F, AnimationHelper.createRotationalVector(-20.83F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.36F, AnimationHelper.createRotationalVector(-27.5F, 0.0F, 0.0F), Transformation.Interpolations.CUBIC)
             ))
-            .addBoneAnimation("doubt", new Transformation(Transformation.Targets.TRANSLATE,
-                    new Keyframe(0.0F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR),
-                    new Keyframe(0.24F, AnimationHelper.createTranslationalVector(0.0F, -9.0F, -6.0F), Transformation.Interpolations.LINEAR),
-                    new Keyframe(0.44F, AnimationHelper.createTranslationalVector(0.0F, 0.0F, 0.0F), Transformation.Interpolations.LINEAR)
-            ))
             .build();
 
     public static final Animation EXECUTE = Animation.Builder.create(1.68F)
