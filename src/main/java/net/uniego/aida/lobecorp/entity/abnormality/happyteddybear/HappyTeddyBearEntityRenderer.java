@@ -3,7 +3,7 @@ package net.uniego.aida.lobecorp.entity.abnormality.happyteddybear;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //快乐泰迪实体渲染器
 public class HappyTeddyBearEntityRenderer extends MobEntityRenderer<HappyTeddyBearEntity, HappyTeddyBearEntityModel> {

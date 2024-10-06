@@ -3,8 +3,8 @@ package net.uniego.aida.lobecorp.init;
 import net.minecraft.component.DataComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //初始化组件
 public class ComponentInit {

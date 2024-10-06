@@ -15,11 +15,11 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ModelInit;
 import net.uniego.aida.lobecorp.item.LobeCorpItemModel;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //EGO护甲在护甲位的模型渲染
 @Environment(EnvType.CLIENT)

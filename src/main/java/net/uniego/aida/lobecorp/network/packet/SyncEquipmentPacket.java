@@ -9,10 +9,10 @@ import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.SoundInit;
 import net.uniego.aida.lobecorp.network.payload.SyncEquipmentPayload;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.*;
 

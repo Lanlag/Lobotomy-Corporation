@@ -10,11 +10,11 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ColorResistAccess;
 import net.uniego.aida.lobecorp.access.EGOLevelAccess;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.init.EntityInit;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.function.Predicate;
 
@@ -104,6 +104,10 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
 
     @Override
     public boolean isPushable() {
+        return false;
+    }
+
+    public boolean shouldAttack() {
         return false;
     }
 

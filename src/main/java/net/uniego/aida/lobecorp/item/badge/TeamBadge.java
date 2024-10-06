@@ -8,11 +8,11 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Formatting;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.LobeCorpSlotAccess;
 import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //脑叶公司部门袖标
 public class TeamBadge extends LobeCorpItem implements LobeCorpSlotAccess {

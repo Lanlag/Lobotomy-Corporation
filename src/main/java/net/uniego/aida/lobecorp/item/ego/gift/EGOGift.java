@@ -2,13 +2,13 @@ package net.uniego.aida.lobecorp.item.ego.gift;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.JustitiaGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.List;
 import java.util.UUID;

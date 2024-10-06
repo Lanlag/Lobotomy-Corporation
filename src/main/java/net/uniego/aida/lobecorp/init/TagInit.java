@@ -4,7 +4,7 @@ package net.uniego.aida.lobecorp.init;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //初始化标签
 public class TagInit {

@@ -3,7 +3,7 @@ package net.uniego.aida.lobecorp.entity.ordeal.dawn;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //疑问实体渲染器
 public class DoubtEntityRenderer extends MobEntityRenderer<DoubtEntity, DoubtEntityModel<DoubtEntity>> {

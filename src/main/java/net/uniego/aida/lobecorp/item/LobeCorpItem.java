@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Rarity;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.UUID;
 

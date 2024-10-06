@@ -3,7 +3,7 @@ package net.uniego.aida.lobecorp.network.payload;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //同步异想体
 public record SyncAbnormalityPayload(int abnormalityId) implements CustomPayload {

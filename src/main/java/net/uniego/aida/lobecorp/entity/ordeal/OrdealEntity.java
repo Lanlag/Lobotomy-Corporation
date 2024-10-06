@@ -3,8 +3,8 @@ package net.uniego.aida.lobecorp.entity.ordeal;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.World;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //考验实体
 public abstract class OrdealEntity extends LobeCorpEntity {

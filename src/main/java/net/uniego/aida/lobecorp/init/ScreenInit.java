@@ -5,8 +5,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.screen.ScreenHandlerType;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.gui.screen.*;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //初始化屏幕
 public class ScreenInit {

@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.beautyandtheBeast.BeautyAndTheBeastEntity;
@@ -15,6 +14,7 @@ import net.uniego.aida.lobecorp.entity.abnormality.onesinandhundredsofgooddeeds.
 import net.uniego.aida.lobecorp.entity.abnormality.standardtrainingdummyrabbit.StandardTrainingDummyRabbitEntity;
 import net.uniego.aida.lobecorp.entity.ordeal.OrdealEntity;
 import net.uniego.aida.lobecorp.entity.ordeal.dawn.DoubtEntity;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //初始化实体
 public class EntityInit {

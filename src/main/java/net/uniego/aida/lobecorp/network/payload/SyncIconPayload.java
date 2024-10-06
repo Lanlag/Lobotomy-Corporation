@@ -3,7 +3,7 @@ package net.uniego.aida.lobecorp.network.payload;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //同步图标
 public record SyncIconPayload(float sanity, float maxAssimilation, float assimilation,

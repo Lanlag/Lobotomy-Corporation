@@ -4,9 +4,9 @@ import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.network.payload.SyncEquipmentPayload;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.ArrayList;
 

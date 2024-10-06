@@ -25,8 +25,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.EntityInit;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //异想体生成蛋
 public class AbnormalitySpawnEgg extends LobeCorpItem {

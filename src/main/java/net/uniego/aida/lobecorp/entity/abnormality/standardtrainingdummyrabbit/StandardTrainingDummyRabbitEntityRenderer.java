@@ -3,7 +3,7 @@ package net.uniego.aida.lobecorp.entity.abnormality.standardtrainingdummyrabbit;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //教学兔兔实体渲染器
 public class StandardTrainingDummyRabbitEntityRenderer extends MobEntityRenderer<StandardTrainingDummyRabbitEntity, StandardTrainingDummyRabbitEntityModel> {

@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.ArrayList;
 

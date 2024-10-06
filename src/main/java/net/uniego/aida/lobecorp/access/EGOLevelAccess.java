@@ -1,6 +1,6 @@
 package net.uniego.aida.lobecorp.access;
 
-import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //EGO等级接口
 public interface EGOLevelAccess {

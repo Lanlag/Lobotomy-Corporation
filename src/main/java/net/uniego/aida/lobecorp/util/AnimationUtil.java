@@ -1,4 +1,4 @@
-package net.uniego.aida.lobecorp;
+package net.uniego.aida.lobecorp.util;
 
 import net.minecraft.client.model.ModelPart;
 

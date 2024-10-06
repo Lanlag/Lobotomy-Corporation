@@ -18,12 +18,12 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ParticleInit;
 import net.uniego.aida.lobecorp.network.packet.OpenWorkPacket;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.HashMap;
 import java.util.Map;

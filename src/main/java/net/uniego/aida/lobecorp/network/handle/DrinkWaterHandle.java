@@ -4,12 +4,12 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.EffectInit;
 import net.uniego.aida.lobecorp.manager.ThirstManager;
 import net.uniego.aida.lobecorp.network.packet.SwingHandPacket;
 import net.uniego.aida.lobecorp.network.payload.DrinkWaterPayload;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 public class DrinkWaterHandle {
     public static void receive() {

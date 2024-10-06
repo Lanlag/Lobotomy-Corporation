@@ -3,8 +3,8 @@ package net.uniego.aida.lobecorp.manager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
-import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.AttributeInit;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 //精神机制
 public class SanityManager {
