@@ -13,10 +13,12 @@ import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.JustitiaGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
+import net.uniego.aida.lobecorp.item.ego.weapon.weapons.JustitiaWeapon;
 import net.uniego.aida.lobecorp.item.ego.weapon.weapons.PenitenceWeapon;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
@@ -90,29 +92,40 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(PenitenceWeapon.PENITENCE_WEAPON, "Penitence");
         translationBuilder.add(EGOWeapon.HORN_WEAPON, "Horn");
         translationBuilder.add(EGOWeapon.BEAR_PAWS_WEAPON, "Bear Paws");
+        translationBuilder.add(JustitiaWeapon.JUSTITIA_WEAPON, "Justitia");
         //EGO护甲
         translationBuilder.add(EGOSuit.STANDARD_TRAINING_EGO_SUIT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceSuit.PENITENCE_SUIT, "Penitence");
         translationBuilder.add(EGOSuit.HORN_SUIT, "Horn");
         translationBuilder.add(EGOSuit.BEAR_PAWS_SUIT, "Bear Paws");
+        translationBuilder.add(EGOSuit.JUSTITIA_SUIT, "Justitia");
         translationBuilder.add(EGOSuit.FLESH_BOUND_SUIT, "Flesh Bound");
         //EGO饰品
         translationBuilder.add(EGOGift.STANDARD_TRAINING_EGO_GIFT, "Standard Training E.G.O");
         translationBuilder.add(PenitenceGift.PENITENCE_GIFT, "Penitence");
         translationBuilder.add(EGOGift.HORN_GIFT, "Horn");
         translationBuilder.add(BearPawsGift.BEAR_PAWS_GIFT, "Bear Paws");
+        translationBuilder.add(JustitiaGift.JUSTITIA_GIFT, "Justitia");
         translationBuilder.add(EGOGift.BLESS_GIFT, "Bless");
         //异想体生成蛋名
         translationBuilder.add(AbnormalitySpawnEgg.STANDARD_TRAINING_DUMMY_RABBIT_EGG, "Standard Training-Dummy Rabbit");
         translationBuilder.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG, "One Sin and Hundreds of Good Deeds");
         translationBuilder.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG, "Beauty and The Beast");
         translationBuilder.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG, "Happy Teddy Bear");
+        translationBuilder.add(AbnormalitySpawnEgg.JUDGEMENT_BIRD_EGG, "Judgement Bird");
         //技能描述名
-        translationBuilder.add(EGOWeapon.EGO_SKILL_WEAPON_FIST, "Dealing damage twice in a single attack");
+        //武器模板
+        translationBuilder.add(EGOWeapon.EGO_SKILL_WEAPON_FIST, "Damage twice in a single attack");
+        //EGO武器
         translationBuilder.add(PenitenceWeapon.EGO_SKILL_WEAPON_PENITENCE, "5% of healing 10 SP upon attacking with JusticeIcon Lvl 2+");
+        translationBuilder.add(JustitiaWeapon.EGO_SKILL_WEAPON_JUSTITIA1, "60% chance to hit the enemy for 3 Pale Damage 5 times");
+        translationBuilder.add(JustitiaWeapon.EGO_SKILL_WEAPON_JUSTITIA2, "40% chance to Attack in a 10-hit combo, will first deal 8.5 Pale damage 3 times and then 3 Pale damage 7 times");
+        //EGO护甲
         translationBuilder.add(PenitenceSuit.EGO_SKILL_SUIT_PENITENCE, "5% of heal 10 SP when damaged by Red or Black");
+        //EGO饰品
         translationBuilder.add(PenitenceGift.EGO_SKILL_GIFT_PENITENCE, "Success Rate increases %10 with the corresponding Abnormality");
         translationBuilder.add(BearPawsGift.EGO_SKILL_GIFT_BEAR_PAWS, "Attachment Work Success Rate increased by 3%");
+        translationBuilder.add(JustitiaGift.EGO_SKILL_GIFT_JUSTITIA, "Repression Work Success Rate increased by 6%");
         //物品栏名
         translationBuilder.add(ItemGroupInit.LOBE_CORP_TAB_NAME, "Lobe Corp");
         translationBuilder.add(ItemGroupInit.EGO_WEAPON_TAB_NAME, "E.G.O Weapon");
@@ -172,6 +185,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.MACE.getTemplateName(), "Mace");
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.SPEAR.getTemplateName(), "Spear");
         translationBuilder.add(EGOWeapon.EGOWeaponTemplate.FIST.getTemplateName(), "Fist");
+        translationBuilder.add(EGOWeapon.EGO_TEMPLATE_WEAPON_SPECIAL, "Special");
         //工具提示名
         translationBuilder.add(EGOItem.TOOLTIP_PRESS_LEFT_SHIFT_SHOW_INFO, "Press Left Shift Show Info");
         translationBuilder.add(EGOItem.TOOLTIP_EGO_EQUIP_REQUIRE, "Equip Require:");
@@ -208,6 +222,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, "One Sin and Hundreds of Good Deeds");
         translationBuilder.add(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, "Beauty and The Beast");
         translationBuilder.add(EntityInit.HAPPY_TEDDY_BEAR_ENTITY, "Happy Teddy Bear");
+        translationBuilder.add(EntityInit.JUDGEMENT_BIRD_ENTITY, "Judgement Bird");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
     }

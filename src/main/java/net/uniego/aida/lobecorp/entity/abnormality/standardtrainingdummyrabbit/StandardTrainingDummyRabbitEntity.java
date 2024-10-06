@@ -8,6 +8,7 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 //教学兔兔实体
 public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
     private boolean hasExecuted;
+    private boolean hasMoved;
 
     public StandardTrainingDummyRabbitEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.TETH, 0.5F, 1.5F, 1.0F, 1.0F,
@@ -25,7 +27,7 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return HostileEntity.createHostileAttributes()
+        return LobeCorpEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0F)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.5F);
     }
@@ -33,18 +35,22 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
     @Override
     protected void manage() {
         //Ⅰ. 对“教学兔兔“Dummy””完成压迫工作后，它的逆卡巴拉计数器会在倒计时结束后减少。
+        if (isWorking()) hasExecuted = false;
         if (!isWorking() && !isCooling() && REPRESSION.equals(getLastWorkMethod())) {
-            setQliphothCounter(qliphothCounter - 1);
+            if (!hasExecuted) {
+                setQliphothCounter(qliphothCounter - 1);
+                hasExecuted = true;
+            }
         }
     }
 
     @Override
     protected void escape() {
         if (qliphothCounter <= 0) {
-            setEscaping(true);
-            if (!hasExecuted) {
+            if (!hasMoved) {
+                setEscaping(true);
                 goalSelector.add(1, new StandardTrainingDummyRabbitGoal(this, 0.5F, 64));
-                hasExecuted = true;
+                hasMoved = true;
             }
         }
     }

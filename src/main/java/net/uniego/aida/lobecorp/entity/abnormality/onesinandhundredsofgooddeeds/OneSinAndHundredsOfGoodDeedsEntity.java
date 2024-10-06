@@ -9,6 +9,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
+import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
@@ -27,7 +28,7 @@ public class OneSinAndHundredsOfGoodDeedsEntity extends AbnormalityEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return HostileEntity.createHostileAttributes()
+        return LobeCorpEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 1.0F)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.5F);
     }

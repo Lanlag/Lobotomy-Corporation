@@ -6,6 +6,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
+import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.entity.abnormality.AbnormalityEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
 
@@ -21,7 +22,7 @@ public class HappyTeddyBearEntity extends AbnormalityEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return HostileEntity.createHostileAttributes()
+        return LobeCorpEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 1.0F)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0F);
     }

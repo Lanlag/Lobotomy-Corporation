@@ -13,24 +13,24 @@ import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
 import java.util.List;
 
-//熊熊抱饰品
-public class BearPawsGift extends EGOGift {
-    public static final String EGO_SKILL_GIFT_BEAR_PAWS = "ego.skill.gift.bear_paws";
-    public static final BearPawsGift BEAR_PAWS_GIFT = new BearPawsGift();
+//正义裁决者饰品
+public class JustitiaGift extends EGOGift {
+    public static final String EGO_SKILL_GIFT_JUSTITIA = "ego.skill.gift.justitia";
+    public static final JustitiaGift JUSTITIA_GIFT = new JustitiaGift();
     private boolean hasExecuted;
 
-    public BearPawsGift() {
-        super(0, 4, 0, 0, 0, 0,
-                LOBECORP_HEAD_MODIFIER_ID, LobeCorpAttributeModifierSlot.LOBECORP_HEAD, List.of(EGO_SKILL_GIFT_BEAR_PAWS));
+    public JustitiaGift() {
+        super(0, 0, 0, 0, 6, 6,
+                LOBECORP_EYE_MODIFIER_ID, LobeCorpAttributeModifierSlot.LOBECORP_EYE, List.of(EGO_SKILL_GIFT_JUSTITIA));
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (!world.isClient && entity instanceof ServerPlayerEntity serverPlayer &&
-                LobeCorpUtil.getLobeCorpEquippedStack(serverPlayer, LobeCorpEquipmentSlot.LOBECORP_HEAD_SLOT).getItem() instanceof BearPawsGift) {
+                LobeCorpUtil.getLobeCorpEquippedStack(serverPlayer, LobeCorpEquipmentSlot.LOBECORP_EYE_SLOT).getItem() instanceof JustitiaGift) {
             if (serverPlayer.currentScreenHandler instanceof BoxScreenHandler boxScreenHandler) {
-                if (!hasExecuted && AbnormalityEntity.ATTACHMENT.equals(boxScreenHandler.abnormality.workMethod)) {
-                    boxScreenHandler.abnormality.setExtraProbability(0.03F);
+                if (!hasExecuted && AbnormalityEntity.REPRESSION.equals(boxScreenHandler.abnormality.workMethod)) {
+                    boxScreenHandler.abnormality.setExtraProbability(0.06F);
                     hasExecuted = true;
                 }
             } else {

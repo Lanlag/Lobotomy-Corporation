@@ -25,6 +25,7 @@ import net.uniego.aida.lobecorp.AnimationUtil;
 import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
+import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.entity.ai.goal.MeleeAttackWithPreActionGoal;
 import net.uniego.aida.lobecorp.entity.ordeal.OrdealEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
@@ -47,12 +48,11 @@ public class DoubtEntity extends OrdealEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return HostileEntity.createHostileAttributes()
+        return LobeCorpEntity.createAttributes()
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 128.0F)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0F)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2F)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0F);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F);
     }
 
     @Override

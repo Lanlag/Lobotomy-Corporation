@@ -21,7 +21,7 @@ public class PenitenceWeapon extends EGOWeapon {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker instanceof ServerPlayerEntity serverPlayer && ((ManagerAccess) serverPlayer).lobecorp$getLevelManager().getLevelJ().getValue() > 2) {
-            if (serverPlayer.getWorld().random.nextFloat() < 0.05F) {
+            if (serverPlayer.getWorld().random.nextFloat() <= 0.05F) {
                 ((ManagerAccess) serverPlayer).lobecorp$getSanityManager().cure(10);
                 return true;
             }

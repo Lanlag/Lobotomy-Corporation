@@ -44,6 +44,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         addFeature(new TeamBadgeFeatureRenderer(this));
         addFeature(new EGOHeadFeatureRenderer(this));
         addFeature(new EGOOcciputFeatureRenderer(this));
+        addFeature(new EGOEyeFeatureRenderer(this));
     }
 
     //渲染玩家的手臂部分

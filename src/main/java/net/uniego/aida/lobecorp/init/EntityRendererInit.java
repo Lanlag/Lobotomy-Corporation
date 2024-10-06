@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.uniego.aida.lobecorp.entity.DeadPlayerEntityRenderer;
 import net.uniego.aida.lobecorp.entity.abnormality.beautyandtheBeast.BeautyAndTheBeastEntityRenderer;
 import net.uniego.aida.lobecorp.entity.abnormality.happyteddybear.HappyTeddyBearEntityRenderer;
+import net.uniego.aida.lobecorp.entity.abnormality.judgementbird.JudgementBirdEntityRenderer;
 import net.uniego.aida.lobecorp.entity.abnormality.onesinandhundredsofgooddeeds.OneSinAndHundredsOfGoodDeedsEntityRenderer;
 import net.uniego.aida.lobecorp.entity.abnormality.standardtrainingdummyrabbit.StandardTrainingDummyRabbitEntityRenderer;
 import net.uniego.aida.lobecorp.entity.ordeal.dawn.DoubtEntityRenderer;
@@ -17,6 +18,7 @@ public class EntityRendererInit {
         EntityRendererRegistry.register(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY, OneSinAndHundredsOfGoodDeedsEntityRenderer::new);
         EntityRendererRegistry.register(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY, BeautyAndTheBeastEntityRenderer::new);
         EntityRendererRegistry.register(EntityInit.HAPPY_TEDDY_BEAR_ENTITY, HappyTeddyBearEntityRenderer::new);
+        EntityRendererRegistry.register(EntityInit.JUDGEMENT_BIRD_ENTITY, JudgementBirdEntityRenderer::new);
         //考验
         EntityRendererRegistry.register(EntityInit.DOUBT_ENTITY, DoubtEntityRenderer::new);
     }

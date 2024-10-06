@@ -22,6 +22,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.world.RaycastContext;
 import net.uniego.aida.lobecorp.access.EquipRequireAccess;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
 import net.uniego.aida.lobecorp.init.AttributeInit;
@@ -37,6 +39,8 @@ import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifiersComponent;
 import net.uniego.aida.lobecorp.slot.LobeCorpEquipmentSlot;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 
@@ -196,6 +200,24 @@ public class LobeCorpUtil {
         player.damage(player.getDamageSources().create(DamageInit.WHITE, player), Float.MAX_VALUE);
     }
 
+    //获取特定范围内所有玩家
+    public static List<PlayerEntity> getPlayersInRange(Entity entity, double maxDistance, boolean rayCast) {
+        List<PlayerEntity> players = new ArrayList<>();
+        for (PlayerEntity player : entity.getWorld().getPlayers()) {
+            //如果玩家不是创造或观察模式，且在范围内
+            if (!(player.isCreative() || player.isSpectator()) && entity.squaredDistanceTo(player) <= maxDistance * maxDistance) {
+                //是否进行射线检测
+                if (!rayCast) players.add(player);
+                else {
+                    RaycastContext raycastContext = new RaycastContext(entity.getPos(), player.getPos(), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity);
+                    if (entity.getWorld().raycast(raycastContext).getType() == HitResult.Type.MISS) {
+                        players.add(player);
+                    }
+                }
+            }
+        }
+        return players;
+    }
 
     //EGO等级
     public enum EGOLevel {

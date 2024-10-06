@@ -3,6 +3,7 @@ package net.uniego.aida.lobecorp.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.mob.HostileEntity;
@@ -65,6 +66,10 @@ public abstract class LobeCorpEntity extends HostileEntity implements ColorResis
             lobecorpEntity.onAttacking(target);
         }
         return bl;
+    }
+
+    public static DefaultAttributeContainer.Builder createAttributes() {
+        return HostileEntity.createHostileAttributes().add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0F);
     }
 
     @Override

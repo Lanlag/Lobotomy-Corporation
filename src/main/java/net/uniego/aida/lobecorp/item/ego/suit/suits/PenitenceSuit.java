@@ -29,7 +29,7 @@ public class PenitenceSuit extends EGOSuit {
             DamageSource recentDamageSource = serverPlayer.getRecentDamageSource();
             if (recentDamageSource != null) {
                 if (recentDamageSource.isOf(DamageInit.RED) || recentDamageSource.isOf(DamageInit.BLACK)) {
-                    if (serverPlayer.hurtTime == serverPlayer.maxHurtTime / 2 && serverPlayer.getWorld().random.nextFloat() < 0.05F) {
+                    if (serverPlayer.hurtTime == serverPlayer.maxHurtTime / 2 && serverPlayer.getWorld().random.nextFloat() <= 0.05F) {
                         ((ManagerAccess) serverPlayer).lobecorp$getSanityManager().cure(10);
                     }
                 }

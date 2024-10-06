@@ -6,6 +6,7 @@ import net.uniego.aida.lobecorp.LobeCorpUtil;
 import net.uniego.aida.lobecorp.init.ComponentInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.JustitiaGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
 
@@ -40,6 +41,7 @@ public class EGOGift extends EGOItem {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_gift"), PenitenceGift.PENITENCE_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_gift"), HORN_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_gift"), BearPawsGift.BEAR_PAWS_GIFT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("justitia_gift"), JustitiaGift.JUSTITIA_GIFT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bless_gift"), BLESS_GIFT);
     }
 }

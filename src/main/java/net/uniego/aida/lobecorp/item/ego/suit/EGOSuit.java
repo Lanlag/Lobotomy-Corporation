@@ -42,6 +42,10 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
             0.8F, 1.0F, 1.0F, 1.5F,
             LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
             LevelManager.LobeCorpLevel.II);//熊熊抱
+    public static final EGOSuit JUSTITIA_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.ALEPH,
+            0.5F, 0.5F, 0.5F, 0.5F,
+            LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.V,
+            LevelManager.LobeCorpLevel.V);//正义裁决者
     public static final EGOSuit FLESH_BOUND_SUIT = new EGOSuit(LobeCorpUtil.EGOLevel.TETH,
             0.6F, 1.0F, 1.3F, 1.5F,
             LevelManager.LobeCorpLevel.III, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I, LevelManager.LobeCorpLevel.I,
@@ -106,6 +110,7 @@ public class EGOSuit extends EGOItem implements EGOLevelAccess, EquipRequireAcce
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_suit"), PenitenceSuit.PENITENCE_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_suit"), HORN_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_suit"), BEAR_PAWS_SUIT);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("justitia_suit"), JUSTITIA_SUIT);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("flesh_bound_suit"), FLESH_BOUND_SUIT);
     }
 

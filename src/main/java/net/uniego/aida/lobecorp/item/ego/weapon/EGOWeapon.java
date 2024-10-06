@@ -16,6 +16,7 @@ import net.uniego.aida.lobecorp.access.EquipRequireAccess;
 import net.uniego.aida.lobecorp.gui.GUIResource;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.item.ego.EGOItem;
+import net.uniego.aida.lobecorp.item.ego.weapon.weapons.JustitiaWeapon;
 import net.uniego.aida.lobecorp.item.ego.weapon.weapons.PenitenceWeapon;
 import net.uniego.aida.lobecorp.manager.LevelManager;
 import net.uniego.aida.lobecorp.slot.LobeCorpAttributeModifierSlot;
@@ -37,6 +38,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public static final String TOOLTIP_EGO_WEAPON_WHITE = "tooltip.ego.weapon.white";//白伤
     public static final String TOOLTIP_EGO_WEAPON_BLACK = "tooltip.ego.weapon.black";//黑伤
     public static final String TOOLTIP_EGO_WEAPON_PALE = "tooltip.ego.weapon.pale";//蓝伤
+    public static final String EGO_TEMPLATE_WEAPON_SPECIAL = "ego.template.weapon.special";//特殊
 
     public static final EGOWeapon CODE_RIOT_STICK = new EGOWeapon(Rarity.RARE, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 54498);//代码镇暴棍
     public static final EGOWeapon RED_RIOT_STICK = new EGOWeapon(Rarity.UNCOMMON, LobeCorpUtil.EGOLevel.ZAYIN, EGOWeaponTemplate.MACE, 4);//物理镇暴棍
@@ -112,6 +114,7 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
         Registry.register(Registries.ITEM, LobeCorpUtil.id("penitence_weapon"), PenitenceWeapon.PENITENCE_WEAPON);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("horn_weapon"), HORN_WEAPON);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("bear_paws_weapon"), BEAR_PAWS_WEAPON);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("justitia_weapon"), JustitiaWeapon.JUSTITIA_WEAPON);
     }
 
     public float getAttackDamage() {
@@ -192,8 +195,8 @@ public class EGOWeapon extends EGOItem implements EGOLevelAccess, EquipRequireAc
     public enum EGOWeaponTemplate {
         MACE(2, 3, "ego.template.weapon.mace"),//棁
         SPEAR(1.5, 4, "ego.template.weapon.spear"),//矛
-        FIST(2, 2, "ego.template.weapon.fist")//拳套
-        ;
+        FIST(2, 2, "ego.template.weapon.fist"),//拳套
+        JUSTITA(2, 4, EGO_TEMPLATE_WEAPON_SPECIAL);
 
         private final double attackSpeed;
         private final double interactionRange;

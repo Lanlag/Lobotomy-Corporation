@@ -12,10 +12,12 @@ import net.uniego.aida.lobecorp.item.LobeCorpItem;
 import net.uniego.aida.lobecorp.item.badge.badges.*;
 import net.uniego.aida.lobecorp.item.ego.gift.EGOGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.BearPawsGift;
+import net.uniego.aida.lobecorp.item.ego.gift.gifts.JustitiaGift;
 import net.uniego.aida.lobecorp.item.ego.gift.gifts.PenitenceGift;
 import net.uniego.aida.lobecorp.item.ego.suit.EGOSuit;
 import net.uniego.aida.lobecorp.item.ego.suit.suits.PenitenceSuit;
 import net.uniego.aida.lobecorp.item.ego.weapon.EGOWeapon;
+import net.uniego.aida.lobecorp.item.ego.weapon.weapons.JustitiaWeapon;
 import net.uniego.aida.lobecorp.item.ego.weapon.weapons.PenitenceWeapon;
 
 //初始化物品栏
@@ -57,6 +59,7 @@ public class ItemGroupInit {
                 entries.add(PenitenceWeapon.PENITENCE_WEAPON);
                 entries.add(EGOWeapon.HORN_WEAPON);
                 entries.add(EGOWeapon.BEAR_PAWS_WEAPON);
+                entries.add(JustitiaWeapon.JUSTITIA_WEAPON);
             }).build();
 
     public static final ItemGroup EGO_SUIT_TAB = FabricItemGroup.builder()
@@ -66,6 +69,7 @@ public class ItemGroupInit {
                 entries.add(PenitenceSuit.PENITENCE_SUIT);
                 entries.add(EGOSuit.HORN_SUIT);
                 entries.add(EGOSuit.BEAR_PAWS_SUIT);
+                entries.add(EGOSuit.JUSTITIA_SUIT);
                 entries.add(EGOSuit.FLESH_BOUND_SUIT);
             }).build();
 
@@ -76,6 +80,7 @@ public class ItemGroupInit {
                 entries.add(PenitenceGift.PENITENCE_GIFT);
                 entries.add(EGOGift.HORN_GIFT);
                 entries.add(BearPawsGift.BEAR_PAWS_GIFT);
+                entries.add(JustitiaGift.JUSTITIA_GIFT);
                 entries.add(EGOGift.BLESS_GIFT);
             }).build();
 
@@ -86,6 +91,7 @@ public class ItemGroupInit {
                 entries.add(AbnormalitySpawnEgg.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG);
                 entries.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG);
                 entries.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG);
+                entries.add(AbnormalitySpawnEgg.JUDGEMENT_BIRD_EGG);
             }).build();
 
     public static void register() {

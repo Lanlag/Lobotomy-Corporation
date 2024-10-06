@@ -34,6 +34,7 @@ public class AbnormalitySpawnEgg extends LobeCorpItem {
     public static final AbnormalitySpawnEgg ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG = new AbnormalitySpawnEgg(EntityInit.ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_ENTITY);
     public static final AbnormalitySpawnEgg BEAUTY_AND_THE_BEAST_EGG = new AbnormalitySpawnEgg(EntityInit.BEAUTY_AND_THE_BEAST_ENTITY);
     public static final AbnormalitySpawnEgg HAPPY_TEDDY_BEAR_EGG = new AbnormalitySpawnEgg(EntityInit.HAPPY_TEDDY_BEAR_ENTITY);
+    public static final AbnormalitySpawnEgg JUDGEMENT_BIRD_EGG = new AbnormalitySpawnEgg(EntityInit.JUDGEMENT_BIRD_ENTITY);
     private static final MapCodec<EntityType<?>> ENTITY_TYPE_MAP_CODEC;
 
     static {
@@ -52,6 +53,7 @@ public class AbnormalitySpawnEgg extends LobeCorpItem {
         Registry.register(Registries.ITEM, LobeCorpUtil.id("one_sin_and_hundreds_of_good_deeds_egg"), ONE_SIN_AND_HUNDREDS_OF_GOOD_DEEDS_EGG);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("beauty_and_the_beast_egg"), BEAUTY_AND_THE_BEAST_EGG);
         Registry.register(Registries.ITEM, LobeCorpUtil.id("happy_teddy_bear_egg"), HAPPY_TEDDY_BEAR_EGG);
+        Registry.register(Registries.ITEM, LobeCorpUtil.id("judgement_bird_egg"), JUDGEMENT_BIRD_EGG);
     }
 
     @Override

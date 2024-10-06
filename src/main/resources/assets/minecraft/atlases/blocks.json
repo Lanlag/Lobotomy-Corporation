@@ -107,6 +107,10 @@
     {
       "type": "single",
       "resource": "lobecorp:entity/weapon/bear_paws_weapon_model"
+    },
+    {
+      "type": "single",
+      "resource": "lobecorp:entity/weapon/justitia_weapon_model"
     }
   ]
 }
