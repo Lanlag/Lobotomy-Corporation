@@ -30,7 +30,7 @@ public class JudgementBirdEntity extends AbnormalityEntity {
 
     public JudgementBirdEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world, LobeCorpUtil.EGOLevel.WAW, 0.8F, 0.8F, 0.8F, 2.0F,
-                "O-02-62", 24, 2, 1, 0.35F, DamageInit.PALE,
+                "O-02-62", 24, 2, 300, 0.35F, DamageInit.PALE,
                 13, 24, 7, 12, 0, 6);
     }
 
