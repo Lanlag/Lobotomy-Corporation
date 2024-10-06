@@ -87,7 +87,7 @@ public class JudgementBirdEntity extends AbnormalityEntity {
                 if (skillTickTimer <= 0) {
                     //前摇结束以后，再对周围存在的玩家进行一次搜索
                     List<PlayerEntity> players = LobeCorpUtil.getPlayersInRange(this, 16.0F, true);
-                    //这时候才会对当前范围内的玩家进行审判
+                    //不为空的话这时候才会对当前范围内的玩家进行审判
                     if (!players.isEmpty()) {
                         for (PlayerEntity player : players) {
                             player.damage(getDamageSources().create(DamageInit.PALE, this), 35);
