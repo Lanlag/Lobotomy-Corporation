@@ -3,7 +3,6 @@ package net.uniego.aida.lobecorp.entity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -20,7 +19,6 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.init.EntityInit;
-import net.uniego.aida.lobecorp.particle.LobeCorpParticleEmitters;
 import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.Optional;
@@ -29,8 +27,6 @@ import java.util.UUID;
 //玩家尸体
 public class DeadPlayerEntity extends Entity {
     private static final TrackedData<Optional<UUID>> PLAYER_UUID = DataTracker.registerData(DeadPlayerEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
-    private static final TrackedData<Boolean> IS_EXECUTING = DataTracker.registerData(DeadPlayerEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Integer> EXECUTOR_ID = DataTracker.registerData(DeadPlayerEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private int timeFalling;
     private boolean hasPlayedSound;
 
@@ -57,27 +53,9 @@ public class DeadPlayerEntity extends Entity {
         dataTracker.set(PLAYER_UUID, Optional.of(playerUuid));
     }
 
-    public boolean isExecuting() {
-        return dataTracker.get(IS_EXECUTING);
-    }
-
-    public void setExecuting(boolean executing) {
-        dataTracker.set(IS_EXECUTING, executing);
-    }
-
-    public int getExecutorId() {
-        return dataTracker.get(EXECUTOR_ID);
-    }
-
-    public void setExecutorId(int executorId) {
-        dataTracker.set(EXECUTOR_ID, executorId);
-    }
-
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         builder.add(PLAYER_UUID, Optional.empty());
-        builder.add(IS_EXECUTING, false);
-        builder.add(EXECUTOR_ID, 0);
     }
 
     @Override
@@ -114,11 +92,6 @@ public class DeadPlayerEntity extends Entity {
 
     @Override
     public void tick() {
-        if (getWorld().getEntityById(getExecutorId()) == null) setExecuting(false);
-        if (getWorld().getEntityById(getExecutorId()) instanceof LivingEntity livingEntity && livingEntity.isDead())
-            setExecuting(false);
-        //处决效果
-        if (isExecuting()) LobeCorpParticleEmitters.spurtBloodParticle(this, 20, 0.5F);
         //零点之时再丢弃
         if (getWorld().getTimeOfDay() % 24000 == 0) {
             discard();

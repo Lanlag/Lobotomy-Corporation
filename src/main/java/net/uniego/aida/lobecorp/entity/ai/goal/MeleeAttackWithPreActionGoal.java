@@ -68,8 +68,6 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
                 return false;
             } else if (!livingEntity.isAlive()) {
                 return false;
-            } else if (!pauseWhenMobIdle) {
-                return !mob.getNavigation().isIdle();
             } else if (!mob.isInWalkTargetRange(livingEntity.getBlockPos())) {
                 return false;
             } else {
@@ -82,6 +80,7 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
     public void start() {
         mob.getNavigation().startMovingAlong(path, speed);
         mob.setAttacking(true);
+        attackTime = -1;
         updateCountdownTicks = 0;
     }
 
@@ -128,16 +127,16 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
 
             cooldown = Math.max(cooldown - 1, 0);
             attackTime = Math.max(attackTime - 1, 0);
-
+            System.out.println( cooldown +" | "+attackTime);
             if (!isAttacking) {
-                if (isCooledDown()) {
+                if(isCooledDown()){
                     startAttack(livingEntity);
                 }
             } else {
                 if (attackTime == preCD) {
                     attack(livingEntity);
                 }
-                if (attackTime <= 0) {
+                if (attackTime == 0) {
                     endAttack();
                 }
             }
@@ -150,9 +149,11 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
 
     protected void startAttack(LivingEntity target) {
         if (canAttack(target)) {
-            setAttacking(true);
+            this.setAttacking(true);
             attackTime = attackDuration;
             mob.startAttackAction();
+        } else {
+            endAttack();
         }
     }
 
@@ -162,8 +163,8 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
 
     protected void endAttack() {
         mob.stopAttackAction();
-        setAttacking(false);
         resetCooldown();
+        this.setAttacking(false);
     }
 
     protected void resetCooldown() {

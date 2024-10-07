@@ -20,26 +20,26 @@ import net.minecraft.util.function.ValueLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.uniego.aida.lobecorp.particle.LobeCorpParticleEmitters;
+import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 import net.uniego.aida.lobecorp.access.ServerPlayerAccess;
-import net.uniego.aida.lobecorp.entity.DeadPlayerEntity;
-import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.entity.ai.goal.MeleeAttackWithPreActionGoal;
 import net.uniego.aida.lobecorp.entity.ordeal.OrdealEntity;
 import net.uniego.aida.lobecorp.init.DamageInit;
-import net.uniego.aida.lobecorp.util.AnimationUtil;
-import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.function.IntFunction;
 
 //疑问实体
 public class DoubtEntity extends OrdealEntity {
     public static final TrackedDataHandler<DoubtEntity.State> DOUBT_STATE = TrackedDataHandler.create(DoubtEntity.State.PACKET_CODEC);
     private static final TrackedData<DoubtEntity.State> STATE = DataTracker.registerData(DoubtEntity.class, DOUBT_STATE);
+    private static final TrackedData<Integer> EXECUTE_STATE = DataTracker.registerData(DoubtEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Integer> TARGET_DEAD_PLAYER_ID = DataTracker.registerData(DoubtEntity.class, TrackedDataHandlerRegistry.INTEGER);
     public final AnimationState attackingAnimationState = new AnimationState();
     public final AnimationState executeAnimationState = new AnimationState();
     public final AnimationState dieAnimationState = new AnimationState();
-    public DeadPlayerEntity targetDeadPlayer;
     public float gearAngle;
     public float deadPivotY = 16;
     public float deadPivotZ = 0;
@@ -49,11 +49,12 @@ public class DoubtEntity extends OrdealEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return LobeCorpEntity.createAttributes()
+        return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 128.0F)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0F)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2F)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F);
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0F)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0F);
     }
 
     @Override
@@ -61,6 +62,8 @@ public class DoubtEntity extends OrdealEntity {
         super.initDataTracker(builder);
         TrackedDataHandlerRegistry.register(DOUBT_STATE);
         builder.add(STATE, DoubtEntity.State.IDLING);
+        builder.add(EXECUTE_STATE, -1);
+        builder.add(TARGET_DEAD_PLAYER_ID, -1);
     }
 
     @Override
@@ -69,7 +72,7 @@ public class DoubtEntity extends OrdealEntity {
         goalSelector.add(7, new LookAtEntityGoal(this, LivingEntity.class, 16.0F));
         goalSelector.add(6, new WanderAroundFarGoal(this, 1.0F));
         goalSelector.add(5, new MeleeAttackWithPreActionGoal<>(this, 1.2F, false, 1.0F, 0.32F, 1.0F, 0.5F));
-        goalSelector.add(0, new DoubtExecuteGoal(this, 1.0F, 1.68F, 15, 1.48F, 0.72F, 0.88F, 1.04F, 1.2F));
+        goalSelector.add(0, new DoubtExecuteGoal(this, 1.0F, 1.68F, 1.5F, 0.72F, 0.88F, 1.04F, 1.2F,1.48F));
         targetSelector.add(1, new RevengeGoal(this));
         targetSelector.add(2, new ActiveTargetGoal<>(this, LivingEntity.class, 10, true, true, GREEN_ORDEAL_ATTACK_TARGET_PREDICATE));
     }
@@ -80,6 +83,22 @@ public class DoubtEntity extends OrdealEntity {
 
     private void setState(State state) {
         dataTracker.set(STATE, state);
+    }
+
+    private Integer getTargetDeadPlayerID() {
+        return dataTracker.get(TARGET_DEAD_PLAYER_ID);
+    }
+
+    private void setTargetDeadPlayerID(Integer id) {
+        dataTracker.set(TARGET_DEAD_PLAYER_ID, id);
+    }
+
+    private Integer getExecuteState() {
+        return dataTracker.get(EXECUTE_STATE);
+    }
+
+    private void setExecuteState(Integer state) {
+        dataTracker.set(EXECUTE_STATE, state);
     }
 
     @Override
@@ -98,7 +117,6 @@ public class DoubtEntity extends OrdealEntity {
                     dieAnimationState.startIfNotRunning(age);
                     break;
             }
-
             calculateDimensions();
         }
 
@@ -107,6 +125,7 @@ public class DoubtEntity extends OrdealEntity {
 
     private void stopAnimations() {
         attackingAnimationState.stop();
+        executeAnimationState.stop();
     }
 
 //    public DoubtEntity startState(DoubtEntity.State state) {
@@ -134,7 +153,14 @@ public class DoubtEntity extends OrdealEntity {
         if (isDead()) {
             setState(State.DIE);
         } else {
-            this.gearAngle += AnimationUtil.degreeToRadians(1);
+            int state = getExecuteState();
+            if(state < 1){
+                if(getWorld().isClient()){
+                    Entity target = getWorld().getEntityById(getTargetDeadPlayerID());
+                    LobeCorpParticleEmitters.spurtBloodParticle(target,20,0.5F);
+                }
+                setExecuteState(state + 1);
+            }
         }
     }
 
@@ -142,11 +168,11 @@ public class DoubtEntity extends OrdealEntity {
         return gearAngle;
     }
 
-    public void setDeadPivotY(float deadPivotY) {
+    public void setDeadPivotY(float deadPivotY){
         this.deadPivotY = deadPivotY;
     }
 
-    public void setDeadPivotZ(float deadPivotZ) {
+    public void setDeadPivotZ(float deadPivotZ){
         this.deadPivotZ = deadPivotZ;
     }
 
@@ -181,7 +207,7 @@ public class DoubtEntity extends OrdealEntity {
         boolean result = tryColorAttack(this, target, DamageInit.RED);
         if (result && target instanceof PlayerEntity player) {
             if (player.isDead()) {
-                this.targetDeadPlayer = ((ServerPlayerAccess) player).lobecorp$getDeadPlayer();
+                setTargetDeadPlayerID(((ServerPlayerAccess) player).lobecorp$getDeadPlayer().getId());
             }
         }
         return result;
@@ -213,12 +239,11 @@ public class DoubtEntity extends OrdealEntity {
         private final int executeDuration;
         private final float[] attackMoments;
         private final float executeMoment;
-        //        private final TargetPredicate targetPredicate;
         private float executeTime;
+        Entity target;
 
-        public DoubtExecuteGoal(DoubtEntity mob, float executeSpeed, float executeDuration, float attackRange, float executeMoment, float... attackMoments) {
+        public DoubtExecuteGoal(DoubtEntity mob, float executeSpeed, float executeDuration, float executeMoment, float... attackMoments) {
             this.mob = mob;
-//            this.targetPredicate = TargetPredicate.createAttackable().setBaseMaxDistance(attackRange);
             this.executeDuration = (int) (executeDuration / executeSpeed * 20);
             this.executeMoment = this.executeDuration - (int) (executeMoment / executeSpeed * 20);
             this.attackMoments = attackMoments;
@@ -230,10 +255,10 @@ public class DoubtEntity extends OrdealEntity {
 
         public boolean canStart() {
             if (mob.isAlive()) {
-                DeadPlayerEntity targetDeadPlayer = mob.targetDeadPlayer;
-                if (targetDeadPlayer == null) {
+                target = mob.getWorld().getEntityById(mob.getTargetDeadPlayerID());
+                if (target == null) {
                     return false;
-                } else return !targetDeadPlayer.isRemoved();
+                } else return !target.isRemoved();
             }
             return false;
         }
@@ -247,14 +272,17 @@ public class DoubtEntity extends OrdealEntity {
         }
 
         public void tick() {
+            target = mob.getWorld().getEntityById(mob.getTargetDeadPlayerID());
             executeTime = Math.max(executeTime - 1, 0);
             if (executeTime <= 0) {
                 stop();
             } else if (executeTime == executeMoment) {
-                finalAttack();
+                if (target != null) {
+                    target.discard();
+                }
             } else {
                 for (float attackMoment : attackMoments) {
-                    if (executeTime == attackMoment && mob.targetDeadPlayer != null) {
+                    if (executeTime == attackMoment && target != null) {
                         attack();
                     }
                 }
@@ -276,14 +304,14 @@ public class DoubtEntity extends OrdealEntity {
         }
 
         public void attack() {
-            mob.targetDeadPlayer.setExecutorId(mob.getId());
-            mob.targetDeadPlayer.setExecuting(true);
-        }
-
-        public void finalAttack() {
-            attack();
-            mob.targetDeadPlayer.setExecuting(false);
-            mob.targetDeadPlayer.discard();
+            mob.setExecuteState(-1);
+            List<PlayerEntity> players = LobeCorpUtil.getPlayersInRange(mob,15,true);
+            for(PlayerEntity player : players){
+                int timeUntilRegen = player.timeUntilRegen;
+                player.timeUntilRegen = 0;
+                player.damage(LobeCorpUtil.noKnockBackDamageSource(DamageInit.WHITE,mob),1.5F);
+                player.timeUntilRegen = timeUntilRegen;
+            }
         }
     }
 }

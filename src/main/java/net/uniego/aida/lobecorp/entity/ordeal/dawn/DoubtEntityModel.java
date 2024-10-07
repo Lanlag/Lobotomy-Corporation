@@ -176,7 +176,8 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
         setDoubtPivot(entity);
-        setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(), 5);
+        entity.gearAngle += AnimationUtil.degreeToRadians(1);
+        setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(), 2);
         if (entity.isAlive()) {
             AnimationUtil.rotateHead(headYaw, headPitch, head);
             walkAnimation(limbAngle, limbDistance, 0.8F);
