@@ -8,7 +8,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.block.entity.ContainerBoxBlockEntity;
 import net.uniego.aida.lobecorp.init.BlockEntityInit;
@@ -17,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 public class ContainerBoxBlock extends BlockWithEntity {
     public static final MapCodec<ContainerBoxBlock> CODEC = createCodec(ContainerBoxBlock::new);
     private EntityType<?> abnormalityType;
+    private Direction direction;
 
     public ContainerBoxBlock(Settings settings, EntityType<?> abnormality) {
         this(settings);
@@ -34,7 +37,12 @@ public class ContainerBoxBlock extends BlockWithEntity {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new ContainerBoxBlockEntity(pos,state,abnormalityType);
+        return new ContainerBoxBlockEntity(pos,state,abnormalityType,direction);
+    }
+
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        direction = ctx.getHorizontalPlayerFacing();
+        return getDefaultState();
     }
 
     @Override

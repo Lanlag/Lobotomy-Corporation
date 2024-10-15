@@ -33,8 +33,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin extends PlayerEntity implements ServerPlayerAccess {
     @Unique
-    private static final double MAX_INTERACT_ABNORMALITY_DISTANCE = 30;//最大交互异想体范围为5格
-    @Unique
     private final SanityManager sanityManager = ((ManagerAccess) this).lobecorp$getSanityManager();
     @Unique
     private final ThirstManager thirstManager = ((ManagerAccess) this).lobecorp$getThirstManager();
@@ -104,7 +102,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
                 Vec3d interactPlayerPos = getPos();
                 Vec3d abnormalityPos = abnormality.getPos();
                 double squaredDistanceTo = interactPlayerPos.squaredDistanceTo(abnormalityPos);
-                if (squaredDistanceTo > MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
+                if (squaredDistanceTo > LobeCorpUtil.MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
                     closeHandledScreen();
                 }
             }
@@ -114,7 +112,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Se
                 Vec3d interactPlayerPos = getPos();
                 Vec3d abnormalityPos = abnormality.getPos();
                 double squaredDistanceTo = interactPlayerPos.squaredDistanceTo(abnormalityPos);
-                if (squaredDistanceTo > MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
+                if (squaredDistanceTo > LobeCorpUtil.MAX_INTERACT_ABNORMALITY_DISTANCE || sanityManager.isCrazy()) {
                     closeHandledScreen();
                 }
             }

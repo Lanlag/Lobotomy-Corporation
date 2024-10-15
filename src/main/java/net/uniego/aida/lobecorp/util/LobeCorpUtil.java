@@ -47,6 +47,7 @@ import java.util.function.BiConsumer;
 
 //常用工具
 public class LobeCorpUtil {
+    public static final double MAX_INTERACT_ABNORMALITY_DISTANCE = 30;//最大交互异想体范围为5格
     //注册ID
     public static Identifier id(String id) {
         return new Identifier(LobeCorpMain.MOD_ID, id);

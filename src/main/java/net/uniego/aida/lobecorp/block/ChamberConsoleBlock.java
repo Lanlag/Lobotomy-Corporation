@@ -88,11 +88,6 @@ public class ChamberConsoleBlock extends BlockWithEntity {
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
-//    @Override
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-//        return validateTicker(type, BlockEntityInit.CHAMBER_CONSOLE, ChamberConsoleBlockEntity::tick);
-//    }
-
     static {
         FACING = HorizontalFacingBlock.FACING;
         BASE_SHAPE = BlockUtil.createBBCuboidShape(-6.0,0.0,-2.0,28.0,16.0,20.0);

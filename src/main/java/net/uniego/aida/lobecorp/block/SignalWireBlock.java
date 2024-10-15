@@ -21,9 +21,7 @@ import net.uniego.aida.lobecorp.block.state.property.LobeCorpProperties;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.util.BlockUtil;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SignalWireBlock extends Block {
     public static final MapCodec<SignalWireBlock> CODEC = createCodec(SignalWireBlock::new);
@@ -55,11 +53,14 @@ public class SignalWireBlock extends Block {
     }
 
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        VoxelShape shape = CENTER_SHAPE;
+        VoxelShape shape = VoxelShapes.empty();
         for(Direction dir : Direction.values()){
             if(state.get(DIRECTION_PROPERTY.get(dir))){
                 shape = VoxelShapes.union(shape,DIRECTION_SHAPE.get(dir));
             }
+        }
+        if(state.get(SHOW_CENTER)){
+            shape = VoxelShapes.union(shape,CENTER_SHAPE);
         }
         return shape;
     }
@@ -72,21 +73,36 @@ public class SignalWireBlock extends Block {
                 || state.isIn(TagInit.SIGNAL_WIRE);
     }
 
+    public BlockState shouldShowCenter(BlockState state){
+        List<Direction> connections = new ArrayList<>();
+        for(Direction dir : Direction.values()){
+            if(state.get(DIRECTION_PROPERTY.get(dir))){
+                connections.add(dir);
+            }
+        }
+        if (connections.size() == 2 && connections.getFirst() == connections.getLast().getOpposite()){
+            return state.with(SHOW_CENTER,false);
+        }
+        return state.with(SHOW_CENTER,true);
+    }
+
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockView world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
-        return Objects.requireNonNull(super.getPlacementState(ctx))
+        BlockState state = Objects.requireNonNull(super.getPlacementState(ctx))
                 .with(NORTH,canConnect(world,pos.offset(Direction.SOUTH)))
                 .with(EAST,canConnect(world,pos.offset(Direction.WEST)))
                 .with(SOUTH,canConnect(world,pos.offset(Direction.NORTH)))
                 .with(WEST,canConnect(world,pos.offset(Direction.EAST)))
                 .with(UP,canConnect(world,pos.offset(Direction.DOWN)))
                 .with(DOWN,canConnect(world,pos.offset(Direction.UP)));
+        return shouldShowCenter(state);
     }
 
     protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return state
+        BlockState state1 = state
                 .with(DIRECTION_PROPERTY.get(direction),canConnect(world,neighborPos));
+        return shouldShowCenter(state1);
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -109,12 +125,12 @@ public class SignalWireBlock extends Block {
         DIRECTION_PROPERTY.put(Direction.UP,DOWN);
         DIRECTION_PROPERTY.put(Direction.DOWN,UP);
         CENTER_SHAPE = BlockUtil.createBBCuboidShape(6,6,6,4,4,4);
-        NORTH_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,6.5,10,3,3,6);
+        NORTH_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,6.5,8,3,3,8);
         SOUTH_SIDE_SHAPE = BlockUtil.rotateShapeHorizontal(Direction.SOUTH,NORTH_SIDE_SHAPE);
         WEST_SIDE_SHAPE = BlockUtil.rotateShapeHorizontal(Direction.WEST,NORTH_SIDE_SHAPE);
         EAST_SIDE_SHAPE = BlockUtil.rotateShapeHorizontal(Direction.EAST,NORTH_SIDE_SHAPE);
-        UP_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,10,6.5,3,6,3);
-        DOWN_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,0,6.5,3,6,3);
+        UP_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,8,6.5,3,8,3);
+        DOWN_SIDE_SHAPE = BlockUtil.createBBCuboidShape(6.5,0,6.5,3,8,3);
         DIRECTION_SHAPE = new HashMap<>();
         DIRECTION_SHAPE.put(Direction.NORTH,SOUTH_SIDE_SHAPE);
         DIRECTION_SHAPE.put(Direction.SOUTH,NORTH_SIDE_SHAPE);

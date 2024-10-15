@@ -3,6 +3,9 @@
     {
       "apply": {
         "model": "lobecorp:block/signal_wire/center"
+      },
+      "when": {
+        "show_center": "true"
       }
     },
     {

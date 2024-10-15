@@ -127,7 +127,6 @@ public class MeleeAttackWithPreActionGoal<T extends LobeCorpEntity> extends Goal
 
             cooldown = Math.max(cooldown - 1, 0);
             attackTime = Math.max(attackTime - 1, 0);
-            System.out.println( cooldown +" | "+attackTime);
             if (!isAttacking) {
                 if(isCooledDown()){
                     startAttack(livingEntity);

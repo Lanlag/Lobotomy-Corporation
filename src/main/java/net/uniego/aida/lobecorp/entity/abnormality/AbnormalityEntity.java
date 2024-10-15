@@ -9,20 +9,16 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.access.ManagerAccess;
+import net.uniego.aida.lobecorp.block.entity.ContainerBoxBlockEntity;
 import net.uniego.aida.lobecorp.entity.LobeCorpEntity;
 import net.uniego.aida.lobecorp.init.AttributeInit;
 import net.uniego.aida.lobecorp.init.ParticleInit;
-import net.uniego.aida.lobecorp.network.packet.OpenWorkPacket;
 import net.uniego.aida.lobecorp.util.LobeCorpUtil;
 
 import java.util.HashMap;
@@ -84,10 +80,8 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     private float levelOutputValue;//等级输出值
     private float temporaryStatusOutputValue;//暂时状态输出值
     private float finalStatusOutputValue;//最终状态输出值
-    private Vec3d spawnPos;//出生位置
-    private boolean isSpawned;//是否出生成功
     private int deadTickTimer;//死亡计时器
-    private boolean isRespawned;//是否重生成功
+    private ContainerBoxBlockEntity containerBox;
 
     protected AbnormalityEntity(EntityType<? extends HostileEntity> entityType, World world, LobeCorpUtil.EGOLevel egoLevel,
                                 String number, int eBox, int cooldownTime, float baseWorkSpeed, RegistryKey<DamageType> damageTypeRegistryKey,
@@ -152,17 +146,6 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     }
 
     @Override
-    protected ActionResult interactMob(PlayerEntity player, Hand hand) {
-        if (player.getWorld().isClient) {
-            if (((ManagerAccess) player).lobecorp$getSanityManager().isNormal()) {
-                OpenWorkPacket.send(getUuid());
-                return ActionResult.SUCCESS;
-            }
-        }
-        return ActionResult.FAIL;
-    }
-
-    @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
         return super.isInvulnerableTo(damageSource) || !isEscaping() && !(damageSource.isOf(DamageTypes.GENERIC_KILL)
                 || damageSource.isOf(DamageTypes.OUT_OF_WORLD) || damageSource.isOf(DamageTypes.OUTSIDE_BORDER));
@@ -184,14 +167,6 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         deadTickTimer++;
         if (deadTickTimer >= 100) {
             super.updatePostDeath();
-            if (!isRespawned && getType().create(getWorld()) instanceof AbnormalityEntity abnormality) {
-                abnormality.setPos(spawnPos.getX(), spawnPos.getY() + 0.1F, spawnPos.getZ());
-                abnormality.setUBox(uBox);
-                if (!getWorld().isClient) {
-                    getWorld().spawnEntity(abnormality);
-                    isRespawned = true;
-                }
-            }
         }
     }
 
@@ -199,31 +174,19 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         uBox = nbt.getInt("uBox");
-        double posX = nbt.getDouble("spawnPosX");
-        double posY = nbt.getDouble("spawnPosY");
-        double posZ = nbt.getDouble("spawnPosZ");
-        spawnPos = new Vec3d(posX, posY, posZ);
-        isSpawned = nbt.getBoolean("isSpawned");
+        setEscaping(nbt.getBoolean("isEscaping"));
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("uBox", uBox);
-        nbt.putDouble("spawnPosX", spawnPos.getX());
-        nbt.putDouble("spawnPosY", spawnPos.getY());
-        nbt.putDouble("spawnPosZ", spawnPos.getZ());
-        nbt.putBoolean("isSpawned", isSpawned);
+        nbt.putBoolean("isEscaping", isEscaping());
     }
 
     @Override
     public void tick() {
         super.tick();
-        super.tick();
-        if (!isSpawned) {
-            spawnPos = getPos();
-            isSpawned = true;
-        }
         work();
         if (!getWorld().isClient) {
             manage();
@@ -393,6 +356,14 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         this.lastWorkPlayer = lastWorkPlayer;
     }
 
+    public ContainerBoxBlockEntity getContainerBox(){
+        return this.containerBox;
+    }
+
+    public void setContainerBox(ContainerBoxBlockEntity blockEntity){
+        this.containerBox = blockEntity;
+    }
+
     //设置所有等级输出值
     public void setLevelOutputValues() {
         //设置ZAYIN等级输出值
@@ -532,6 +503,11 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
 
     public void setUBox(int uBox) {
         this.uBox = Math.max(0, Math.min(uBox, 999));
+        if (getContainerBox() != null){
+            getContainerBox().setUBox(getPeBox());
+            //!!!这用于在下次保存时强制更新数据!!!
+            getContainerBox().markDirty();
+        }
     }
 
     //生成工作结果粒子

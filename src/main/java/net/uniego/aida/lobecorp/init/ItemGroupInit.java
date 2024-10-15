@@ -54,7 +54,6 @@ public class ItemGroupInit {
                 entries.add(ItemInit.CHAMBER_CONSOLE);
                 entries.add(ItemInit.QLIPHOTH_COUNTER);
                 entries.add(ItemInit.SIGNAL_WIRE);
-                entries.add(ItemInit.CONTAINER_BOX_O_02_62);
             }).build();
 
     public static final ItemGroup EGO_WEAPON_TAB = FabricItemGroup.builder()
@@ -97,6 +96,7 @@ public class ItemGroupInit {
                 entries.add(AbnormalitySpawnEgg.BEAUTY_AND_THE_BEAST_EGG);
                 entries.add(AbnormalitySpawnEgg.HAPPY_TEDDY_BEAR_EGG);
                 entries.add(AbnormalitySpawnEgg.JUDGEMENT_BIRD_EGG);
+                entries.add(ItemInit.CONTAINER_BOX_O_02_62);
             }).build();
 
 //    public static final ItemGroup BUILDING_TAB = FabricItemGroup.builder()
