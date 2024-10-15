@@ -27,6 +27,7 @@ public class ItemGroupInit {
     public static final String EGO_SUIT_TAB_NAME = "itemgroup.lobecorp.ego_suit";//E.G.O护甲栏
     public static final String EGO_GIFT_TAB_NAME = "itemgroup.lobecorp.ego_gift";//E.G.O饰品栏
     public static final String ABNORMALITY_TAB_NAME = "itemgroup.lobecorp.abnormality";//异想体栏
+    public static final String BUILDING_TAB_NAME = "itemgroup.lobecorp.building";//建筑栏
 
     public static final ItemGroup LOBE_CORP_TAB = FabricItemGroup.builder()
             .icon(() -> new ItemStack(LobeCorpItem.LOBECORP_LOGO)).displayName(Text.translatable(LOBE_CORP_TAB_NAME))
@@ -50,6 +51,10 @@ public class ItemGroupInit {
                 entries.add(RecordBadge.RECORD_BADGE);
                 entries.add(ExtractionBadge.EXTRACTION_BADGE);
                 entries.add(ArchitectureBadge.ARCHITECTURE_BADGE);
+                entries.add(ItemInit.CHAMBER_CONSOLE);
+                entries.add(ItemInit.QLIPHOTH_COUNTER);
+                entries.add(ItemInit.SIGNAL_WIRE);
+                entries.add(ItemInit.CONTAINER_BOX_O_02_62);
             }).build();
 
     public static final ItemGroup EGO_WEAPON_TAB = FabricItemGroup.builder()
@@ -94,8 +99,16 @@ public class ItemGroupInit {
                 entries.add(AbnormalitySpawnEgg.JUDGEMENT_BIRD_EGG);
             }).build();
 
+//    public static final ItemGroup BUILDING_TAB = FabricItemGroup.builder()
+//            .icon(() -> new ItemStack(BlockInit.QLIPHOTH_COUNTER)).displayName(Text.translatable(BUILDING_TAB_NAME))
+//            .entries((context, entries) -> {
+//                entries.add(ItemInit.CHAMBER_CONSOLE);
+//                entries.add(ItemInit.QLIPHOTH_COUNTER);
+//            }).build();
+
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("lobe_corp_tab"), LOBE_CORP_TAB);
+//        Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("building_tab"), BUILDING_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_weapon_tab"), EGO_WEAPON_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_suit_tab"), EGO_SUIT_TAB);
         Registry.register(Registries.ITEM_GROUP, LobeCorpUtil.id("ego_gift_tab"), EGO_GIFT_TAB);

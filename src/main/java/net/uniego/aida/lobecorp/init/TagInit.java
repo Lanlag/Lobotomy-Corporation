@@ -1,6 +1,7 @@
 package net.uniego.aida.lobecorp.init;
 
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -13,4 +14,6 @@ public class TagInit {
     public static final TagKey<Item> WHITE_EGO_WEAPONS = TagKey.of(RegistryKeys.ITEM, LobeCorpUtil.id("white_ego_weapons"));
     public static final TagKey<Item> BLACK_EGO_WEAPONS = TagKey.of(RegistryKeys.ITEM, LobeCorpUtil.id("black_ego_weapons"));
     public static final TagKey<Item> PALE_EGO_WEAPONS = TagKey.of(RegistryKeys.ITEM, LobeCorpUtil.id("pale_ego_weapons"));
+
+    public static final TagKey<Block> SIGNAL_WIRE = TagKey.of(RegistryKeys.BLOCK, LobeCorpUtil.id("signal_wire"));
 }

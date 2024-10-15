@@ -38,7 +38,7 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
         if (isWorking()) hasExecuted = false;
         if (!isWorking() && !isCooling() && REPRESSION.equals(getLastWorkMethod())) {
             if (!hasExecuted) {
-                setQliphothCounter(qliphothCounter - 1);
+                setQliphothCounter(getQliphothCounter() - 1);
                 hasExecuted = true;
             }
         }
@@ -46,7 +46,7 @@ public class StandardTrainingDummyRabbitEntity extends AbnormalityEntity {
 
     @Override
     protected void escape() {
-        if (qliphothCounter <= 0) {
+        if (getQliphothCounter() <= 0) {
             if (!hasMoved) {
                 setEscaping(true);
                 goalSelector.add(1, new StandardTrainingDummyRabbitGoal(this, 0.5F, 64));

@@ -8,6 +8,7 @@ import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import net.uniego.aida.lobecorp.util.AnimationUtil;
+import net.uniego.aida.lobecorp.util.MathUtil;
 
 //疑问实体模型
 @Environment(EnvType.CLIENT)
@@ -176,7 +177,7 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     public void setAngles(DoubtEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         setDefaultPose();
         setDoubtPivot(entity);
-        entity.gearAngle += AnimationUtil.degreeToRadians(1);
+        entity.gearAngle += MathUtil.degreeToRadians(1);
         setGearsAngle(limbAngle, limbDistance, entity.getGearAngle(), 2);
         if (entity.isAlive()) {
             AnimationUtil.rotateHead(headYaw, headPitch, head);
@@ -193,19 +194,19 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     public void setDefaultPose() {
         waist.pitch = 0;
         body.yaw = 0;
-        body.pitch = AnimationUtil.degreeToRadians(12.5F);
-        head.pitch = AnimationUtil.degreeToRadians(-12.5F);
+        body.pitch = MathUtil.degreeToRadians(12.5F);
+        head.pitch = MathUtil.degreeToRadians(-12.5F);
         neck.pitch = 0;
-        leftArm.pitch = AnimationUtil.degreeToRadians(35F);
-        la2.pitch = AnimationUtil.degreeToRadians(-97F);
-        cloth1.pitch = AnimationUtil.degreeToRadians(-15F);
-        cloth2.pitch = AnimationUtil.degreeToRadians(-2.5F);
-        rightLeg.pitch = AnimationUtil.degreeToRadians(-5F);
-        rl2.pitch = AnimationUtil.degreeToRadians(80F);
-        rl3.pitch = AnimationUtil.degreeToRadians(-100F);
-        leftLeg.pitch = AnimationUtil.degreeToRadians(-52.5F);
-        ll2.pitch = AnimationUtil.degreeToRadians(92.5F);
-        ll3.pitch = AnimationUtil.degreeToRadians(-67.5F);
+        leftArm.pitch = MathUtil.degreeToRadians(35F);
+        la2.pitch = MathUtil.degreeToRadians(-97F);
+        cloth1.pitch = MathUtil.degreeToRadians(-15F);
+        cloth2.pitch = MathUtil.degreeToRadians(-2.5F);
+        rightLeg.pitch = MathUtil.degreeToRadians(-5F);
+        rl2.pitch = MathUtil.degreeToRadians(80F);
+        rl3.pitch = MathUtil.degreeToRadians(-100F);
+        leftLeg.pitch = MathUtil.degreeToRadians(-52.5F);
+        ll2.pitch = MathUtil.degreeToRadians(92.5F);
+        ll3.pitch = MathUtil.degreeToRadians(-67.5F);
         gear1.pitch = 0;
         gear2.pitch = 0;
         gear3.pitch = 0;
@@ -238,22 +239,22 @@ public class DoubtEntityModel<T extends DoubtEntity> extends SinglePartEntityMod
     public void walkAnimation(float limbAngle, float limbDistance, float speed) {
         float amplitude = (float) MathHelper.clamp(limbDistance, 0, 0.33);
         amplitude = (float) (amplitude * (1 / 0.31));
-        float i = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed) * 5F) * amplitude;
-        float j = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * 25F - 25F) * amplitude;
-        float k = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * -25F + 22.5F) * amplitude;
+        float i = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed) * 5F) * amplitude;
+        float j = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * 25F - 25F) * amplitude;
+        float k = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * -25F + 22.5F) * amplitude;
 
-        float l = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * -15F + 15F) * amplitude;
-        float m = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * 15F + 2.5F) * amplitude;
+        float l = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * -15F + 15F) * amplitude;
+        float m = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 60) * 15F + 2.5F) * amplitude;
 
-        float n = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 120) * -25F + 15F) * amplitude;
-        float o = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 120) * 25F - 17.5F) * amplitude;
+        float n = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 120) * -25F + 15F) * amplitude;
+        float o = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed - 120) * 25F - 17.5F) * amplitude;
 
-        float p = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * 5F) * amplitude;
+        float p = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * speed) * 5F) * amplitude;
 
-        float q = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 30) * 5F) * amplitude;
-        float r = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 45) * 3F) * amplitude;
-        float s = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 45) * -6F - 6) * amplitude;
-        float t = AnimationUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 60) * -3F + 3) * amplitude;
+        float q = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 30) * 5F) * amplitude;
+        float r = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 45) * 3F) * amplitude;
+        float s = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 45) * -6F - 6) * amplitude;
+        float t = MathUtil.degreeToRadians(MathHelper.sin(limbAngle * 2 * speed + 60) * -3F + 3) * amplitude;
 
         doubt.pivotY += (MathHelper.sin(limbAngle * 2 * speed) - 0.5F) * amplitude;
         doubt.pivotZ -= (MathHelper.sin(limbAngle * 2 * speed) * 2 - 1F) * amplitude;

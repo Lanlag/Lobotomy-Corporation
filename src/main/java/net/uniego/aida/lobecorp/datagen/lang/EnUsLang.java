@@ -132,6 +132,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O Suit");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O Gift");
         translationBuilder.add(ItemGroupInit.ABNORMALITY_TAB_NAME, "Abnormality");
+//        translationBuilder.add(ItemGroupInit.BUILDING_TAB_NAME, "Lobe Corp Building");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "Change Equipment");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "Swallow Water");
@@ -225,5 +226,10 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(EntityInit.JUDGEMENT_BIRD_ENTITY, "Judgement Bird");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "Doubt");
+        //方块名
+        translationBuilder.add(BlockInit.CHAMBER_CONSOLE, "Chamber Console");
+        translationBuilder.add(BlockInit.QLIPHOTH_COUNTER, "Qliphoth Counter");
+        translationBuilder.add(BlockInit.SIGNAL_WIRE, "Signal Wire");
+        translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "Container Box of Judgement Bird");
     }
 }

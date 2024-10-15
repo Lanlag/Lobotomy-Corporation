@@ -50,12 +50,12 @@ public class JudgementBirdEntity extends AbnormalityEntity {
         if (!hasExecuted && !isWorking() && !isCooling()) {
             if (NORMAL.equals(getLastWorkResult())) {
                 if (getWorld().random.nextFloat() <= 0.50F) {
-                    setQliphothCounter(qliphothCounter - 1);
+                    setQliphothCounter(getQliphothCounter() - 1);
                     hasExecuted = true;
                 }
             } else if (BAD.equals(getLastWorkResult())) {
                 if (getWorld().random.nextFloat() <= 0.70F) {
-                    setQliphothCounter(qliphothCounter - 1);
+                    setQliphothCounter(getQliphothCounter() - 1);
                     hasExecuted = true;
                 }
             }
@@ -64,7 +64,7 @@ public class JudgementBirdEntity extends AbnormalityEntity {
 
     @Override
     protected void escape() {
-        if (qliphothCounter <= 0) {
+        if (getQliphothCounter() <= 0) {
             if (!hasMoved) {
                 setEscaping(true);
                 goalSelector.add(9, new SwimGoal(this));

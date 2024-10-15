@@ -45,6 +45,7 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     private static final TrackedData<Integer> NE_BOX = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> LAST_PE_BOX = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> LAST_NE_BOX = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Integer> QLIPHOTH_COUNTER = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<String> LAST_WORK_METHOD = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Integer> LAST_WORK_LEVEL = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<String> LAST_WORK_RESULT = DataTracker.registerData(AbnormalityEntity.class, TrackedDataHandlerRegistry.STRING);
@@ -77,7 +78,6 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
     public ServerPlayerEntity workPlayer;//工作玩家
     public String workMethod;//工作方式
     public int uBox;//独立E-BOX
-    protected int qliphothCounter;//逆卡巴拉计数器
     private ServerPlayerEntity lastWorkPlayer;//上一个工作玩家
     private int workTickTimer;//工作计时器
     private int coolTickTimer;//冷却计时器
@@ -96,7 +96,6 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         this.number = number;
         this.eBox = eBox;
         this.maxQliphothCounter = -1;
-        this.qliphothCounter = -1;
         this.cooldownTime = cooldownTime;
         this.baseWorkSpeed = baseWorkSpeed;
         this.damageTypeRegistryKey = damageTypeRegistryKey;
@@ -120,7 +119,7 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         this.number = number;
         this.eBox = eBox;
         this.maxQliphothCounter = maxQliphothCounter;
-        this.qliphothCounter = maxQliphothCounter;
+        setQliphothCounter(maxQliphothCounter);
         this.cooldownTime = cooldownTime;
         this.baseWorkSpeed = baseWorkSpeed;
         this.damageTypeRegistryKey = damageTypeRegistryKey;
@@ -141,6 +140,7 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
         super.initDataTracker(builder);
         builder.add(PE_BOX, 0);
         builder.add(NE_BOX, 0);
+        builder.add(QLIPHOTH_COUNTER, -1);
         builder.add(LAST_PE_BOX, 0);
         builder.add(LAST_NE_BOX, 0);
         builder.add(LAST_WORK_METHOD, "");
@@ -218,6 +218,7 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
 
     @Override
     public void tick() {
+        super.tick();
         super.tick();
         if (!isSpawned) {
             spawnPos = getPos();
@@ -310,6 +311,14 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
 
     public void setNeBox(int neBox) {
         dataTracker.set(NE_BOX, Math.max(0, Math.min(neBox, eBox)));
+    }
+
+    public int getQliphothCounter() {
+        return dataTracker.get(QLIPHOTH_COUNTER);
+    }
+
+    public void setQliphothCounter(int qliphothCounter) {
+        dataTracker.set(QLIPHOTH_COUNTER, Math.max(0, qliphothCounter));
     }
 
     public int getLastPeBox() {
@@ -523,10 +532,6 @@ public abstract class AbnormalityEntity extends LobeCorpEntity {
 
     public void setUBox(int uBox) {
         this.uBox = Math.max(0, Math.min(uBox, 999));
-    }
-
-    public void setQliphothCounter(int qliphothCounter) {
-        this.qliphothCounter = Math.max(0, Math.min(qliphothCounter, maxQliphothCounter));
     }
 
     //生成工作结果粒子

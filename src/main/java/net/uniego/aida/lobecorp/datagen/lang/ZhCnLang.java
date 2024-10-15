@@ -132,6 +132,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(ItemGroupInit.EGO_SUIT_TAB_NAME, "E.G.O护甲");
         translationBuilder.add(ItemGroupInit.EGO_GIFT_TAB_NAME, "E.G.O饰品");
         translationBuilder.add(ItemGroupInit.ABNORMALITY_TAB_NAME, "异想体");
+//        translationBuilder.add(ItemGroupInit.BUILDING_TAB_NAME, "脑叶公司建筑");
         //声音名
         translationBuilder.add(SoundInit.CHANGE_EQUIPMENT_ID, "变换装备");
         translationBuilder.add(SoundInit.SWALLOW_WATER_ID, "吞水");
@@ -225,5 +226,10 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(EntityInit.JUDGEMENT_BIRD_ENTITY, "审判鸟");
         //考验名
         translationBuilder.add(EntityInit.DOUBT_ENTITY, "疑问");
+        //方块名
+        translationBuilder.add(BlockInit.CHAMBER_CONSOLE, "收容单元控制台");
+        translationBuilder.add(BlockInit.QLIPHOTH_COUNTER, "逆卡巴拉计数器");
+        translationBuilder.add(BlockInit.SIGNAL_WIRE, "信号线");
+        translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "审判鸟收容箱");
     }
 }

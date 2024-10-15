@@ -1,7 +1,9 @@
 package net.uniego.aida.lobecorp.particle;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.uniego.aida.lobecorp.init.ParticleInit;
 
 public class LobeCorpParticleEmitters {

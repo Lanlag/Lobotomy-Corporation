@@ -1,0 +1,7 @@
+{
+  "parent": "lobecorp:block/qliphoth_counter",
+  "textures": {
+    "0": "lobecorp:block/qliphoth_counter/4",
+    "particle": "lobecorp:block/qliphoth_counter/4"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "variants": {
+    "facing=east,qliphoth_count=0": {
+      "model": "lobecorp:block/qliphoth_counter",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=0": {
+      "model": "lobecorp:block/qliphoth_counter"
+    },
+    "facing=south,qliphoth_count=0": {
+      "model": "lobecorp:block/qliphoth_counter",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=0": {
+      "model": "lobecorp:block/qliphoth_counter",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=1": {
+      "model": "lobecorp:block/qliphoth_counter/0",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=1": {
+      "model": "lobecorp:block/qliphoth_counter/0"
+    },
+    "facing=south,qliphoth_count=1": {
+      "model": "lobecorp:block/qliphoth_counter/0",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=1": {
+      "model": "lobecorp:block/qliphoth_counter/0",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=2": {
+      "model": "lobecorp:block/qliphoth_counter/1",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=2": {
+      "model": "lobecorp:block/qliphoth_counter/1"
+    },
+    "facing=south,qliphoth_count=2": {
+      "model": "lobecorp:block/qliphoth_counter/1",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=2": {
+      "model": "lobecorp:block/qliphoth_counter/1",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=3": {
+      "model": "lobecorp:block/qliphoth_counter/2",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=3": {
+      "model": "lobecorp:block/qliphoth_counter/2"
+    },
+    "facing=south,qliphoth_count=3": {
+      "model": "lobecorp:block/qliphoth_counter/2",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=3": {
+      "model": "lobecorp:block/qliphoth_counter/2",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=4": {
+      "model": "lobecorp:block/qliphoth_counter/3",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=4": {
+      "model": "lobecorp:block/qliphoth_counter/3"
+    },
+    "facing=south,qliphoth_count=4": {
+      "model": "lobecorp:block/qliphoth_counter/3",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=4": {
+      "model": "lobecorp:block/qliphoth_counter/3",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=5": {
+      "model": "lobecorp:block/qliphoth_counter/4",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=5": {
+      "model": "lobecorp:block/qliphoth_counter/4"
+    },
+    "facing=south,qliphoth_count=5": {
+      "model": "lobecorp:block/qliphoth_counter/4",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=5": {
+      "model": "lobecorp:block/qliphoth_counter/4",
+      "y": 270
+    },
+    "facing=east,qliphoth_count=6": {
+      "model": "lobecorp:block/qliphoth_counter/5",
+      "y": 90
+    },
+    "facing=north,qliphoth_count=6": {
+      "model": "lobecorp:block/qliphoth_counter/5"
+    },
+    "facing=south,qliphoth_count=6": {
+      "model": "lobecorp:block/qliphoth_counter/5",
+      "y": 180
+    },
+    "facing=west,qliphoth_count=6": {
+      "model": "lobecorp:block/qliphoth_counter/5",
+      "y": 270
+    }
+  }
+}
