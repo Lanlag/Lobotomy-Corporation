@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lobecorp:block/warning_block"
+    }
+  }
+}

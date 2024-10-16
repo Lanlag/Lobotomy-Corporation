@@ -54,6 +54,13 @@ public class ItemGroupInit {
                 entries.add(ItemInit.CHAMBER_CONSOLE);
                 entries.add(ItemInit.QLIPHOTH_COUNTER);
                 entries.add(ItemInit.SIGNAL_WIRE);
+                entries.add(ItemInit.WARNING_LINE);
+                entries.add(ItemInit.CONCRETE_WALL);
+                entries.add(ItemInit.CONCRETE_PILLAR);
+                entries.add(ItemInit.FOCAL_CONCRETE);
+                entries.add(ItemInit.DARK_CONCRETE_WALL);
+                entries.add(ItemInit.WARNING_BLOCK);
+                entries.add(ItemInit.METAL_BLOCK);
             }).build();
 
     public static final ItemGroup EGO_WEAPON_TAB = FabricItemGroup.builder()

@@ -230,6 +230,14 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(BlockInit.CHAMBER_CONSOLE, "收容单元控制台");
         translationBuilder.add(BlockInit.QLIPHOTH_COUNTER, "逆卡巴拉计数器");
         translationBuilder.add(BlockInit.SIGNAL_WIRE, "信号线");
+        translationBuilder.add(BlockInit.WARNING_LINE, "警戒线");
+        translationBuilder.add(BlockInit.WARNING_BLOCK, "警戒块");
+        translationBuilder.add(BlockInit.METAL_BLOCK, "金属块");
+        translationBuilder.add(BlockInit.CONCRETE_WALL, "混凝土墙");
+        translationBuilder.add(BlockInit.CONCRETE_PILLAR, "混凝土柱");
+        translationBuilder.add(BlockInit.FOCAL_CONCRETE, "焦点混凝土");
+        translationBuilder.add(BlockInit.DARK_CONCRETE_WALL, "深色混凝土墙");
+        //收容箱名
         translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "审判鸟收容箱");
     }
 }

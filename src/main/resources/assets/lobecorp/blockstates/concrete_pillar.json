@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lobecorp:block/concrete_pillar/horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lobecorp:block/concrete_pillar/vertical"
+    },
+    "axis=z": {
+      "model": "lobecorp:block/concrete_pillar/horizontal",
+      "x": 90
+    }
+  }
+}

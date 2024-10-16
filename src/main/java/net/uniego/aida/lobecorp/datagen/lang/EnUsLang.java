@@ -230,6 +230,14 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(BlockInit.CHAMBER_CONSOLE, "Chamber Console");
         translationBuilder.add(BlockInit.QLIPHOTH_COUNTER, "Qliphoth Counter");
         translationBuilder.add(BlockInit.SIGNAL_WIRE, "Signal Wire");
+        translationBuilder.add(BlockInit.WARNING_LINE, "Warning Line");
+        translationBuilder.add(BlockInit.CONCRETE_WALL, "Concrete Wall");
+        translationBuilder.add(BlockInit.WARNING_BLOCK, "Warning Block");
+        translationBuilder.add(BlockInit.METAL_BLOCK, "Metal Block");
+        translationBuilder.add(BlockInit.CONCRETE_PILLAR, "Concrete Pillar");
+        translationBuilder.add(BlockInit.FOCAL_CONCRETE, "Focal Concrete");
+        translationBuilder.add(BlockInit.DARK_CONCRETE_WALL, "Dark Concrete Wall");
+        //收容箱名
         translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "Container Box of Judgement Bird");
     }
 }

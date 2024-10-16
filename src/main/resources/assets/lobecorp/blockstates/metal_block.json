@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lobecorp:block/metal_block"
+    }
+  }
+}

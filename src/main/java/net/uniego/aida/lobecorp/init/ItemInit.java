@@ -26,6 +26,13 @@ public class ItemInit {
     public static final Item QLIPHOTH_COUNTER = register(BlockInit.QLIPHOTH_COUNTER);
     public static final Item SIGNAL_WIRE = register(BlockInit.SIGNAL_WIRE);
     public static final Item CONTAINER_BOX_O_02_62 = register(BlockInit.CONTAINER_BOX_O_02_62);
+    public static final Item WARNING_LINE = register(BlockInit.WARNING_LINE);
+    public static final Item CONCRETE_WALL = register(BlockInit.CONCRETE_WALL);
+    public static final Item CONCRETE_PILLAR = register(BlockInit.CONCRETE_PILLAR);
+    public static final Item FOCAL_CONCRETE = register(BlockInit.FOCAL_CONCRETE);
+    public static final Item DARK_CONCRETE_WALL = register(BlockInit.DARK_CONCRETE_WALL);
+    public static final Item WARNING_BLOCK = register(BlockInit.WARNING_BLOCK);
+    public static final Item METAL_BLOCK = register(BlockInit.METAL_BLOCK);
 
     public static Item register(Block block) {
         return register(new BlockItem(block, new Item.Settings()));

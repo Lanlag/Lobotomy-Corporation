@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lobecorp:block/warning_line/horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lobecorp:block/warning_line/vertical"
+    },
+    "axis=z": {
+      "model": "lobecorp:block/warning_line/horizontal",
+      "x": 90
+    }
+  }
+}

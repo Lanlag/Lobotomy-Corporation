@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "lobecorp:block/dark_concrete_wall",
+    "side": "lobecorp:block/focal_concrete/side"
+  }
+}
