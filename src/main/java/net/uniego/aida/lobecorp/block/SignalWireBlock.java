@@ -5,19 +5,28 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.uniego.aida.lobecorp.access.SignalSourceAccess;
 import net.uniego.aida.lobecorp.block.entity.AbstractSignalReceiverBlockEntity;
 import net.uniego.aida.lobecorp.block.state.property.LobeCorpProperties;
+import net.uniego.aida.lobecorp.init.ItemInit;
 import net.uniego.aida.lobecorp.init.TagInit;
 import net.uniego.aida.lobecorp.util.BlockUtil;
 
@@ -32,6 +41,7 @@ public class SignalWireBlock extends Block {
     public static final BooleanProperty UP;
     public static final BooleanProperty DOWN;
     public static final BooleanProperty SHOW_CENTER;
+    public static final BooleanProperty COVERED;
     public static final Map<Direction,BooleanProperty> DIRECTION_PROPERTY;
     public static final Map<Direction,VoxelShape> DIRECTION_SHAPE;
     protected static final VoxelShape CENTER_SHAPE;
@@ -53,6 +63,10 @@ public class SignalWireBlock extends Block {
     }
 
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(COVERED)){
+            return VoxelShapes.fullCube();
+        }
+
         VoxelShape shape = VoxelShapes.empty();
         for(Direction dir : Direction.values()){
             if(state.get(DIRECTION_PROPERTY.get(dir))){
@@ -73,6 +87,8 @@ public class SignalWireBlock extends Block {
                 || state.isIn(TagInit.SIGNAL_WIRE);
     }
 
+
+
     public BlockState shouldShowCenter(BlockState state){
         List<Direction> connections = new ArrayList<>();
         for(Direction dir : Direction.values()){
@@ -86,6 +102,21 @@ public class SignalWireBlock extends Block {
         return state.with(SHOW_CENTER,true);
     }
 
+    @Override
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(stack.getItem() == ItemInit.CONCRETE_WALL){
+            boolean bl = !state.get(COVERED);
+            world.setBlockState(pos,state.with(COVERED, bl));
+            if(bl){
+                world.playSound(null,pos, SoundEvents.BLOCK_STONE_PLACE, SoundCategory.BLOCKS,1.0F,0.5F);
+            } else {
+                world.playSound(null,pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F,0.5F);
+            }
+            return ItemActionResult.SUCCESS;
+        }
+        return super.onUseWithItem(stack,state,world,pos,player,hand,hit);
+    }
+
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockView world = ctx.getWorld();
         BlockPos pos = ctx.getBlockPos();
@@ -95,7 +126,8 @@ public class SignalWireBlock extends Block {
                 .with(SOUTH,canConnect(world,pos.offset(Direction.NORTH)))
                 .with(WEST,canConnect(world,pos.offset(Direction.EAST)))
                 .with(UP,canConnect(world,pos.offset(Direction.DOWN)))
-                .with(DOWN,canConnect(world,pos.offset(Direction.UP)));
+                .with(DOWN,canConnect(world,pos.offset(Direction.UP)))
+                .with(COVERED,false);
         return shouldShowCenter(state);
     }
 
@@ -106,7 +138,7 @@ public class SignalWireBlock extends Block {
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(NORTH, EAST, WEST, SOUTH, UP,DOWN,SHOW_CENTER);
+        builder.add(NORTH, EAST, WEST, SOUTH, UP,DOWN,SHOW_CENTER,COVERED);
     }
 
     static {
@@ -116,6 +148,7 @@ public class SignalWireBlock extends Block {
         WEST = Properties.WEST;
         UP = Properties.UP;
         DOWN = Properties.DOWN;
+        COVERED = LobeCorpProperties.COVERED;
         SHOW_CENTER = LobeCorpProperties.SHOW_CENTER;
         DIRECTION_PROPERTY = new HashMap<>();
         DIRECTION_PROPERTY.put(Direction.SOUTH,NORTH);

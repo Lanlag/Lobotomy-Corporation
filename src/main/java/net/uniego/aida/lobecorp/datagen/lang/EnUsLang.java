@@ -237,6 +237,7 @@ public class EnUsLang extends FabricLanguageProvider {
         translationBuilder.add(BlockInit.CONCRETE_PILLAR, "Concrete Pillar");
         translationBuilder.add(BlockInit.FOCAL_CONCRETE, "Focal Concrete");
         translationBuilder.add(BlockInit.DARK_CONCRETE_WALL, "Dark Concrete Wall");
+        translationBuilder.add(BlockInit.ROOF_DARK_CONCRETE_WALL, "Roof Dark Concrete Wall");
         //收容箱名
         translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "Container Box of Judgement Bird");
     }

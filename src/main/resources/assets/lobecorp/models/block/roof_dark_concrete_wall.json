@@ -1,0 +1,6 @@
+{
+  "parent": "lobecorp:block/roof_block",
+  "textures": {
+    "all": "lobecorp:block/dark_concrete_wall"
+  }
+}

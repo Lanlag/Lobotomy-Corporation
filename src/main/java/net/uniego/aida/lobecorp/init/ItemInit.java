@@ -31,6 +31,7 @@ public class ItemInit {
     public static final Item CONCRETE_PILLAR = register(BlockInit.CONCRETE_PILLAR);
     public static final Item FOCAL_CONCRETE = register(BlockInit.FOCAL_CONCRETE);
     public static final Item DARK_CONCRETE_WALL = register(BlockInit.DARK_CONCRETE_WALL);
+    public static final Item ROOF_DARK_CONCRETE_WALL = register(BlockInit.ROOF_DARK_CONCRETE_WALL);
     public static final Item WARNING_BLOCK = register(BlockInit.WARNING_BLOCK);
     public static final Item METAL_BLOCK = register(BlockInit.METAL_BLOCK);
 

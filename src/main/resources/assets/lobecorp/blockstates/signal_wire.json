@@ -2,6 +2,14 @@
   "multipart": [
     {
       "apply": {
+        "model": "lobecorp:block/concrete_wall"
+      },
+      "when": {
+        "covered": "true"
+      }
+    },
+    {
+      "apply": {
         "model": "lobecorp:block/signal_wire/center"
       },
       "when": {

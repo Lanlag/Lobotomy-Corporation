@@ -59,6 +59,7 @@ public class ItemGroupInit {
                 entries.add(ItemInit.CONCRETE_PILLAR);
                 entries.add(ItemInit.FOCAL_CONCRETE);
                 entries.add(ItemInit.DARK_CONCRETE_WALL);
+                entries.add(ItemInit.ROOF_DARK_CONCRETE_WALL);
                 entries.add(ItemInit.WARNING_BLOCK);
                 entries.add(ItemInit.METAL_BLOCK);
             }).build();

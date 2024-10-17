@@ -237,6 +237,7 @@ public class ZhCnLang extends FabricLanguageProvider {
         translationBuilder.add(BlockInit.CONCRETE_PILLAR, "混凝土柱");
         translationBuilder.add(BlockInit.FOCAL_CONCRETE, "焦点混凝土");
         translationBuilder.add(BlockInit.DARK_CONCRETE_WALL, "深色混凝土墙");
+        translationBuilder.add(BlockInit.ROOF_DARK_CONCRETE_WALL, "顶深色混凝土墙");
         //收容箱名
         translationBuilder.add(BlockInit.CONTAINER_BOX_O_02_62, "审判鸟收容箱");
     }
